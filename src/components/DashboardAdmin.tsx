@@ -8,7 +8,16 @@ import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import WarningIcon from '@mui/icons-material/Warning';
 import EmailIcon from '@mui/icons-material/Email';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(2),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 
 export default function DashboardAdmin() {
@@ -18,8 +27,8 @@ export default function DashboardAdmin() {
 
     <>
       <ContentMain >
-        <Grid container spacing={4} className='pt-7'>
-          <Grid item xs={3}>
+        <Grid container spacing={2} className='pt-7' >
+          <Grid item xs={6} sm={6} md={3} >
             <Button variant="contained" href="#contained-buttons" className='w-full'>
               <PersonAddAltIcon />
               <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
@@ -28,7 +37,7 @@ export default function DashboardAdmin() {
 
             </Button>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6} sm={6} md={3}>
             <Button variant="contained" href="#contained-buttons" className='w-full'>
               <PersonAddAltIcon />
               <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
@@ -36,7 +45,7 @@ export default function DashboardAdmin() {
               </Typography>
             </Button>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6} sm={6} md={3}>
             <Button variant="contained" href="#contained-buttons" className='w-full'>
               <PeopleIcon />
               <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
@@ -45,7 +54,7 @@ export default function DashboardAdmin() {
 
             </Button>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6} sm={6} md={3}>
             <Button variant="contained" href="#contained-buttons" className='w-full' disabled>
               <WatchLaterIcon />
               <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
@@ -53,7 +62,7 @@ export default function DashboardAdmin() {
               </Typography>
             </Button>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6} sm={6} md={3}>
             <Button variant="contained" href="#contained-buttons" className='w-full' disabled>
               <FileCopyIcon />
               <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
@@ -61,7 +70,7 @@ export default function DashboardAdmin() {
               </Typography>
             </Button>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6} sm={6} md={3}>
             <Button variant="contained" href="#contained-buttons" className='w-full' disabled>
               <WarningIcon />
               <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
@@ -69,16 +78,17 @@ export default function DashboardAdmin() {
               </Typography>
             </Button>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6} sm={6} md={3} >
             <Button variant="contained" href="#contained-buttons" className='w-full' disabled>
               <EmailIcon />
-              <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
+              <Typography  component="div" style={{ color: 'white', paddingLeft: '10px' }} >
                 メッセージ配信
               </Typography>
             </Button>
           </Grid>
         </Grid>
 
+        
       </ContentMain>
     </>
   );
