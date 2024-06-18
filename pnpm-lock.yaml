@@ -8,6 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@devexpress/dx-react-core':
+        specifier: ^4.0.8
+        version: 4.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@devexpress/dx-react-scheduler':
+        specifier: ^4.0.8
+        version: 4.0.8(@devexpress/dx-core@4.0.8)(@devexpress/dx-react-core@4.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@devexpress/dx-react-scheduler-material-ui':
+        specifier: ^4.0.8
+        version: 4.0.8(@devexpress/dx-react-core@4.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@devexpress/dx-react-scheduler@4.0.8(@devexpress/dx-core@4.0.8)(@devexpress/dx-react-core@4.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@devexpress/dx-scheduler-core@4.0.8(@devexpress/dx-core@4.0.8))(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/icons-material@5.15.20(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/lab@5.0.0-alpha.170(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mui/x-date-pickers@7.7.0(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(date-fns@2.30.0)(dayjs@1.11.11)(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(moment@2.30.1)(react@18.3.1)
       '@emotion/react':
         specifier: ^11.11.4
         version: 11.11.4(@types/react@18.3.1)(react@18.3.1)
@@ -25,7 +34,55 @@ importers:
         version: 6.0.0-alpha.18(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@mui/x-date-pickers':
         specifier: ^7.7.0
-        version: 7.7.0(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(dayjs@1.11.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 7.7.0(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(date-fns@2.30.0)(dayjs@1.11.11)(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@syncfusion/ej2-base':
+        specifier: ^26.1.37
+        version: 26.1.37
+      '@syncfusion/ej2-buttons':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-calendars':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-compression':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-data':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-dropdowns':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-excel-export':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-file-utils':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-inputs':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-lists':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-navigations':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-popups':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-react-base':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-react-schedule':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-schedule':
+        specifier: ^26.1.35
+        version: 26.1.35
+      '@syncfusion/ej2-splitbuttons':
+        specifier: ^26.1.35
+        version: 26.1.35
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
@@ -216,6 +273,52 @@ packages:
   '@babel/types@7.24.5':
     resolution: {integrity: sha512-6mQNsaLeXTw0nxYUYu+NSa4Hx4BlF1x1x8/PMFbiR+GBSr+2DkECc69b8hgy2frEodNcvPffeH8YfWd3LI6jhQ==}
     engines: {node: '>=6.9.0'}
+
+  '@date-io/core@1.3.13':
+    resolution: {integrity: sha512-AlEKV7TxjeK+jxWVKcCFrfYAk8spX9aCyiToFIiLPtfQbsjmRGLIhb5VZgptQcJdHtLXo7+m0DuurwFgUToQuA==}
+
+  '@date-io/moment@1.3.13':
+    resolution: {integrity: sha512-3kJYusJtQuOIxq6byZlzAHoW/18iExJer9qfRF5DyyzdAk074seTuJfdofjz4RFfTd/Idk8WylOQpWtERqvFuQ==}
+    peerDependencies:
+      moment: ^2.24.0
+
+  '@devexpress/dx-core@4.0.8':
+    resolution: {integrity: sha512-H5RXg4WtBfJMD/2PzakdsB0KooycTsUzJGQ1mLedsVa9HEwJDggXRhL11/oZGb03pXdxdHcCzWMQyGj0pzu1OA==}
+
+  '@devexpress/dx-react-core@4.0.8':
+    resolution: {integrity: sha512-+wlAnh73y1LCHhPOd9z05jV1qvzZQJIq6b4ByMbHArlhVpKEgiqE1lIF6n0Ex3q5vHqR11Djh63PUWng2m76GQ==}
+    peerDependencies:
+      react: '>=17.0.2'
+      react-dom: '>=17.0.2'
+
+  '@devexpress/dx-react-scheduler-material-ui@4.0.8':
+    resolution: {integrity: sha512-F6hg8393Y/e9XZrOT2bwvjBiU/zARsNZvuLhqzxbymUBvviYQQUx1mLLdDNe3bkUOXL5HwUPISM81rnhu9LKEw==}
+    peerDependencies:
+      '@devexpress/dx-react-core': 4.0.8
+      '@devexpress/dx-react-scheduler': 4.0.8
+      '@devexpress/dx-scheduler-core': 4.0.8
+      '@emotion/react': '>=11.4.1'
+      '@emotion/styled': '>=11.3.0'
+      '@mui/icons-material': '>=5.0.0'
+      '@mui/lab': ^5.0.0-alpha.117
+      '@mui/material': '>=5.0.0'
+      '@mui/x-date-pickers': ^5.0.15
+      moment: ^2.24.0
+      react: '>=17.0.2'
+
+  '@devexpress/dx-react-scheduler@4.0.8':
+    resolution: {integrity: sha512-Pwx6LUZemkNOvnPGX5ozgxihEioPLJXIStqK3timImQE3dRxZWKoPX1n7oLNbHj9xDxWUxuRZoXMgHCsQ+B7eg==}
+    peerDependencies:
+      '@devexpress/dx-core': 4.0.8
+      '@devexpress/dx-react-core': 4.0.8
+      moment: ^2.24.0
+      react: '>=17.0.2'
+      react-dom: '>=17.0.2'
+
+  '@devexpress/dx-scheduler-core@4.0.8':
+    resolution: {integrity: sha512-i5+g8jzipNCuZwnedoGjYkyIHX2lPuHrp/qSQRsRe0UyAvC5fHRUrdmv2oT9cJQybBC9Z+wWq/z1vYmTmcJODA==}
+    peerDependencies:
+      '@devexpress/dx-core': 4.0.8
 
   '@emotion/babel-plugin@11.11.0':
     resolution: {integrity: sha512-m4HEDZleaaCH+XgDDsPF15Ht6wTLsgDTeR3WYj9Q/k76JtWhrJjcP4+/XlG8LGT/Rol9qUfOIztXeA84ATpqPQ==}
@@ -506,6 +609,24 @@ packages:
       '@types/react':
         optional: true
 
+  '@mui/lab@5.0.0-alpha.170':
+    resolution: {integrity: sha512-0bDVECGmrNjd3+bLdcLiwYZ0O4HP5j5WSQm5DV6iA/Z9kr8O6AnvZ1bv9ImQbbX7Gj3pX4o43EKwCutj3EQxQg==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@emotion/react': ^11.5.0
+      '@emotion/styled': ^11.3.0
+      '@mui/material': '>=5.15.0'
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+      '@types/react':
+        optional: true
+
   '@mui/material@5.15.20':
     resolution: {integrity: sha512-tVq3l4qoXx/NxUgIx/x3lZiPn/5xDbdTE8VrLczNpfblLYZzlrbxA7kb9mI8NoBF6+w9WE9IrxWnKK5KlPI2bg==}
     engines: {node: '>=12.0.0'}
@@ -734,6 +855,61 @@ packages:
   '@sideway/pinpoint@2.0.0':
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
 
+  '@syncfusion/ej2-base@26.1.37':
+    resolution: {integrity: sha512-aDnABkOg+5Uw9SiORkCas8p+5/U+GWI0lL1czZJAwsJ1OGw3vN1zju6klwTX8prefOEh9/aQ67pmt2yepO00bg==}
+    hasBin: true
+
+  '@syncfusion/ej2-buttons@26.1.35':
+    resolution: {integrity: sha512-NfJHzI5GuAjyttM2QS3rdbG03miOcIZ+pgbiIptBuo0d8oe5k7iOTAGLfN+y084qo6ZvTiNlE07UbqDb6Lko2w==}
+
+  '@syncfusion/ej2-calendars@26.1.35':
+    resolution: {integrity: sha512-gViPsHPC+Y81yLVtoMlSHH1AhIHWxGnjF9YGR5SaQnq7hJBF6MiAC38cH4oDMkOfJ1K+tgCPTTNqNLBEFpSEsw==}
+
+  '@syncfusion/ej2-compression@26.1.35':
+    resolution: {integrity: sha512-gTWqnDC3321mLaUE/T1LfdZ+Pu5NhY7Y7GlOX3Q1lqWKqE9BQDaIkZx31TqtmwwCQ35i/ZOFdg0F93Kb3PM8dA==}
+
+  '@syncfusion/ej2-data@26.1.35':
+    resolution: {integrity: sha512-dlg+Ag+7lvU1wrfAtSF1pHABIC7PyD5RsAI5ju1io00z3cxfuoY6ctGamHLx2IYTDdM3q5WaPB13dayTBjuU4g==}
+
+  '@syncfusion/ej2-dropdowns@26.1.35':
+    resolution: {integrity: sha512-Y5IQphVob5+DGT+UZ/VfB6dF5pXgUp+/tK6bT+OvefmaDf3S4vcyTOqnJwRTcI8I6nn8M+BbryMUePPrH/DNTQ==}
+
+  '@syncfusion/ej2-excel-export@26.1.35':
+    resolution: {integrity: sha512-AlFYEBI97I0zjzGrVlqu18mux7TH6l7bSXNdWbjMf961tMSh/TkqjxkbsIWdUjqKz5M/6Vy7ElsnkjDGN1emIA==}
+
+  '@syncfusion/ej2-file-utils@26.1.35':
+    resolution: {integrity: sha512-0aeFbfs1kL/UV/LV+jFeuY/63dN0N4z5xU7mhD+7W4wFyXH9S60rfgE/UawC+UFJAT7H+TrGdOGQ3ZfacQTEmQ==}
+
+  '@syncfusion/ej2-icons@26.1.35':
+    resolution: {integrity: sha512-rhaJDhN+vDBai+7xSw+xMnzAvLtG75vYoWvVA7wgUawA4boA4ODtkEgNYbMPJOEbtYaEQO7s3b7nzzWbXI3v+Q==}
+
+  '@syncfusion/ej2-inputs@26.1.35':
+    resolution: {integrity: sha512-VxR7N0rSrS66NOE805Pc4iDzPnyL01I3puakMFMhE6lxkg4nlbLPOXcEY/janZxTuQXLDmWWmmnlGL3KYVN+gw==}
+
+  '@syncfusion/ej2-lists@26.1.35':
+    resolution: {integrity: sha512-XVLm+u11+63dpudZVrgrocK/DihYyAq9jTamfKQ1HkAV27gPTyilV+6ywizGmZmSystgMB+0YBKRDjqv85D1+A==}
+
+  '@syncfusion/ej2-navigations@26.1.35':
+    resolution: {integrity: sha512-Of8XARkcCydkiJXNEwEffUW7eSlxf782w845hQ0H+v+XyDBXM4YOn8buQ555yH8AJVNow6sZTocBMLIfikqn9g==}
+
+  '@syncfusion/ej2-notifications@26.1.35':
+    resolution: {integrity: sha512-R8r1Wbfo2saM/jqbPmCfuZ9Y1Uq6QCjjEQkSzz8fSA/slddutl67RfVWCbjg9aTGx64sQctXHO7r3GjFqfPUjQ==}
+
+  '@syncfusion/ej2-popups@26.1.35':
+    resolution: {integrity: sha512-mSODpl8SBpctspUKDR8qJeNiiyC0cx2nhSW3SA9VYOfayT8O+ojlOW+2Qg5q0OHNJselya+xx5lc5QXjP1f1NA==}
+
+  '@syncfusion/ej2-react-base@26.1.35':
+    resolution: {integrity: sha512-TTSvdHLKFtCsuZ+lWrWXpUcz04sH5D+K+j4vuDGm/qZ9kGiQfGZKNkSkfQYHRyrquyU8zadeZzTDsLUZCR7THA==}
+
+  '@syncfusion/ej2-react-schedule@26.1.35':
+    resolution: {integrity: sha512-V5h8jAQPzkdiz4S9yYEB3ZslhXLzA/dUBj06apO0xuHthQdmyLSftrRTPd5YYAR4UAsKYqHn0FTwjnu3g8dbOw==}
+
+  '@syncfusion/ej2-schedule@26.1.35':
+    resolution: {integrity: sha512-QVbid5v1xiquYGNly4WgqpcW0iApyKhqB2WZlzKEIhYocjemHBLrXj8R68lOYlF3G/9Cl069E3U40HPreyyyVQ==}
+
+  '@syncfusion/ej2-splitbuttons@26.1.35':
+    resolution: {integrity: sha512-c+iUzD+9rvbriglYzQGJRFAijZ0vRHxnsUNo5whSdDoQCjZnE8avuz/6cJpkY/HyGNIzTpDEayQXB4Z+JgMRqw==}
+
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
 
@@ -769,6 +945,9 @@ packages:
 
   '@types/react@18.3.1':
     resolution: {integrity: sha512-V0kuGBX3+prX+DQ/7r2qsv1NsdfnCLnTgnRJ1pYnxykBhGMz+qj+box5lq7XsO5mtZsBqpjwwTu/7wszPfMBcw==}
+
+  '@types/requirejs@2.1.37':
+    resolution: {integrity: sha512-jmFgr3mwN2NSmtRP6IpZ2nfRS7ufSXuDYQ6YyPFArN8x5dARQcD/DXzT0J6NYbvquVT4pg9K9HWdi6e6DZR9iQ==}
 
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
@@ -958,6 +1137,10 @@ packages:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
 
+  clsx@1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
@@ -1025,6 +1208,10 @@ packages:
   daisyui@4.10.2:
     resolution: {integrity: sha512-eCWS1W/JPyxW9IvlgW5m0R6rp9ZhRsBTW37rvEUthckkjsV04u8XipV519OoccSA46ixhSJa3q7XLI1WUFtRCA==}
     engines: {node: '>=16.9.0'}
+
+  date-fns@2.30.0:
+    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
+    engines: {node: '>=0.11'}
 
   dayjs@1.11.11:
     resolution: {integrity: sha512-okzr3f11N6WuqYtZSvm+F776mB41wRZMhKP+hc34YdW+KmtYYK9iqvHSwo2k9FEH3fhGXvOPV6yz2IcSrfRUDg==}
@@ -1418,6 +1605,9 @@ packages:
     resolution: {integrity: sha512-jYofLM5Dam9279rdkWzqHozUo4ybjdZmCsDHePy5V/PbBcVMiSZR97gmAy45aqi8CK1lG2ECd356FU86avfwUQ==}
     engines: {node: '>=16 || 14 >=14.17'}
 
+  moment@2.30.1:
+    resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
+
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
 
@@ -1644,6 +1834,9 @@ packages:
     resolution: {integrity: sha512-/9ClTJPByC0U4zNLowV1tMBe8yMEAxewtR3cUNX5BoEpGH3dQEWpJLr6CLp0fPdYRF/fzVOgvDb1zXuakwF5kQ==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
+
+  rrule@2.7.1:
+    resolution: {integrity: sha512-4p20u/1U7WqR3Nb1hOUrm0u1nSI7sO93ZUVZEZ5HeF6Gr5OlJuyhwEGRvUHq8ZfrPsq5gfa5b9dqnUs/kPqpIw==}
 
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
@@ -2018,6 +2211,54 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.5
       to-fast-properties: 2.0.0
 
+  '@date-io/core@1.3.13': {}
+
+  '@date-io/moment@1.3.13(moment@2.30.1)':
+    dependencies:
+      '@date-io/core': 1.3.13
+      moment: 2.30.1
+
+  '@devexpress/dx-core@4.0.8': {}
+
+  '@devexpress/dx-react-core@4.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@devexpress/dx-core': 4.0.8
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  ? '@devexpress/dx-react-scheduler-material-ui@4.0.8(@devexpress/dx-react-core@4.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@devexpress/dx-react-scheduler@4.0.8(@devexpress/dx-core@4.0.8)(@devexpress/dx-react-core@4.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@devexpress/dx-scheduler-core@4.0.8(@devexpress/dx-core@4.0.8))(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/icons-material@5.15.20(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/lab@5.0.0-alpha.170(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mui/x-date-pickers@7.7.0(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(date-fns@2.30.0)(dayjs@1.11.11)(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(moment@2.30.1)(react@18.3.1)'
+  : dependencies:
+      '@date-io/moment': 1.3.13(moment@2.30.1)
+      '@devexpress/dx-react-core': 4.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@devexpress/dx-react-scheduler': 4.0.8(@devexpress/dx-core@4.0.8)(@devexpress/dx-react-core@4.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@devexpress/dx-scheduler-core': 4.0.8(@devexpress/dx-core@4.0.8)
+      '@emotion/react': 11.11.4(@types/react@18.3.1)(react@18.3.1)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)
+      '@mui/icons-material': 5.15.20(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)
+      '@mui/lab': 5.0.0-alpha.170(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/material': 5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/x-date-pickers': 7.7.0(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(date-fns@2.30.0)(dayjs@1.11.11)(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      clsx: 1.2.1
+      moment: 2.30.1
+      prop-types: 15.8.1
+      react: 18.3.1
+
+  '@devexpress/dx-react-scheduler@4.0.8(@devexpress/dx-core@4.0.8)(@devexpress/dx-react-core@4.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@devexpress/dx-core': 4.0.8
+      '@devexpress/dx-react-core': 4.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@devexpress/dx-scheduler-core': 4.0.8(@devexpress/dx-core@4.0.8)
+      moment: 2.30.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  '@devexpress/dx-scheduler-core@4.0.8(@devexpress/dx-core@4.0.8)':
+    dependencies:
+      '@devexpress/dx-core': 4.0.8
+      moment: 2.30.1
+      rrule: 2.7.1
+
   '@emotion/babel-plugin@11.11.0':
     dependencies:
       '@babel/helper-module-imports': 7.24.3
@@ -2272,6 +2513,23 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.1
 
+  '@mui/lab@5.0.0-alpha.170(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@babel/runtime': 7.24.7
+      '@mui/base': 5.0.0-beta.40(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/material': 5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mui/system': 5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)
+      '@mui/types': 7.2.14(@types/react@18.3.1)
+      '@mui/utils': 5.15.20(@types/react@18.3.1)(react@18.3.1)
+      clsx: 2.1.1
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@emotion/react': 11.11.4(@types/react@18.3.1)(react@18.3.1)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)
+      '@types/react': 18.3.1
+
   '@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.7
@@ -2351,7 +2609,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.1
 
-  '@mui/x-date-pickers@7.7.0(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(dayjs@1.11.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@mui/x-date-pickers@7.7.0(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(date-fns@2.30.0)(dayjs@1.11.11)(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.7
       '@mui/base': 5.0.0-beta.40(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2367,7 +2625,9 @@ snapshots:
     optionalDependencies:
       '@emotion/react': 11.11.4(@types/react@18.3.1)(react@18.3.1)
       '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1)
+      date-fns: 2.30.0
       dayjs: 1.11.11
+      moment: 2.30.1
     transitivePeerDependencies:
       - '@types/react'
 
@@ -2446,6 +2706,112 @@ snapshots:
 
   '@sideway/pinpoint@2.0.0': {}
 
+  '@syncfusion/ej2-base@26.1.37':
+    dependencies:
+      '@syncfusion/ej2-icons': 26.1.35
+
+  '@syncfusion/ej2-buttons@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+
+  '@syncfusion/ej2-calendars@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+      '@syncfusion/ej2-buttons': 26.1.35
+      '@syncfusion/ej2-inputs': 26.1.35
+      '@syncfusion/ej2-lists': 26.1.35
+      '@syncfusion/ej2-popups': 26.1.35
+
+  '@syncfusion/ej2-compression@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-file-utils': 26.1.35
+
+  '@syncfusion/ej2-data@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+
+  '@syncfusion/ej2-dropdowns@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+      '@syncfusion/ej2-data': 26.1.35
+      '@syncfusion/ej2-inputs': 26.1.35
+      '@syncfusion/ej2-lists': 26.1.35
+      '@syncfusion/ej2-navigations': 26.1.35
+      '@syncfusion/ej2-notifications': 26.1.35
+      '@syncfusion/ej2-popups': 26.1.35
+
+  '@syncfusion/ej2-excel-export@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+      '@syncfusion/ej2-compression': 26.1.35
+
+  '@syncfusion/ej2-file-utils@26.1.35': {}
+
+  '@syncfusion/ej2-icons@26.1.35': {}
+
+  '@syncfusion/ej2-inputs@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+      '@syncfusion/ej2-buttons': 26.1.35
+      '@syncfusion/ej2-popups': 26.1.35
+      '@syncfusion/ej2-splitbuttons': 26.1.35
+
+  '@syncfusion/ej2-lists@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+      '@syncfusion/ej2-buttons': 26.1.35
+      '@syncfusion/ej2-data': 26.1.35
+      '@syncfusion/ej2-popups': 26.1.35
+
+  '@syncfusion/ej2-navigations@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+      '@syncfusion/ej2-buttons': 26.1.35
+      '@syncfusion/ej2-data': 26.1.35
+      '@syncfusion/ej2-inputs': 26.1.35
+      '@syncfusion/ej2-lists': 26.1.35
+      '@syncfusion/ej2-popups': 26.1.35
+
+  '@syncfusion/ej2-notifications@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+      '@syncfusion/ej2-buttons': 26.1.35
+      '@syncfusion/ej2-popups': 26.1.35
+
+  '@syncfusion/ej2-popups@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+      '@syncfusion/ej2-buttons': 26.1.35
+
+  '@syncfusion/ej2-react-base@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+
+  '@syncfusion/ej2-react-schedule@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+      '@syncfusion/ej2-react-base': 26.1.35
+      '@syncfusion/ej2-schedule': 26.1.35
+
+  '@syncfusion/ej2-schedule@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+      '@syncfusion/ej2-buttons': 26.1.35
+      '@syncfusion/ej2-calendars': 26.1.35
+      '@syncfusion/ej2-data': 26.1.35
+      '@syncfusion/ej2-dropdowns': 26.1.35
+      '@syncfusion/ej2-excel-export': 26.1.35
+      '@syncfusion/ej2-inputs': 26.1.35
+      '@syncfusion/ej2-lists': 26.1.35
+      '@syncfusion/ej2-navigations': 26.1.35
+      '@syncfusion/ej2-popups': 26.1.35
+      '@types/requirejs': 2.1.37
+
+  '@syncfusion/ej2-splitbuttons@26.1.35':
+    dependencies:
+      '@syncfusion/ej2-base': 26.1.37
+      '@syncfusion/ej2-popups': 26.1.35
+
   '@types/babel__core@7.20.5':
     dependencies:
       '@babel/parser': 7.24.5
@@ -2491,6 +2857,8 @@ snapshots:
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
+
+  '@types/requirejs@2.1.37': {}
 
   '@types/semver@7.5.8': {}
 
@@ -2716,6 +3084,8 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
+  clsx@1.2.1: {}
+
   clsx@2.1.1: {}
 
   color-convert@1.9.3:
@@ -2783,6 +3153,11 @@ snapshots:
       postcss-js: 4.0.1(postcss@8.4.38)
     transitivePeerDependencies:
       - postcss
+
+  date-fns@2.30.0:
+    dependencies:
+      '@babel/runtime': 7.24.7
+    optional: true
 
   dayjs@1.11.11: {}
 
@@ -3184,6 +3559,8 @@ snapshots:
 
   minipass@7.0.4: {}
 
+  moment@2.30.1: {}
+
   ms@2.1.2: {}
 
   mz@2.7.0:
@@ -3400,6 +3777,10 @@ snapshots:
       '@rollup/rollup-win32-ia32-msvc': 4.17.2
       '@rollup/rollup-win32-x64-msvc': 4.17.2
       fsevents: 2.3.3
+
+  rrule@2.7.1:
+    dependencies:
+      tslib: 2.6.2
 
   run-parallel@1.2.0:
     dependencies:
