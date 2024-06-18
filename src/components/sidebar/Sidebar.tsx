@@ -133,7 +133,7 @@ export default function Sidebar(props: Props) {
                     </List>
                 </Link>
 
-                <Link to={''}>
+                <Link to={'/teacher/listleave'}>
                     <List component="div" disablePadding className='bg-[#1d5769] hover:bg-gray-600 dark:hover:bg-gray-700'>
                         <ListItemButton sx={{ pl: 4 }}>
                             <ListItemIcon>
