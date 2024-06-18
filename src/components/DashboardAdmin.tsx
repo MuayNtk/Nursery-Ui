@@ -11,6 +11,7 @@ export default function DashboardAdmin() {
        
           <h1>Welcome to the Home Page1S</h1>
           <p>This is the home page content.</p>
+          <p>Fei</p>
         </ContentMain>
         </>
       );
