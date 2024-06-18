@@ -37,7 +37,7 @@ export default function ContentMain({ children }: ContentMainProps) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <main className="flex-1 overflow-y-auto p-4 bg-slate-50 md:ml-72 mt-2 md:mr-2 mb-2 h-screen">
+      <main className="flex-1 overflow-y-auto p-4 bg-slate-50 md:ml-72 mt-2 md:mr-2 mb-2 min-h-screen">
         <CustomizedBreadcrumbs breadcrumbs={breadcrumbs} />
         {children}
       </main>
