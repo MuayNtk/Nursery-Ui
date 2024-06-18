@@ -8,16 +8,6 @@ import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import WarningIcon from '@mui/icons-material/Warning';
 import EmailIcon from '@mui/icons-material/Email';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
 
 
 export default function DashboardAdmin() {
@@ -51,7 +41,6 @@ export default function DashboardAdmin() {
               <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
                 クラス登録
               </Typography>
-
             </Button>
           </Grid>
           <Grid item xs={6} sm={6} md={3}>
