@@ -1,4 +1,4 @@
-import ContentMain from 'components/content/Content';
+import ContentMain from '../../components/content/Content';
 
 
 export default function DashboardTeacher() {

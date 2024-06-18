@@ -6,7 +6,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import DashboardAdminPages from "../pages/DashboardAdminPages";
 import LayoutPage from "../layout/LayoutPage";
-import DashboardTeacherPages from "pages/teacher/DashboardTeacherPages";
+import DashboardTeacherPages from "../pages/teacher/DashboardTeacherPages";
 
 const Router = createBrowserRouter([
   {
