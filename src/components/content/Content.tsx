@@ -2,9 +2,9 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import { useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
+import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
 import CustomizedBreadcrumbs from './breadcrumbs';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-
 interface ContentMainProps {
   children: React.ReactNode;
 }
@@ -22,6 +22,11 @@ export default function ContentMain({ children }: ContentMainProps) {
         return [
           { label: '保育士', href: '#', icon: <HomeIcon fontSize="small" /> },
           { label: '業務', href: '/teacher/todolist', icon: <BusinessCenterIcon fontSize="small" /> },
+        ];
+      case '/teacher/listleave':
+        return [
+          { label: '保育士', href: '#', icon: <HomeIcon fontSize="small" /> },
+          { label: '休暇届', href: '/teacher/todolist', icon: <InsertInvitationOutlinedIcon fontSize="small" /> },
         ];
       default:
         return [
