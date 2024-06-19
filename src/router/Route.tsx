@@ -8,6 +8,9 @@ import DashboardAdminPages from "../pages/DashboardAdminPages";
 import DashboardTeacherPage from "../pages/teacher/DashboardTeacherPages"
 import LayoutPage from "../layout/LayoutPage";
 import ListLeavePages from "../pages/teacher/ListLeavePages";
+import ListMenuAccPages from "../pages/accounting/ListMenuAccPages";
+import ListMenuReportPages from "../pages/report/ListMenuReportPages";
+import InfoFormPages from "../pages/setting/InfoFormPages";
 
 const Router = createBrowserRouter([
   {
@@ -37,6 +40,18 @@ const Router = createBrowserRouter([
       {
         path: "/teacher/listleave",
         element: <ListLeavePages />
+      },
+      {
+        path: "/accounting/listacc",
+        element: <ListMenuAccPages />
+      },
+      {
+        path: "/report/listreport",
+        element: <ListMenuReportPages />
+      },
+      {
+        path: "/setting/infoform",
+        element: <InfoFormPages />
       }
     ]
   },
