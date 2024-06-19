@@ -7,6 +7,7 @@ import Register from "../pages/Register";
 import DashboardAdminPages from "../pages/DashboardAdminPages";
 import DashboardTeacherPage from "../pages/teacher/DashboardTeacherPages"
 import LayoutPage from "../layout/LayoutPage";
+import ListLeavePages from "../pages/teacher/ListLeavePages";
 
 const Router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const Router = createBrowserRouter([
       {
         path: "/teacher/todolist",
         element: <DashboardTeacherPage />
+      },
+      {
+        path: "/teacher/listleave",
+        element: <ListLeavePages />
       }
     ]
   },

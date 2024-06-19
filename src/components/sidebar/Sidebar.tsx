@@ -133,7 +133,7 @@ export default function Sidebar(props: Props) {
                     </List>
                 </Link>
 
-                <Link to={''}>
+                <Link to={'/teacher/listleave'}>
                     <List component="div" disablePadding className='bg-[#1d5769] hover:bg-gray-600 dark:hover:bg-gray-700'>
                         <ListItemButton sx={{ pl: 4 }}>
                             <ListItemIcon>
@@ -145,7 +145,7 @@ export default function Sidebar(props: Props) {
                 </Link>
             </Collapse>
 
-            <Link to={''}>
+            <Link to={'/'}>
                 <ListItem disablePadding className='pl-4 text-white rounded-lg dark:text-white hover:bg-gray-600 dark:hover:bg-gray-700 mt-2 mb-2 group '>
                     <ListItemButton>
                         <SupervisorAccountOutlinedIcon />
