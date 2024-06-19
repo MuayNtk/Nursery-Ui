@@ -145,7 +145,7 @@ export default function Sidebar(props: Props) {
                 </Link>
             </Collapse>
 
-            <Link to={'/'}>
+            <Link to={'/student'}>
                 <ListItem disablePadding className='pl-4 text-white rounded-lg dark:text-white hover:bg-gray-600 dark:hover:bg-gray-700 mt-2 mb-2 group '>
                     <ListItemButton>
                         <SupervisorAccountOutlinedIcon />
@@ -167,7 +167,7 @@ export default function Sidebar(props: Props) {
                 </ListItem>
             </Link>
 
-            <Link to={''}>
+            <Link to={'/class'}>
                 <ListItem disablePadding className='pl-4 text-white rounded-lg dark:text-white hover:bg-gray-600 dark:hover:bg-gray-700 mt-2 mb-2 group '>
                     <ListItemButton>
                         <ClassOutlinedIcon />
@@ -189,7 +189,7 @@ export default function Sidebar(props: Props) {
                 </ListItem>
             </Link>
 
-            <Link to={'/accounting/listreport'}>
+            <Link to={'/report/listreport'}>
                 <ListItem disablePadding className='pl-4 text-white rounded-lg dark:text-white hover:bg-gray-600 dark:hover:bg-gray-700 mt-2 mb-2 group '>
                     <ListItemButton>
                         <ListAltOutlinedIcon />
