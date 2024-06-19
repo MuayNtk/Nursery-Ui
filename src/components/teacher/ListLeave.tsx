@@ -1,6 +1,6 @@
-import { Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
-import ContentMain from '../content/Content';
 import React from 'react';
+import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import ContentMain from '../content/Content';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,9 +9,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 interface Column {
-  id: 'name' | 'code' | 'population' | 'size' | 'density';
+  id: 'name' | 'classroom' | 'date' | 'timestart' | 'timeend' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -19,65 +20,96 @@ interface Column {
 }
 
 const columns: readonly Column[] = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+  { id: 'name', label: '氏名', minWidth: 170 },
+  { id: 'classroom', label: 'クラス名', minWidth: 100 },
   {
-    id: 'population',
-    label: 'Population',
+    id: 'date',
+    label: '日付',
     minWidth: 170,
     align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
   },
   {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
+    id: 'timestart',
+    label: '開始時間',
     minWidth: 170,
     align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
   },
   {
-    id: 'density',
-    label: 'Density',
+    id: 'timeend',
+    label: '終了時間',
     minWidth: 170,
     align: 'right',
-    format: (value: number) => value.toFixed(2),
+  },
+  {
+    id: 'detail',
+    label: '',
+    minWidth: 100,
+
   },
 ];
 
 interface Data {
   name: string;
-  code: string;
-  population: number;
-  size: number;
-  density: number;
+  classroom: string;
+  date: number;
+  timestart: number;
+  timeend: number;
+  detail: JSX.Element;
 }
 
 function createData(
   name: string,
-  code: string,
-  population: number,
-  size: number,
+  classroom: string,
+  date: number,
+  timestart: number,
+  timeend: number,
+  detail: JSX.Element
 ): Data {
-  const density = population / size;
-  return { name, code, population, size, density };
+  return { name, classroom, date, timestart, timeend, detail };
 }
 
+// Example data (you can replace this with your actual data)
 const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
+  createData('John Doe', 'Math', 20230619, 830, 1030,
+    <>
+      <IconButton aria-label="delete" size="small" color="primary">
+        <EditIcon fontSize="small" color="primary"/>
+      </IconButton>
+      <IconButton aria-label="delete" size="small" color="error">
+        <DeleteForeverIcon fontSize="small" color="error" />
+      </IconButton>
+    </>
+  ),
+  createData('Jane Smith', 'Science', 20230619, 900, 1100,
+    <>
+      <IconButton aria-label="delete" size="small" color="primary">
+        <EditIcon fontSize="small" color="primary"/>
+      </IconButton>
+      <IconButton aria-label="delete" size="small" color="error">
+        <DeleteForeverIcon fontSize="small" color="error" />
+      </IconButton>
+    </>
+  ),
+  createData('Alice Johnson', 'History', 20230619, 945, 1145,
+    <>
+      <IconButton aria-label="delete" size="small" color="primary">
+        <EditIcon fontSize="small" color="primary"/>
+      </IconButton>
+      <IconButton aria-label="delete" size="small" color="error">
+        <DeleteForeverIcon fontSize="small" color="error" />
+      </IconButton>
+    </>
+  ),
+  createData('Bob Brown', 'Art', 20230619, 1015, 1215,
+    <>
+      <IconButton aria-label="delete" size="small" color="primary">
+        <EditIcon fontSize="small" color="primary"/>
+      </IconButton>
+      <IconButton aria-label="delete" size="small" color="error">
+        <DeleteForeverIcon fontSize="small" color="error" />
+      </IconButton>
+    </>
+  ),
 ];
 
 export default function ListLeave() {
@@ -98,6 +130,7 @@ export default function ListLeave() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
   return (
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
@@ -119,7 +152,6 @@ export default function ListLeave() {
               </MenuItem>
               <MenuItem value={10}>うさぎ</MenuItem>
               <MenuItem value={20}>くま</MenuItem>
-              <MenuItem value={30}>ぱんだ</MenuItem>
               <MenuItem value={30}>ぱんだ</MenuItem>
             </Select>
           </FormControl>
@@ -154,7 +186,7 @@ export default function ListLeave() {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
-                      <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                      <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
@@ -181,7 +213,6 @@ export default function ListLeave() {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Paper>
-  
       </Grid>
     </ContentMain>
   );
