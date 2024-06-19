@@ -1,3 +1,4 @@
+import DateForm from '../componentsform/DateForm';
 import ContentMain from '../content/Content';
 
 export default function LeaveAdd() {
@@ -7,9 +8,9 @@ export default function LeaveAdd() {
 
     <>
       <ContentMain >
-        <>
-            LeaveAdd
-        </>
+        
+           
+        <DateForm />
       </ContentMain>
     </>
   );
