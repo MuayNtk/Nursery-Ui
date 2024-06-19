@@ -15,7 +15,6 @@ export default function DashboardTeacher() {
               <Typography component="div" style={{ color: 'white', }} >
                 全体計画
               </Typography>
-
             </Button>
           </Grid>
           <Grid item xs={6} sm={4} md={2}>
@@ -30,7 +29,6 @@ export default function DashboardTeacher() {
               <Typography component="div" style={{ color: 'white', }} >
                 月指導計画
               </Typography>
-
             </Button>
           </Grid>
           <Grid item xs={6} sm={4} md={2}>
@@ -55,15 +53,15 @@ export default function DashboardTeacher() {
             </Button>
           </Grid>
 
-          <Grid container  direction="row" justifyContent="space-around" alignItems="center" style={{ paddingTop: '20px' }}>
-            <Grid item xs={6} sm={4} md={2}>
+          <Grid container direction="row" justifyContent="space-around" alignItems="center" style={{ paddingTop: '20px',}}>
+            <Grid item xs={6} sm={4} md={2} style={{paddingLeft:'15px' }}>
               <Button variant="contained" href="#" style={{ backgroundColor: '#6495ED', }} className='w-full'>
                 <Typography component="div" style={{ color: 'white', }} >
                   クラス名
                 </Typography>
               </Button>
             </Grid>
-            <Grid item xs={6} sm={4} md={2}>
+            <Grid item xs={6} sm={4} md={2} style={{paddingLeft:'15px' }}>
               <Button variant="contained" href="#" style={{ backgroundColor: 'red' }} className='w-full'>
                 <Typography component="div" style={{ color: 'white', }} >
                   事故報告
@@ -74,9 +72,6 @@ export default function DashboardTeacher() {
             <Grid className='pt-5 pl-5'>
               <Calendar />
             </Grid>
-
-
-
 
           </Grid>
         </Grid>

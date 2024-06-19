@@ -11,6 +11,8 @@ import ListLeavePages from "../pages/teacher/ListLeavePages";
 import ListMenuAccPages from "../pages/accounting/ListMenuAccPages";
 import ListMenuReportPages from "../pages/report/ListMenuReportPages";
 import InfoFormPages from "../pages/setting/InfoFormPages";
+import StudentPages from "../pages/student/StudentPages";
+import ClassRoomPages from "../pages/class/ClassRoomPages";
 
 const Router = createBrowserRouter([
   {
@@ -52,6 +54,14 @@ const Router = createBrowserRouter([
       {
         path: "/setting/infoform",
         element: <InfoFormPages />
+      },
+      {
+        path: "/student",
+        element: <StudentPages />
+      },
+      {
+        path: "/class",
+        element: <ClassRoomPages />
       }
     ]
   },
