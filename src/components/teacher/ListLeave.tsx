@@ -11,6 +11,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import AddIcon from '@mui/icons-material/Add';
 interface Column {
   id: 'name' | 'classroom' | 'date' | 'timestart' | 'timeend' | 'detail';
   label: string;
@@ -20,24 +21,24 @@ interface Column {
 }
 
 const columns: readonly Column[] = [
-  { id: 'name', label: '氏名', minWidth: 170 },
+  { id: 'name', label: '氏名', minWidth: 150 },
   { id: 'classroom', label: 'クラス名', minWidth: 100 },
   {
     id: 'date',
     label: '日付',
-    minWidth: 170,
+    minWidth: 150,
     align: 'right',
   },
   {
     id: 'timestart',
     label: '開始時間',
-    minWidth: 170,
+    minWidth: 150,
     align: 'right',
   },
   {
     id: 'timeend',
     label: '終了時間',
-    minWidth: 170,
+    minWidth: 150,
     align: 'right',
   },
   {
@@ -164,6 +165,15 @@ export default function ListLeave() {
           </Button>
         </Grid>
       </Grid>
+      <Grid container  className='pt-7 ' justifyContent="right">
+        <Grid item xs={4} sm={4} md={2}>
+            <Button variant="contained" href="/teacher/leaveadd" size='small' startIcon={<AddIcon />} >
+              <Typography  style={{ color: 'white' }}>
+                ADD
+              </Typography>
+            </Button>
+        </Grid>
+      </Grid>
       <Grid container spacing={2} className='pt-10' justifyContent="center">
         <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
           <TableContainer sx={{ maxHeight: 440 }}>
@@ -186,7 +196,7 @@ export default function ListLeave() {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
-                      <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                      <TableRow>
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
