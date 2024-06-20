@@ -189,7 +189,7 @@ export default function Sidebar(props: Props) {
                 </ListItem>
             </Link>
 
-            <Link to={'/report/listreport'}>
+            <Link to={'/report'}>
                 <ListItem disablePadding className='pl-4 text-white rounded-lg dark:text-white hover:bg-gray-600 dark:hover:bg-gray-700 mt-2 mb-2 group '>
                     <ListItemButton>
                         <ListAltOutlinedIcon />
