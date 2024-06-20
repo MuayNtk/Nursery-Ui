@@ -11,7 +11,6 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
-import ClearIcon from '@mui/icons-material/Clear';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
@@ -79,133 +78,133 @@ function createData(
 // Example data (you can replace this with your actual data)
 const rows = [
   createData('濱千代　智宏', '1 歳児', 'くま',
-      <IconButton aria-label="delete" size="small">
-        <StackedBarChartIcon fontSize="small" className='text-red-600' />
-      </IconButton>
+    <IconButton aria-label="delete" size="small">
+      <StackedBarChartIcon fontSize="small" className='text-red-600' />
+    </IconButton>
 
     ,
-      <IconButton aria-label="delete" size="small" >
-        <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-      </IconButton>
+    <IconButton aria-label="delete" size="small" >
+      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
+    </IconButton>
     ,
     <>
-        <IconButton aria-label="delete" size="small" >
-          <EditIcon fontSize="small" className='text-sky-600' />
-        </IconButton>
-        <IconButton aria-label="delete" size="small" >
-          <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-        </IconButton>
-        <IconButton aria-label="delete" size="small" >
-          <DeleteIcon fontSize="small" className='text-red-600' />
-        </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <EditIcon fontSize="small" className='text-sky-600' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <DeleteIcon fontSize="small" className='text-red-600' />
+      </IconButton>
     </>
   ),
   createData('濱千代　定 ', '1 歳児', 'ぱんだ',
     <IconButton aria-label="delete" size="small">
-    <StackedBarChartIcon fontSize="small" className='text-red-600' />
-  </IconButton>
-
-,
-  <IconButton aria-label="delete" size="small" >
-    <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-  </IconButton>
-,
-<>
-    <IconButton aria-label="delete" size="small" >
-      <EditIcon fontSize="small" className='text-sky-600' />
+      <StackedBarChartIcon fontSize="small" className='text-red-600' />
     </IconButton>
-    <IconButton aria-label="delete" size="small" >
-      <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-    </IconButton>
-    <IconButton aria-label="delete" size="small" >
-      <DeleteIcon fontSize="small" className='text-red-600' />
-    </IconButton>
-</>
-  ), createData('立石　太平', '1 歳児', 'ぱんだ',
-     <IconButton aria-label="delete" size="small">
-        <StackedBarChartIcon fontSize="small" className='text-red-600' />
-      </IconButton>
 
     ,
-      <IconButton aria-label="delete" size="small" >
-        <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-      </IconButton>
+    <IconButton aria-label="delete" size="small" >
+      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
+    </IconButton>
     ,
     <>
-        <IconButton aria-label="delete" size="small" >
-          <EditIcon fontSize="small" className='text-sky-600' />
-        </IconButton>
-        <IconButton aria-label="delete" size="small" >
-          <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-        </IconButton>
-        <IconButton aria-label="delete" size="small" >
-          <DeleteIcon fontSize="small" className='text-red-600' />
-        </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <EditIcon fontSize="small" className='text-sky-600' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <DeleteIcon fontSize="small" className='text-red-600' />
+      </IconButton>
+    </>
+  ), createData('立石　太平', '1 歳児', 'ぱんだ',
+    <IconButton aria-label="delete" size="small">
+      <StackedBarChartIcon fontSize="small" className='text-red-600' />
+    </IconButton>
+
+    ,
+    <IconButton aria-label="delete" size="small" >
+      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
+    </IconButton>
+    ,
+    <>
+      <IconButton aria-label="delete" size="small" >
+        <EditIcon fontSize="small" className='text-sky-600' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <DeleteIcon fontSize="small" className='text-red-600' />
+      </IconButton>
     </>
   ), createData('勝俣　悠生', '1 歳児', 'ぱんだ',
     <IconButton aria-label="delete" size="small">
-        <StackedBarChartIcon fontSize="small" className='text-red-600' />
-      </IconButton>
+      <StackedBarChartIcon fontSize="small" className='text-red-600' />
+    </IconButton>
 
     ,
-      <IconButton aria-label="delete" size="small" >
-        <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-      </IconButton>
+    <IconButton aria-label="delete" size="small" >
+      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
+    </IconButton>
     ,
     <>
-        <IconButton aria-label="delete" size="small" >
-          <EditIcon fontSize="small" className='text-sky-600' />
-        </IconButton>
-        <IconButton aria-label="delete" size="small" >
-          <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-        </IconButton>
-        <IconButton aria-label="delete" size="small" >
-          <DeleteIcon fontSize="small" className='text-red-600' />
-        </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <EditIcon fontSize="small" className='text-sky-600' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <DeleteIcon fontSize="small" className='text-red-600' />
+      </IconButton>
     </>
   ),
   createData('勝俣　松代', '1 歳児', 'かめ',
     <IconButton aria-label="delete" size="small">
-    <StackedBarChartIcon fontSize="small" className='text-red-600' />
-  </IconButton>
+      <StackedBarChartIcon fontSize="small" className='text-red-600' />
+    </IconButton>
 
-,
-  <IconButton aria-label="delete" size="small" >
-    <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-  </IconButton>
-,
-<>
+    ,
     <IconButton aria-label="delete" size="small" >
-      <EditIcon fontSize="small" className='text-sky-600' />
+      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
     </IconButton>
-    <IconButton aria-label="delete" size="small" >
-      <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-    </IconButton>
-    <IconButton aria-label="delete" size="small" >
-      <DeleteIcon fontSize="small" className='text-red-600' />
-    </IconButton>
-</>
+    ,
+    <>
+      <IconButton aria-label="delete" size="small" >
+        <EditIcon fontSize="small" className='text-sky-600' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <DeleteIcon fontSize="small" className='text-red-600' />
+      </IconButton>
+    </>
   ),
   createData('広田　木太郎', '1 歳児', 'かめ',
     <IconButton aria-label="delete" size="small">
-        <StackedBarChartIcon fontSize="small" className='text-red-600' />
-      </IconButton>
+      <StackedBarChartIcon fontSize="small" className='text-red-600' />
+    </IconButton>
 
     ,
-      <IconButton aria-label="delete" size="small" >
-        <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-      </IconButton>
+    <IconButton aria-label="delete" size="small" >
+      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
+    </IconButton>
     ,
     <>
-        <IconButton aria-label="delete" size="small" >
-          <EditIcon fontSize="small" className='text-sky-600' />
-        </IconButton>
-        <IconButton aria-label="delete" size="small" >
-          <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-        </IconButton>
-        <IconButton aria-label="delete" size="small" >
-          <DeleteIcon fontSize="small" className='text-red-600' />
-        </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <EditIcon fontSize="small" className='text-sky-600' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <DeleteIcon fontSize="small" className='text-red-600' />
+      </IconButton>
     </>
   ),
 ];
@@ -238,13 +237,13 @@ export default function Student() {
   return (
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
-      
-      <Typography component="div" style={{ color: 'black',}} className='pt-6 '>
+
+        <Typography component="div" style={{ color: 'black', }} className='pt-6 '>
           氏名
         </Typography>
 
         <Grid item xs={8} sm={12} md={2} lg={2}>
-          <TextField id="outlined-search" label="" type="search" size="small" className=''/>
+          <TextField id="outlined-search" label="" type="search" size="small" className='' />
         </Grid>
         <Grid item xs={4} sm={4} md={2} style={{ textAlign: 'center' }}>
           <FormControl sx={{ minWidth: 100 }} size="small" fullWidth>
@@ -289,21 +288,21 @@ export default function Student() {
           </FormControl>
         </Grid>
         <Grid item xs={4} sm={4} md={2} >
-          <Button variant="contained" href="#contained-buttons"  className='scale-90' >
-          <SearchIcon />
-              <Typography component="div" style={{ color: 'white', paddingLeft: '10px'}} >
+          <Button variant="contained" href="#contained-buttons" className='scale-90' >
+            <SearchIcon />
+            <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
               Search
-              </Typography>
+            </Typography>
           </Button>
         </Grid>
       </Grid>
-      <Grid container direction="row" justifyContent="end" alignItems="end" style={{ paddingTop: '20px',}} className='mt-3'>
-      <Button variant="contained" href="#contained-buttons" className='scale-90' size="small" >
+      <Grid container direction="row" justifyContent="end" alignItems="end" style={{ paddingTop: '20px', }} className='mt-3'>
+        <Button variant="contained" href="#contained-buttons" className='scale-90' size="small" >
           <AddIcon />
-              <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }}  >
-              Add
-              </Typography>
-          </Button>
+          <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }}  >
+            Add
+          </Typography>
+        </Button>
       </Grid>
       <Grid container spacing={2} className='pt-10' justifyContent="center">
         <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
