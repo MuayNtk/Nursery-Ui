@@ -17,7 +17,7 @@ export default function ListMenuReport() {
                                                       xs: 11,
                                                       sm: 11,
                                                       md: 11,
-                                                      lg: 18,
+                                                      lg: 16,
                                                 },
                                           }}
                                     >
@@ -35,7 +35,7 @@ export default function ListMenuReport() {
                                                       xs: 11,
                                                       sm: 11,
                                                       md: 11,
-                                                      lg: 18,
+                                                      lg: 16,
                                                 },
                                           }}
                                     >
@@ -52,7 +52,7 @@ export default function ListMenuReport() {
                                                       xs: 11,
                                                       sm: 11,
                                                       md: 11,
-                                                      lg: 18,
+                                                      lg: 16,
                                                 },
                                           }}
                                     >
@@ -70,7 +70,7 @@ export default function ListMenuReport() {
                                                       xs: 11,
                                                       sm: 11,
                                                       md: 11,
-                                                      lg: 18,
+                                                      lg: 16,
                                                 },
                                           }}
                                     >
@@ -87,7 +87,7 @@ export default function ListMenuReport() {
                                                       xs: 11,
                                                       sm: 11,
                                                       md: 11,
-                                                      lg: 18,
+                                                      lg: 16,
                                                 },
                                           }}
                                     >
@@ -104,7 +104,7 @@ export default function ListMenuReport() {
                                                       xs: 11,
                                                       sm: 11,
                                                       md: 11,
-                                                      lg: 18,
+                                                      lg: 16,
                                                 },
                                           }}
                                     >
@@ -121,7 +121,7 @@ export default function ListMenuReport() {
                                                       xs: 11,
                                                       sm: 11,
                                                       md: 11,
-                                                      lg: 18,
+                                                      lg: 15.5,
                                                 },
                                           }}
                                     >
