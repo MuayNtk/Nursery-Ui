@@ -140,15 +140,15 @@ export default function ClassRoom() {
     <>
       <ContentMain >
         <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={2} sm={4} md={2}>
+          <Grid item xs={2} sm={4} md={1}>
             <Typography style={{ fontSize: '16px',  }} fontWeight="bold" className='pt-2'>
               歳児 :
             </Typography>
           </Grid>
-          <Grid item xs={5} sm={4} md={2}>
+          <Grid item xs={5} sm={4} md={3}>
             <TextField id="outlined-search" label="Input Search" type="search" size="small" />
           </Grid>
-          <Grid item xs={3} sm={4} md={2}>
+          <Grid item xs={3} sm={4} md={1}>
             <Button variant="contained" size='small' href="#contained-buttons" style={{ marginTop: '5px' }}>
               <Typography component="div" style={{ color: 'white' }}>
                 Search
