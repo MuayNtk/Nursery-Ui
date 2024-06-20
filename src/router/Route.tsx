@@ -15,6 +15,9 @@ import StudentPages from "../pages/student/StudentPages";
 import ClassRoomPages from "../pages/class/ClassRoomPages";
 import LeaveAddPages from "../pages/teacher/LeaveAddPages";
 import InfoStaffListPages from "../pages/teacher/infostaff/InfoStaffListPages";
+import AttendanceReportPages from "../pages/report/AttendanceReportPages";
+import AttendanceMonthPages from "../pages/report/AttendanceMonthPages";
+import OverallPlanPages from "../pages/report/OverallPlanPages";
 
 const Router = createBrowserRouter([
   {
@@ -50,8 +53,20 @@ const Router = createBrowserRouter([
         element: <ListMenuAccPages />
       },
       {
-        path: "/report/listreport",
+        path: "/report",
         element: <ListMenuReportPages />
+      },
+      {
+        path: "/report/attendance",
+        element: <AttendanceReportPages />
+      },
+      {
+        path: "/report/attendancemonth",
+        element: <AttendanceMonthPages />
+      },
+      {
+        path: "/report/overallplan",
+        element: <OverallPlanPages />
       },
       {
         path: "/setting/infoform",

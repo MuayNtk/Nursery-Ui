@@ -5,6 +5,13 @@ import Typography from '@mui/material/Typography';
 import EraForm from '../componentsform/EraForm';
 import YearForm from '../componentsform/YearForm';
 import MonthForm from '../componentsform/MonthForm';
+import { Button, Checkbox, FormControlLabel, FormGroup, Radio, RadioGroup, TextField } from '@mui/material';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import InputAdornment from '@mui/material/InputAdornment';
+import { TextareaAutosize as Textarea } from "@mui/material";
 
 export default function LeaveAdd() {
   return (
@@ -16,21 +23,16 @@ export default function LeaveAdd() {
             休　暇　届
           </Typography>
         </Grid>
-
-        {/* Form Inputs */}
+        
+        {/* Era, Year, Month, Day Form */}
         <Grid item xs={12}>
           <Grid container justifyContent="flex-end" spacing={1}>
-            {/* Era Form */}
             <Grid item xs={6} sm={3} md={2}>
               <EraForm />
             </Grid>
-            
-            {/* Year Form */}
             <Grid item xs={6} sm={3} md={2}>
               <YearForm />
             </Grid>
-            
-            {/* Month and Day Forms */}
             <Grid item xs={12} sm={6} md={3}>
               <Grid container spacing={1}>
                 <Grid item xs={6}>
@@ -43,6 +45,109 @@ export default function LeaveAdd() {
             </Grid>
           </Grid>
         </Grid>
+        
+        {/* 所属, 役職 Fields */}
+        <Grid container spacing={2} className='pt-7' justifyContent="center">
+          <Grid item xs={2} sm={1}>
+            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+              所　属 :
+            </Typography>
+          </Grid>
+          <Grid item xs={5} sm={3} md={2}>
+            <TextField id="outlined-search" type="text" size="small" />
+          </Grid>
+          <Grid item xs={2} sm={1}>
+            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+              役　職 :
+            </Typography>
+          </Grid>
+          <Grid item xs={5} sm={3} md={2}>
+            <TextField id="outlined-search" type="text" size="small" />
+          </Grid>
+        </Grid>
+        
+        {/* 氏名 Field */}
+        <Grid container spacing={2} className='pt-7' justifyContent="center">
+          <Grid item xs={2} sm={1}>
+            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+              氏　名 :
+            </Typography>
+          </Grid>
+          <Grid item xs={10} sm={5} md={4}>
+            <TextField id="outlined-search" type="text" size="small" fullWidth />
+          </Grid>
+        </Grid>
+        
+        {/* 適用 Radio Group */}
+        <Grid container spacing={2} className='pt-7' justifyContent="center">
+          <Grid item xs={2} sm={1}>
+            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+              適　用 :
+            </Typography>
+          </Grid> 
+          <Grid item xs={12} sm={5} md={6}>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="paidleave"
+              name="radio-buttons-group"
+              row
+            >
+              <FormControlLabel value="paidleave" control={<Radio />} label="有給休暇" />
+              <FormControlLabel value="specialleave" control={<Radio />} label="特別休暇" />
+              <FormControlLabel value="substituteleave" control={<Radio />} label="振替休暇" />
+              <FormControlLabel value="condolenceleave" control={<Radio />} label="慶弔休暇" />
+            </RadioGroup>
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={2} className='pt-7' justifyContent="center">
+          <Grid item xs={2} sm={1}>
+            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+              所　属 :
+            </Typography>
+          </Grid>
+          <Grid item xs={6} sm={6} md={3}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker  />
+              </DemoContainer>
+            </LocalizationProvider>
+          </Grid>
+          <Grid item xs={6} sm={6} md={3}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker  />
+              </DemoContainer>
+            </LocalizationProvider>
+          </Grid>
+        </Grid>
+        <Grid container spacing={2} className='pt-7' justifyContent="center">
+          <Grid item xs={10} sm={5} md={2}>
+            <TextField 
+              id="outlined-search" 
+              type="text" 
+              size="small"  
+              variant="outlined" 
+              InputProps={{
+                  endAdornment: <InputAdornment position="end">日間</InputAdornment>,
+              }} />
+          </Grid>
+        </Grid>
+        <Grid container spacing={2} className='pt-7' justifyContent="center">
+          <Grid item xs={10} sm={5} md={6}>
+            <textarea 
+                id="message" 
+                className="block p-2.5 w-full text-sm min-h-28 border border-gray-300"
+                placeholder="">
+            </textarea>
+          </Grid>
+        </Grid>
+        <Grid item xs={6} sm={5} md={6}>
+          <FormGroup>
+            <FormControlLabel control={<Checkbox defaultChecked />} label="รับทราบ" />
+          </FormGroup>
+        </Grid>
+        
       </Grid>
     </ContentMain>
   );
