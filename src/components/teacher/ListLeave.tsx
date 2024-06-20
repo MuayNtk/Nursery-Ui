@@ -11,6 +11,8 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import AddIcon from '@mui/icons-material/Add';
+
 interface Column {
   id: 'name' | 'classroom' | 'date' | 'timestart' | 'timeend' | 'detail';
   label: string;
@@ -20,35 +22,35 @@ interface Column {
 }
 
 const columns: readonly Column[] = [
-  { id: 'name', label: '氏名', minWidth: 170 },
+  { id: 'name', label: '氏名', minWidth: 150 },
   { id: 'classroom', label: 'クラス名', minWidth: 100 },
   {
     id: 'date',
     label: '日付',
-    minWidth: 170,
+    minWidth: 150,
     align: 'right',
   },
   {
     id: 'timestart',
     label: '開始時間',
-    minWidth: 170,
+    minWidth: 150,
     align: 'right',
   },
   {
     id: 'timeend',
     label: '終了時間',
-    minWidth: 170,
+    minWidth: 150,
     align: 'right',
   },
   {
     id: 'detail',
     label: '',
     minWidth: 100,
-
   },
 ];
 
 interface Data {
+  id: string;  // Ensure each data row has a unique identifier
   name: string;
   classroom: string;
   date: number;
@@ -58,6 +60,7 @@ interface Data {
 }
 
 function createData(
+  id: string,  // Include id in the createData function
   name: string,
   classroom: string,
   date: number,
@@ -65,45 +68,45 @@ function createData(
   timeend: number,
   detail: JSX.Element
 ): Data {
-  return { name, classroom, date, timestart, timeend, detail };
+  return { id, name, classroom, date, timestart, timeend, detail };
 }
 
 // Example data (you can replace this with your actual data)
 const rows = [
-  createData('John Doe', 'Math', 20230619, 830, 1030,
+  createData('1', 'John Doe', 'Math', 20230619, 830, 1030,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
-        <EditIcon fontSize="small" color="primary"/>
+        <EditIcon fontSize="small" color="primary" />
       </IconButton>
       <IconButton aria-label="delete" size="small" color="error">
         <DeleteForeverIcon fontSize="small" color="error" />
       </IconButton>
     </>
   ),
-  createData('Jane Smith', 'Science', 20230619, 900, 1100,
+  createData('2', 'Jane Smith', 'Science', 20230619, 900, 1100,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
-        <EditIcon fontSize="small" color="primary"/>
+        <EditIcon fontSize="small" color="primary" />
       </IconButton>
       <IconButton aria-label="delete" size="small" color="error">
         <DeleteForeverIcon fontSize="small" color="error" />
       </IconButton>
     </>
   ),
-  createData('Alice Johnson', 'History', 20230619, 945, 1145,
+  createData('3', 'Alice Johnson', 'History', 20230619, 945, 1145,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
-        <EditIcon fontSize="small" color="primary"/>
+        <EditIcon fontSize="small" color="primary" />
       </IconButton>
       <IconButton aria-label="delete" size="small" color="error">
         <DeleteForeverIcon fontSize="small" color="error" />
       </IconButton>
     </>
   ),
-  createData('Bob Brown', 'Art', 20230619, 1015, 1215,
+  createData('4', 'Bob Brown', 'Art', 20230619, 1015, 1215,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
-        <EditIcon fontSize="small" color="primary"/>
+        <EditIcon fontSize="small" color="primary" />
       </IconButton>
       <IconButton aria-label="delete" size="small" color="error">
         <DeleteForeverIcon fontSize="small" color="error" />
@@ -113,10 +116,10 @@ const rows = [
 ];
 
 export default function ListLeave() {
-  const [classroom, setcClass] = React.useState('');
+  const [classroom, setClass] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
-    setcClass(event.target.value as string);
+    setClass(event.target.value as string);
   };
 
   const [page, setPage] = React.useState(0);
@@ -157,9 +160,18 @@ export default function ListLeave() {
           </FormControl>
         </Grid>
         <Grid item xs={4} sm={4} md={2}>
-          <Button variant="contained" href="#contained-buttons" >
+          <Button variant="contained" href="#contained-buttons">
             <Typography component="div" style={{ color: 'white' }}>
               検索する
+            </Typography>
+          </Button>
+        </Grid>
+      </Grid>
+      <Grid container className='pt-7' justifyContent="right">
+        <Grid item xs={4} sm={4} md={2}>
+          <Button variant="contained" href="/teacher/leaveadd" size='small' startIcon={<AddIcon />}>
+            <Typography style={{ color: 'white' }}>
+              ADD
             </Typography>
           </Button>
         </Grid>
@@ -186,7 +198,7 @@ export default function ListLeave() {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
-                      <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                      <TableRow key={row.id}>
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
