@@ -1,7 +1,6 @@
-
 import React from 'react';
+import ContentMain from "../../content/Content";
 import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
-import ContentMain from '../content/Content';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,8 +11,6 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -27,30 +24,30 @@ interface Column {
 }
 
 const columns: readonly Column[] = [
-  { id: 'name', label: '氏名', minWidth: 150 },
-  { id: 'classroom', label: '歳児', minWidth: 150 },
+  { id: 'name', label: 'No.', minWidth: 50, align: 'center', },
+  { id: 'classroom', label: ' 氏名', minWidth: 100 },
   {
     id: 'date',
-    label: 'クラス名',
-    minWidth: 150,
+    label: '出願日',
+    minWidth: 100,
     align: 'center',
   },
   {
     id: 'timestart',
-    label: '歳児保育経過記録',
-    minWidth: 150,
+    label: '現住所',
+    minWidth: 100,
     align: 'center',
   },
   {
     id: 'timeend',
-    label: '保育所児童保育要録',
-    minWidth: 150,
+    label: '状態',
+    minWidth: 100,
     align: 'center',
   },
   {
     id: 'detail',
     label: '',
-    minWidth: 150,
+    minWidth: 100,
 
   },
 ];
@@ -59,8 +56,8 @@ interface Data {
   name: string;
   classroom: string;
   date: string;
-  timestart: JSX.Element;
-  timeend: JSX.Element;
+  timestart: string;
+  timeend: string;
   detail: JSX.Element;
 }
 
@@ -68,8 +65,8 @@ function createData(
   name: string,
   classroom: string,
   date: string,
-  timestart: JSX.Element,
-  timeend: JSX.Element,
+  timestart: string,
+  timeend: string,
   detail: JSX.Element
 ): Data {
   return { name, classroom, date, timestart, timeend, detail };
@@ -77,16 +74,7 @@ function createData(
 
 // Example data (you can replace this with your actual data)
 const rows = [
-  createData('濱千代　智宏', '1 歳児', 'くま',
-    <IconButton aria-label="delete" size="small">
-      <StackedBarChartIcon fontSize="small" className='text-red-600' />
-    </IconButton>
-
-    ,
-    <IconButton aria-label="delete" size="small" >
-      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-    </IconButton>
-    ,
+  createData('1', '藤井　みさ', '2020年11月5日', ' 福岡市南区平和2-27-29-303','履歴書 (正規職員用)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -99,58 +87,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('濱千代　定 ', '1 歳児', 'ぱんだ',
-    <IconButton aria-label="delete" size="small">
-      <StackedBarChartIcon fontSize="small" className='text-red-600' />
-    </IconButton>
-
-    ,
-    <IconButton aria-label="delete" size="small" >
-      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-    </IconButton>
-    ,
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ), createData('立石　太平', '1 歳児', 'ぱんだ',
-    <IconButton aria-label="delete" size="small">
-      <StackedBarChartIcon fontSize="small" className='text-red-600' />
-    </IconButton>
-
-    ,
-    <IconButton aria-label="delete" size="small" >
-      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-    </IconButton>
-    ,
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ), createData('勝俣　悠生', '1 歳児', 'ぱんだ',
-    <IconButton aria-label="delete" size="small">
-      <StackedBarChartIcon fontSize="small" className='text-red-600' />
-    </IconButton>
-
-    ,
-    <IconButton aria-label="delete" size="small" >
-      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-    </IconButton>
-    ,
+  createData('2', '髙本　泰世', '2020年12月10日', '福岡市南区三宅 3-13-30-402','履歴書 (正規職員用)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -163,16 +100,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('勝俣　松代', '1 歳児', 'かめ',
-    <IconButton aria-label="delete" size="small">
-      <StackedBarChartIcon fontSize="small" className='text-red-600' />
-    </IconButton>
-
-    ,
-    <IconButton aria-label="delete" size="small" >
-      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-    </IconButton>
-    ,
+  createData('3', '山崎　都', '2020年12月10日', '福岡市中央区白金2-10-2-902','履歴書 (賃金職員用)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -185,42 +113,17 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('広田　木太郎', '1 歳児', 'かめ',
-    <IconButton aria-label="delete" size="small">
-      <StackedBarChartIcon fontSize="small" className='text-red-600' />
-    </IconButton>
-
-    ,
-    <IconButton aria-label="delete" size="small" >
-      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-    </IconButton>
-    ,
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
+ 
 ];
 
 
-export default function Student() {
+export default function InfoStaffList() {
   const [classroom, setcClass] = React.useState('');
-
-  const [classroom1, setcClass1] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
     setcClass(event.target.value as string);
   };
-  const handleChange2 = (event: SelectChangeEvent) => {
-    setcClass1(event.target.value as string);
-  };
+
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -242,12 +145,12 @@ export default function Student() {
           氏名
         </Typography>
 
-        <Grid item xs={8} sm={12} md={2} lg={2}>
+        <Grid item xs={8} sm={4} md={2} lg={2}>
           <TextField id="outlined-search" label="" type="search" size="small" className='' />
         </Grid>
         <Grid item xs={4} sm={4} md={2} style={{ textAlign: 'center' }}>
           <FormControl sx={{ minWidth: 100 }} size="small" fullWidth>
-            <InputLabel id="demo-select-small-label">歳児</InputLabel>
+            <InputLabel id="demo-select-small-label">状態</InputLabel>
             <Select
               labelId="demo-select-small-label"
               id="demo-select-small"
@@ -266,28 +169,7 @@ export default function Student() {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={4} sm={4} md={2} style={{ textAlign: 'center' }}>
-          <FormControl sx={{ minWidth: 100 }} size="small" fullWidth>
-            <InputLabel id="demo-select-small-label2">クラス名</InputLabel>
-            <Select
-              labelId="demo-select-small-label2"
-              id="demo-select-small"
-              value={classroom1}
-              label="クラス名"
-              onChange={handleChange2}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>a</MenuItem>
-              <MenuItem value={20}>b</MenuItem>
-              <MenuItem value={30}>c</MenuItem>
-              <MenuItem value={30}>d</MenuItem>
-              <MenuItem value={30}>e</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={4} sm={4} md={2} >
+        <Grid item xs={6} sm={6} md={2} >
           <Button variant="contained" href="#contained-buttons" className='scale-90' >
             <SearchIcon />
             <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
