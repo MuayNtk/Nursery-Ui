@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 export default function ListMenuReport() {
       return (
             <ContentMain >
-                  <Grid container spacing={2} className='pt-7' >
+                  <Grid container spacing={3} className='pt-7' >
                         <Grid item xs={6} sm={6} md={3} >
                               <Button variant="contained" href="#contained-buttons" className='w-full'>
 
