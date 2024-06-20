@@ -168,7 +168,7 @@ export default function ListLeave() {
         </Grid>
       </Grid>
       <Grid container className='pt-7' justifyContent="right">
-        <Grid item xs={4} sm={4} md={2}>
+        <Grid>
           <Button variant="contained" href="/teacher/leaveadd" size='small' startIcon={<AddIcon />}>
             <Typography style={{ color: 'white' }}>
               ADD
