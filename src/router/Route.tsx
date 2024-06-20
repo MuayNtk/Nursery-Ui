@@ -13,6 +13,7 @@ import ListMenuReportPages from "../pages/report/ListMenuReportPages";
 import InfoFormPages from "../pages/setting/InfoFormPages";
 import StudentPages from "../pages/student/StudentPages";
 import ClassRoomPages from "../pages/class/ClassRoomPages";
+import LeaveAddPages from "../pages/teacher/LeaveAddPages";
 
 const Router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const Router = createBrowserRouter([
       {
         path: "/class",
         element: <ClassRoomPages />
+      },
+      {
+        path: "/teacher/leaveadd",
+        element: <LeaveAddPages />
       }
     ]
   },
