@@ -7,9 +7,6 @@ import Button from '@mui/material/Button';
 export default function InfoForm() {
       return (
             <ContentMain>
-                  <Typography variant="h4" gutterBottom>
-                        InfoForm
-                  </Typography>
                   <Grid container spacing={2} className='pt-7'>
                         <Grid item xs={12} sm={4} md={3}>
                               <TextField
@@ -17,6 +14,7 @@ export default function InfoForm() {
                                     id="City-input"
                                     label="市町村名"
                                     type="text"
+                                    size='small'
                                     style={{
                                           backgroundColor: "white",
                                     }}
@@ -28,6 +26,7 @@ export default function InfoForm() {
                                     id="Schoolnumber-input"
                                     label="園番号"
                                     type="text"
+                                    size='small'
                                     style={{
                                           backgroundColor: "white",
                                     }}
@@ -39,6 +38,7 @@ export default function InfoForm() {
                                     id="Facility-input"
                                     label="施設・事業所名"
                                     type="text"
+                                    size='small'
                                     style={{
                                           backgroundColor: "white",
                                     }}
@@ -55,6 +55,7 @@ export default function InfoForm() {
                                     id="Facility-input"
                                     label="法人名"
                                     type="text"
+                                    size='small'
                                     style={{
                                           backgroundColor: "white",
                                     }}
@@ -71,6 +72,7 @@ export default function InfoForm() {
                                     id="City-input"
                                     label="〒"
                                     type="text"
+                                    size='small'
                                     style={{
                                           backgroundColor: "white",
                                     }}
@@ -82,6 +84,7 @@ export default function InfoForm() {
                                     id="Schoolnumber-input"
                                     label=""
                                     type="text"
+                                    size='small'
                                     style={{
                                           backgroundColor: "white",
                                     }}
@@ -93,6 +96,7 @@ export default function InfoForm() {
                                     id="Facility-input"
                                     label=""
                                     type="text"
+                                    size='small'
                                     style={{
                                           backgroundColor: "white",
                                     }}
@@ -109,6 +113,7 @@ export default function InfoForm() {
                                     id="City-input"
                                     label="〒"
                                     type="text"
+                                    size='small'
                                     style={{
                                           backgroundColor: "white",
                                     }}
@@ -120,6 +125,7 @@ export default function InfoForm() {
                                     id="Schoolnumber-input"
                                     label=""
                                     type="text"
+                                    size='small'
                                     style={{
                                           backgroundColor: "white",
                                     }}
@@ -131,6 +137,7 @@ export default function InfoForm() {
                                     id="Facility-input"
                                     label=""
                                     type="text"
+                                    size='small'
                                     style={{
                                           backgroundColor: "white",
                                     }}
@@ -147,6 +154,7 @@ export default function InfoForm() {
                                     id="City-input"
                                     label="電話番号"
                                     type="text"
+                                    size='small'
                                     style={{
                                           backgroundColor: "white",
                                     }}
@@ -158,13 +166,14 @@ export default function InfoForm() {
                                     id="Schoolnumber-input"
                                     label="メールアドレス"
                                     type="text"
+                                    size='small'
                                     style={{
                                           backgroundColor: "white",
                                     }}
                               />
                         </Grid>
-                        <Grid container  direction="row" justifyContent="space-around" alignItems="center" style={{ paddingTop: '20px' }}>
-                              <Button variant="contained" href="#" className='w-32 text-center'>
+                        <Grid container  direction="row" justifyContent="space-around" alignItems="center" sx={{paddingTop: {xs: '20px', sm: '30px', md: '40px'}}}>
+                              <Button variant="contained" href="#" size='small' className='w-32 text-center'>
                                     <Typography component="div" style={{ color: 'white', alignItems: 'center' }} >
                                           修正
                                     </Typography>
