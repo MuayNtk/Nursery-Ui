@@ -18,7 +18,7 @@ export default function ListMenuAcc() {
                                                             xs: 11,
                                                             sm: 11,
                                                             md: 13,
-                                                            lg: 18,
+                                                            lg: 16,
                                                       },
                                                 }}
                                           >
@@ -35,7 +35,7 @@ export default function ListMenuAcc() {
                                                             xs: 11,
                                                             sm: 11,
                                                             md: 13,
-                                                            lg: 18,
+                                                            lg: 16,
                                                       },
                                                 }}
                                           >
@@ -52,7 +52,7 @@ export default function ListMenuAcc() {
                                                             xs: 11,
                                                             sm: 11,
                                                             md: 13,
-                                                            lg: 18,
+                                                            lg: 16,
                                                       },
                                                 }}
                                           >
@@ -70,7 +70,7 @@ export default function ListMenuAcc() {
                                                             xs: 11,
                                                             sm: 11,
                                                             md: 12,
-                                                            lg: 18,
+                                                            lg: 16,
                                                       },
                                                 }}
                                           >
@@ -87,7 +87,7 @@ export default function ListMenuAcc() {
                                                             xs: 11,
                                                             sm: 11,
                                                             md: 13,
-                                                            lg: 18,
+                                                            lg: 16,
                                                       },
                                                 }}
                                           >
@@ -104,7 +104,7 @@ export default function ListMenuAcc() {
                                                             xs: 11,
                                                             sm: 11,
                                                             md: 13,
-                                                            lg: 18,
+                                                            lg: 16,
                                                       },
                                                 }}
                                           >
@@ -121,7 +121,7 @@ export default function ListMenuAcc() {
                                                             xs: 11,
                                                             sm: 11,
                                                             md: 13,
-                                                            lg: 18,
+                                                            lg: 16,
                                                       },
                                                 }}
                                           >
@@ -138,7 +138,7 @@ export default function ListMenuAcc() {
                                                             xs: 11,
                                                             sm: 11,
                                                             md: 13,
-                                                            lg: 18,
+                                                            lg: 16,
                                                       },
                                                 }}
                                           >
