@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Grid, TextField, Typography } from '@mui/material';
+import { IconButton, Button, Grid, TextField, Typography } from '@mui/material';
 import ContentMain from '../content/Content';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -44,7 +44,7 @@ const columns: readonly Column[] = [
     id: 'total_amount',
     label: '総額',
     minWidth: 100,
-    align: 'left',
+    align: 'center',
   },
   {
     id: 'detail',
@@ -78,44 +78,44 @@ function createData(
 const rows = [
   createData('1', '0 歳児', '', 'うさぎ', 11,
     <>
-      <Button variant="contained" href="#" size='small' style={{ backgroundColor: '#FFCC00' }} >
-        <RemoveRedEyeIcon fontSize="small" color="inherit" />
-      </Button>
+      <IconButton aria-label="delete" size="small" color="primary">
+        <RemoveRedEyeIcon fontSize="medium" style={{color: '#FFCC00'}} />
+      </IconButton>
     </>
   ),
   createData('2', '1 歳児', '', 'くま', 15,
     <>
-      <Button variant="contained" href="#" size='small' style={{ backgroundColor: '#FFCC00' }} >
-        <RemoveRedEyeIcon fontSize="small" color="inherit" />
-      </Button>
+      <IconButton aria-label="delete" size="small" color="primary">
+        <RemoveRedEyeIcon fontSize="medium" style={{color: '#FFCC00'}} />
+      </IconButton>
     </>
   ),
   createData('3', '2 歳児', '', 'ぱんだ', 8,
     <>
-      <Button variant="contained" href="#" size='small' style={{ backgroundColor: '#FFCC00' }} >
-        <RemoveRedEyeIcon fontSize="small" color="inherit" />
-      </Button>
+      <IconButton aria-label="delete" size="small" color="primary">
+        <RemoveRedEyeIcon fontSize="medium" style={{color: '#FFCC00'}} />
+      </IconButton>
     </>
   ),
   createData('4', '3 歳児 ', '', 'かめ', 5,
     <>
-      <Button variant="contained" href="#" size='small' style={{ backgroundColor: '#FFCC00' }} >
-        <RemoveRedEyeIcon fontSize="small" color="inherit" />
-      </Button>
+      <IconButton aria-label="delete" size="small" color="primary">
+        <RemoveRedEyeIcon fontSize="medium" style={{color: '#FFCC00'}} />
+      </IconButton>
     </>
   ),
   createData('5', '4 歳児', '', 'りす', 9,
     <>
-      <Button variant="contained" href="#" size='small' style={{ backgroundColor: '#FFCC00' }} >
-        <RemoveRedEyeIcon fontSize="small" color="inherit" />
-      </Button>
+      <IconButton aria-label="delete" size="small" color="primary">
+        <RemoveRedEyeIcon fontSize="medium" style={{color: '#FFCC00'}} />
+      </IconButton>
     </>
   ),
   createData('6', '5 歳児', '', 'とり', 10,
     <>
-      <Button variant="contained" href="#" size='small' style={{ backgroundColor: '#FFCC00' }} >
-        <RemoveRedEyeIcon fontSize="small" color="inherit" />
-      </Button>
+      <IconButton aria-label="delete" size="small" color="primary">
+        <RemoveRedEyeIcon fontSize="medium" style={{color: '#FFCC00'}} />
+      </IconButton>
     </>
   ),
 
@@ -140,8 +140,8 @@ export default function ClassRoom() {
     <>
       <ContentMain >
         <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={2} sm={4} md={1}>
-            <Typography style={{ fontSize: '16px',  }} fontWeight="bold" className='pt-2'>
+          <Grid item xs={3} sm={4} md={1}>
+            <Typography style={{ fontSize: '16px', }} fontWeight="bold" className='pt-2 pl-6'>
               歳児 :
             </Typography>
           </Grid>
