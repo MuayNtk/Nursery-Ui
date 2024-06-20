@@ -9,7 +9,7 @@ export default function ListMenuReport() {
             <ContentMain >
                   <Grid container spacing={3} className='pt-7' >
                         <Grid item xs={6} sm={6} md={3} >
-                              <Button variant="contained" href="#contained-buttons" className='w-full'>
+                              <Button variant="contained" href="/report/attendance" className='w-full'>
 
                                     <Typography variant="h1"
                                           sx={{
@@ -27,7 +27,7 @@ export default function ListMenuReport() {
                               </Button>
                         </Grid>
                         <Grid item xs={6} sm={6} md={3}>
-                              <Button variant="contained" href="#contained-buttons" className='w-full '>
+                              <Button variant="contained" href="/report/attendancemonth" className='w-full '>
 
                                     <Typography variant="h1"
                                           sx={{
@@ -44,7 +44,7 @@ export default function ListMenuReport() {
                               </Button>
                         </Grid>
                         <Grid item xs={6} sm={6} md={3}>
-                              <Button variant="contained" href="#contained-buttons" className='w-full '>
+                              <Button variant="contained" href="/report/overallplan" className='w-full '>
 
                                     <Typography variant="h1"
                                           sx={{
