@@ -11,7 +11,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import InputAdornment from '@mui/material/InputAdornment';
-import { TextareaAutosize as Textarea } from "@mui/material";
 
 export default function LeaveAdd() {
   return (
@@ -27,13 +26,13 @@ export default function LeaveAdd() {
         {/* Era, Year, Month, Day Form */}
         <Grid item xs={12}>
           <Grid container justifyContent="flex-end" spacing={1}>
-            <Grid item xs={6} sm={3} md={2}>
+            <Grid item xs={12} sm={3} md={2}>
               <EraForm />
             </Grid>
-            <Grid item xs={6} sm={3} md={2}>
+            <Grid item xs={12} sm={3} md={2}>
               <YearForm />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={3} md={3}>
               <Grid container spacing={1}>
                 <Grid item xs={6}>
                   <MonthForm />
@@ -48,44 +47,48 @@ export default function LeaveAdd() {
         
         {/* 所属, 役職 Fields */}
         <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={2} sm={1}>
+          <Grid item xs={6} sm={2} md={1}>
             <Typography style={{ fontSize: '16px' }} className='pt-2'>
               所　属 :
             </Typography>
           </Grid>
-          <Grid item xs={5} sm={3} md={2}>
-            <TextField id="outlined-search" type="text" size="small" />
+          <Grid item xs={6} sm={2} md={3}>
+            <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
-          <Grid item xs={2} sm={1}>
+          <Grid item xs={6} sm={2} md={1}>
             <Typography style={{ fontSize: '16px' }} className='pt-2'>
               役　職 :
             </Typography>
           </Grid>
-          <Grid item xs={5} sm={3} md={2}>
-            <TextField id="outlined-search" type="text" size="small" />
+          <Grid item xs={6} sm={2} md={3}>
+            <TextField id="outlined-search" type="text" size="small" fullWidth  sx={{ backgroundColor: 'white' }} />
           </Grid>
         </Grid>
         
         {/* 氏名 Field */}
         <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={2} sm={1}>
+          <Grid item xs={6} sm={2} md={1}>
             <Typography style={{ fontSize: '16px' }} className='pt-2'>
               氏　名 :
             </Typography>
           </Grid>
-          <Grid item xs={10} sm={5} md={4}>
-            <TextField id="outlined-search" type="text" size="small" fullWidth />
+          <Grid item xs={6} sm={2} md={3}>
+            <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }}/>
           </Grid>
+          <Grid item xs={6} sm={2} md={1}></Grid>
+          <Grid item xs={6} sm={2} md={3}></Grid>
         </Grid>
         
         {/* 適用 Radio Group */}
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={2} sm={1}>
+        <Grid container spacing={2} className='pt-7'>
+        <Grid item xs={6} sm={2} md={1}></Grid>
+        <Grid item xs={6} sm={2} md={1}></Grid>
+          <Grid item xs={6} sm={2} md={1} >
             <Typography style={{ fontSize: '16px' }} className='pt-2'>
               適　用 :
             </Typography>
           </Grid> 
-          <Grid item xs={12} sm={5} md={6}>
+          <Grid item xs={6} sm={2} md={8}>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
               defaultValue="paidleave"
@@ -100,52 +103,71 @@ export default function LeaveAdd() {
           </Grid>
         </Grid>
 
+        {/* Date Pickers */}
         <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={2} sm={1}>
-            <Typography style={{ fontSize: '16px' }} className='pt-2'>
-              所　属 :
+          
+          <Grid item xs={6} sm={2} md={1}>
+            <Typography style={{ fontSize: '16px' }} className='pt-5'>
+              期　間 :
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={6} md={3}>
+          <Grid item xs={6} sm={2} md={3}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
-                <DatePicker  />
+                <DatePicker label="開始日" sx={{ backgroundColor: 'white' }}/>
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={6} sm={6} md={3}>
+          <Grid item xs={6} sm={2} md={1}>
+            <Typography style={{ fontSize: '16px' }} className='pt-5'>
+                ～
+            </Typography>
+          </Grid>
+          <Grid item xs={6} sm={2} md={3}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
-                <DatePicker  />
+                <DatePicker label="終了日" sx={{ backgroundColor: 'white' }}/>
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
         </Grid>
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={10} sm={5} md={2}>
+        
+        {/* 日間 Field */}
+        <Grid container spacing={2} className='pt-7' >
+        <Grid item xs={3} sm={2} md={1}></Grid>
+        <Grid item xs={3} sm={2} md={3}></Grid>
+          <Grid item xs={6} sm={5} md={2}>
             <TextField 
               id="outlined-search" 
               type="text" 
               size="small"  
               variant="outlined" 
+              fullWidth
+              sx={{ backgroundColor: 'white' }}
               InputProps={{
                   endAdornment: <InputAdornment position="end">日間</InputAdornment>,
               }} />
           </Grid>
         </Grid>
+
+        {/* Text Area */}
         <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={10} sm={5} md={6}>
+          <Grid item xs={10} sm={10} md={8}>
             <textarea 
                 id="message" 
                 className="block p-2.5 w-full text-sm min-h-28 border border-gray-300"
-                placeholder="">
+                placeholder="備考">
             </textarea>
           </Grid>
         </Grid>
-        <Grid item xs={6} sm={5} md={6}>
-          <FormGroup>
-            <FormControlLabel control={<Checkbox defaultChecked />} label="รับทราบ" />
-          </FormGroup>
+
+        {/* Checkbox */}
+        <Grid container spacing={2} className='pt-7' justifyContent="center">
+          <Grid item xs={10} sm={10} md={8}>
+            <FormGroup>
+              <FormControlLabel control={<Checkbox defaultChecked />} label="承認" />
+            </FormGroup>
+          </Grid>
         </Grid>
         
       </Grid>
