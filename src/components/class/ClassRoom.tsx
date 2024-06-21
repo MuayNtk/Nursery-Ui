@@ -139,12 +139,10 @@ export default function ClassRoom() {
 
     <>
       <ContentMain >
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={3} sm={4} md={1}>
-            <Typography style={{ fontSize: '16px', }} fontWeight="bold" className='pt-2 pl-6'>
+        <Grid container spacing={2} className='pt-7' justifyContent="center"> 
+            <Typography style={{ fontSize: '16px', }} fontWeight="bold" className='pt-6 pl-6'>
               歳児 :
-            </Typography>
-          </Grid>
+            </Typography> 
           <Grid item xs={5} sm={4} md={3}>
             <TextField id="outlined-search" label="Input Search" type="search" size="small" />
           </Grid>
