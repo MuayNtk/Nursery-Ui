@@ -18,6 +18,8 @@ import InfoStaffListPages from "../pages/teacher/infostaff/InfoStaffListPages";
 import AttendanceReportPages from "../pages/report/AttendanceReportPages";
 import AttendanceMonthPages from "../pages/report/AttendanceMonthPages";
 import OverallPlanPages from "../pages/report/OverallPlanPages";
+import StudentHistoryPages from "../pages/student/studenthistory/StudentHistoryPages";
+import HealthCheckFormPages from "../pages/student/studenthistory/HealthCheckPages";
 
 const Router = createBrowserRouter([
   {
@@ -75,6 +77,14 @@ const Router = createBrowserRouter([
       {
         path: "/student",
         element: <StudentPages />
+      }, 
+      {
+        path: "/student/History",
+        element: <StudentHistoryPages />
+      },
+      {
+        path: "/student/Health",
+        element: <HealthCheckFormPages />
       },
       {
         path: "/class",
