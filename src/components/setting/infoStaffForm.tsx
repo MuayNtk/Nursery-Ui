@@ -12,44 +12,22 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import InputAdornment from '@mui/material/InputAdornment';
 
-export default function LeaveAdd() {
+export default function InfoStaffForm() {
   return (
     <ContentMain>
       <Grid container spacing={3}>
         {/* Header */}
         <Grid item xs={12}>
           <Typography variant="h6" gutterBottom className="pt-3 text-center">
-            休　暇　届
+          役員名簿
           </Typography>
         </Grid>
-        
-        {/* Era, Year, Month, Day Form */}
-        <Grid item xs={12}>
-          <Grid container justifyContent="flex-end" spacing={1}>
-            <Grid item xs={12} sm={3} md={2}>
-              <EraForm />
-            </Grid>
-            <Grid item xs={12} sm={3} md={2}>
-              <YearForm />
-            </Grid>
-            <Grid item xs={12} sm={3} md={3}>
-              <Grid container spacing={1}>
-                <Grid item xs={6}>
-                  <MonthForm />
-                </Grid>
-                <Grid item xs={6}>
-                  <DayForm />
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-        
+
         {/* 所属, 役職 Fields */}
         <Grid container spacing={2} className='pt-7' justifyContent="center">
           <Grid item xs={6} sm={2} md={1}>
             <Typography style={{ fontSize: '16px' }} className='pt-2'>
-              所　属 :
+                  役職名 :
             </Typography>
           </Grid>
           <Grid item xs={6} sm={2} md={3}>
@@ -57,7 +35,7 @@ export default function LeaveAdd() {
           </Grid>
           <Grid item xs={6} sm={2} md={1}>
             <Typography style={{ fontSize: '16px' }} className='pt-2'>
-              役　職 :
+            フリガナ :
             </Typography>
           </Grid>
           <Grid item xs={6} sm={2} md={3}>
@@ -69,7 +47,7 @@ export default function LeaveAdd() {
         <Grid container spacing={2} className='pt-7' justifyContent="center">
           <Grid item xs={6} sm={2} md={1}>
             <Typography style={{ fontSize: '16px' }} className='pt-2'>
-              氏　名 :
+                  氏　　名。 :
             </Typography>
           </Grid>
           <Grid item xs={6} sm={2} md={3}>
@@ -85,7 +63,7 @@ export default function LeaveAdd() {
         <Grid item xs={6} sm={2} md={1}></Grid>
           <Grid item xs={6} sm={2} md={1} >
             <Typography style={{ fontSize: '16px' }} className='pt-2'>
-              適　用 :
+            性別 :
             </Typography>
           </Grid> 
           <Grid item xs={6} sm={2} md={8}>
@@ -97,8 +75,6 @@ export default function LeaveAdd() {
             >
               <FormControlLabel value="paidleave" control={<Radio />} label="有給休暇" />
               <FormControlLabel value="specialleave" control={<Radio />} label="特別休暇" />
-              <FormControlLabel value="substituteleave" control={<Radio />} label="振替休暇" />
-              <FormControlLabel value="condolenceleave" control={<Radio />} label="慶弔休暇" />
             </RadioGroup>
           </Grid>
         </Grid>
@@ -108,7 +84,7 @@ export default function LeaveAdd() {
           
           <Grid item xs={6} sm={2} md={1}>
             <Typography style={{ fontSize: '16px' }} className='pt-5'>
-              期　間 :
+                  元号:
             </Typography>
           </Grid>
           <Grid item xs={6} sm={2} md={3}>
@@ -150,25 +126,7 @@ export default function LeaveAdd() {
           </Grid>
         </Grid>
 
-        {/* Text Area */}
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={10} sm={10} md={8}>
-            <textarea 
-                id="message" 
-                className="block p-2.5 w-full text-sm min-h-28 border border-gray-300"
-                placeholder="備考">
-            </textarea>
-          </Grid>
-        </Grid>
-
-        {/* Checkbox */}
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={10} sm={10} md={8}>
-            <FormGroup>
-              <FormControlLabel control={<Checkbox defaultChecked />} label="承認" />
-            </FormGroup>
-          </Grid>
-        </Grid>
+        
         
         <Grid container spacing={2} className='pt-5' justifyContent="center">
           <Grid item>
