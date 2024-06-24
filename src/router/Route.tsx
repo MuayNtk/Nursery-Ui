@@ -14,7 +14,7 @@ import InfoFormPages from "../pages/setting/InfoFormPages";
 import StudentPages from "../pages/student/StudentPages";
 import ClassRoomPages from "../pages/class/ClassRoomPages";
 import LeaveAddPages from "../pages/teacher/LeaveAddPages";
-import InfoStaffListPages from "../pages/teacher/infostaff/InfoStaffListPages";
+import InfoTeachListPages from "../pages/teacher/infostaff/InfoStaffListPages";
 import AttendanceReportPages from "../pages/report/AttendanceReportPages";
 import AttendanceMonthPages from "../pages/report/AttendanceMonthPages";
 import OverallPlanPages from "../pages/report/OverallPlanPages";
@@ -95,8 +95,8 @@ const Router = createBrowserRouter([
         element: <LeaveAddPages />
       },
       {
-        path: "/infostaff",
-        element: <InfoStaffListPages />
+        path: "/infoteach",
+        element: <InfoTeachListPages />
       }
     ]
   },
