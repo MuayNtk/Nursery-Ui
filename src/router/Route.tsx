@@ -19,8 +19,9 @@ import AttendanceMonthPages from "../pages/report/AttendanceMonthPages";
 import OverallPlanPages from "../pages/report/OverallPlanPages";
 import StudentHistoryPages from "../pages/student/studenthistory/StudentHistoryPages";
 import HealthCheckFormPages from "../pages/student/studenthistory/HealthCheckPages";
-import InfoStaffListPages from "../pages/setting/InfoStaffList";
+import InfoStaffListPages from "../pages/setting/InfoStaffListPages";
 import InfoTeachListPages from "../pages/teacher/infoteach/InfoTeachListPages";
+import InfoStaffFormPages from "../pages/setting/InfoStaffFormPages";
 
 const Router = createBrowserRouter([
   {
@@ -102,6 +103,10 @@ const Router = createBrowserRouter([
       {
         path: "/infostaff",
         element: <InfoStaffListPages />
+      },
+      {
+        path: "/infostaff/infostaffadd",
+        element: <InfoStaffFormPages />
       }
     ]
   },
