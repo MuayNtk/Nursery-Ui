@@ -1,4 +1,4 @@
-import InfoStaffList from "../../../components/teacher/infostaff/InfoStaffList";
+import InfoStaffList from "../../components/setting/InfoStaffList";
 
 
 
