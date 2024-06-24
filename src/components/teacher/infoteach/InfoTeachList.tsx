@@ -117,7 +117,7 @@ const rows = [
 ];
 
 
-export default function InfoStaffList() {
+export default function InfoTeachList() {
   const [classroom, setcClass] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {

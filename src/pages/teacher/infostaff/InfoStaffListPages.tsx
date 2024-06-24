@@ -1,9 +1,9 @@
-import InfoStaffList from "../../../components/teacher/infostaff/InfoStaffList";
+import InfoTeachList from "../../../components/teacher/infoteach/InfoTeachList";
 
 
 
-export default function InfoStaffListPages() {
-  return <InfoStaffList />;
+export default function InfoTeachListPages() {
+  return <InfoTeachList />;
 }
 
 
