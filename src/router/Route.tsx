@@ -14,12 +14,13 @@ import InfoFormPages from "../pages/setting/InfoFormPages";
 import StudentPages from "../pages/student/StudentPages";
 import ClassRoomPages from "../pages/class/ClassRoomPages";
 import LeaveAddPages from "../pages/teacher/LeaveAddPages";
-import InfoTeachListPages from "../pages/teacher/infostaff/InfoStaffListPages";
 import AttendanceReportPages from "../pages/report/AttendanceReportPages";
 import AttendanceMonthPages from "../pages/report/AttendanceMonthPages";
 import OverallPlanPages from "../pages/report/OverallPlanPages";
 import StudentHistoryPages from "../pages/student/studenthistory/StudentHistoryPages";
 import HealthCheckFormPages from "../pages/student/studenthistory/HealthCheckPages";
+import InfoStaffListPages from "../pages/setting/InfoStaffList";
+import InfoTeachListPages from "../pages/teacher/infoteach/InfoTeachListPages";
 
 const Router = createBrowserRouter([
   {
@@ -97,6 +98,10 @@ const Router = createBrowserRouter([
       {
         path: "/infoteach",
         element: <InfoTeachListPages />
+      },
+      {
+        path: "/infostaff",
+        element: <InfoStaffListPages />
       }
     ]
   },
