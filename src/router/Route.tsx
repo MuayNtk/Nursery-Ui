@@ -28,6 +28,11 @@ import ProgressdThreePages from "../pages/student/studentprogressd/ProgressdThre
 import ProgressdTwoPages from "../pages/student/studentprogressd/ProgressdrTwoPages";
 import ProgressdZeroPages from "../pages/student/studentprogressd/ProgressdZeroPages";
 import ProgressdOnePages from "../pages/student/studentprogressd/ProgressdOnePages";
+import InformationPages from "../pages/setting/informationPages";
+import AnnualplanPages from "../pages/report/AnnualplanPages";
+import MonthlyplanPages from "../pages/report/MonthlyplanPages";
+import WeeklyplanPages from "../pages/report/WeeklyplanPages";
+import CareDiaryPages from "../pages/report/CareDiaryPages";
 
 const Router = createBrowserRouter([
   {
@@ -79,7 +84,27 @@ const Router = createBrowserRouter([
         element: <OverallPlanPages />
       },
       {
-        path: "/setting/infoform",
+        path: "/report/annualplan",
+        element: <AnnualplanPages />
+      },
+      {
+        path: "/report/monthlyplan",
+        element: <MonthlyplanPages />
+      },
+      {
+        path: "/report/weeklyplan",
+        element: <WeeklyplanPages />
+      },
+      {
+        path: "/report/carediary",
+        element: <CareDiaryPages />
+      },
+      {
+        path: "/setting/info",
+        element: <InformationPages />
+      },
+      {
+        path: "/setting/info/add",
         element: <InfoFormPages />
       },
       {

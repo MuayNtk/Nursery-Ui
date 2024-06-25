@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 
 export default function InfoForm() {
       return (
-            <ContentMain>
+            <ContentMain className="flex flex-col min-h-screen">
                   <Grid container spacing={2} className='pt-7'>
                         <Grid item xs={12} sm={4} md={3}>
                               <TextField
@@ -45,11 +45,11 @@ export default function InfoForm() {
                               />
                         </Grid>
                         <Grid item xs={12} sm={12} md={12}>
-                              <Typography variant="h6" gutterBottom className='pt-3 text-start'>
+                              <Typography   className=' text-start'>
                                     法人名
                               </Typography>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={12}>
+                        <Grid item xs={12} sm={12} md={6}>
                               <TextField
                                     className='w-full'
                                     id="Facility-input"
@@ -62,7 +62,7 @@ export default function InfoForm() {
                               />
                         </Grid>
                         <Grid item xs={12} sm={12} md={12}>
-                              <Typography variant="h6" gutterBottom className='pt-3 text-start'>
+                              <Typography  className=' text-start'>
                                     法人住所
                               </Typography>
                         </Grid>
@@ -103,14 +103,14 @@ export default function InfoForm() {
                               />
                         </Grid>
                         <Grid item xs={12} sm={12} md={12}>
-                              <Typography variant="h6" gutterBottom className='pt-3 text-start'>
+                              <Typography  className=' text-start'>
                                     保育園住所
                               </Typography>
                         </Grid>
                         <Grid item xs={12} sm={4} md={3}>
                               <TextField
                                     className='w-full'
-                                    id="City-input"
+                                    id="Postcode-input"
                                     label="〒"
                                     type="text"
                                     size='small'
@@ -144,7 +144,7 @@ export default function InfoForm() {
                               />
                         </Grid>
                         <Grid item xs={12} sm={12} md={12}>
-                              <Typography variant="h6" gutterBottom className='pt-3 text-start'>
+                              <Typography className=' text-start'>
                                     連絡先
                               </Typography>
                         </Grid>
@@ -172,14 +172,25 @@ export default function InfoForm() {
                                     }}
                               />
                         </Grid>
-                        <Grid container  direction="row" justifyContent="space-around" alignItems="center" sx={{paddingTop: {xs: '20px', sm: '30px', md: '40px'}}}>
-                              <Button variant="contained" href="#" size='small' className='w-32 text-center'>
-                                    <Typography component="div" style={{ color: 'white', alignItems: 'center' }} >
-                                          修正
-                                    </Typography>
-                              </Button>
-                        </Grid>
                   </Grid>
+                  <div className="mt-auto">
+                        <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+                              <Grid item>
+                                    <Button variant="contained" href="#" size='small' className='text-center'>
+                                    <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                                    戻る
+                                    </Typography>
+                                    </Button>
+                              </Grid>
+                              <Grid item>
+                                    <Button variant="contained" href="#" size='small' className='text-center'>
+                                    <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                                    修正
+                                    </Typography>
+                                    </Button>
+                              </Grid>
+                        </Grid>
+                  </div>
             </ContentMain>
       );
 };
