@@ -29,6 +29,10 @@ import ProgressdTwoPages from "../pages/student/studentprogressd/ProgressdrTwoPa
 import ProgressdZeroPages from "../pages/student/studentprogressd/ProgressdZeroPages";
 import ProgressdOnePages from "../pages/student/studentprogressd/ProgressdOnePages";
 import InformationPages from "../pages/setting/informationPages";
+import AnnualplanPages from "../pages/report/AnnualplanPages";
+import MonthlyplanPages from "../pages/report/MonthlyplanPages";
+import WeeklyplanPages from "../pages/report/WeeklyplanPages";
+import CareDiaryPages from "../pages/report/CareDiaryPages";
 
 const Router = createBrowserRouter([
   {
@@ -78,6 +82,22 @@ const Router = createBrowserRouter([
       {
         path: "/report/overallplan",
         element: <OverallPlanPages />
+      },
+      {
+        path: "/report/annualplan",
+        element: <AnnualplanPages />
+      },
+      {
+        path: "/report/monthlyplan",
+        element: <MonthlyplanPages />
+      },
+      {
+        path: "/report/weeklyplan",
+        element: <WeeklyplanPages />
+      },
+      {
+        path: "/report/carediary",
+        element: <CareDiaryPages />
       },
       {
         path: "/setting/info",
