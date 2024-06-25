@@ -137,10 +137,10 @@ export default function ListLeave() {
   return (
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
-        <Grid item xs={4} sm={4} md={2}>
+        <Grid item xs={3} sm={4} md={2} lg={2}>
           <TextField id="outlined-search" label="氏名" type="search" size="small" />
         </Grid>
-        <Grid item xs={4} sm={4} md={2} style={{ textAlign: 'center' }}>
+        <Grid item xs={3} sm={4} md={2} lg={2} style={{ textAlign: 'center' }}>
           <FormControl sx={{ minWidth: 125 }} size="small" fullWidth>
             <InputLabel id="demo-select-small-label">クラス名</InputLabel>
             <Select
@@ -159,8 +159,8 @@ export default function ListLeave() {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={4} sm={4} md={2}>
-          <Button variant="contained" href="#contained-buttons">
+        <Grid item xs={6} sm={4} md={3} lg={1.5}>
+          <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
             <Typography component="div" style={{ color: 'white' }}>
               検索する
             </Typography>

@@ -282,8 +282,8 @@ export default function Student() {
               <MenuItem value={10}>a</MenuItem>
               <MenuItem value={20}>b</MenuItem>
               <MenuItem value={30}>c</MenuItem>
-              <MenuItem value={30}>d</MenuItem>
-              <MenuItem value={30}>e</MenuItem>
+              <MenuItem value={40}>d</MenuItem>
+              <MenuItem value={50}>e</MenuItem>
             </Select>
           </FormControl>
         </Grid>
