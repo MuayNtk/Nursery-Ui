@@ -28,6 +28,7 @@ import ProgressdThreePages from "../pages/student/studentprogressd/ProgressdThre
 import ProgressdTwoPages from "../pages/student/studentprogressd/ProgressdrTwoPages";
 import ProgressdZeroPages from "../pages/student/studentprogressd/ProgressdZeroPages";
 import ProgressdOnePages from "../pages/student/studentprogressd/ProgressdOnePages";
+import InformationPages from "../pages/setting/informationPages";
 
 const Router = createBrowserRouter([
   {
@@ -79,7 +80,11 @@ const Router = createBrowserRouter([
         element: <OverallPlanPages />
       },
       {
-        path: "/setting/infoform",
+        path: "/setting/info",
+        element: <InformationPages />
+      },
+      {
+        path: "/setting/info/add",
         element: <InfoFormPages />
       },
       {
