@@ -110,7 +110,7 @@ export default function InfoForm() {
                         <Grid item xs={12} sm={4} md={3}>
                               <TextField
                                     className='w-full'
-                                    id="City-input"
+                                    id="Postcode-input"
                                     label="〒"
                                     type="text"
                                     size='small'
