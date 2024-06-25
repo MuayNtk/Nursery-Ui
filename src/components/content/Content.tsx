@@ -7,9 +7,10 @@ import CustomizedBreadcrumbs from './breadcrumbs';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 interface ContentMainProps {
   children: React.ReactNode;
+  className?: string; // Add this line
 }
 
-export default function ContentMain({ children }: ContentMainProps) {
+export default function ContentMain({ children,className }: ContentMainProps) {
   const location = useLocation();
   
   const breadcrumbs = React.useMemo(() => {
@@ -37,7 +38,7 @@ export default function ContentMain({ children }: ContentMainProps) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <main className="flex-1 overflow-y-auto p-4 bg-slate-50 md:ml-72 mt-2 md:mr-2 mb-2 min-h-screen">
+      <main className={`flex-1 overflow-y-auto p-4 bg-slate-50 md:ml-72 mt-2 md:mr-2 mb-2 min-h-screen ${className}`}>
         <CustomizedBreadcrumbs breadcrumbs={breadcrumbs} />
         {children}
       </main>
