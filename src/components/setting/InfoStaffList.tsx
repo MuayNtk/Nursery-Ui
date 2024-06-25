@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentMain from "../../content/Content";
+import ContentMain from "../content/Content";
 import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -16,106 +16,92 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface Column {
-  id: 'name' | 'classroom' | 'date' | 'timestart' | 'timeend' | 'detail';
+  id: 'dep' | 'furigana' | 'fullname' | 'gender' | 'era' | 'year'| 'month'| 'day'| 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center';
-  format?: (value: number) => string;
 }
 
 const columns: readonly Column[] = [
-  { id: 'name', label: 'No.', minWidth: 50, align: 'center', },
-  { id: 'classroom', label: ' 氏名', minWidth: 100 },
-  {
-    id: 'date',
-    label: '出願日',
-    minWidth: 100,
-    align: 'center',
-  },
-  {
-    id: 'timestart',
-    label: '現住所',
-    minWidth: 100,
-    align: 'center',
-  },
-  {
-    id: 'timeend',
-    label: '状態',
-    minWidth: 100,
-    align: 'center',
-  },
-  {
-    id: 'detail',
-    label: '',
-    minWidth: 100,
-
-  },
+  { id: 'dep', label: '役職名', minWidth: 100, align: 'center' },
+  { id: 'furigana', label: 'フリガナ', minWidth: 150 },
+  { id: 'fullname', label: '氏名', minWidth: 120, align: 'center' },
+  { id: 'gender', label: '性別', minWidth: 100, align: 'center' },
+  { id: 'era', label: '元号', minWidth: 100, align: 'center' },
+  { id: 'year', label: '年', minWidth: 50 },
+  { id: 'month', label: '月', minWidth: 50 },
+  { id: 'day', label: '日', minWidth: 50 },
+  { id: 'detail', label: '', minWidth: 100 }
 ];
 
 interface Data {
-  name: string;
-  classroom: string;
-  date: string;
-  timestart: string;
-  timeend: string;
+  dep: string;
+  furigana: string;
+  fullname: string;
+  gender: string;
+  era: string;
+  year: string;
+  month: string;
+  day: string;
   detail: JSX.Element;
 }
 
 function createData(
-  name: string,
-  classroom: string,
-  date: string,
-  timestart: string,
-  timeend: string,
+  dep: string,
+  furigana: string,
+  fullname: string,
+  gender: string,
+  era: string,
+  year: string,
+  month: string,
+  day: string,
   detail: JSX.Element
 ): Data {
-  return { name, classroom, date, timestart, timeend, detail };
+  return { dep, furigana, fullname, gender, era, year, month, day, detail };
 }
 
 // Example data (you can replace this with your actual data)
 const rows = [
-  createData('1', '藤井　みさ', '2020年11月5日', ' 福岡市南区平和2-27-29-303','履歴書 (正規職員用)',
+  createData('理事長', 'ワタナベ　ケイコ', '渡部　圭子', '男', '昭和', '11', '2', '21',
     <>
-      <IconButton aria-label="delete" size="small" >
+      <IconButton aria-label="edit" size="small">
         <EditIcon fontSize="small" className='text-sky-600' />
       </IconButton>
-      <IconButton aria-label="delete" size="small" >
+      <IconButton aria-label="view" size="small">
         <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
       </IconButton>
-      <IconButton aria-label="delete" size="small" >
+      <IconButton aria-label="delete" size="small">
         <DeleteIcon fontSize="small" className='text-red-600' />
       </IconButton>
     </>
   ),
-  createData('2', '髙本　泰世', '2020年12月10日', '福岡市南区三宅 3-13-30-402','履歴書 (正規職員用)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('3', '山崎　都', '2020年12月10日', '福岡市中央区白金2-10-2-902','履歴書 (賃金職員用)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
- 
+  createData('常務理事', 'ワタナベ　シロウ', '渡部　史朗', '男', '昭和', '43', '5', '22',
+      <>
+        <IconButton aria-label="edit" size="small">
+          <EditIcon fontSize="small" className='text-sky-600' />
+        </IconButton>
+        <IconButton aria-label="view" size="small">
+          <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+        </IconButton>
+        <IconButton aria-label="delete" size="small">
+          <DeleteIcon fontSize="small" className='text-red-600' />
+        </IconButton>
+      </>
+    ),
+  createData('理　　事', 'ナカガワ　ヤスヨシ', '中川　康嘉', '男', '昭和', '33', '11', '1',
+      <>
+        <IconButton aria-label="edit" size="small">
+          <EditIcon fontSize="small" className='text-sky-600' />
+        </IconButton>
+        <IconButton aria-label="view" size="small">
+          <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+        </IconButton>
+        <IconButton aria-label="delete" size="small">
+          <DeleteIcon fontSize="small" className='text-red-600' />
+        </IconButton>
+      </>
+    )
 ];
-
 
 export default function InfoStaffList() {
   const [classroom, setcClass] = React.useState('');
@@ -123,7 +109,6 @@ export default function InfoStaffList() {
   const handleChange = (event: SelectChangeEvent) => {
     setcClass(event.target.value as string);
   };
-
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -140,22 +125,20 @@ export default function InfoStaffList() {
   return (
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
-
-        <Typography component="div" style={{ color: 'black', }} className='pt-6 '>
-          氏名
+        <Typography component="div" style={{ color: 'black' }} className='pt-6'>
+            氏名
         </Typography>
-
         <Grid item xs={8} sm={4} md={2} lg={2}>
           <TextField id="outlined-search" label="" type="search" size="small" className='' />
         </Grid>
         <Grid item xs={4} sm={4} md={2} style={{ textAlign: 'center' }}>
           <FormControl sx={{ minWidth: 100 }} size="small" fullWidth>
-            <InputLabel id="demo-select-small-label">状態</InputLabel>
+            <InputLabel id="demo-select-small-label">役職名</InputLabel>
             <Select
               labelId="demo-select-small-label"
               id="demo-select-small"
               value={classroom}
-              label="クラス名"
+              label="役職名"
               onChange={handleChange}
             >
               <MenuItem value="">
@@ -164,24 +147,24 @@ export default function InfoStaffList() {
               <MenuItem value={10}>1</MenuItem>
               <MenuItem value={20}>2</MenuItem>
               <MenuItem value={30}>3</MenuItem>
-              <MenuItem value={30}>4</MenuItem>
-              <MenuItem value={30}>5</MenuItem>
+              <MenuItem value={40}>4</MenuItem>
+              <MenuItem value={50}>5</MenuItem>
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={6} sm={6} md={2} >
-          <Button variant="contained" href="#contained-buttons" className='scale-90' >
+        <Grid item xs={6} sm={6} md={2}>
+          <Button variant="contained" href="#contained-buttons" className='scale-90'>
             <SearchIcon />
-            <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
+            <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }}>
               Search
             </Typography>
           </Button>
         </Grid>
       </Grid>
-      <Grid container direction="row" justifyContent="end" alignItems="end" style={{ paddingTop: '20px', }} className='mt-3'>
-        <Button variant="contained" href="#contained-buttons" className='scale-90' size="small" >
+      <Grid container direction="row" justifyContent="end" alignItems="end" style={{ paddingTop: '20px' }} className='mt-3'>
+        <Button variant="contained" href="/infostaff/infostaffadd" className='scale-90' size="small">
           <AddIcon />
-          <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }}  >
+          <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }}>
             Add
           </Typography>
         </Button>
@@ -208,14 +191,12 @@ export default function InfoStaffList() {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
-                      <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                      <TableRow hover role="checkbox" tabIndex={-1} key={row.fullname}>
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
                             <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === 'number'
-                                ? column.format(value)
-                                : value}
+                              {typeof value === 'string' || typeof value === 'number' ? value : value}
                             </TableCell>
                           );
                         })}
