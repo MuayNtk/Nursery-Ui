@@ -13,6 +13,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import MonthForm from "../componentsform/MonthForm";
 
 
 interface Column {
@@ -25,7 +26,7 @@ interface Column {
 
 const columns: readonly Column[] = [
   { id: 'year', label: '全', minWidth: 50, align: 'center', },
-  { id: 'age', label: '歳', minWidth: 70, align: 'center', },
+  { id: 'age', label: '歳児', minWidth: 70, align: 'center', },
   { id: 'name', label: ' ', minWidth: 100, align: 'left', },
   { id: 'detail', label: '', minWidth: 50, align: 'right', },
 ];
@@ -48,7 +49,7 @@ function createData(
 
 // Example data (you can replace this with your actual data)
 const rows = [
-  createData('2024','０ 歳', '(全体的な計画)',
+  createData('2024','０ 歳児', '(全体的な計画)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -61,7 +62,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2024','3 歳', '(全体的な計画)',
+  createData('2024','3 歳児', '(全体的な計画)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -74,7 +75,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2024','4 歳', '(全体的な計画)',
+  createData('2024','4 歳児', '(全体的な計画)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -87,7 +88,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2023','5  歳', '(全体的な計画)',
+  createData('2023','5 歳児', '(全体的な計画)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -100,7 +101,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2023','2 歳', '(全体的な計画)',
+  createData('2023','2 歳児', '(全体的な計画)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -113,7 +114,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2023','2 歳', '(全体的な計画)',
+  createData('2023','2 歳児', '(全体的な計画)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -129,7 +130,7 @@ const rows = [
 
 ];
 
-export default function Annualplan() {
+export default function Monthlyplan() {
 
 
   const [page, setPage] = React.useState(0);
@@ -152,6 +153,12 @@ export default function Annualplan() {
       <Grid container spacing={2} className='pt-7' justifyContent="center">
         <Grid item xs={3} sm={4} md={2} lg={2}>
           <TextField id="outlined-search" label="全" type="search" size="small" sx={{ backgroundColor: 'white' }}/>
+        </Grid>
+        <Grid item xs={3} sm={4} md={2} lg={2}>
+          <TextField id="outlined-search" label="年" type="search" size="small" sx={{ backgroundColor: 'white' }}/>
+        </Grid>
+        <Grid item xs={3} sm={4} md={2} lg={2}>
+            <MonthForm />
         </Grid>
         <Grid item xs={6} sm={4} md={3} lg={2}>
           <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
