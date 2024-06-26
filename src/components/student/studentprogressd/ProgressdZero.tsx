@@ -47,7 +47,7 @@ function createData(
 // start table 1
 const rows = [
   createData('つぶしがゆなどドロドしたものを食べる(離乳の開始期)', '5',
-    <FormControl size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }} className=''>
         <MenuItem value="">
           <em>None</em>
@@ -58,7 +58,7 @@ const rows = [
     </FormControl>
     ,),
   createData('パンがゆ、野菜、白身魚の裏ごしを食べる', '6-7',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -69,7 +69,7 @@ const rows = [
     </FormControl>
     ,),
   createData('軟飯や野菜の細かく切ったものを食べる', '9-11',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -80,7 +80,7 @@ const rows = [
     </FormControl>
     ,),
   createData('幼児食の細かく切ったものを食べる', '12-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -91,7 +91,7 @@ const rows = [
     </FormControl>
     ,),
   createData('自分で食べようとしたり、飲もうとして手を伸ばす', '7',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -102,7 +102,7 @@ const rows = [
     </FormControl>
     ,),
   createData('ささえるとコップで飲める', '10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -113,7 +113,7 @@ const rows = [
     </FormControl>
     ,),
   createData('こぼすが、コップやスプーンをもって食べようとする', '12',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -124,7 +124,7 @@ const rows = [
     </FormControl>
     ,),
   createData('こぽすがコップやスプーンをもって食べる', '13-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -135,7 +135,7 @@ const rows = [
     </FormControl>
     ,),
   createData('促されると挨拶の動作ができる', '12-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -146,7 +146,7 @@ const rows = [
     </FormControl>
     ,),
   createData('促されると食後、自分で口のまわりを拭こうとする', '13-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -163,7 +163,7 @@ const rows = [
 // start table 2
 const rows2 = [
   createData('おむつがぬれたら泣き、取り替えてもらうと泣きやむ', '4-6',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -174,7 +174,7 @@ const rows2 = [
     </FormControl>
     ,),
   createData('パンがゆ、野菜、白身魚の裏ごしを食べる', '6-7',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -185,7 +185,7 @@ const rows2 = [
     </FormControl>
     ,),
   createData('おむつをぬらすこともあるが、支えられて便器に腰かけると排便、排尿する', '11',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -196,7 +196,7 @@ const rows2 = [
     </FormControl>
     ,),
   createData('「シーは？」の促しに意思表示ができる', '13-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -213,7 +213,7 @@ const rows2 = [
 // start table 3
 const rows3 = [
   createData('機嫌よく眠る', '6-10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -224,7 +224,7 @@ const rows3 = [
     </FormControl>
     ,),
   createData('機嫌よく目覚める', '10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -235,7 +235,7 @@ const rows3 = [
     </FormControl>
     ,),
   createData('午前・午後の２回睡になる  ', '10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -246,7 +246,7 @@ const rows3 = [
     </FormControl>
     ,),
   createData('１回睡になり、時間も一定してくる', '12-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -257,7 +257,7 @@ const rows3 = [
     </FormControl>
     ,),
   createData('手足を動かし、着脱の誘いかけに応じる ', '11-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -274,7 +274,7 @@ const rows3 = [
 // start table 4
 const rows4 = [
   createData('寝ていて自由に首の向きをかえる', '2',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -285,7 +285,7 @@ const rows4 = [
     </FormControl>
     ,),
   createData('首がすわる', '3',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -296,7 +296,7 @@ const rows4 = [
     </FormControl>
     ,),
   createData('腹ばいにすると両手をつっぱる  ', '5',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -307,7 +307,7 @@ const rows4 = [
     </FormControl>
     ,),
   createData('寝返りをする', '6',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -318,7 +318,7 @@ const rows4 = [
     </FormControl>
     ,),
   createData('膝の上でピョンピョンはねる ', '7',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -329,7 +329,7 @@ const rows4 = [
     </FormControl>
     ,),
   createData('一人ですわる ', '7-8',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -340,7 +340,7 @@ const rows4 = [
     </FormControl>
     ,),
   createData('這う', '7-10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -351,7 +351,7 @@ const rows4 = [
     </FormControl>
     ,),
   createData('自分でつかまり立ちをする', '9',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -362,7 +362,7 @@ const rows4 = [
     </FormControl>
     ,),
   createData('掴まらないで床からの立ち上がりができる', '11',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -373,7 +373,7 @@ const rows4 = [
     </FormControl>
     ,),
   createData('一人で２，３歩あるく（初歩）', '12-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -384,7 +384,7 @@ const rows4 = [
     </FormControl>
     ,),
   createData('腕でバランスを取ってヨチヨチ歩きができる', '13-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -401,7 +401,7 @@ const rows4 = [
 // start table 5
 const rows5 = [
   createData('動くものをじっとみつめる', '2',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -412,7 +412,7 @@ const rows5 = [
     </FormControl>
     ,),
   createData('音のする方をみる', '3',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -423,7 +423,7 @@ const rows5 = [
     </FormControl>
     ,),
   createData('手に触れたものを、握る', '2-3',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -434,7 +434,7 @@ const rows5 = [
     </FormControl>
     ,),
   createData('手に触れたものを、口に運ぶ', '3-4',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -445,7 +445,7 @@ const rows5 = [
     </FormControl>
     ,),
   createData('物を振ったり、打ちつけたりして遊ぶ', '4-5',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -461,7 +461,7 @@ const rows5 = [
 // start table 6
 const rows6 = [
   createData('玩具を一方の手から、他方に持ちかえる', '6',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -472,7 +472,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('容器のふたを開けたり閉めたりする', '8',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -483,7 +483,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('積み木を積もうとする', '9',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -494,7 +494,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('両手に持ったものを打ち合わせて遊ぶ', '9-10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -505,7 +505,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('干しぶどうくらいの大きさの物をつまむ', '9-10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -516,7 +516,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('ラッパを吹いたり音の出るものを楽しむ', '9-10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -527,7 +527,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('音楽を聞いて、手足、首などを動かす', '10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -538,7 +538,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('物を容器に入れたり落としたりして遊ぶ', '10-11',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -549,7 +549,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('紙やぶりを喜ぶ', '11-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -560,7 +560,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('砂遊びに興味を持つ', '11-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -571,7 +571,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('水遊びを喜ぶ', '11-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -582,7 +582,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('斜め直線状のなぐりがきをする', '12-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -593,7 +593,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('低い台や階段等を登って遊ぶ', '12-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -604,7 +604,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('箱車やダンボール等を押したり引っぱったしてあそぶ', '13-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -615,7 +615,7 @@ const rows6 = [
     </FormControl>
     ,),
   createData('ボールを転がしたり、追って遊ぶ', '13-15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -631,7 +631,7 @@ const rows6 = [
 // start table 7
 const rows7 = [
   createData('笑ったり、話しかけたりすると笑いかえす', '3-4',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -642,7 +642,7 @@ const rows7 = [
     </FormControl>
     ,),
   createData('喜び、怒り、恐れなどの情緒が現れてくる', '5',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -653,7 +653,7 @@ const rows7 = [
     </FormControl>
     ,),
   createData('母親と他人の区別ができる', '5',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -664,7 +664,7 @@ const rows7 = [
     </FormControl>
     ,),
   createData('いない、いないバアーを喜ぶ', '7',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -675,7 +675,7 @@ const rows7 = [
     </FormControl>
     ,),
   createData('持っているものを取られると不快を示す', '8',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -686,7 +686,7 @@ const rows7 = [
     </FormControl>
     ,),
   createData('身近な人から話しかけてもらうことを喜ぶ', '11',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -697,7 +697,7 @@ const rows7 = [
     </FormControl>
     ,),
   createData('友だちと一緒にいることを好む', '12',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -708,7 +708,7 @@ const rows7 = [
     </FormControl>
     ,),
   createData('人まねが盛んになる', '10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -719,7 +719,7 @@ const rows7 = [
     </FormControl>
     ,),
   createData('ほめられると同じ動作を繰り返す', '12',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -735,7 +735,7 @@ const rows7 = [
 // start table 8
 const rows8 = [
   createData('話しかけると話をするように、声を出して応じる', '3',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -746,7 +746,7 @@ const rows8 = [
     </FormControl>
     ,),
   createData('人に向かって声を出す', '6-7',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -757,7 +757,7 @@ const rows8 = [
     </FormControl>
     ,),
   createData('いろいろな発音をする（マ、バ、パ）', '6-8',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -768,7 +768,7 @@ const rows8 = [
     </FormControl>
     ,),
   createData('いろいろな発音をする（タ、ダ、ナ)', '8-10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -779,7 +779,7 @@ const rows8 = [
     </FormControl>
     ,),
   createData('同じ音をリズミカルに反復する（マママ、ダダダ）', '8-9',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -790,7 +790,7 @@ const rows8 = [
     </FormControl>
     ,),
   createData('ほめられたり叱られたりする言葉がわかる', '7-9',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -801,7 +801,7 @@ const rows8 = [
     </FormControl>
     ,),
   createData('片言を言う（マンマ、ブーブーなど）', '10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -812,7 +812,7 @@ const rows8 = [
     </FormControl>
     ,),
   createData('自分の要求するもの欲しいものを、指さして要求する', '10',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -823,7 +823,7 @@ const rows8 = [
     </FormControl>
     ,),
   createData('具体物の指さしができる', '15',
-    <FormControl sx={{ m: 1, minWidth: 20, }} size='small' className=" " >
+    <FormControl size='small' className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -989,7 +989,7 @@ export default function ProgressdZeroForm() {
         <Grid container spacing={2} className='pt-4' justifyContent="center">
           <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 1000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead >
                   <TableRow >
                     {columns.map((column) => (
@@ -1038,7 +1038,7 @@ export default function ProgressdZeroForm() {
         <Grid container spacing={2} className='pt-4' justifyContent="center">
           <Paper sx={{ width: '100%', Height: 2000, overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 2000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead >
                   <TableRow >
                     {columns.map((column) => (
@@ -1086,7 +1086,7 @@ export default function ProgressdZeroForm() {
         <Grid container spacing={2} className='pt-4' justifyContent="center">
           <Paper sx={{ width: '100%', Height: 2000, overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 2000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead >
                   <TableRow >
                     {columns.map((column) => (
@@ -1134,7 +1134,7 @@ export default function ProgressdZeroForm() {
         <Grid container spacing={2} className='pt-4' justifyContent="center">
           <Paper sx={{ width: '100%', Height: 2000, overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 2000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead >
                   <TableRow >
                     {columns.map((column) => (
@@ -1182,7 +1182,7 @@ export default function ProgressdZeroForm() {
         <Grid container spacing={2} className='pt-4' justifyContent="center">
           <Paper sx={{ width: '100%', Height: 2000, overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 2000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead >
                   <TableRow >
                     {columns.map((column) => (
@@ -1230,7 +1230,7 @@ export default function ProgressdZeroForm() {
         <Grid container spacing={2} className='pt-4' justifyContent="center">
           <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 2000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead >
                   <TableRow >
                     {columns.map((column) => (
@@ -1278,7 +1278,7 @@ export default function ProgressdZeroForm() {
         <Grid container spacing={2} className='pt-4' justifyContent="center">
           <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 2000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead >
                   <TableRow >
                     {columns.map((column) => (
@@ -1326,7 +1326,7 @@ export default function ProgressdZeroForm() {
         <Grid container spacing={2} className='pt-4' justifyContent="center">
           <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 2000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead >
                   <TableRow >
                     {columns.map((column) => (
@@ -1388,8 +1388,8 @@ export default function ProgressdZeroForm() {
 
         {/* Start Grid */}
         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5' sx={{ marginLeft: { xs: "45px", sm: "45px", md: "75px" } }} >
-          <Typography component='div' className="pt-9">
-            新規.継続 :
+          <Typography component='div' className="pt-9 ">
+            新規・継続 :
           </Typography>
           <Grid item xs={7} sm={5.8} md={4} sx={{ marginLeft: { xs: -3, sm: -3, md: -4 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>

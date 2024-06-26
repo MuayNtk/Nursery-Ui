@@ -163,7 +163,7 @@ export default function Annualplan() {
       </Grid>
       <Grid container className='pt-7' justifyContent="right">
         <Grid> 
-          <Button variant="contained" href="#" size='small' startIcon={<AddIcon />}>
+          <Button variant="contained" href="/report/overallplan/add" size='small' startIcon={<AddIcon />}>
             <Typography style={{ color: 'white' }}>
               ADD
             </Typography>

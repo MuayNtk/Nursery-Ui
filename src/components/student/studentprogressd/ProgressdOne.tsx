@@ -46,10 +46,10 @@ function createData(
   return { activities, admission, october, february };
 }
 
-// Example data (you can replace this with your actual data)
+// Start rows table 1
 const rows = [
   createData('濱千代智宏',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -60,7 +60,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -71,7 +71,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -84,7 +84,7 @@ const rows = [
   ),
 
   createData('コップを一人で持って飲む',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -95,7 +95,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -106,7 +106,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -119,7 +119,7 @@ const rows = [
   ),
 
   createData('スプーンを使って一人で食べる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -130,7 +130,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -141,7 +141,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -154,7 +154,7 @@ const rows = [
   ),
 
   createData('こぼしながらも、最後まで一人で食べる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -165,7 +165,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -176,7 +176,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -189,7 +189,7 @@ const rows = [
   ),
 
   createData('好き嫌いがはっきりしているが、促されて食べる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -200,7 +200,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -211,7 +211,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -224,7 +224,7 @@ const rows = [
   ),
 
   createData('菓子などの包み紙を取って食べられる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -235,7 +235,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -246,7 +246,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -259,7 +259,7 @@ const rows = [
   ),
 
   createData('自分の食物と他人の食物との区別がつく',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -270,7 +270,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -281,7 +281,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -294,7 +294,7 @@ const rows = [
   ),
 
   createData('食物の揃うのを待ち挨拶をして食べる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -305,7 +305,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -316,7 +316,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -329,7 +329,7 @@ const rows = [
   ),
 
   createData('保育士等の援助により食前の手洗いをする',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -340,7 +340,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -351,7 +351,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -364,7 +364,7 @@ const rows = [
   ),
 
   createData('促されて食後自分で手や顔を拭く',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -375,7 +375,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -386,7 +386,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -399,7 +399,7 @@ const rows = [
   ),
 
   createData('食べ物の名前に興味を持つ',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -410,7 +410,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -421,7 +421,7 @@ const rows = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -433,11 +433,12 @@ const rows = [
     </FormControl>
   ),
 ];
+// End rows table 1
 
-// Example data (you can replace this with your actual data)
+// Start rows table 2
 const rows2 = [
   createData('もらしたことを知らせる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -448,7 +449,7 @@ const rows2 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -459,7 +460,7 @@ const rows2 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -472,7 +473,7 @@ const rows2 = [
   ),
 
   createData('排泄を予め知らせる(18ヶ月)',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -483,7 +484,7 @@ const rows2 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -494,7 +495,7 @@ const rows2 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -507,7 +508,7 @@ const rows2 = [
   ),
 
   createData('おむつがとれる(19ヶ月)',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -518,7 +519,7 @@ const rows2 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -529,7 +530,7 @@ const rows2 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -542,7 +543,7 @@ const rows2 = [
   ),
 
   createData('便器(オマル)で排泄する',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -553,7 +554,7 @@ const rows2 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -564,7 +565,7 @@ const rows2 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -577,7 +578,7 @@ const rows2 = [
   ),
 
   createData('パンツをおろしてもらい、ひとりでする',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -588,7 +589,7 @@ const rows2 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -599,7 +600,7 @@ const rows2 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -612,7 +613,7 @@ const rows2 = [
   ),
 
   createData('排泄後、保育士等に知らせて拭いてもらう',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -623,7 +624,7 @@ const rows2 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -634,7 +635,7 @@ const rows2 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -646,11 +647,12 @@ const rows2 = [
     </FormControl>
   ),
 ];
+// End rows table 2
 
-// Example data (you can replace this with your actual data)
+// Start rows table 3
 const rows3 = [
   createData('午睡の時間が一定してくる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -661,7 +663,7 @@ const rows3 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -672,7 +674,7 @@ const rows3 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -685,7 +687,7 @@ const rows3 = [
   ),
 
   createData('保育士等がそばにいると安心して眠れる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -696,7 +698,7 @@ const rows3 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -707,7 +709,7 @@ const rows3 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -720,7 +722,7 @@ const rows3 = [
   ),
 
   createData('機嫌よく目覚める',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -731,7 +733,7 @@ const rows3 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -742,7 +744,7 @@ const rows3 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -755,7 +757,7 @@ const rows3 = [
   ),
 
   createData('自分の布団がわかる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -766,7 +768,7 @@ const rows3 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -777,7 +779,7 @@ const rows3 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -789,11 +791,12 @@ const rows3 = [
     </FormControl>
   ),
 ];
+// End rows table 3
 
-// Example data (you can replace this with your actual data)
+// Start rows table 4
 const rows4 = [
   createData('一人で、パンツの上げ下げをする',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -804,7 +807,7 @@ const rows4 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -815,7 +818,7 @@ const rows4 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -828,7 +831,7 @@ const rows4 = [
   ),
 
   createData('手伝ってもらって衣服を脱いだり、パンツをはく',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -839,7 +842,7 @@ const rows4 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -850,7 +853,7 @@ const rows4 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -863,7 +866,7 @@ const rows4 = [
   ),
 
   createData('スナップを自分ではずす',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -874,7 +877,7 @@ const rows4 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -885,7 +888,7 @@ const rows4 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -898,7 +901,7 @@ const rows4 = [
   ),
 
   createData('嫌がらずに帽子をかぶる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -909,7 +912,7 @@ const rows4 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -920,7 +923,7 @@ const rows4 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -933,7 +936,7 @@ const rows4 = [
   ),
 
   createData('一人で靴を脱ぐ(2歳6ヶ月)',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -944,7 +947,7 @@ const rows4 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -955,7 +958,7 @@ const rows4 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -968,7 +971,7 @@ const rows4 = [
   ),
 
   createData('一人で靴を履こうとする(2歳6ヶ月)',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -979,7 +982,7 @@ const rows4 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -990,7 +993,7 @@ const rows4 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1002,11 +1005,12 @@ const rows4 = [
     </FormControl>
   ),
 ];
+// End rows table 4
 
-// Example data (you can replace this with your actual data)
+// Start rows table 5
 const rows5 = [
   createData('促されて自分で手を洗ったり拭こうとする',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1017,7 +1021,7 @@ const rows5 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1028,7 +1032,7 @@ const rows5 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1041,7 +1045,7 @@ const rows5 = [
   ),
 
   createData('顔、手足のきれい、汚いがわかり、洗ってもらうことを嫌がらない',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1052,7 +1056,7 @@ const rows5 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1063,7 +1067,7 @@ const rows5 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1076,7 +1080,7 @@ const rows5 = [
   ),
 
   createData('鼻汁の出ていることを知らせ拭いてもらう',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1087,7 +1091,7 @@ const rows5 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1098,7 +1102,7 @@ const rows5 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1111,7 +1115,7 @@ const rows5 = [
   ),
 
   createData('尋ねると、身体の異常を指さし等で知らせることができる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1122,7 +1126,7 @@ const rows5 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1133,7 +1137,7 @@ const rows5 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1146,7 +1150,7 @@ const rows5 = [
   ),
 
   createData('制止・禁止の言葉がわかる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1157,7 +1161,7 @@ const rows5 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1168,7 +1172,7 @@ const rows5 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1181,7 +1185,7 @@ const rows5 = [
   ),
 
   createData('物を持って、前を見て歩くことができる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1192,7 +1196,7 @@ const rows5 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1203,7 +1207,7 @@ const rows5 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1215,11 +1219,12 @@ const rows5 = [
     </FormControl>
   ),
 ];
+// End rows table 5
 
-// Example data (you can replace this with your actual data)
+// Start rows table 6
 const rows6 = [
   createData('その場で両足跳びができる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1230,7 +1235,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1241,7 +1246,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1254,7 +1259,7 @@ const rows6 = [
   ),
 
   createData('高い所(50m)に昇ったり降りたりできる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1265,7 +1270,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1276,7 +1281,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1289,7 +1294,7 @@ const rows6 = [
   ),
 
   createData('手すりを持って階段の昇り降りができる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1300,7 +1305,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1311,7 +1316,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1324,7 +1329,7 @@ const rows6 = [
   ),
 
   createData('20分くらい続けて歩ける。',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1335,7 +1340,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1346,7 +1351,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1359,7 +1364,7 @@ const rows6 = [
   ),
 
   createData('補助されて平均台の上を横歩きできる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1370,7 +1375,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1381,7 +1386,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1394,7 +1399,7 @@ const rows6 = [
   ),
 
   createData('両手でボールを持って上手投げで投げられる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1405,7 +1410,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1416,7 +1421,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1429,7 +1434,7 @@ const rows6 = [
   ),
 
   createData('転がってくるボールを受け止められる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1440,7 +1445,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1451,7 +1456,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1464,7 +1469,7 @@ const rows6 = [
   ),
 
   createData('走ることができる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1475,7 +1480,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1486,7 +1491,7 @@ const rows6 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1498,11 +1503,12 @@ const rows6 = [
     </FormControl>
   ),
 ];
+// End rows table 6
 
-// Example data (you can replace this with your actual data)
+// Start rows table 7
 const rows7 = [
   createData('保育士等に相手になってもらって、いろいろ物でつもり遊びをする',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1513,7 +1519,7 @@ const rows7 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1524,7 +1530,7 @@ const rows7 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1537,7 +1543,7 @@ const rows7 = [
   ),
 
   createData('自分の物と、他人の物との区別をする',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1548,7 +1554,7 @@ const rows7 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1559,7 +1565,7 @@ const rows7 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1572,7 +1578,7 @@ const rows7 = [
   ),
 
   createData('いつも一緒にいる子どもに会うと喜ぶ',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1583,7 +1589,7 @@ const rows7 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1594,7 +1600,7 @@ const rows7 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1607,7 +1613,7 @@ const rows7 = [
   ),
 
   createData('保育士等に見守られながら、一人遊びをする',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1618,7 +1624,7 @@ const rows7 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1629,7 +1635,7 @@ const rows7 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1642,7 +1648,7 @@ const rows7 = [
   ),
 
   createData('保育士等と一緒に片づけができる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1653,7 +1659,7 @@ const rows7 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1664,7 +1670,7 @@ const rows7 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1676,11 +1682,12 @@ const rows7 = [
     </FormControl>
   ),
 ];
+// End rows table 7
 
-// Example data (you can replace this with your actual data)
+// Start rows table 8
 const rows8 = [
   createData('スコップやバケツなどの道具を使って、水や砂などで遊ぼうとる。',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1691,7 +1698,7 @@ const rows8 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1702,7 +1709,7 @@ const rows8 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1715,7 +1722,7 @@ const rows8 = [
   ),
 
   createData('草花や小動物、昆虫を見て興味を示す',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1726,7 +1733,7 @@ const rows8 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1737,7 +1744,7 @@ const rows8 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1750,7 +1757,7 @@ const rows8 = [
   ),
 
   createData('日常用具に興味を持ち何でもさわってみる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1761,7 +1768,7 @@ const rows8 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1772,7 +1779,7 @@ const rows8 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1785,7 +1792,7 @@ const rows8 = [
   ),
 
   createData('積木等を積み上げて遊ぶ',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1796,7 +1803,7 @@ const rows8 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1807,7 +1814,7 @@ const rows8 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1820,7 +1827,7 @@ const rows8 = [
   ),
 
   createData('散歩に行くことを喜ぶ',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1831,7 +1838,7 @@ const rows8 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1842,7 +1849,7 @@ const rows8 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1854,11 +1861,12 @@ const rows8 = [
     </FormControl>
   ),
 ];
+// End rows table 8
 
-// Example data (you can replace this with your actual data)
+// Start rows table 9
 const rows9 = [
   createData('片言を話す',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1869,7 +1877,7 @@ const rows9 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1880,7 +1888,7 @@ const rows9 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1893,7 +1901,7 @@ const rows9 = [
   ),
 
   createData('保育士等の言葉が理解できる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1904,7 +1912,7 @@ const rows9 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1915,7 +1923,7 @@ const rows9 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1928,7 +1936,7 @@ const rows9 = [
   ),
 
   createData('名前を呼ばれたら、言葉で返事ができる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1939,7 +1947,7 @@ const rows9 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1950,7 +1958,7 @@ const rows9 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1963,7 +1971,7 @@ const rows9 = [
   ),
 
   createData('生活に必要な簡単な言葉が言える(おはよう・さようなら)',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1974,7 +1982,7 @@ const rows9 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1985,7 +1993,7 @@ const rows9 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -1998,7 +2006,7 @@ const rows9 = [
   ),
 
   createData('友だちや保育士等の名前が言える',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2009,7 +2017,7 @@ const rows9 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2020,7 +2028,7 @@ const rows9 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2033,7 +2041,7 @@ const rows9 = [
   ),
 
   createData('身体の部位を指さして言える(目・・耳・手·足·腹)',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2044,7 +2052,7 @@ const rows9 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2055,7 +2063,7 @@ const rows9 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2067,11 +2075,12 @@ const rows9 = [
     </FormControl>
   ),
 ];
+// End rows table 9
 
-// Example data (you can replace this with your actual data)
+// Start rows table 10
 const rows10 = [
   createData('リズムにのって、からだを動かす',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2082,7 +2091,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2093,7 +2102,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2106,7 +2115,7 @@ const rows10 = [
   ),
 
   createData('簡単な歌の一部が歌える',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2117,7 +2126,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2128,7 +2137,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2141,7 +2150,7 @@ const rows10 = [
   ),
 
   createData('簡単な楽器で遊ぶ',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2152,7 +2161,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2163,7 +2172,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2176,7 +2185,7 @@ const rows10 = [
   ),
 
   createData('保育士等と一緒に模倣遊びをする',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2187,7 +2196,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2198,7 +2207,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2211,7 +2220,7 @@ const rows10 = [
   ),
 
   createData('円錯のなぐりがきができる',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2222,7 +2231,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2233,7 +2242,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2246,7 +2255,7 @@ const rows10 = [
   ),
 
   createData('紙をちぎったり、はがしたりする',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2257,7 +2266,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2268,7 +2277,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2281,7 +2290,7 @@ const rows10 = [
   ),
 
   createData('粘土をちぎったり丸めたりする',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2292,7 +2301,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2303,7 +2312,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2316,7 +2325,7 @@ const rows10 = [
   ),
 
   createData('積木や組木を組み立てたり、くずしたりする',
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2327,7 +2336,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2338,7 +2347,7 @@ const rows10 = [
       </Select>
     </FormControl>
     ,
-    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }}>
+    <FormControl size="small" sx={{ width: 70, marginLeft: { xs: 0, sm: 0, md: 0 } }} className="scale-75">
       <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white" }}>
         <MenuItem value="">
           <em>None</em>
@@ -2351,6 +2360,7 @@ const rows10 = [
   ),
 
 ];
+// End rows table 10
 
 export default function ProgressdOneForm() {
 
@@ -2493,14 +2503,14 @@ export default function ProgressdOneForm() {
 
         {/* Start Grid Table */}
         <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Grid item xs={12} sm={12} md={12} lg={11.6} className='' >
+          <Grid item xs={12} sm={12} md={12} lg={12} className='' >
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, backgroundColor: '#CCF0FD' }} className='flex justify-start h-10 pt-2 pl-5' >
               食事
             </Typography>
           </Grid>
-          <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
+          <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 1000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
                   <TableRow>
                     {columns.map((column) => (
@@ -2543,14 +2553,14 @@ export default function ProgressdOneForm() {
 
         {/* Start Grid Table 2 */}
         <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Grid item xs={12} sm={12} md={12} lg={11.6} className='' >
+          <Grid item xs={12} sm={12} md={12} lg={12} className='' >
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, backgroundColor: '#CCF0FD' }} className='flex justify-start h-10 pt-2 pl-5' >
               排泄
             </Typography>
           </Grid>
-          <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
+          <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 1000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
                   <TableRow>
                     {columns.map((column) => (
@@ -2593,14 +2603,14 @@ export default function ProgressdOneForm() {
 
         {/* Start Grid Table 3 */}
         <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Grid item xs={12} sm={12} md={12} lg={11.6} className='' >
+          <Grid item xs={12} sm={12} md={12} lg={12} className='' >
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, backgroundColor: '#CCF0FD' }} className='flex justify-start h-10 pt-2 pl-5' >
               睡眠
             </Typography>
           </Grid>
-          <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
+          <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 1000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
                   <TableRow>
                     {columns.map((column) => (
@@ -2643,14 +2653,14 @@ export default function ProgressdOneForm() {
 
         {/* Start Grid Table 4 */}
         <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Grid item xs={12} sm={12} md={12} lg={11.6} className='' >
+          <Grid item xs={12} sm={12} md={12} lg={12} className='' >
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, backgroundColor: '#CCF0FD' }} className='flex justify-start h-10 pt-2 pl-5' >
               着脱
             </Typography>
           </Grid>
-          <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
+          <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 1000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
                   <TableRow>
                     {columns.map((column) => (
@@ -2693,14 +2703,14 @@ export default function ProgressdOneForm() {
 
         {/* Start Grid Table 5 */}
         <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Grid item xs={12} sm={12} md={12} lg={11.6} className='' >
+          <Grid item xs={12} sm={12} md={12} lg={12} className='' >
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, backgroundColor: '#CCF0FD' }} className='flex justify-start h-10 pt-2 pl-5' >
               清潔.安全
             </Typography>
           </Grid>
-          <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
+          <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 1000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
                   <TableRow>
                     {columns.map((column) => (
@@ -2743,14 +2753,14 @@ export default function ProgressdOneForm() {
 
         {/* Start Grid Table 6 */}
         <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Grid item xs={12} sm={12} md={12} lg={11.6} className='' >
+          <Grid item xs={12} sm={12} md={12} lg={12} className='' >
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, backgroundColor: '#CCF0FD' }} className='flex justify-start h-10 pt-2 pl-5' >
               運動
             </Typography>
           </Grid>
-          <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
+          <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 1000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
                   <TableRow>
                     {columns.map((column) => (
@@ -2793,14 +2803,14 @@ export default function ProgressdOneForm() {
 
         {/* Start Grid Table 7 */}
         <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Grid item xs={12} sm={12} md={12} lg={11.6} className='' >
+          <Grid item xs={12} sm={12} md={12} lg={12} className='' >
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, backgroundColor: '#CCF0FD' }} className='flex justify-start h-10 pt-2 pl-5' >
               人間関係
             </Typography>
           </Grid>
-          <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
+          <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 1000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
                   <TableRow>
                     {columns.map((column) => (
@@ -2843,14 +2853,14 @@ export default function ProgressdOneForm() {
 
         {/* Start Grid Table 8 */}
         <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Grid item xs={12} sm={12} md={12} lg={11.6} className='' >
+          <Grid item xs={12} sm={12} md={12} lg={12} className='' >
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, backgroundColor: '#CCF0FD' }} className='flex justify-start h-10 pt-2 pl-5' >
               環境
             </Typography>
           </Grid>
-          <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
+          <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 1000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
                   <TableRow>
                     {columns.map((column) => (
@@ -2893,14 +2903,14 @@ export default function ProgressdOneForm() {
 
         {/* Start Grid Table 9 */}
         <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Grid item xs={12} sm={12} md={12} lg={11.6} className='' >
+          <Grid item xs={12} sm={12} md={12} lg={12} className='' >
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, backgroundColor: '#CCF0FD' }} className='flex justify-start h-10 pt-2 pl-5' >
               言葉
             </Typography>
           </Grid>
-          <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
+          <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 1000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
                   <TableRow>
                     {columns.map((column) => (
@@ -2943,14 +2953,14 @@ export default function ProgressdOneForm() {
 
         {/* Start Grid Table 10 */}
         <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Grid item xs={12} sm={12} md={12} lg={11.6} className='' >
+          <Grid item xs={12} sm={12} md={12} lg={12} className='' >
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, backgroundColor: '#CCF0FD' }} className='flex justify-start h-10 pt-2 pl-5' >
               表現
             </Typography>
           </Grid>
-          <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
+          <Paper sx={{ width: '100%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 1000 }}>
-              <Table stickyHeader aria-label="sticky table">
+              <Table stickyHeader aria-label="sticky table" size="small">
                 <TableHead>
                   <TableRow>
                     {columns.map((column) => (
@@ -2993,7 +3003,7 @@ export default function ProgressdOneForm() {
 
         {/* Start Grid */}
         <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Grid item xs={12} sm={12} md={12} lg={11.6}>
+          <Grid item xs={12} sm={12} md={12} lg={12}>
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, backgroundColor: '#CCF0FD' }} className='flex justify-start h-10 pt-2 pl-5' >
               発達経過記錄·特記事項
             </Typography>
