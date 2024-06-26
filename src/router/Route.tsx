@@ -1,6 +1,5 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
-// import Login from "../pages/Login";
 import WelcomePage from "../pages/WelcomePages";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -39,8 +38,12 @@ import AnnualplanAddPages from "../pages/report/AnnualplanAddPages";
 
 const Router = createBrowserRouter([
   {
+    path: "",
+    element: <Navigate to="/welcome" replace />
+  },
+  {
     path: "/welcome",
-    element: <WelcomePage/>
+    element: <WelcomePage />
   },
   {
     path: "/login",
@@ -53,7 +56,7 @@ const Router = createBrowserRouter([
   {
     path: "/",
     element: <LayoutPage />,
-    children: [                    
+    children: [
       {
         path: "/dashboard",
         element: <DashboardAdminPages />
@@ -180,7 +183,6 @@ const Router = createBrowserRouter([
       }
     ]
   },
-  
 ]);
 
 export default function Route() {
