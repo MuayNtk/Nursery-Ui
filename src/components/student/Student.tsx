@@ -17,6 +17,7 @@ import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Link } from 'react-router-dom';
 
 interface Column {
   id: 'name' | 'classroom' | 'date' | 'timestart' | 'timeend' | 'detail';
@@ -83,7 +84,7 @@ const rows = [
     </IconButton>
 
     ,
-    <IconButton aria-label="delete" size="small" >
+    <IconButton aria-label="delete" size="small" component={Link} to="/student/daycare">
       <AssignmentIcon fontSize="medium" className='text-cyan-500' />
     </IconButton>
     ,
@@ -105,7 +106,7 @@ const rows = [
     </IconButton>
 
     ,
-    <IconButton aria-label="delete" size="small" >
+    <IconButton aria-label="delete" size="small" component={Link} to="/student/daycare">
       <AssignmentIcon fontSize="medium" className='text-cyan-500' />
     </IconButton>
     ,
@@ -126,7 +127,7 @@ const rows = [
     </IconButton>
 
     ,
-    <IconButton aria-label="delete" size="small" >
+    <IconButton aria-label="delete" size="small" component={Link} to="/student/daycare">
       <AssignmentIcon fontSize="medium" className='text-cyan-500' />
     </IconButton>
     ,
@@ -147,7 +148,7 @@ const rows = [
     </IconButton>
 
     ,
-    <IconButton aria-label="delete" size="small" >
+    <IconButton aria-label="delete" size="small" component={Link} to="/student/daycare">
       <AssignmentIcon fontSize="medium" className='text-cyan-500' />
     </IconButton>
     ,
@@ -169,7 +170,7 @@ const rows = [
     </IconButton>
 
     ,
-    <IconButton aria-label="delete" size="small" >
+    <IconButton aria-label="delete" size="small" component={Link} to="/student/daycare">
       <AssignmentIcon fontSize="medium" className='text-cyan-500' />
     </IconButton>
     ,
@@ -191,7 +192,7 @@ const rows = [
     </IconButton>
 
     ,
-    <IconButton aria-label="delete" size="small" >
+    <IconButton aria-label="delete" size="small" component={Link} to="/student/daycare">
       <AssignmentIcon fontSize="medium" className='text-cyan-500' />
     </IconButton>
     ,

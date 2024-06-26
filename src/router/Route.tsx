@@ -33,6 +33,9 @@ import AnnualplanPages from "../pages/report/AnnualplanPages";
 import MonthlyplanPages from "../pages/report/MonthlyplanPages";
 import WeeklyplanPages from "../pages/report/WeeklyplanPages";
 import CareDiaryPages from "../pages/report/CareDiaryPages";
+import DaycareRecordPages from "../pages/student/studentdaycarerecord/DaycareRecordPages";
+import OverallPlanAddPages from "../pages/report/OverallPlanAddPages";
+import AnnualplanAddPages from "../pages/report/AnnualplanAddPages";
 
 const Router = createBrowserRouter([
   {
@@ -84,8 +87,16 @@ const Router = createBrowserRouter([
         element: <OverallPlanPages />
       },
       {
+        path: "/report/overallplan/add",
+        element: <OverallPlanAddPages />
+      },
+      {
         path: "/report/annualplan",
         element: <AnnualplanPages />
+      },
+      {
+        path: "/report/annualplan/add",
+        element: <AnnualplanAddPages />
       },
       {
         path: "/report/monthlyplan",
@@ -142,6 +153,10 @@ const Router = createBrowserRouter([
       {
         path: "/student/progressdfive",
         element: <ProgressdFivePages />
+      },
+      {
+        path: "/student/daycare",
+        element: <DaycareRecordPages />
       },
       {
         path: "/class",
