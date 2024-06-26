@@ -86,7 +86,7 @@ export default function Sidebar(props: Props) {
 
     const drawer = (
         <div>
-            <Link to={''}>
+            <Link to={'/dashboard'}>
                 <ListItem disablePadding className='text-white rounded-lg mt-2 mb-2 group pl-15'>
                     <ListItemButton>
                         <img src={Nusery} />
