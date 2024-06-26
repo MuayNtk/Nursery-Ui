@@ -4,6 +4,10 @@ import EraForm from "../../componentsform/EraForm";
 import YearForm from "../../componentsform/YearForm";
 import MonthForm from "../../componentsform/MonthForm";
 import DayForm from "../../componentsform/DayForm";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 
 export default function DaycareRecord() {
@@ -70,18 +74,18 @@ export default function DaycareRecord() {
                               生年月日
                               </Typography>
                         </Grid>
-                        <Grid item xs={12} sm={3} md={2}>
+                        <Grid item xs={12} sm={3} md={1}>
                               <EraForm />
                         </Grid>
-                        <Grid item xs={12} sm={3} md={2}>
+                        <Grid item xs={12} sm={3} md={1}>
                               <YearForm />
                         </Grid>
-                        <Grid item xs={12} sm={3} md={3}>
-                              <Grid container spacing={1}>
-                                    <Grid item xs={6}>
+                        <Grid item xs={12} sm={4} md={3}>
+                              <Grid container spacing={12}>
+                                    <Grid item xs={6} md={4}>
                                           <MonthForm />
                                     </Grid>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={6} md={6}>
                                           <DayForm />
                                     </Grid>
                               </Grid>
@@ -281,21 +285,85 @@ export default function DaycareRecord() {
                   </Grid>
             </Grid>
             <Grid container spacing={3} className='pt-5'>
+            {/* 生年月日 Fields */}
                   <Grid container spacing={2} className='pt-4'>
-                        <Grid item xs={6} sm={2} md={1.5}></Grid>
-                        <Grid item xs={6} sm={2} md={2}>
-                              <TextField id="futikana" name="futikana" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
-                        </Grid>
+                        <Grid item xs={6} sm={2} md={1.5} className="text-end"> </Grid>
                         <Grid item xs={6} sm={2} md={1}>
-                              <Typography style={{ fontSize: '14px' }} className='pt-2 '>
-                                    年/月
+                              <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+                        </Grid>
+                        
+                        <Grid item xs={12} sm={3} md={1}>
+                              <YearForm />
+                        </Grid>
+                        <Grid item>
+                              <Grid container spacing={3}>
+                                    <Grid item xs={6}>
+                                          <MonthForm />
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                          <DayForm />
+                                    </Grid>
+                              </Grid>
+                        </Grid>
+                        
+                  </Grid>
+            </Grid>
+            <Grid className=" mt-3">
+                  <Typography 
+                        component="div" 
+                        sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, backgroundColor: '#CCF0FD', fontWeight: 'bold' }} 
+                        className='flex justify-start h-10 pt-2 pl-5' >
+                              保育の過程と子どもの育ちに関する事項
+                  </Typography>
+            </Grid>
+            <Grid container spacing={3} className='pt-9'>
+                  <Grid container spacing={2} >
+
+                        <Grid item xs={5} sm={2} md={2.3}>
+                              <Typography style={{ fontSize: '14px' }} className='pt-2 text-end'>
+                                    【最終年度の重点】
                               </Typography>
                         </Grid>
-                        <Grid item xs={6} sm={2} md={2}>
-                              <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+                        <Grid item xs={6} sm={2} md={3}>
+                              <textarea 
+                                    id="message" 
+                                    className="block p-2.5 w-full text-sm min-h-16 border border-gray-300"
+                                    placeholder="備考">
+                              </textarea>
+                        </Grid>
+                  </Grid>
+                  {/* Text Area */}
+                  <Grid container spacing={2} className='pt-4'>
+                        <Grid item xs={5} sm={2} md={2.3}>
+                              <Typography style={{ fontSize: '14px' }} className='pt-2 text-end'>
+                                    【特に配慮すべき事項】
+                              </Typography>
+                        </Grid>
+                        <Grid item xs={6} sm={2} md={3}>
+                              <textarea 
+                              id="message" 
+                              className="block p-2.5 w-full text-sm min-h-16 border border-gray-300"
+                              placeholder="備考">
+                              </textarea>
+                        </Grid>
+                  </Grid>
+                  <Grid container spacing={2} className='pt-4'>
+                        <Grid item xs={5} sm={2} md={2.3}>
+                              <Typography style={{ fontSize: '14px' }} className='pt-2 text-end'>
+                                    【個人の重点】
+                              </Typography>
+                        </Grid>
+                        <Grid item xs={6} sm={2} md={3}>
+                              <textarea 
+                              id="message" 
+                              className="block p-2.5 w-full text-sm min-h-16 border border-gray-300"
+                              placeholder="備考">
+                              </textarea>
                         </Grid>
                   </Grid>
             </Grid>
+            
+            
             {/* Buttons at the bottom */}
             <div className="mt-auto">
                   <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
