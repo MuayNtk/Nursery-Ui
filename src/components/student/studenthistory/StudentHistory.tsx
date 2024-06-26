@@ -8,7 +8,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
-
 export default function StudentHistory() {
 
   return (
@@ -23,22 +22,22 @@ export default function StudentHistory() {
           name="customized-radios"
         >
           <Grid container spacing={2} className='pt-7 pl-3' >
-            <Grid item xs={4} sm={4} md={1.1} sx={{ marginLeft: { md: '70px' } }}>
+            <Grid item xs={4} sm={4} md={2} sx={{ marginLeft: { xs: 0, sm: 0, md: 0, lg: 5 } }}>
               <FormControlLabel value="0歲児" control={<Radio />} label="0歲児 " />
             </Grid>
-            <Grid item xs={4} sm={4} md={1.1}>
+            <Grid item xs={4} sm={4} md={2} sx={{ marginLeft: { xs: 0, sm: 0, md: 0, lg: -8 } }}>
               <FormControlLabel value="1歲児 " control={<Radio />} label="1歲児 " />
             </Grid>
-            <Grid item xs={4} sm={4} md={1.1}>
+            <Grid item xs={4} sm={4} md={2} sx={{ marginLeft: { xs: 0, sm: 0, md: 0, lg: -8 } }}>
               <FormControlLabel value="2歲児" control={<Radio />} label="2歲児 " />
             </Grid>
-            <Grid item xs={4} sm={4} md={1.1}>
+            <Grid item xs={4} sm={4} md={2} sx={{ marginLeft: { xs: 0, sm: 0, md: 0, lg: -8 } }}>
               <FormControlLabel value="3歲児" control={<Radio />} label="3歲児 " />
             </Grid>
-            <Grid item xs={4} sm={4} md={1.1}>
+            <Grid item xs={4} sm={4} md={2} sx={{ marginLeft: { xs: 0, sm: 0, md: 0, lg: -8 } }}>
               <FormControlLabel value="4歲児" control={<Radio />} label="4歲児 " />
             </Grid>
-            <Grid item xs={4} sm={4} md={1.1}>
+            <Grid item xs={4} sm={4} md={2} sx={{ marginLeft: { xs: 0, sm: 0, md: 0, lg: -8 } }}>
               <FormControlLabel value="5歲児" control={<Radio />} label="5歲児 " />
             </Grid>
           </Grid>
@@ -105,7 +104,6 @@ export default function StudentHistory() {
           </Grid>
         </Grid>
         {/* End gender Grid */}
-
 
         {/* Start birthday Grid */}
         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-6 pl-3' >
@@ -867,10 +865,10 @@ export default function StudentHistory() {
             <Typography component='div' fontWeight={500} className="pl-5 md:pr-3 lg:pr-7 lg:pl-20 pt-6">
               妊娠中の状況
             </Typography>
-            <Grid item xs={4.5} sm={3.5} md={1.5}>
+            <Grid item xs={4.5} sm={3.5} md={1.7}>
               <FormControlLabel value="胃常なし" control={<Radio />} label="胃常なし" />
             </Grid>
-            <Grid item xs={3.5} sm={3.5} md={1.1}>
+            <Grid item xs={3.5} sm={3.5} md={1.3}>
               <FormControlLabel value="あり" control={<Radio />} label="あり" />
             </Grid>
             <Grid item xs={10.5} sm={10} md={2}>
@@ -917,10 +915,10 @@ export default function StudentHistory() {
             <Typography component='div' fontWeight={500} className="pl-5 md:pr-3 lg:pr-7 lg:pl-20 pt-6">
               分娩時の状況
             </Typography>
-            <Grid item xs={4.5} sm={3.5} md={1.5}>
+            <Grid item xs={4.5} sm={3.5} md={1.7}>
               <FormControlLabel value="胃常なし" control={<Radio />} label="胃常なし" />
             </Grid>
-            <Grid item xs={3.5} sm={3.5} md={1.1}>
+            <Grid item xs={3.5} sm={3.5} md={1.3}>
               <FormControlLabel value="あり" control={<Radio />} label="あり" />
             </Grid>
             <Grid item xs={10.5} sm={10} md={2}>
@@ -968,10 +966,10 @@ export default function StudentHistory() {
             <Typography component='div' fontWeight={500} className="pl-5 md:pr-3 lg:pr-7 lg:pl-20 pt-6">
               出生時の状況
             </Typography>
-            <Grid item xs={4.5} sm={3.5} md={1.5}>
+            <Grid item xs={4.5} sm={3.5} md={1.7}>
               <FormControlLabel value="胃常なし" control={<Radio />} label="胃常なし" />
             </Grid>
-            <Grid item xs={3.5} sm={3.5} md={1.1}>
+            <Grid item xs={3.5} sm={3.5} md={1.3}>
               <FormControlLabel value="あり" control={<Radio />} label="あり" />
             </Grid>
             <Grid item xs={10.5} sm={10} md={2}>
@@ -1006,13 +1004,13 @@ export default function StudentHistory() {
             <Typography component='div' fontWeight={500} className="pl-14 pr-36 md:pr-64 lg:pr-7 lg:pl-32 pt-6">
               栄養方法
             </Typography>
-            <Grid item xs={3.5} sm={3} md={1.3}>
+            <Grid item xs={3.5} sm={3} md={1.4}>
               <FormControlLabel value="母乳" control={<Radio />} label="母乳" />
             </Grid>
-            <Grid item xs={4.6} sm={3} md={1.2}>
+            <Grid item xs={4.6} sm={3} md={1.4}>
               <FormControlLabel value="混合" control={<Radio />} label="混合" />
             </Grid>
-            <Grid item xs={3.7} sm={3.5} md={1.3}>
+            <Grid item xs={3.7} sm={3.5} md={1.6}>
               <FormControlLabel value="人工乳" control={<Radio />} label="人工乳" />
             </Grid>
           </Grid>
@@ -1029,13 +1027,13 @@ export default function StudentHistory() {
             <Typography component='div' fontWeight={500} className="pl-14 pr-40 md:pr-[300px] lg:pr-[69px] lg:pl-32 pt-6">
               離乳
             </Typography>
-            <Grid item xs={4.1} sm={3.2} md={1.3}>
+            <Grid item xs={4.1} sm={3.2} md={1.5} sx={{ marginLeft: { xs: 0, sm: 0, md: 0, lg: -0.5 } }}>
               <FormControlLabel value="末開始" control={<Radio />} label="末開始" />
             </Grid>
-            <Grid item xs={3.5} sm={3} md={1}>
+            <Grid item xs={3.5} sm={3} md={1.3} sx={{ marginLeft: { xs: 0, sm: 0, md: 0, lg: -1 } }}>
               <FormControlLabel value="か月" control={<Radio />} label="か月" />
             </Grid>
-            <Grid item xs={4.3} sm={3} md={1.4}>
+            <Grid item xs={4.3} sm={3} md={1.4} sx={{ marginLeft: { xs: 0, sm: 0, md: 0, lg: 0.5 } }}>
               <FormControlLabel value="完了" control={<Radio />} label="完了" />
             </Grid>
           </Grid>
@@ -1138,17 +1136,17 @@ export default function StudentHistory() {
 
         {/* Start Grid */}
         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-5 pl-3' >
-          <Typography component='div' fontWeight={300} className="md:pl-[10px] md:pr-[0px] lg:pr-0 lg:pl-[50px] pt-9">
+          <Typography component='div' fontWeight={300} className="pl-3 md:pl-[10px] md:pr-[0px] lg:pr-0 lg:pl-[40px] pt-9">
             B型肝炎
           </Typography>
-          <Grid item xs={9} sm={5.8} md={2.5} sx={{ marginLeft: { xs: 3.9, sm: -0.5, md: 2 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.8} md={2.5} lg={2.7} sx={{ marginLeft: { xs: 0, sm: -0.5, md: 0, lg: -1 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="Start date" sx={{ backgroundColor: "white" }} />
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={9} sm={5.8} md={2.5} sx={{ marginLeft: { xs: 11.5, sm: -7.5, md: -7 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.8} md={2.5} lg={2.7} sx={{ marginLeft: { xs: 9, sm: -7.5, md: 0, lg: -6 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="End date" sx={{ backgroundColor: "white" }} />
@@ -1156,17 +1154,17 @@ export default function StudentHistory() {
             </LocalizationProvider>
           </Grid>
 
-          <Typography component='div' fontWeight={300} className="md:pl-9 md:pr-[0px] lg:pr-0 lg:pl-[65px] pt-9">
+          <Typography component='div' fontWeight={300} className="pl-3 md:pl-9 md:pr-[0px] lg:pr-0 lg:pl-[60px] pt-9">
             BCG
           </Typography>
-          <Grid item xs={9} sm={5.8} md={2.5} sx={{ marginLeft: { xs: 6.9, sm: -0.5, md: 1 }, marginTop: { xs: -1.5, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.8} md={2.7} sx={{ marginLeft: { xs: 3, sm: -0.5, md: 0, lg: -1 }, marginTop: { xs: -1.5, sm: 0, md: 0 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="Start date" sx={{ backgroundColor: "white" }} />
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={9} sm={5.8} md={2.5} sx={{ marginLeft: { xs: 11.5, sm: -7.5, md: -7 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.8} md={2.7} sx={{ marginLeft: { xs: 9, sm: -7.5, md: 0, lg: -6 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="End date" sx={{ backgroundColor: "white" }} />
@@ -1177,18 +1175,18 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-5 pl-3' >
-          <Typography component='div' fontWeight={300} className="md:pl-[15px] md:pr-[0px] lg:pr-0 lg:pl-[53px] pt-9">
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-3 pl-3' >
+          <Typography component='div' fontWeight={300} className="pl-3 md:pl-[15px] md:pr-[0px] lg:pr-0 lg:pl-[40px] pt-9">
             4種混合
           </Typography>
-          <Grid item xs={9} sm={5.8} md={2.5} sx={{ marginLeft: { xs: 3.9, sm: -0.5, md: 2 }, marginTop: { xs: -2, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.8} md={2.5} lg={2.7} sx={{ marginLeft: { xs: 0, sm: -0.5, md: 0, lg: -1 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="Start date" sx={{ backgroundColor: "white" }} />
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={9} sm={5.8} md={2.5} sx={{ marginLeft: { xs: 11.5, sm: -7.5, md: -7 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.8} md={2.5} lg={2.7} sx={{ marginLeft: { xs: 8.7, sm: -7.5, md: 0, lg: -6 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="End date" sx={{ backgroundColor: "white" }} />
@@ -1196,17 +1194,17 @@ export default function StudentHistory() {
             </LocalizationProvider>
           </Grid>
 
-          <Typography component='div' fontWeight={500} className="md:pl-0 md:pr-[0px] lg:pr-0 lg:pl-[10px] pt-9">
+          <Typography component='div' fontWeight={500} className="md:pr-[0px] lg:pr-0 lg:pl-[0px] pt-9">
             ロタウイルス
           </Typography>
-          <Grid item xs={9} sm={5.8} md={2.5} sx={{ marginLeft: { xs: -0.8, sm: -3.3, md: 0 }, marginTop: { xs: -1.5, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.8} md={2.7} lg={2.7} sx={{ marginLeft: { xs: -3, sm: -3.5, md: 0, lg: -1 }, marginTop: { xs: -1.5, sm: 0, md: 0 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="Start date" sx={{ backgroundColor: "white" }} />
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={9} sm={5.8} md={2.5} sx={{ marginLeft: { xs: 11.5, sm: -7.5, md: -7 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.8} md={2.7} lg={2.7} sx={{ marginLeft: { xs: 9, sm: -7.5, md: 0, lg: -6 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="End date" sx={{ backgroundColor: "white" }} />
@@ -1217,18 +1215,18 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-5 pl-2' >
-          <Typography component='div' fontWeight={300} className="md:pl-[2px] md:pr-[0px] lg:pr-0 lg:pl-[0px] pt-9">
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-3' >
+          <Typography component='div' fontWeight={300} className="pl-3 md:pl-[7px] md:pr-[0px] lg:pr-0 lg:pl-[0px] pt-9">
             麻しん(はしか)<br />風しん
           </Typography>
-          <Grid item xs={9} sm={5.8} md={2.5} sx={{ marginLeft: { xs: -2.2, sm: -4.5, md: 3 }, marginTop: { xs: -2, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.8} md={2.5} lg={2.7} sx={{ marginLeft: { xs: -4.5, sm: -4.7, md: 0, lg: -1 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="Start date" sx={{ backgroundColor: "white" }} />
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={9} sm={5.8} md={2.5} sx={{ marginLeft: { xs: 11.5, sm: -8, md: -7 }, marginTop: { xs: -6, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.8} md={2.5} lg={2.7} sx={{ marginLeft: { xs: 10.5, sm: -7.8, md: 0, lg: -6 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="End date" sx={{ backgroundColor: "white" }} />
@@ -1236,17 +1234,17 @@ export default function StudentHistory() {
             </LocalizationProvider>
           </Grid>
 
-          <Typography component='div' fontWeight={300} className="md:pl-0 md:pr-[0px] lg:pr-0 lg:pl-[40px] pt-9">
+          <Typography component='div' fontWeight={500} className="pl-3 md:pl-9 md:pr-[0px] lg:pr-0 lg:pl-[25px] pt-9">
             日本脳炎
           </Typography>
-          <Grid item xs={9} sm={5.8} md={2.5} sx={{ marginLeft: { xs: 3.2, sm: 1, md: 0 }, marginTop: { xs: -1.5, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.8} md={2.7} lg={2.7} sx={{ marginLeft: { xs: 1, sm: -3, md: 0, lg: -0.5 }, marginTop: { xs: -1.5, sm: 0, md: 0 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="Start date" sx={{ backgroundColor: "white" }} />
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={9} sm={5.8} md={2.5} sx={{ marginLeft: { xs: 11.5, sm: -7.5, md: -7 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.8} md={2.7} lg={2.7} sx={{ marginLeft: { xs: 10.5, sm: -7.8, md: 0, lg: -6 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="End date" sx={{ backgroundColor: "white" }} />
@@ -1257,18 +1255,18 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-5 pl-2' >
-          <Typography component='div' fontWeight={300} className="md:pl-[2px] md:pr-[0px] lg:pr-0 lg:pl-[0px] pt-9">
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-3' >
+          <Typography component='div' fontWeight={300} sx={{ marginLeft: { xs: 0, sm: 0, md: 0, lg: -1 } }} className="pl-1 md:pl-[10px] md:pr-[0px] lg:pr-0 lg:pl-[0px] pt-9">
             水痘(水ぼうそう)
           </Typography>
-          <Grid item xs={9} sm={5.5} md={2.5} sx={{ marginLeft: { xs: -4.1, sm: -4.5, md: 1 }, marginTop: { xs: -2, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.5} md={2.5} lg={2.7} sx={{ marginLeft: { xs: -5.5, sm: -4, md: 0, lg: -2 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="Start date" sx={{ backgroundColor: "white" }} />
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={9} sm={5.5} md={2.5} sx={{ marginLeft: { xs: 11.5, sm: -7, md: -7 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
+          <Grid item xs={9} sm={5.6} md={2.5} lg={2.7} sx={{ marginLeft: { xs: 10.5, sm: -9.1, md: 0, lg: -6 }, marginTop: { xs: -4, sm: 0, md: 0 } }} className='scale-75' >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="End date" sx={{ backgroundColor: "white" }} />
@@ -2301,8 +2299,8 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-3' >
-          <Typography component='div' className="pl-[30px] md:pl-[60px] lg:pl-28 pt-6">
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-6 pl-3' >
+          <Typography component='div' className="pl-[30px] md:pl-[60px] lg:pl-[103px] pt-6">
             有熱
           </Typography>
           <Grid item xs={8} sm={6} md={2}>
@@ -2315,12 +2313,11 @@ export default function StudentHistory() {
               sx={{
                 backgroundColor: "white",
               }}
+              InputProps={{
+                endAdornment: <InputAdornment position="end">回</InputAdornment>,
+              }}
             />
           </Grid>
-
-          <Typography component='div' className="pl-2 pt-6 md:pr-[50px] lg:pl-1 lg:pr-4 ">
-            年
-          </Typography>
 
           <Typography component='div' className="pl-[30px] md:pl-[60px] lg:pl-20 pt-6">
             無熱
@@ -2335,12 +2332,11 @@ export default function StudentHistory() {
               sx={{
                 backgroundColor: "white",
               }}
+              InputProps={{
+                endAdornment: <InputAdornment position="end">回</InputAdornment>,
+              }}
             />
           </Grid>
-
-          <Typography component='div' className="pl-2 pt-6 lg:pl-1 lg:pr-4 ">
-            年
-          </Typography>
           <Typography component='div' className="pl-[85px] pt-6 md:pl-[100px] lg:pl-0 "></Typography>
 
         </Grid>
@@ -2502,7 +2498,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-10 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
             <Grid item xs={2} sm={2.8} md={2.1}>
               <Typography component='div' className="pt-2">
                 発熱しやすい
@@ -2533,7 +2529,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-10 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
             <Grid item xs={2.2} sm={2.8} md={2.1}>
               <Typography component='div' className="pt-2">
                 時々腹痛を訴える
@@ -2564,7 +2560,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-10 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
             <Grid item xs={2.2} sm={2.8} md={2.1}>
               <Typography component='div' className="pt-2">
                 ゼイゼイがある
@@ -2595,7 +2591,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-10 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
             <Grid item xs={2.2} sm={2.8} md={2.1}>
               <Typography component='div' className="pt-2">
                 湿疹がでやすい
@@ -2626,7 +2622,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-10 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
             <Grid item xs={2.2} sm={2.8} md={2.1}>
               <Typography component='div' className="pt-2">
                 鼻血がでやすい
@@ -2657,7 +2653,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-10 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
             <Grid item xs={2.5} sm={2.8} md={2.3}>
               <Typography component='div' className="pt-2">
                 中耳炎になりやすい
@@ -2688,7 +2684,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-10 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
             <Grid item xs={2} sm={2.8} md={2.3}>
               <Typography component='div' className="pt-2">
                 平熱
@@ -2796,9 +2792,9 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pl-3' >
             <Grid item xs={2} sm={2.8} md={2.3}>
-              <Typography component='div' sx={{ fontSize: { xs: "10px", sm: "13px", md: "14px" } }} className="pt-2">
+              <Typography component='div' sx={{ fontSize: { xs: "12px", sm: "13px", md: "14px" } }} className="pt-2">
                 保育園で気をつけてほしいことその他特記事項
               </Typography>
             </Grid>
@@ -2923,7 +2919,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className='pt-10 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className='pt-5 pl-3' >
             <Grid item xs={1.5} sm={1.5} md={1.5} sx={{ marginLeft: { xs: 5, sm: 5, md: 5 } }}>
               <TextField
                 className='w-full'
@@ -3026,7 +3022,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className='pt-10 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className='pl-3' >
             <Grid item xs={2} sm={2.8} md={2} sx={{ marginLeft: { xs: -6.5, sm: -9.5, md: -9 } }}>
               <Typography component='div' className="pt-2">
                 主任
@@ -3114,7 +3110,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className='pt-10 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className='pl-3' >
             <Grid item xs={2} sm={2.8} md={2} sx={{ marginLeft: { xs: -6.5, sm: -9.5, md: -9 } }}>
               <Typography component='div' className="pt-2">
                 担任

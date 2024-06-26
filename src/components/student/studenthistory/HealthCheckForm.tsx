@@ -299,7 +299,7 @@ export default function HealthCheckForm() {
             aria-labelledby="demo-customized-radios"
             name="customized-radios"
           >
-            <Grid container spacing={2} className='pt-5 pl-3' >
+            <Grid container spacing={2} className='pt-2 pl-3' >
               <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 4, sm: 4, md: 4, lg: 4.5, } }} className='pt-6'>
                 栄養状態
               </Typography>
@@ -315,7 +315,7 @@ export default function HealthCheckForm() {
             </Grid>
           </RadioGroup>
 
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
+          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 pl-10">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 5.5, sm: 4, md: 5.5, lg: 1, } }} >
               脊桂
             </Typography>
@@ -356,7 +356,7 @@ export default function HealthCheckForm() {
               <TextField className='w-full ' id="Facility-input" label="" type="text" size='small' sx={{ backgroundColor: "white", marginLeft: { xs: 4, sm: 7, md: 7, lg: 4, } }} />
             </Grid>
           </Grid >
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
+          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 pl-9">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 5.5, sm: 4, md: 5.5, lg: 1, } }} >
               四 肢
             </Typography>
@@ -397,7 +397,7 @@ export default function HealthCheckForm() {
               <TextField className='w-full ' id="Facility-input" label="" type="text" size='small' sx={{ backgroundColor: "white", marginLeft: { xs: 4, sm: 7, md: 7, lg: 4, } }} />
             </Grid>
           </Grid >
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
+          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 pl-9">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, paddingRight: { xs: 4.5, sm: 3, md: 4.5, lg: 1, } }} >
               心雑音
             </Typography>
@@ -440,7 +440,7 @@ export default function HealthCheckForm() {
           </Grid >
 
 
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-11">
+          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 pl-10">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 5.5, sm: 4, md: 5.5, lg: 1, } }} >
               口 腔
             </Typography>
@@ -471,7 +471,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
+          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 pl-10">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 3, md: 1, lg: 1, } }} >
               (健診日)
             </Typography>
@@ -525,7 +525,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
+          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 pl-10">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 3, md: 1, lg: 1, } }} >
               (健診日)
             </Typography>
@@ -565,7 +565,7 @@ export default function HealthCheckForm() {
           <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 3, md: 1, lg: 1, } }} className="flex justify-start pl-9 pt-5">
             検尿
           </Typography>
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
+          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 pl-10">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-9 ">
               蛋白
             </Typography>
@@ -589,7 +589,7 @@ export default function HealthCheckForm() {
               <TextField className='w-full ' id="Facility-input" label="" type="text" size='small' sx={{ backgroundColor: "white", marginLeft: { xs: 1, sm: 2, md: 2, lg: 2, } }} />
             </Grid>
           </Grid >
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
+          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 pl-10">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-9 ">
               蛋白
             </Typography>
@@ -627,7 +627,7 @@ export default function HealthCheckForm() {
             </Typography>
           </Grid >
 
-          <Grid container spacing={1} alignItems='center' className="pt-8 ">
+          <Grid container spacing={1} alignItems='center' className="pt-5 ">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-28 ">
               月
             </Typography>
@@ -642,7 +642,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} alignItems='center' className="pt-8 ">
+          <Grid container spacing={1} alignItems='center' className="pt-4 ">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-28 ">
               月
             </Typography>
@@ -657,7 +657,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} alignItems='center' className="pt-8 ">
+          <Grid container spacing={1} alignItems='center' className="pt-4 ">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-28 ">
               月
             </Typography>
@@ -672,7 +672,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} alignItems='center' className="pt-8 ">
+          <Grid container spacing={1} alignItems='center' className="pt-4 ">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-28 ">
               月
             </Typography>
@@ -687,7 +687,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} alignItems='center' className="pt-8 ">
+          <Grid container spacing={1} alignItems='center' className="pt-4 ">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-28 ">
               月
             </Typography>
@@ -702,7 +702,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} alignItems='center' className="pt-8 ">
+          <Grid container spacing={1} alignItems='center' className="pt-4 ">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-28 ">
               月
             </Typography>
@@ -717,7 +717,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} alignItems='center' className="pt-8 ">
+          <Grid container spacing={1} alignItems='center' className="pt-4 ">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-28 ">
               月
             </Typography>
@@ -732,7 +732,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} alignItems='center' className="pt-8 ">
+          <Grid container spacing={1} alignItems='center' className="pt-4 ">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-28 ">
               月
             </Typography>
@@ -747,7 +747,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} alignItems='center' className="pt-8 ">
+          <Grid container spacing={1} alignItems='center' className="pt-4">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-28 ">
               月
             </Typography>
@@ -762,7 +762,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} alignItems='center' className="pt-8 ">
+          <Grid container spacing={1} alignItems='center' className="pt-4 ">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-28 ">
               月
             </Typography>
@@ -777,7 +777,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} alignItems='center' className="pt-8 ">
+          <Grid container spacing={1} alignItems='center' className="pt-4 ">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-28 ">
               月
             </Typography>
@@ -792,7 +792,7 @@ export default function HealthCheckForm() {
             </Grid>
           </Grid >
 
-          <Grid container spacing={1} alignItems='center' className="pt-8 ">
+          <Grid container spacing={1} alignItems='center' className="pt-4 ">
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 1, sm: 1, md: 1, lg: 1, } }} className="flex justify-start pl-28 ">
               月
             </Typography>
