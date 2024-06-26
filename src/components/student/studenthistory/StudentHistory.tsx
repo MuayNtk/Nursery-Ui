@@ -6,6 +6,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import HealthCheckForm from "./HealthCheckForm";
 
 
 export default function StudentHistory() {
@@ -13,7 +14,7 @@ export default function StudentHistory() {
   return (
 
     <>
-      <ContentMain >
+      <ContentMain className="flex flex-col min-h-screen">
 
         {/* Start Radiogroup Box */}
         <RadioGroup
@@ -45,7 +46,7 @@ export default function StudentHistory() {
         {/* End Radiogroup Box */}
 
         {/* Start furigana Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 lg:pl-24 pt-6">
             ふりがな
           </Typography>
@@ -62,10 +63,7 @@ export default function StudentHistory() {
             />
           </Grid>
         </Grid>
-        {/* End furigana Grid */}
-
-        {/* Start fullname Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-6 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' className="pl-[51px] lg:pl-32 pt-6">
             氏名
           </Typography>
@@ -85,7 +83,7 @@ export default function StudentHistory() {
         {/* End fullname Grid */}
 
         {/* Start gender Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-6 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' className="pl-[51px] lg:pl-32 pt-6">
             性別
           </Typography>
@@ -106,7 +104,7 @@ export default function StudentHistory() {
         {/* End gender Grid */}
 
         {/* Start birthday Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-6 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' className="pl-5 lg:pl-24 pt-6">
             生年月日
           </Typography>
@@ -182,7 +180,7 @@ export default function StudentHistory() {
         {/* End birthday Grid */}
 
         {/* Start admission Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-6 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' className="pl-[53px] lg:pl-32 pt-6">
             入所
           </Typography>
@@ -258,7 +256,7 @@ export default function StudentHistory() {
         {/* End admission Grid */}
 
         {/* Start dismissal Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-6 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' className="pl-[53px] pt-6 lg:pl-32">
             退所
           </Typography>
@@ -334,7 +332,7 @@ export default function StudentHistory() {
         {/* End dismissal Grid */}
 
         {/* Start Address Card */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-12 pl-20' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-20' >
           <Card sx={{ bgcolor: "pink", width: 90, height: 40 }}>
             <Typography component='div' className="pt-2">
               現住所
@@ -344,7 +342,7 @@ export default function StudentHistory() {
         {/* End Address Card */}
 
         {/* Start Address Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-10 md:pl-16 lg:pl-24' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-10 md:pl-16 lg:pl-24' >
           <Grid item xs={10} sm={5} md={2}>
             <TextField
               className='w-full'
@@ -400,7 +398,7 @@ export default function StudentHistory() {
         {/* End Address Grid */}
 
         {/* Start Address Card */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-12 pl-20' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-20' >
           <Card sx={{ bgcolor: "pink", width: 90, height: 40 }}>
             <Typography component='div' className="pt-2">
               家族の状況
@@ -410,7 +408,7 @@ export default function StudentHistory() {
         {/* End Address Card */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 pr-[32px] md:pr-[32px] lg:pr-0 lg:pl-24 pt-6">
             氏名
           </Typography>
@@ -501,7 +499,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 md:pr-[75px] pr-[32px] lg:pr-0 lg:pl-24 pt-6">
             続柄
           </Typography>
@@ -537,7 +535,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 pr-4 md:pr-[58px] lg:pr-0 lg:pl-20 pt-6">
             勤務先
           </Typography>
@@ -573,7 +571,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start 通所(園)方法 Card */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-12 pl-20' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-20' >
           <Card sx={{ bgcolor: "pink", width: 130, height: 40 }}>
             <Typography component='div' className="pt-2">
               通所(園)方法
@@ -583,9 +581,9 @@ export default function StudentHistory() {
         {/* End Card */}
 
         {/* Start Address Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-10 md:pl-16 lg:pl-24' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-10 md:pl-16 lg:pl-24' >
           <Grid item xs={8} sm={7} md={3}>
-            <Typography component='div' className="pt-2 pb-5">
+            <Typography component='div' className=" pb-5">
               自宅
             </Typography>
             <TextField
@@ -598,7 +596,7 @@ export default function StudentHistory() {
                 backgroundColor: "white",
               }}
             />
-            <Typography component='div' className="pt-5">
+            <Typography component='div' className="pt-3">
               保育所(園)
             </Typography>
           </Grid>
@@ -609,7 +607,7 @@ export default function StudentHistory() {
         {/* End Address Grid */}
 
         {/* Start かかりつけの病院 Card */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-12 pl-20' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-20' >
           <Card sx={{ bgcolor: "pink", width: 160, height: 40 }}>
             <Typography component='div' className="pt-2">
               かかりつけの病院
@@ -619,7 +617,7 @@ export default function StudentHistory() {
         {/* End Card */}
 
         {/* Start 小児科 Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 md:pr-3 lg:pl-24 pt-6">
             小児科
           </Typography>
@@ -655,7 +653,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start 内科 Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 pr-4 md:pr-7 lg:pl-24 pt-6">
             内科
           </Typography>
@@ -691,7 +689,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start 外科 Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 pr-4 md:pr-7 lg:pl-24 pt-6">
             外科
           </Typography>
@@ -727,7 +725,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start 歯科 Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 pr-4 md:pr-7 lg:pl-24 pt-6">
             歯科
           </Typography>
@@ -763,7 +761,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start 科 Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 pr-8 md:pr-11 lg:pr-7 lg:pl-28 pt-6">
             科
           </Typography>
@@ -799,7 +797,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start 科 Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 pr-8 md:pr-11 lg:pr-7 lg:pl-28 pt-6">
             科
           </Typography>
@@ -835,7 +833,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start 血液型 Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 md:pr-3 lg:pr-7 lg:pl-20 pt-6">
             血液型
           </Typography>
@@ -861,7 +859,7 @@ export default function StudentHistory() {
           aria-labelledby="demo-customized-radios"
           name="customized-radios"
         >
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
             <Typography component='div' fontWeight={500} className="pl-5 md:pr-3 lg:pr-7 lg:pl-20 pt-6">
               妊娠中の状況
             </Typography>
@@ -911,7 +909,7 @@ export default function StudentHistory() {
           aria-labelledby="demo-customized-radios"
           name="customized-radios"
         >
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
             <Typography component='div' fontWeight={500} className="pl-5 md:pr-3 lg:pr-7 lg:pl-20 pt-6">
               分娩時の状況
             </Typography>
@@ -962,7 +960,7 @@ export default function StudentHistory() {
           aria-labelledby="demo-customized-radios"
           name="customized-radios"
         >
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
             <Typography component='div' fontWeight={500} className="pl-5 md:pr-3 lg:pr-7 lg:pl-20 pt-6">
               出生時の状況
             </Typography>
@@ -988,7 +986,7 @@ export default function StudentHistory() {
         </RadioGroup>
         {/* End Grid */}
 
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 md:pr-3 lg:pr-7 lg:pl-20 pt-6">
             乳児期の様子
           </Typography>
@@ -1000,7 +998,7 @@ export default function StudentHistory() {
           aria-labelledby="demo-customized-radios"
           name="customized-radios"
         >
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
             <Typography component='div' fontWeight={500} className="pl-14 pr-36 md:pr-64 lg:pr-7 lg:pl-32 pt-6">
               栄養方法
             </Typography>
@@ -1023,7 +1021,7 @@ export default function StudentHistory() {
           aria-labelledby="demo-customized-radios"
           name="customized-radios"
         >
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 pl-3' >
             <Typography component='div' fontWeight={500} className="pl-14 pr-40 md:pr-[300px] lg:pr-[69px] lg:pl-32 pt-6">
               離乳
             </Typography>
@@ -1041,7 +1039,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' fontWeight={500} className="md:pl-5 md:pr-0 lg:pr-0 lg:pl-28 pt-6">
             首のすわり
           </Typography>
@@ -1125,7 +1123,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Card */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-12 pl-20' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-20' >
           <Card sx={{ bgcolor: "pink", width: 150, height: 40 }}>
             <Typography component='div' className="pt-2">
               予防接種状況
@@ -1135,7 +1133,7 @@ export default function StudentHistory() {
         {/* End Card */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-5 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-3 pl-3' >
           <Typography component='div' fontWeight={300} className="pl-3 md:pl-[10px] md:pr-[0px] lg:pr-0 lg:pl-[40px] pt-9">
             B型肝炎
           </Typography>
@@ -1175,7 +1173,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-3 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-1 pl-3' >
           <Typography component='div' fontWeight={300} className="pl-3 md:pl-[15px] md:pr-[0px] lg:pr-0 lg:pl-[40px] pt-9">
             4種混合
           </Typography>
@@ -1215,7 +1213,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-1' >
           <Typography component='div' fontWeight={300} className="pl-3 md:pl-[7px] md:pr-[0px] lg:pr-0 lg:pl-[0px] pt-9">
             麻しん(はしか)<br />風しん
           </Typography>
@@ -1255,7 +1253,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 0 }} className='pt-1' >
           <Typography component='div' fontWeight={300} sx={{ marginLeft: { xs: 0, sm: 0, md: 0, lg: -1 } }} className="pl-1 md:pl-[10px] md:pr-[0px] lg:pr-0 lg:pl-[0px] pt-9">
             水痘(水ぼうそう)
           </Typography>
@@ -1277,7 +1275,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Card */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-12 pl-20' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-20' >
           <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
             <Typography component='div' className="pt-2">
               乳,幼児健診
@@ -1287,7 +1285,7 @@ export default function StudentHistory() {
         {/* End Card */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6">
             4か月
           </Typography>
@@ -1363,7 +1361,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-6 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' className="pl-[35px] md:pl-[50px] lg:pl-[105px] pt-6">
             10か月
           </Typography>
@@ -1439,7 +1437,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-6 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' className="md:pl-0 lg:pl-[50px] pt-6">
             1歳6か月 平成
           </Typography>
@@ -1515,7 +1513,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-6 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' className="pl-[60px] md:pl-[75px] lg:pl-[127px] pt-6">
             3歲
           </Typography>
@@ -1591,7 +1589,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 md:pr-3 lg:pr-0 lg:pl-[85px] pt-6">
             特記事項
           </Typography>
@@ -1612,7 +1610,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Card */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-12 pl-20' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-20' >
           <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
             <Typography component='div' className="pt-2">
               既往症
@@ -1622,7 +1620,7 @@ export default function StudentHistory() {
         {/* End Card */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-8 md:pr-3 md:pl-[52px] lg:pr-0 lg:pl-[100px] pt-6">
             川崎病
           </Typography>
@@ -1704,7 +1702,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-8 md:pr-3 md:pl-[52px] lg:pr-0 lg:pl-[100px] pt-6">
             心臓病
           </Typography>
@@ -1786,7 +1784,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-8 md:pr-3 md:pl-[52px] lg:pr-0 lg:pl-[100px] pt-6">
             腎藏病
           </Typography>
@@ -1868,7 +1866,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-8 md:pr-3 md:pl-[52px] lg:pr-0 lg:pl-[100px] pt-6">
             肝臓病
           </Typography>
@@ -1950,7 +1948,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 md:pl-0 md:pr-0 lg:pr-0 lg:pl-[20px] pt-6">
             大きな外傷や手術
           </Typography>
@@ -2006,7 +2004,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-5 md:pl-0 md:pr-0 lg:pr-0 lg:pl-[20px] pt-6">
             その他の重い病気
           </Typography>
@@ -2062,7 +2060,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-8 md:pr-0 md:pl-[52px] lg:pr-0 lg:pl-[100px] pt-6">
             麻しん
           </Typography>
@@ -2144,7 +2142,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' fontWeight={500} className="pl-[47px] md:pr-3 md:pl-[55px] lg:pr-0 lg:pl-[115px] pt-6">
             水痘
           </Typography>
@@ -2226,7 +2224,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' sx={{ fontSize: { xs: "13px", sm: "15px", }, marginLeft: { xs: "-50px", sm: "-5px", md: 0 } }} fontWeight={500} className="pl-[47px] md:pr-0 md:pl-[0px] lg:pr-0 lg:pl-[40px] pt-6">
             流行性耳下腺炎
           </Typography>
@@ -2275,7 +2273,7 @@ export default function StudentHistory() {
           aria-labelledby="demo-customized-radios"
           name="customized-radios"
         >
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
             <Typography component='div' fontWeight={500} className="pl-5 lg:pl-20 pt-6">
               脱臼の経験
             </Typography>
@@ -2299,7 +2297,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-6 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
           <Typography component='div' className="pl-[30px] md:pl-[60px] lg:pl-[103px] pt-6">
             有熱
           </Typography>
@@ -2348,7 +2346,7 @@ export default function StudentHistory() {
           aria-labelledby="demo-customized-radios"
           name="customized-radios"
         >
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
             <Typography component='div' sx={{ fontSize: { xs: "13px", sm: "15px", }, marginLeft: { xs: "-50px", sm: "50px", md: "-30px" } }} fontWeight={500} className="pl-[100px] pr-10 md:pr-[100px] md:pl-[0px] lg:pr-0 lg:pl-[40px] pt-6">
               初めてけいれんを起こした月齢
             </Typography>
@@ -2408,7 +2406,7 @@ export default function StudentHistory() {
           aria-labelledby="demo-customized-radios"
           name="customized-radios"
         >
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
             <Typography component='div' fontWeight={500} className="pl-0 md:pl-0 lg:pl-20 pt-6">
               アレルギーの診断
             </Typography>
@@ -2440,7 +2438,7 @@ export default function StudentHistory() {
         {/* End Grid */}
 
         {/* Start Card */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-12 pl-20 pb-5' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-20 pb-5' >
           <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
             <Typography component='div' className="pt-2">
               現在の体質
@@ -2450,10 +2448,10 @@ export default function StudentHistory() {
         {/* End Card */}
 
         {/* Start Box */}
-        <Box sx={{ border: '2px solid grey', width: { xs: 800, sm: 800, md: 1111 } }}>
+        <Box sx={{  width: { xs: 800, sm: 800, md: 1111 } }}>
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-10 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-3 pl-3' >
             <Grid item xs={2.3} sm={2.5} md={2.1}>
               <Typography component='div'>
                 かぜをひきやすい
@@ -2498,7 +2496,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-1 pl-3' >
             <Grid item xs={2} sm={2.8} md={2.1}>
               <Typography component='div' className="pt-2">
                 発熱しやすい
@@ -2529,7 +2527,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-1 pl-3' >
             <Grid item xs={2.2} sm={2.8} md={2.1}>
               <Typography component='div' className="pt-2">
                 時々腹痛を訴える
@@ -2560,7 +2558,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-1 pl-3' >
             <Grid item xs={2.2} sm={2.8} md={2.1}>
               <Typography component='div' className="pt-2">
                 ゼイゼイがある
@@ -2591,7 +2589,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-1 pl-3' >
             <Grid item xs={2.2} sm={2.8} md={2.1}>
               <Typography component='div' className="pt-2">
                 湿疹がでやすい
@@ -2622,7 +2620,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-1 pl-3' >
             <Grid item xs={2.2} sm={2.8} md={2.1}>
               <Typography component='div' className="pt-2">
                 鼻血がでやすい
@@ -2653,7 +2651,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-1 pl-3' >
             <Grid item xs={2.5} sm={2.8} md={2.3}>
               <Typography component='div' className="pt-2">
                 中耳炎になりやすい
@@ -2684,7 +2682,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-5 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 8 }} className='pt-1 pl-3' >
             <Grid item xs={2} sm={2.8} md={2.3}>
               <Typography component='div' className="pt-2">
                 平熱
@@ -2879,7 +2877,7 @@ export default function StudentHistory() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 4, sm: 2, md: 8 }} className='pt-10 pl-3' >
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 4, sm: 2, md: 8 }} className='pt-5 pl-3' >
             <Grid item xs={1.5} sm={1.5} md={1.3} sx={{ marginLeft: { xs: 5, sm: 7, md: 11 } }}>
               <Typography component='div'>
                 (0歲児)
@@ -3195,19 +3193,27 @@ export default function StudentHistory() {
               />
             </Grid>
           </Grid>
-          {/* End Grid */}
-
-          <Grid container direction="row" justifyContent="space-around" alignItems="center" className="pt-5 pb-5">
-            <Button variant="contained" href="#" size='small' className='w-32 text-center'>
-              <Typography component="div" style={{ color: 'white', alignItems: 'center' }} >
-                Save
-              </Typography>
-            </Button>
-          </Grid>
-
         </Box>
-        {/* End Box */}
+        <HealthCheckForm/>
 
+        <div className="mt-auto">
+          <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+                <Grid item>
+                      <Button variant="contained" href="#" size='small' className='text-center'>
+                        <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                        戻る
+                        </Typography>
+                      </Button>
+                </Grid>
+                <Grid item>
+                      <Button variant="contained" href="#" size='small' className='text-center'>
+                        <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                        修正
+                        </Typography>
+                      </Button>
+                </Grid>
+          </Grid>
+        </div>
       </ContentMain>
     </>
   );
