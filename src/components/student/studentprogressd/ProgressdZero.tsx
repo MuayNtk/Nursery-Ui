@@ -844,7 +844,7 @@ export default function ProgressdZeroForm() {
 
     <>
 
-      <ContentMain >
+      <ContentMain className="flex flex-col min-h-screen">
 
 
         {/* Start Facility Director  */}
@@ -1413,19 +1413,25 @@ export default function ProgressdZeroForm() {
             />
           </Grid>
         </Grid>
-        {/* End Grid */}
 
-        <Grid container direction="row" justifyContent="center" alignItems="center" className="pt-5 pb-5">
-          <Button variant="contained" href="#" size='small' className='w-32 text-center'>
-            <Typography variant="body1" style={{ color: 'white', alignItems: 'center' }} >
-              Submit
-            </Typography>
-          </Button>
-        </Grid>
-
-
-
-
+        <div className="mt-auto">
+          <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+                <Grid item>
+                      <Button variant="contained" href="#" size='small' className='text-center'>
+                        <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                        戻る
+                        </Typography>
+                      </Button>
+                </Grid>
+                <Grid item>
+                      <Button variant="contained" href="#" size='small' className='text-center'>
+                        <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                        修正
+                        </Typography>
+                      </Button>
+                </Grid>
+          </Grid>
+        </div>
 
       </ContentMain >
     </>

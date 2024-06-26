@@ -1,4 +1,4 @@
-import ContentMain from "../../content/Content";
+
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,8 +15,7 @@ export default function HealthCheckForm() {
   return (
 
     <>
-      <ContentMain >
-        {/* grid col 1 */}
+      
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
           <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} className=''>
             健康管理台帳
@@ -53,27 +52,6 @@ export default function HealthCheckForm() {
             </FormControl>
           </Grid>
         </Grid>
-        {/* grid col2  */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-10">
-          <Typography component="div" fontWeight={500} sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 3.5, sm: 3.5, md: 3.5, lg: 5, } }} >
-            ふりがな
-          </Typography>
-          {/* grid 2-1  */}
-          <Grid item xs={8} sm={9} md={5} lg={5} className="flex justify-center">
-            <TextField className='w-full ' id="Facility-input" label="" type="text" size='small' style={{ backgroundColor: "white", }} />
-          </Grid>
-        </Grid>
-        {/* grid col 3  */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 6.5, sm: 6.5, md: 6.5, lg: 9, } }} >
-            氏名
-          </Typography>
-          {/* grid  3-1  */}
-          <Grid item xs={8} sm={9} md={5} lg={5} className="flex justify-center ">
-            <TextField className='w-full ' id="Facility-input" label="" type="text" size='small' style={{ backgroundColor: "white", }} />
-          </Grid>
-        </Grid>
-
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-10">
           <Typography component="div" fontWeight={500} sx={{ color: 'black', fontSize: { xs: 12, sm: 11, md: 11, lg: 16, }, paddingRight: { xs: 5.5, sm: 5.5, md: 5.5, lg: 8, } }} >
             性別
@@ -812,16 +790,6 @@ export default function HealthCheckForm() {
           </Grid >
         </Box>
 
-        <Grid container  style={{ paddingTop: '20px', }} className=''>
-          <Button variant="contained" href="#contained-buttons" className='scale-90' size="medium" sx={{ marginLeft: { xs: 75, sm: 75, md: 70, lg: 70, } }}>
-            <Typography component="div" style={{ color: 'white', }}  >
-              Save
-            </Typography>
-          </Button>
-        </Grid>
-
-        
-      </ContentMain >
     </>
   );
 };
