@@ -8,7 +8,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 // import { useAuth } from '../../hooks/use-auth';
 import Nusery from '../../assets/Icons/sidebaricon/Nusery.svg';
 import Dashboard from '../../assets/Icons/sidebaricon/Dashboard.svg';
@@ -42,6 +42,13 @@ interface Props {
 }
 
 export default function Sidebar(props: Props) {
+
+    const location = useLocation();
+    const [highlightedItem, setHighlightedItem] = React.useState('/'); // Initial highlighted item
+
+    React.useEffect(() => {
+        setHighlightedItem(location.pathname);
+    }, [location]);
 
     // const { authUser, logout } = useAuth();
     // const handleLogout = () => {
@@ -80,10 +87,6 @@ export default function Sidebar(props: Props) {
         setOpen2(!open2);
     };
 
-
-
-
-
     const drawer = (
         <div>
             <Link to={'/dashboard'}>
@@ -100,7 +103,11 @@ export default function Sidebar(props: Props) {
             <Divider className='bg-white' />
 
             <Link to={'/dashboard'}>
-                <ListItem disablePadding className=' pl-4 text-white rounded-lg dark:text-white hover:bg-gray-600 dark:hover:bg-gray-700 mt-5 mb-2 group '>
+                <ListItem
+                    disablePadding
+                    className={`text-white rounded-lg mt-2 mb-2 pl-4 group ${highlightedItem === '/dashboard' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                        }`}
+                >
                     <ListItemButton>
                         <img src={Dashboard} />
                         <Typography variant="subtitle2" component="div" className='text-white pl-3 py-2 '>
@@ -123,30 +130,42 @@ export default function Sidebar(props: Props) {
             </ListItem>
             <Collapse in={open} unmountOnExit>
                 <Link to={'/teacher/todolist'}>
-                    <List component="div" disablePadding className='bg-[#1d5769] hover:bg-gray-600 dark:hover:bg-gray-700'>
+                    <ListItem
+                        disablePadding
+                        className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/teacher/todolist' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                            }`}
+                    >
                         <ListItemButton sx={{ pl: 4 }} className=''>
                             <ListItemIcon>
                                 <BusinessCenterIcon className='ml-5 text-white' />
                             </ListItemIcon>
                             <ListItemText primary="業務" className='text-white pt-1 ' />
                         </ListItemButton>
-                    </List>
+                    </ListItem>
                 </Link>
 
                 <Link to={'/teacher/listleave'}>
-                    <List component="div" disablePadding className='bg-[#1d5769] hover:bg-gray-600 dark:hover:bg-gray-700'>
+                    <ListItem
+                        disablePadding
+                        className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/teacher/listleave' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                            }`}
+                    >
                         <ListItemButton sx={{ pl: 4 }}>
                             <ListItemIcon>
                                 <InsertInvitationOutlinedIcon className='ml-5 text-white' />
                             </ListItemIcon>
                             <ListItemText primary="休暇届" className='text-white  pt-1' />
                         </ListItemButton>
-                    </List>
+                    </ListItem>
                 </Link>
             </Collapse>
 
             <Link to={'/student'}>
-                <ListItem disablePadding className='pl-4 text-white rounded-lg dark:text-white hover:bg-gray-600 dark:hover:bg-gray-700 mt-2 mb-2 group '>
+                <ListItem
+                    disablePadding
+                    className={`text-white rounded-lg mt-2 mb-2 pl-4 group ${highlightedItem === '/student' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                        }`}
+                >
                     <ListItemButton>
                         <SupervisorAccountOutlinedIcon />
                         <Typography variant="subtitle2" component="div" className='text-white pl-3 py-2 '>
@@ -157,7 +176,11 @@ export default function Sidebar(props: Props) {
             </Link>
 
             <Link to={'/accounting/listacc'}>
-                <ListItem disablePadding className='pl-4 text-white rounded-lg dark:text-white hover:bg-gray-600 dark:hover:bg-gray-700 mt-2 mb-2 group '>
+                <ListItem
+                    disablePadding
+                    className={`text-white rounded-lg mt-2 mb-2 pl-4 group ${highlightedItem === '/accounting/listacc' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                        }`}
+                >
                     <ListItemButton>
                         <AccountBalanceWalletOutlinedIcon />
                         <Typography variant="subtitle2" component="div" className='text-white pl-3 py-2 '>
@@ -168,7 +191,11 @@ export default function Sidebar(props: Props) {
             </Link>
 
             <Link to={'/class'}>
-                <ListItem disablePadding className='pl-4 text-white rounded-lg dark:text-white hover:bg-gray-600 dark:hover:bg-gray-700 mt-2 mb-2 group '>
+                <ListItem
+                    disablePadding
+                    className={`text-white rounded-lg mt-2 mb-2 pl-4 group ${highlightedItem === '/class' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                        }`}
+                >
                     <ListItemButton>
                         <ClassOutlinedIcon />
                         <Typography variant="subtitle2" component="div" className='text-white pl-3 py-2 '>
@@ -179,7 +206,11 @@ export default function Sidebar(props: Props) {
             </Link>
 
             <Link to={'/infoteach'}>
-                <ListItem disablePadding className='pl-4 text-white rounded-lg dark:text-white hover:bg-gray-600 dark:hover:bg-gray-700 mt-2 mb-2 group '>
+                <ListItem
+                    disablePadding
+                    className={`text-white rounded-lg mt-2 mb-2 pl-4 group ${highlightedItem === '/infoteach' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                        }`}
+                >
                     <ListItemButton>
                         <BadgeOutlinedIcon />
                         <Typography variant="subtitle2" component="div" className='text-white pl-3 py-2 '>
@@ -190,7 +221,11 @@ export default function Sidebar(props: Props) {
             </Link>
 
             <Link to={'/report'}>
-                <ListItem disablePadding className='pl-4 text-white rounded-lg dark:text-white hover:bg-gray-600 dark:hover:bg-gray-700 mt-2 mb-2 group '>
+                <ListItem
+                    disablePadding
+                    className={`text-white rounded-lg mt-2 mb-2 pl-4 group ${highlightedItem === '/report' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                        }`}
+                >
                     <ListItemButton>
                         <ListAltOutlinedIcon />
                         <Typography variant="subtitle2" component="div" className='text-white pl-3 py-2 '>
@@ -212,25 +247,33 @@ export default function Sidebar(props: Props) {
             </ListItem>
             <Collapse in={open2} unmountOnExit>
                 <Link to={'/setting/info'}>
-                    <List component="div" disablePadding className='bg-[#1d5769] hover:bg-gray-600 dark:hover:bg-gray-700'>
+                    <ListItem
+                        disablePadding
+                        className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/setting/info' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                            }`}
+                    >
                         <ListItemButton sx={{ pl: 4 }}>
                             <ListItemIcon>
                                 <AccountCircleOutlinedIcon className='ml-5 text-white' />
                             </ListItemIcon>
                             <ListItemText primary="基本情報" className='text-white  pt-1' />
                         </ListItemButton>
-                    </List>
+                    </ListItem>
                 </Link>
 
                 <Link to={'/infostaff'}>
-                    <List component="div" disablePadding className='bg-[#1d5769] hover:bg-gray-600 dark:hover:bg-gray-700'>
+                    <ListItem
+                        disablePadding
+                        className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/infostaff' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                            }`}
+                    >
                         <ListItemButton sx={{ pl: 4 }}>
                             <ListItemIcon>
                                 <AccountBoxOutlinedIcon className='ml-5 text-white' />
                             </ListItemIcon>
                             <ListItemText primary="役員情報" className='text-white  pt-1' />
                         </ListItemButton>
-                    </List>
+                    </ListItem>
                 </Link>
             </Collapse>
 
@@ -279,6 +322,7 @@ export default function Sidebar(props: Props) {
                     PaperProps={{ sx: { backgroundColor: "#005C78" } }}
                     container={container}
                     variant="temporary"
+                    anchor='left'
                     open={mobileOpen}
                     onTransitionEnd={handleDrawerTransitionEnd}
                     onClose={handleDrawerClose}
@@ -296,6 +340,7 @@ export default function Sidebar(props: Props) {
                 <Drawer
                     PaperProps={{ sx: { backgroundColor: "#005C78" } }}
                     variant="permanent"
+                    anchor='left'
                     sx={{
                         display: { xs: 'none', sm: 'block' },
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
