@@ -23,6 +23,9 @@ export default function DateForm() {
                 value={day}
                 label="日"
                 onChange={handleDayChange}
+                sx={{
+                  backgroundColor: "white",
+                }}
               >
                 <MenuItem value="">
                   <em>None</em>
