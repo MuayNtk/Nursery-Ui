@@ -34,7 +34,7 @@ export default function ListMenuAcc() {
                               </Grid>
 
                               <Grid item xs={6} sm={6} md={6} lg={3} >
-                                    <Button variant="contained" href="#contained-buttons" className='w-full h-10'>
+                                    <Button variant="contained" href="/accounting/addperf" className='w-full h-10'>
                                           <Typography component="div" sx={{ color: 'white', paddingLeft: '10px', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
                                           加算（調整）実績報告
                                           </Typography>
