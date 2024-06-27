@@ -29,7 +29,7 @@ import ProgressdZeroPages from "../pages/student/studentprogressd/ProgressdZeroP
 import ProgressdOnePages from "../pages/student/studentprogressd/ProgressdOnePages";
 import InformationPages from "../pages/setting/informationPages";
 import AnnualplanPages from "../pages/report/AnnualplanPages";
-import MonthlyplanPages from "../pages/report/MonthlyplanPages";
+import MonthlyplanPages from "../pages/report/monthlyplan/MonthlyplanPages";
 import WeeklyplanPages from "../pages/report/WeeklyplanPages";
 import CareDiaryPages from "../pages/report/CareDiaryPages";
 import DaycareRecordPages from "../pages/student/studentdaycarerecord/DaycareRecordPages";
@@ -37,6 +37,7 @@ import OverallPlanAddPages from "../pages/report/OverallPlanAddPages";
 import AnnualplanAddPages from "../pages/report/AnnualplanAddPages";
 import CareDiaryAddPages from "../pages/report/CareDiaryAddPages";
 import AddPerfPages from "../pages/accounting/addperf/AddPerfPages";
+import MonthlyplanAddPages from "../pages/report/monthlyplan/MonthlyplanAddPages";
 
 const Router = createBrowserRouter([
   {
@@ -110,6 +111,10 @@ const Router = createBrowserRouter([
       {
         path: "/report/monthlyplan",
         element: <MonthlyplanPages />
+      },
+      {
+        path: "/report/monthlyplan/add",
+        element: <MonthlyplanAddPages />
       },
       {
         path: "/report/weeklyplan",
