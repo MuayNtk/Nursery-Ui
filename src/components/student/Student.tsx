@@ -78,8 +78,8 @@ function createData(
 
 // Example data (you can replace this with your actual data)
 const rows = [
-  createData('濱千代　智宏', '1 歳児', 'くま',
-    <IconButton aria-label="delete" size="small">
+  createData('濱千代　智宏', '0 歳児', 'くま',
+    <IconButton aria-label="delete" size="small" component={Link} to="/student/progressdzero">
       <StackedBarChartIcon fontSize="small" className='text-red-600' />
     </IconButton>
 
@@ -101,7 +101,7 @@ const rows = [
     </>
   ),
   createData('濱千代　定 ', '1 歳児', 'ぱんだ',
-    <IconButton aria-label="delete" size="small">
+    <IconButton aria-label="delete" size="small" component={Link} to="/student/progressdone">
       <StackedBarChartIcon fontSize="small" className='text-red-600' />
     </IconButton>
 
@@ -121,8 +121,8 @@ const rows = [
         <DeleteIcon fontSize="small" className='text-red-600' />
       </IconButton>
     </>
-  ), createData('立石　太平', '1 歳児', 'ぱんだ',
-    <IconButton aria-label="delete" size="small">
+  ), createData('立石　太平', '2 歳児', 'ぱんだ',
+    <IconButton aria-label="delete" size="small" component={Link} to="/student/progressdtwo">
       <StackedBarChartIcon fontSize="small" className='text-red-600' />
     </IconButton>
 
@@ -142,30 +142,8 @@ const rows = [
         <DeleteIcon fontSize="small" className='text-red-600' />
       </IconButton>
     </>
-  ), createData('勝俣　悠生', '1 歳児', 'ぱんだ',
-    <IconButton aria-label="delete" size="small">
-      <StackedBarChartIcon fontSize="small" className='text-red-600' />
-    </IconButton>
-
-    ,
-    <IconButton aria-label="delete" size="small" component={Link} to="/student/daycare">
-      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
-    </IconButton>
-    ,
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('勝俣　松代', '1 歳児', 'かめ',
-    <IconButton aria-label="delete" size="small">
+  ), createData('勝俣　悠生', '3 歳児', 'ぱんだ',
+    <IconButton aria-label="delete" size="small" component={Link} to="/student/progressdthree">
       <StackedBarChartIcon fontSize="small" className='text-red-600' />
     </IconButton>
 
@@ -186,8 +164,30 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('広田　木太郎', '1 歳児', 'かめ',
-    <IconButton aria-label="delete" size="small">
+  createData('勝俣　松代', '4 歳児', 'かめ',
+    <IconButton aria-label="delete" size="small"  component={Link} to="/student/progressdfour">
+      <StackedBarChartIcon fontSize="small" className='text-red-600' />
+    </IconButton>
+
+    ,
+    <IconButton aria-label="delete" size="small" component={Link} to="/student/daycare">
+      <AssignmentIcon fontSize="medium" className='text-cyan-500' />
+    </IconButton>
+    ,
+    <>
+      <IconButton aria-label="delete" size="small" >
+        <EditIcon fontSize="small" className='text-sky-600' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small" >
+        <DeleteIcon fontSize="small" className='text-red-600' />
+      </IconButton>
+    </>
+  ),
+  createData('広田　木太郎', '5 歳児', 'かめ',
+    <IconButton aria-label="delete" size="small"  component={Link} to="/student/progressdfive">
       <StackedBarChartIcon fontSize="small" className='text-red-600' />
     </IconButton>
 
@@ -292,7 +292,7 @@ export default function Student() {
           <Button variant="contained" href="#contained-buttons" className='scale-90' >
             <SearchIcon />
             <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
-              Search
+              検索する
             </Typography>
           </Button>
         </Grid>

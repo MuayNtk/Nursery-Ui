@@ -21,7 +21,7 @@ export default function DashboardAdmin() {
       <ContentMain >
         <Grid container spacing={3} className='pt-7' >
           <Grid item xs={6} sm={6} md={3} >
-            <Button variant="contained" href="#contained-buttons" className='w-full h-10'>
+            <Button variant="contained" href="/teacher/todolist" className='w-full h-10'>
               <PersonAddAltIcon />
               <Typography component="div" sx={{ color: 'white', paddingLeft: '10px', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },}} >
                 保育士登録
@@ -29,7 +29,7 @@ export default function DashboardAdmin() {
             </Button>
           </Grid>
           <Grid item xs={6} sm={6} md={3}>
-            <Button variant="contained" href="#contained-buttons" className='w-full h-10'>
+            <Button variant="contained" href="/student" className='w-full h-10'>
               <PersonAddAltIcon />
               <Typography component="div" sx={{ color: 'white', paddingLeft: '10px' , fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },}} >
                 園児登録
@@ -37,7 +37,7 @@ export default function DashboardAdmin() {
             </Button>
           </Grid>
           <Grid item xs={6} sm={6} md={3}>
-            <Button variant="contained" href="#contained-buttons" className='w-full h-10'>
+            <Button variant="contained" href="/class" className='w-full h-10'>
               <PeopleIcon />
               <Typography component="div" sx={{ color: 'white', paddingLeft: '10px', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
                 クラス登録
