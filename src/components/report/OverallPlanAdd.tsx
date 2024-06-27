@@ -1,15 +1,301 @@
+import { Button, Card, Grid, MenuItem, Select, TextField, TextareaAutosize, Typography } from "@mui/material";
 import ContentMain from "../content/Content";
+import SaveIcon from '@mui/icons-material/Save';
+import { SetStateAction, useState } from "react";
 
 
 export default function OverallPlanAdd() {
+  const [selectedOption, setSelectedOption] = useState('');
 
+  const handleDropdownChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+    setSelectedOption(event.target.value);
+  };
 
   return (
 
     <>
-        <ContentMain >
-        OverallPlanAdd
-        </ContentMain>
+      <ContentMain >
+        {/* start grid  全体的な計画*/}
+        <Grid item xs={12} sm={12} md={12} lg={12} className='pt-5' >
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold' }} className='flex justify-start h-10 pt-2 pl-5' >
+            全体的な計画
+          </Typography>
+        </Grid>
+        {/* End grid  全体的な計画*/}
+
+        {/* Start 全体的な計画 and 家庭・地域との連携  */}
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} className=''>
+            保育の目標
+          </Typography>
+          {/* grid 1-1 */}
+          <Grid item xs={8} sm={8} md={3} lg={2} >
+            <TextareaAutosize id="goalsofchildcare" name="goalsofchildcare" minRows={1.5} maxRows={1.5} />
+          </Grid>
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} className='lg:pl-16'>
+            家庭・地域との連携
+          </Typography>
+          {/* grid 1-2 */}
+          <Grid item xs={7} sm={3} md={3} lg={2} sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
+            <TextareaAutosize id="familiesandcommunities" name="familiesandcommunities" minRows={1.5} maxRows={1.5} />
+          </Grid>
+        </Grid>
+        {/* End 全体的な計画 and 家庭・地域との連携 */}
+
+
+        {/* start grid  dropdown */}
+        <Grid item xs={12} sm={12} md={12} lg={11.6} className="pt-3">
+          <div className="flex justify-start w-9 h-9" >
+            <Select value={selectedOption} onChange={handleDropdownChange} sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
+              <MenuItem value="1">1歳</MenuItem>
+              <MenuItem value="2">2歳</MenuItem>
+              <MenuItem value="3">3歳</MenuItem>
+              <MenuItem value="4">4歳</MenuItem>
+              <MenuItem value="5">5歳</MenuItem>
+            </Select>
+          </div>
+
+          <div className="pt-3">
+            {selectedOption === '' && (
+              <Typography
+                component="div"
+                sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold',}}
+                className='flex justify-start h-11 pt-3 pl-5'
+                bgcolor={"#CCF0FD"}>
+                選んでください歳
+              </Typography>
+            )}
+            {selectedOption === '1' && (
+              <Typography
+                component="div"
+                sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
+                className='flex justify-start h-10 pt-2 pl-5'
+                bgcolor={"#CCF0FD"}>
+                1歳
+              </Typography>
+            )}
+            {selectedOption === '2' && (
+              <Typography
+                component="div"
+                sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
+                className='flex justify-start h-10 pt-2 pl-5'
+                bgcolor={"#CCF0FD"}>
+                2歳
+              </Typography>
+            )}
+            {selectedOption === '3' && (
+              <Typography
+                component="div"
+                sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
+                className='flex justify-start h-10 pt-2 pl-5'
+                bgcolor={"#CCF0FD"}>
+                3歳
+              </Typography>
+            )}
+            {selectedOption === '4' && (
+              <Typography
+                component="div"
+                sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
+                className='flex justify-start h-10 pt-2 pl-5'
+                bgcolor={"#CCF0FD"}>
+                4歳
+              </Typography>
+            )}
+            {selectedOption === '5' && (
+              <Typography
+                component="div"
+                sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
+                className='flex justify-start h-10 pt-2 pl-5'
+                bgcolor={"#CCF0FD"}>
+                5歳
+              </Typography>
+            )}
+          </div>
+        </Grid>
+        {/* End grid  dropdown */}
+
+        {/* Start Card */}
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-4' >
+          <Card sx={{ bgcolor: "pink", width: 100, height: 30, }}>
+            <Typography component='div' className="pt-1" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold' }}>
+              既往症
+            </Typography>
+          </Card>
+        </Grid>
+        {/* End Card */}
+
+
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-8 pl-24">
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            養護
+          </Typography>
+        </Grid>
+        {/* start grid  養護*/}
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
+          <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
+            <TextareaAutosize id="maintenance" name="maintenance" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+          </Grid>
+        </Grid>
+        {/* End grid  養護*/}
+
+
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-24">
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            教育
+          </Typography>
+        </Grid>
+        {/* start grid  教育*/}
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
+          <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
+            <TextareaAutosize id="educate" name="educate" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+          </Grid>
+        </Grid>
+        {/* End grid  教育*/}
+
+        {/* Start Card */}
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-4' >
+          <Card sx={{ bgcolor: "pink", width: 100, height: 30, }}>
+            <Typography component='div' className="pt-1" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold' }}>
+              内容
+            </Typography>
+          </Card>
+        </Grid>
+        {/* End Card */}
+
+
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-8 pl-14">
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            教育
+          </Typography>
+        </Grid>
+
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-8 pl-16">
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 8, sm: 11, md: 11, lg: 16, }, }} >
+            身体的発達に関する視点「社会的発達に関する視点 精神的発達に関する視点
+          </Typography>
+        </Grid>
+
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-10 pl-24">
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            健康
+          </Typography>
+        </Grid>
+        {/* start grid  健康*/}
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
+          <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
+            <TextareaAutosize id="healthy" name="healthy" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+          </Grid>
+        </Grid>
+        {/* End grid  健康*/}
+
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-24">
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            人間関係
+          </Typography>
+        </Grid>
+        {/* start grid  人間関係*/}
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
+          <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
+            <TextareaAutosize id="relationships" name="relationships" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+          </Grid>
+        </Grid>
+        {/* End grid  人間関係*/}
+
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-24">
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            環境
+          </Typography>
+        </Grid>
+        {/* start grid  環境*/}
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-20">
+          <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
+            <TextareaAutosize id="environment" name="environment" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+          </Grid>
+        </Grid>
+        {/* End grid  環境*/}
+
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-24">
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            言葉
+          </Typography>
+        </Grid>
+        {/* start grid  言葉*/}
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
+          <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
+            <TextareaAutosize id="words" name="words" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+          </Grid>
+        </Grid>
+        {/* End grid  言葉*/}
+
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-24">
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            表現
+          </Typography>
+        </Grid>
+        {/* start grid  表現*/}
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
+          <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
+            <TextareaAutosize id="performance" name="Performance" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+          </Grid>
+        </Grid>
+        {/* End grid  表現*/}
+
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-24">
+          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            食育
+          </Typography>
+        </Grid>
+        {/* start grid  食育*/}
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
+          <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
+            <TextareaAutosize id="foodeducation" name="foodeducation" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+          </Grid>
+        </Grid>
+        {/* End grid  食育*/}
+
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-8 ">
+          <Grid item xs={4} sm={3} md={3} lg={3} className="" sx={{ marginLeft: { xs: 1.5, sm: 4, md: 2, lg: -4.5, } }}>
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+              安全 健康及び
+            </Typography>
+          </Grid>
+          <Grid item xs={4} sm={3} md={3} lg={3} className="" sx={{ marginLeft: { xs: -3, sm: -1, md: 2, lg: -2, } }}>
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }} >
+              子育て支援
+            </Typography>
+          </Grid>
+          <Grid item xs={4} sm={3} md={3} lg={3} className="" sx={{ marginLeft: { xs: -1, sm: 1, md: 2, lg: 1.5, } }}>
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }} >
+              速携小学校との
+            </Typography>
+          </Grid>
+
+        </Grid>
+        {/* start grid   安全 健康及び/子育て支援/速携小学校との*/}
+        <Grid container spacing={3} justifyContent='start' alignItems='center' className="pt-3 pl-10">
+          <Grid item xs={4} sm={3} md={3} lg={3} className="" sx={{ marginLeft: { xs: -1, sm: 1, md: 2, lg: 1, } }}>
+            <TextField className='w-full ' id="safetyandhealth" name="safetyandhealth" label="" type="text" size='small' style={{ backgroundColor: "white", }} />
+          </Grid>
+          <Grid item xs={4} sm={3} md={3} lg={3} className="" sx={{ marginLeft: { xs: -1, sm: 1, md: 2, lg: 1, } }}>
+            <TextField className='w-full ' id="childcaresupport" name="childcaresupport" label="" type="text" size='small' style={{ backgroundColor: "white", }} />
+          </Grid>
+          <Grid item xs={4} sm={3} md={3} lg={3} className="" sx={{ marginLeft: { xs: -1, sm: 1, md: 2, lg: 1, } }}>
+            <TextField className='w-full ' id="hayakawaelementaryschool" name="hayakawaelementaryschool" label="" type="text" size='small' style={{ backgroundColor: "white", }} />
+          </Grid>
+        </Grid>
+        {/* End grid  安全 健康及び/子育て支援/速携小学校との*/}
+
+
+        <Grid container direction="row" justifyContent="start" alignItems="center" className="pt-8 ">
+          <Button variant="contained" href="#" size='small' className='w-32 text-center' sx={{ backgroundColor: "green" }}>
+            <SaveIcon />
+            <Typography variant="body1" style={{ color: 'white', alignItems: 'center', paddingLeft: '10px' }} >
+              Save
+            </Typography>
+          </Button>
+        </Grid>
+
+      </ContentMain >
     </>
   );
 };
