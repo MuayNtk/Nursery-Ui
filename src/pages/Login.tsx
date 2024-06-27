@@ -7,8 +7,8 @@ const Login: React.FC = () => {
   const [error, setError] = useState<string>('');
 
   const handleLogin = () => {
-    if (username === 'admin' && password === 'password') {
-      alert('Login successful!');
+    if (username === 'admin' && password === '1234') {
+      // alert('Login successful!');
       window.location.href = '/dashboard';
     } else {
       setError('Invalid username or password');
