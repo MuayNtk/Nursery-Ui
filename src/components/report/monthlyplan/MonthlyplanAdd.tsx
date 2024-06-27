@@ -16,19 +16,19 @@ export default function MonthlyplanAdd() {
     <>
         <ContentMain >
          {/* Start Grid */}
-            <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-10 lg:pt-0">
+            <Grid  className="pt-10 lg:pt-0 text-start">
                   <Grid item xs={9} sm={7} md={5} lg={2.5} sx={{ ml: { xs: 0, sm: 0, md: 0, lg: 2 }, mt: { xs: -1, sm: -2, md: 5, lg: 4 } }}>
                         <div>
-                              <FormControl sx={{ minWidth: 100 }} size="small" fullWidth>
+                              <FormControl  size="small" >
                                     <InputLabel id="demo-select-small-label">年間指導計画を選択する</InputLabel>
                                     <Select
                                           labelId="demo-select-small-label"
                                           id="demo-select-small"
                                           label="年間指導計画を選択する"
-                                          size="small"
                                           value={selectedOption}
                                           onChange={handleDropdownChange}
                                           className="mb-5"
+                                          sx={{ minWidth: 250 }}
                                     >
                                           <MenuItem value="">
                                           <em>None</em>
@@ -40,9 +40,7 @@ export default function MonthlyplanAdd() {
                               </FormControl>
                               <div>
                               {selectedOption === '1' &&
-                                    <>
                                           <MonthlyZero/>
-                                    </>
                               
                               }
                               {selectedOption === '2' &&
