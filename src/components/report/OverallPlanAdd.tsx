@@ -1,6 +1,6 @@
 import { Button, Card, Grid, MenuItem, Select, TextField, TextareaAutosize, Typography } from "@mui/material";
 import ContentMain from "../content/Content";
-import SaveIcon from '@mui/icons-material/Save';
+// import SaveIcon from '@mui/icons-material/Save';
 import { SetStateAction, useState } from "react";
 
 
@@ -14,7 +14,7 @@ export default function OverallPlanAdd() {
   return (
 
     <>
-      <ContentMain >
+      <ContentMain className="flex flex-col min-h-screen">
         {/* start grid  全体的な計画*/}
         <Grid item xs={12} sm={12} md={12} lg={12} className='pt-5' >
           <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold' }} className='flex justify-start h-10 pt-2 pl-5' >
@@ -30,14 +30,20 @@ export default function OverallPlanAdd() {
           </Typography>
           {/* grid 1-1 */}
           <Grid item xs={8} sm={8} md={3} lg={2} >
-            <TextareaAutosize id="goalsofchildcare" name="goalsofchildcare" minRows={1.5} maxRows={1.5} />
+              <TextareaAutosize
+                  id="goalsofchildcare"
+                  name="goalsofchildcare"
+                  minRows={2} maxRows={100} 
+                  style={{ border: '1px solid gray', borderRadius: '4px' }}
+                />
           </Grid>
           <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} className='lg:pl-16'>
             家庭・地域との連携
           </Typography>
           {/* grid 1-2 */}
           <Grid item xs={7} sm={3} md={3} lg={2} sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-            <TextareaAutosize id="familiesandcommunities" name="familiesandcommunities" minRows={1.5} maxRows={1.5} />
+            <TextareaAutosize id="familiesandcommunities" name="familiesandcommunities" minRows={2} maxRows={100} 
+                  style={{ border: '1px solid gray', borderRadius: '4px' }} />
           </Grid>
         </Grid>
         {/* End 全体的な計画 and 家庭・地域との連携 */}
@@ -125,7 +131,7 @@ export default function OverallPlanAdd() {
         {/* End Card */}
 
 
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-8 pl-24">
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4 pl-24">
           <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
             養護
           </Typography>
@@ -133,7 +139,9 @@ export default function OverallPlanAdd() {
         {/* start grid  養護*/}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
           <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-            <TextareaAutosize id="maintenance" name="maintenance" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+            <TextareaAutosize id="maintenance" name="maintenance" minRows={2} maxRows={100} 
+            className="lg:w-96 md:w-60 " 
+            style={{ border: '1px solid gray', borderRadius: '4px' }} />
           </Grid>
         </Grid>
         {/* End grid  養護*/}
@@ -147,7 +155,9 @@ export default function OverallPlanAdd() {
         {/* start grid  教育*/}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
           <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-            <TextareaAutosize id="educate" name="educate" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+            <TextareaAutosize id="educate" name="educate" minRows={2} maxRows={100} 
+            className="lg:w-96 md:w-60 " 
+            style={{ border: '1px solid gray', borderRadius: '4px' }} />
           </Grid>
         </Grid>
         {/* End grid  教育*/}
@@ -183,7 +193,7 @@ export default function OverallPlanAdd() {
         {/* start grid  健康*/}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
           <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-            <TextareaAutosize id="healthy" name="healthy" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+            <TextareaAutosize id="healthy" name="healthy" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " style={{ border: '1px solid gray', borderRadius: '4px' }}/>
           </Grid>
         </Grid>
         {/* End grid  健康*/}
@@ -196,7 +206,7 @@ export default function OverallPlanAdd() {
         {/* start grid  人間関係*/}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
           <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-            <TextareaAutosize id="relationships" name="relationships" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+            <TextareaAutosize id="relationships" name="relationships" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " style={{ border: '1px solid gray', borderRadius: '4px' }}/>
           </Grid>
         </Grid>
         {/* End grid  人間関係*/}
@@ -209,7 +219,7 @@ export default function OverallPlanAdd() {
         {/* start grid  環境*/}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-20">
           <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-            <TextareaAutosize id="environment" name="environment" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+            <TextareaAutosize id="environment" name="environment" minRows={2} maxRows={100} className="lg:w-96 md:w-60 "style={{ border: '1px solid gray', borderRadius: '4px' }} />
           </Grid>
         </Grid>
         {/* End grid  環境*/}
@@ -222,7 +232,7 @@ export default function OverallPlanAdd() {
         {/* start grid  言葉*/}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
           <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-            <TextareaAutosize id="words" name="words" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+            <TextareaAutosize id="words" name="words" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " style={{ border: '1px solid gray', borderRadius: '4px' }}/>
           </Grid>
         </Grid>
         {/* End grid  言葉*/}
@@ -235,7 +245,7 @@ export default function OverallPlanAdd() {
         {/* start grid  表現*/}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
           <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-            <TextareaAutosize id="performance" name="Performance" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+            <TextareaAutosize id="performance" name="Performance" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " style={{ border: '1px solid gray', borderRadius: '4px' }}/>
           </Grid>
         </Grid>
         {/* End grid  表現*/}
@@ -248,7 +258,7 @@ export default function OverallPlanAdd() {
         {/* start grid  食育*/}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
           <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-            <TextareaAutosize id="foodeducation" name="foodeducation" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " />
+            <TextareaAutosize id="foodeducation" name="foodeducation" minRows={2} maxRows={100} className="lg:w-96 md:w-60 " style={{ border: '1px solid gray', borderRadius: '4px' }}/>
           </Grid>
         </Grid>
         {/* End grid  食育*/}
@@ -283,17 +293,24 @@ export default function OverallPlanAdd() {
             <TextField className='w-full ' id="hayakawaelementaryschool" name="hayakawaelementaryschool" label="" type="text" size='small' style={{ backgroundColor: "white", }} />
           </Grid>
         </Grid>
-        {/* End grid  安全 健康及び/子育て支援/速携小学校との*/}
-
-
-        <Grid container direction="row" justifyContent="start" alignItems="center" className="pt-8 ">
-          <Button variant="contained" href="#" size='small' className='w-32 text-center' sx={{ backgroundColor: "green" }}>
-            <SaveIcon />
-            <Typography variant="body1" style={{ color: 'white', alignItems: 'center', paddingLeft: '10px' }} >
-              Save
-            </Typography>
-          </Button>
-        </Grid>
+        <div className="mt-auto">
+          <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+                <Grid item>
+                      <Button variant="contained" href="/report/overallplan" size='small' className='text-center'>
+                      <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                      戻る
+                      </Typography>
+                      </Button>
+                </Grid>
+                <Grid item>
+                      <Button variant="contained" href="#" size='small' className='text-center'>
+                      <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                      修正
+                      </Typography>
+                      </Button>
+                </Grid>
+          </Grid>
+        </div>
 
       </ContentMain >
     </>
