@@ -1,4 +1,4 @@
-import ContentMain from "../content/Content";
+import ContentMain from "../../content/Content";
 import React from 'react';
 import { Button,  Grid, IconButton,  TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
@@ -13,7 +13,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
-import MonthForm from "../componentsform/MonthForm";
+import MonthForm from "../../componentsform/MonthForm";
 
 
 interface Column {
@@ -170,7 +170,7 @@ export default function Monthlyplan() {
       </Grid>
       <Grid container className='pt-7' justifyContent="right">
         <Grid> 
-          <Button variant="contained" href="#" size='small' startIcon={<AddIcon />}>
+          <Button variant="contained" href="/report/monthlyplan/add" size='small' startIcon={<AddIcon />}>
             <Typography style={{ color: 'white' }}>
               ADD
             </Typography>

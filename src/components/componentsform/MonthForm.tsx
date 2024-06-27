@@ -18,6 +18,9 @@ export default function MonthForm() {
                               value={month}
                               label="月"
                               onChange={handleMonthChange}
+                              sx={{
+                                    backgroundColor: "white",
+                                  }}
                         >
                               <MenuItem value="">
                               <em>None</em>

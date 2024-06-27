@@ -15,7 +15,7 @@ export default function CareDiaryAdd() {
   return (
 
     <>
-      <ContentMain >
+       <ContentMain className="flex flex-col min-h-screen">
 
         {/* Start Grid */}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-10 lg:pt-0">
@@ -27,9 +27,13 @@ export default function CareDiaryAdd() {
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   size="small"
+                  label="週ごとのプランを選択する"
                   value={selectedOption}
                   onChange={handleDropdownChange}
                   className="mb-5"
+                  sx={{
+                    backgroundColor: "white",
+                  }}
                 >
                   <MenuItem value="">
                     <em>None</em>
@@ -64,7 +68,7 @@ export default function CareDiaryAdd() {
           <Grid item xs={2} sm={2} md={2} lg={1} sx={{ ml: { xs: 4, sm: 5, md: -1, lg: 10 } }}>
             <MonthForm />
           </Grid>
-          <Grid item xs={7} sm={6.5} md={4} lg={3} >
+          <Grid item xs={7} sm={6.5} md={4} lg={4} >
             <Typography component="div" sx={{ fontSize: { xs: 12, sm: 12, md: 14, lg: 16, }, ml: { xs: 5, sm: -4, md: -9, lg: -10 } }} >
               個人カリキュラム・配録
             </Typography>
@@ -93,7 +97,7 @@ export default function CareDiaryAdd() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 lg:pt-12'>
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 lg:pt-7'>
           <Grid item xs={7} sm={5} md={3} lg={3}>
             <Typography component="div" sx={{ fontSize: { xs: 11, sm: 12, md: 11, lg: 16, }, ml: { xs: -7, sm: -4, md: 2, lg: 10 } }} >
               子どもの姿
@@ -105,14 +109,14 @@ export default function CareDiaryAdd() {
               name="emotional-input"
               minRows={3}
               maxRows={100}
-              className="w-56 sm:w-60 lg:w-96"
+              className="w-56 sm:w-60 lg:w-96 border border-gray-300"
             />
           </Grid>
         </Grid>
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-8'>
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-3'>
           <Grid item xs={7} sm={5} md={3} lg={3}>
             <Typography component="div" sx={{ fontSize: { xs: 11, sm: 12, md: 11, lg: 16, }, ml: { xs: -6, sm: -4, md: 2, lg: 10 } }} >
               ねらいと配慮
@@ -124,7 +128,7 @@ export default function CareDiaryAdd() {
               name="emotional-input"
               minRows={3}
               maxRows={100}
-              className="w-56 sm:w-60 lg:w-96"
+              className="w-56 sm:w-60 lg:w-96 border border-gray-300"
             />
           </Grid>
         </Grid>
@@ -144,7 +148,7 @@ export default function CareDiaryAdd() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-8'>
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-3'>
             <Grid item xs={4} sm={3} md={3} lg={3}>
               <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 12, sm: 12, md: 11, lg: 16, }, ml: { xs: 0, sm: 0, md: 2, lg: 10 } }} >
                 食事
@@ -156,14 +160,14 @@ export default function CareDiaryAdd() {
                 name="emotional-input"
                 minRows={3}
                 maxRows={100}
-                className="w-56 sm:w-60 lg:w-96"
+                className="w-56 sm:w-60 lg:w-96 border border-gray-300"
               />
             </Grid>
           </Grid>
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-8'>
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-3'>
             <Grid item xs={4} sm={3} md={3} lg={3}>
               <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 12, sm: 12, md: 11, lg: 16, }, ml: { xs: 0, sm: 0, md: 2, lg: 10 } }} >
                 排泄
@@ -175,14 +179,14 @@ export default function CareDiaryAdd() {
                 name="emotional-input"
                 minRows={3}
                 maxRows={100}
-                className="w-56 sm:w-60 lg:w-96"
+                className="w-56 sm:w-60 lg:w-96 border border-gray-300"
               />
             </Grid>
           </Grid>
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-8'>
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-3'>
             <Grid item xs={4} sm={3} md={3} lg={3}>
               <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 12, sm: 12, md: 11, lg: 16, }, ml: { xs: 0, sm: 0, md: 2, lg: 10 } }} >
                 睡眠
@@ -194,7 +198,7 @@ export default function CareDiaryAdd() {
                 name="emotional-input"
                 minRows={3}
                 maxRows={100}
-                className="w-56 sm:w-60 lg:w-96"
+                className="w-56 sm:w-60 lg:w-96 border border-gray-300"
               />
             </Grid>
           </Grid>
@@ -206,7 +210,7 @@ export default function CareDiaryAdd() {
             aria-labelledby="demo-customized-radios"
             name="customized-radios"
           >
-            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3' >
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 pl-3' >
               <Grid item xs={4} sm={3} md={3} lg={3} sx={{ ml: { xs: -1, sm: -1, md: 0, lg: 3.5 } }}>
                 <Typography component='div' fontWeight="bold" sx={{ fontSize: { xs: 12, sm: 12, md: 11, lg: 16, }, mt: 1 }}>
                   健康
@@ -235,7 +239,7 @@ export default function CareDiaryAdd() {
           {/* End Grid */}
 
           {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-8'>
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-4'>
             <Grid item xs={4} sm={3} md={3} lg={3}>
               <Typography component="div" sx={{ fontSize: { xs: 12, sm: 12, md: 11, lg: 16, }, ml: { xs: 5.5, sm: 0, md: 2, lg: 10 } }} >
                 その他の記録
@@ -247,7 +251,7 @@ export default function CareDiaryAdd() {
                 name="emotional-input"
                 minRows={3}
                 maxRows={100}
-                className="w-56 sm:w-60 lg:w-96"
+                className="w-56 sm:w-60 lg:w-96 border border-gray-300"
               />
             </Grid>
           </Grid>
@@ -263,7 +267,7 @@ export default function CareDiaryAdd() {
         {/* End Button */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-8' sx={{ ml: { xs: 1, sm: 0, md: -2, lg: -2 } }}>
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-4' sx={{ ml: { xs: 1, sm: 0, md: -2, lg: -2 } }}>
           <Grid item xs={4} sm={3} md={3} lg={3}>
             <Typography component="div" sx={{ fontSize: { xs: 12, sm: 12, md: 11, lg: 16, }, ml: { xs: 0, sm: 0, md: 2, lg: 10 } }} >
               評価・反省
@@ -275,14 +279,14 @@ export default function CareDiaryAdd() {
               name="emotional-input"
               minRows={3}
               maxRows={100}
-              className="w-56 sm:w-60 lg:w-96"
+              className="w-56 sm:w-60 lg:w-96 border border-gray-300"
             />
           </Grid>
         </Grid>
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 lg:pt-3">
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 lg:pt-2">
           <Grid item xs={5} sm={3} md={3} lg={3} >
             <Typography component="div" sx={{ fontSize: { xs: 11, sm: 12, md: 14, lg: 16, }, ml: { xs: -3, sm: 3, md: 0, lg: 5 } }} >
               施設長
@@ -339,13 +343,24 @@ export default function CareDiaryAdd() {
             </Typography>
           </Grid>
         </Grid>
-        {/* End Grid */}
-
-        {/* Button */}
-        <Grid container direction="row" justifyContent="start" alignItems="center" className="pt-10">
-          <Button variant="contained" sx={{ width: 30 }}>Save</Button>
-        </Grid>
-        {/* End Button */}
+        <div className="mt-auto ">
+          <Grid container justifyContent="center" spacing={2} className='pt-9' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+                <Grid item>
+                      <Button variant="contained" href="/report/overallplan" size='small' className='text-center'>
+                      <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                      戻る
+                      </Typography>
+                      </Button>
+                </Grid>
+                <Grid item>
+                      <Button variant="contained" href="#" size='small' className='text-center'>
+                      <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                      修正
+                      </Typography>
+                      </Button>
+                </Grid>
+          </Grid>
+        </div>
 
 
       </ContentMain>
