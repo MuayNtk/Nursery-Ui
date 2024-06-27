@@ -35,6 +35,8 @@ import CareDiaryPages from "../pages/report/CareDiaryPages";
 import DaycareRecordPages from "../pages/student/studentdaycarerecord/DaycareRecordPages";
 import OverallPlanAddPages from "../pages/report/OverallPlanAddPages";
 import AnnualplanAddPages from "../pages/report/AnnualplanAddPages";
+import CareDiaryAddPages from "../pages/report/CareDiaryAddPages";
+import AddPerfPages from "../pages/accounting/addperf/AddPerfPages";
 
 const Router = createBrowserRouter([
   {
@@ -72,6 +74,10 @@ const Router = createBrowserRouter([
       {
         path: "/accounting/listacc",
         element: <ListMenuAccPages />
+      },
+      {
+        path: "/accounting/addperf",
+        element: <AddPerfPages />
       },
       {
         path: "/report",
@@ -112,6 +118,10 @@ const Router = createBrowserRouter([
       {
         path: "/report/carediary",
         element: <CareDiaryPages />
+      },
+      {
+        path: "/report/carediary/add",
+        element: <CareDiaryAddPages />
       },
       {
         path: "/setting/info",
