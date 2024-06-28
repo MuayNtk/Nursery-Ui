@@ -258,7 +258,7 @@ export default function AddPerf() {
 
         {/* Start Grid */}
         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
-          <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -3, sm: -5, md: 2, lg: 3.5, } }}>
+          <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -3, sm: -5, md: -5, lg: 3.5, } }}>
             加算額(実績)A:
           </Typography>
           <Grid item xs={3} sm={3} md={2}>
@@ -277,7 +277,7 @@ export default function AddPerf() {
               }}
             />
           </Grid>
-          <Typography component='div' className="pl-2 pt-6 lg:pl-1 lg:pr-4 " sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1, md: 5.5, lg: 4, } }}>
+          <Typography component='div' className="pl-2 pt-6 lg:pl-1 lg:pr-4 " sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1, md: 3, lg: 4, } }}>
             実支出額B:
           </Typography>
           <Grid item xs={3.} sm={3} md={2}>
@@ -290,7 +290,7 @@ export default function AddPerf() {
               sx={{
                 backgroundColor: "white",
                 fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },
-                marginLeft: { xs: -2, sm: -1, md: 1, lg: -4, }
+                marginLeft: { xs: -2, sm: -1, md: -3, lg: -4, }
               }}
               InputProps={{
                 endAdornment: <InputAdornment position="end">円</InputAdornment>,
@@ -302,7 +302,7 @@ export default function AddPerf() {
 
         {/* Start Grid */}
         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
-          <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -3, sm: -5, md: 5.5, lg: 4, } }}>
+          <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -3, sm: -5, md: -5, lg: 4, } }}>
             加算額の残額(A-B)
           </Typography>
           <Grid item xs={6} sm={7} md={2}>
@@ -322,7 +322,7 @@ export default function AddPerf() {
               }}
             />
           </Grid>
-          <Typography component='div' className="pl-2 pt-6 lg:pl-1 lg:pr-4 " sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1.5, md: 5.5, lg: 4, } }}>
+          <Typography component='div' className="pl-2 pt-6 lg:pl-1 lg:pr-4 " sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1.5, md: 3, lg: 4, } }}>
             (残額が生じた理由):
           </Typography>
           <Typography component='div' className="pl-[85px] pt-6 md:pl-[100px] lg:pl-0 "></Typography>
@@ -346,12 +346,12 @@ export default function AddPerf() {
         {/* Start Grid */}
         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-1 pl-3' >
           <Grid item xs={6} sm={4} md={4}>
-            <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -16, sm: -15, md: -2, lg: -15, } }}>
+            <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -17, sm: -15, md: -19, lg: -15, } }}>
               (残額の使途)
             </Typography>
           </Grid>
           <Grid item xs={6} sm={8} md={8}>
-            <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'red', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -18, sm: -25, md: -33, lg: -80, } }}>
+            <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'red', fontSize: { xs: 8, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -18, sm: -25, md: -52, lg: -80, } }}>
               (記載例)・〇年〇月に全ての職員に対し、一時金として支給など
             </Typography>
           </Grid>
@@ -370,7 +370,7 @@ export default function AddPerf() {
               sx={{
                 backgroundColor: "white",
                 fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },
-                marginLeft: { xs: 10, sm: 12, md: 27, lg: 31, }
+                marginLeft: { xs: 10, sm: 12, md: 19, lg: 31, }
               }}
             />
           </Grid>
