@@ -9,9 +9,9 @@ export default function TeachFull() {
     <>
       <Grid container spacing={3}>
         
-        <Grid container spacing={2} className='pt-7' justifyContent="start">
-          <Grid item xs={6} sm={2} md={1}>
-            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+        <Grid container spacing={2} className='pt-10'>
+          <Grid item xs={6} sm={2} md={2}>
+            <Typography style={{ fontSize: '16px' }} className='pt-2 text-end'>
               所属
             </Typography>
           </Grid>
@@ -20,9 +20,9 @@ export default function TeachFull() {
           </Grid>
         </Grid>
 
-        <Grid container spacing={2} className='pt-4' justifyContent="start">
-          <Grid item xs={6} sm={2} md={1}>
-            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+        <Grid container spacing={2} className='pt-4' >
+          <Grid item xs={6} sm={2} md={2}>
+            <Typography style={{ fontSize: '16px' }} className='pt-2 text-end'>
               氏名 
             </Typography>
           </Grid>
@@ -31,9 +31,9 @@ export default function TeachFull() {
           </Grid>
         </Grid>
 
-        <Grid container spacing={2} className='pt-4' justifyContent="start">
-          <Grid item xs={6} sm={2} md={1}>
-            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+        <Grid container spacing={2} className='pt-4'>
+          <Grid item xs={6} sm={2} md={2}>
+            <Typography style={{ fontSize: '16px' }} className='pt-2 text-end'>
               旧姓
             </Typography>
           </Grid>
@@ -42,9 +42,9 @@ export default function TeachFull() {
           </Grid>
         </Grid>
 
-        <Grid container spacing={2} className='pt-4' justifyContent="start">
-          <Grid item xs={6} sm={2} md={1}>
-            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+        <Grid container spacing={2} className='pt-4' >
+          <Grid item xs={6} sm={2} md={2}>
+            <Typography style={{ fontSize: '16px' }} className='pt-2 text-end'>
               生年月日
             </Typography>
           </Grid>
