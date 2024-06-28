@@ -15,7 +15,6 @@ export default function HealthCheckForm() {
   return (
 
     <>
-      
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
           <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} className=''>
             健康管理台帳
