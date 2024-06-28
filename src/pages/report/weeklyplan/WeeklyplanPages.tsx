@@ -1,4 +1,4 @@
-import Weeklyplan from "../../components/report/Weeklyplan";
+import Weeklyplan from "../../../components/report/weeklyplan/Weeklyplan";
 
 
 
