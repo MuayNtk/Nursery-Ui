@@ -179,7 +179,7 @@ export default function InfoTeachList() {
         </Grid>
       </Grid>
       <Grid container direction="row" justifyContent="end" alignItems="end" style={{ paddingTop: '20px', }} className='mt-3'>
-        <Button variant="contained" href="#contained-buttons" className='scale-90' size="small" >
+        <Button variant="contained" href="/infoteach/add" className='scale-90' size="small" >
           <AddIcon />
           <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }}  >
             Add

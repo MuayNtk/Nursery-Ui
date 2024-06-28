@@ -30,7 +30,7 @@ import ProgressdOnePages from "../pages/student/studentprogressd/ProgressdOnePag
 import InformationPages from "../pages/setting/informationPages";
 import AnnualplanPages from "../pages/report/AnnualplanPages";
 import MonthlyplanPages from "../pages/report/monthlyplan/MonthlyplanPages";
-import WeeklyplanPages from "../pages/report/WeeklyplanPages";
+import WeeklyplanPages from "../pages/report/weeklyplan/WeeklyplanPages";
 import CareDiaryPages from "../pages/report/CareDiaryPages";
 import DaycareRecordPages from "../pages/student/studentdaycarerecord/DaycareRecordPages";
 import OverallPlanAddPages from "../pages/report/OverallPlanAddPages";
@@ -38,6 +38,8 @@ import AnnualplanAddPages from "../pages/report/AnnualplanAddPages";
 import CareDiaryAddPages from "../pages/report/CareDiaryAddPages";
 import AddPerfPages from "../pages/accounting/addperf/AddPerfPages";
 import MonthlyplanAddPages from "../pages/report/monthlyplan/MonthlyplanAddPages";
+import InfoTeachAddPages from "../pages/teacher/infoteach/InfoTeachddPages";
+import WeeklyplanAddPages from "../pages/report/weeklyplan/WeeklyplanAddPages";
 
 const Router = createBrowserRouter([
   {
@@ -121,6 +123,10 @@ const Router = createBrowserRouter([
         element: <WeeklyplanPages />
       },
       {
+        path: "/report/weeklyplan/add",
+        element: <WeeklyplanAddPages />
+      },
+      {
         path: "/report/carediary",
         element: <CareDiaryPages />
       },
@@ -187,6 +193,10 @@ const Router = createBrowserRouter([
       {
         path: "/infoteach",
         element: <InfoTeachListPages />
+      },
+      {
+        path: "/infoteach/add",
+        element: <InfoTeachAddPages />
       },
       {
         path: "/infostaff",
