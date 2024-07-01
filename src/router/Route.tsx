@@ -40,6 +40,9 @@ import AddPerfPages from "../pages/accounting/addperf/AddPerfPages";
 import MonthlyplanAddPages from "../pages/report/monthlyplan/MonthlyplanAddPages";
 import InfoTeachAddPages from "../pages/teacher/infoteach/InfoTeachddPages";
 import WeeklyplanAddPages from "../pages/report/weeklyplan/WeeklyplanAddPages";
+import ActivityListPages from "../pages/accounting/activity/ActivityListPages";
+import ActivityAddPage from "../pages/accounting/activity/ActivityAddPage";
+import SupportFundAddPages from "../pages/accounting/supportfund/SupportFundAddPages";
 
 const Router = createBrowserRouter([
   {
@@ -81,6 +84,18 @@ const Router = createBrowserRouter([
       {
         path: "/accounting/addperf",
         element: <AddPerfPages />
+      },
+      {
+        path: "/accounting/activity",
+        element: <ActivityListPages />
+      },
+      {
+        path: "/accounting/activity/add",
+        element: <ActivityAddPage />
+      },
+      {
+        path: "/accounting/supportfund/add",
+        element: <SupportFundAddPages />
       },
       {
         path: "/report",
