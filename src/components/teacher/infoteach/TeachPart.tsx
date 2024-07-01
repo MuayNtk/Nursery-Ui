@@ -1,4 +1,4 @@
-import { FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography, TextareaAutosize, Card, Button, IconButton, Box, Select, MenuItem, FormControl } from "@mui/material";
+import { FormControlLabel, Grid, Radio, RadioGroup, TextField, Typography, TextareaAutosize, Card, Button, IconButton, Select, MenuItem, FormControl, Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 import EraForm from "../../componentsform/EraForm";
 import YearForm from "../../componentsform/YearForm";
 import MonthForm from "../../componentsform/MonthForm";
@@ -9,6 +9,42 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
+interface Column {
+  id: 'date' | 'date2' | 'working-hours' | 'working-days' | 'qualifications' | 'job-description' | 'appointments';
+  label: string;
+  minWidth?: number;
+  align?: 'right' | 'center';
+  format?: (value: number) => string;
+}
+
+const columns: readonly Column[] = [
+  { id: 'date', label: '年月', minWidth: 50, align: 'center', },
+  { id: 'date2', label: '年月', minWidth: 100, align: 'center', },
+  { id: 'working-hours', label: '勤務時間', minWidth: 100, align: 'center', },
+  { id: 'working-days', label: '1か月の勤務日', minWidth: 150, align: 'center', },
+  { id: 'qualifications', label: '資格', minWidth: 100, align: 'center', },
+  { id: 'job-description', label: '職種の内容', minWidth: 150, align: 'center', },
+  { id: 'appointments', label: '任免・発令者等', minWidth: 200, align: 'center', },
+
+];
+
+interface Column2 {
+  id: 'date' | 'date2' | 'working-hours2' | 'working-days2' | 'qualifications' | 'company-name' | 'remarks';
+  label: string;
+  minWidth?: number;
+  align?: 'right' | 'center';
+  format?: (value: number) => string;
+}
+
+const columns2: readonly Column2[] = [
+  { id: 'date', label: '年月', minWidth: 50, align: 'center', },
+  { id: 'working-hours2', label: '勤務時間', minWidth: 150, align: 'center', },
+  { id: 'working-days2', label: '1か月の勤務日', minWidth: 150, align: 'center', },
+  { id: 'qualifications', label: '資格', minWidth: 150, align: 'center', },
+  { id: 'company-name', label: '職種の内容', minWidth: 150, align: 'center', },
+  { id: 'remarks', label: '備考', minWidth: 150, align: 'center', },
+
+];
 
 export default function TeachPart() {
 
@@ -274,15 +310,15 @@ export default function TeachPart() {
       {/* End 名称 Grid */}
 
       {/* Start Grid Button + */}
-      <Grid container spacing={1} justifyContent='center' alignItems='center'>
-        <Grid item sx={{ ml: { xs: 20, sm: 10, md: 42, lg: 20 } }}>
-          <Button variant="contained" size="small" sx={{ width: 90, ml: { xs: 13, sm: 15, md: 0 }, mt: 0.3, backgroundColor: "#99CCFF", color: "black" }}>+ 追加</Button>
+      <Grid container spacing={1} justifyContent='start' alignItems='center'>
+        <Grid item sx={{ mt: 1, mb: 2 }}>
+          <Button variant="contained" size="small" sx={{ width: 90, mt: 0.3, backgroundColor: "#99CCFF", color: "black" }}>+ 追加</Button>
         </Grid>
       </Grid>
       {/* End Grid Button + */}
 
       {/* Start 現施設での勤務履歴 Grid */}
-      <Grid className="mt-5 lg:mt-5" sx={{ ml: { xs: 0, sm: 0, md: 0, lg: -2 } }}>
+      <Grid className="mt-5 lg:mt-5">
         <Typography
           component="div"
           sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, backgroundColor: '#CCF0FD', fontWeight: 'bold', pt: { xs: 1.5, sm: 1.5, md: 1.5, lg: 1 } }}
@@ -292,171 +328,156 @@ export default function TeachPart() {
       </Grid>
       {/* End 現施設での勤務履歴 Grid */}
 
-      {/* Start Box */}
-      <Box sx={{ backgroundColor: '#DCDCDC', width: { xs: 700, sm: 800, md: 910, lg: "100%" }, mt: 3, pb: 2, ml: { xs: 0, sm: 0, md: 0, lg: -1.5 } }}>
+      {/* start table excretion */}
+      <Grid container spacing={2} className='pt-5' justifyContent="center">
+        <Paper sx={{ width: '100%', Height: 2000, overflow: 'hidden' }} className='ms-4'>
+          <TableContainer sx={{ maxHeight: 2000 }}>
+            <Table stickyHeader aria-label="sticky table" size="small">
+              <TableHead >
+                <TableRow >
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth }}
+                    >
+                      <Typography variant="subtitle2" fontWeight="bold" sx={{
+                        fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },
+                      }}>{column.label}</Typography>
+                    </TableCell>
+                  )
+                  )}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow hover role="checkbox" tabIndex={-1} >
+                  <TableCell className="">
+                    <Grid container spacing={1} className='pt-5 scale-75' justifyContent="center">
+                      <LocalizationProvider dateAdapter={AdapterDayjs} >
+                        <DemoContainer components={['DatePicker']}>
+                          <DatePicker label="Select Date" sx={{ backgroundColor: "white" }} className="" />
+                        </DemoContainer>
+                      </LocalizationProvider>
+                      <LocalizationProvider dateAdapter={AdapterDayjs} >
+                        <DemoContainer components={['DatePicker']}>
+                          <DatePicker label="Select Date" sx={{ backgroundColor: "white" }} className="" />
+                        </DemoContainer>
+                      </LocalizationProvider>
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={12} sm={12} md={12} lg={12}>
+                      <FormControl size="small" fullWidth>
+                        <Select
+                          labelId="date-label"
+                          id="date-select"
+                          sx={{ backgroundColor: "white" }}
+                        >
+                          <MenuItem value="">
+                            <em>None</em>
+                          </MenuItem>
+                          <MenuItem value={1}>1</MenuItem>
+                          <MenuItem value={2}>2</MenuItem>
+                          <MenuItem value={3}>3</MenuItem>
+                          <MenuItem value={4}>4</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={12} sm={12} md={12} lg={12}>
+                      <FormControl size="small" fullWidth>
+                        <Select
+                          labelId="workinghouse-label"
+                          id="workinghouse-select"
+                          sx={{ backgroundColor: "white" }}
+                        >
+                          <MenuItem value="">
+                            <em>None</em>
+                          </MenuItem>
+                          <MenuItem value={1}>1</MenuItem>
+                          <MenuItem value={2}>2</MenuItem>
+                          <MenuItem value={3}>3</MenuItem>
+                          <MenuItem value={4}>4</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={12} sm={12} md={12}>
+                      <FormControl size="small" fullWidth>
+                        <Select
+                          labelId="workingdayspermonth-label"
+                          id="workingdayspermonth-select"
+                          sx={{ backgroundColor: "white" }}
+                        >
+                          <MenuItem value="">
+                            <em>None</em>
+                          </MenuItem>
+                          <MenuItem value={1}>1</MenuItem>
+                          <MenuItem value={2}>2</MenuItem>
+                          <MenuItem value={3}>3</MenuItem>
+                          <MenuItem value={4}>4</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={12} sm={12} md={12} lg={12}>
+                      <FormControl size="small" fullWidth>
+                        <Select
+                          labelId="qualifications"
+                          id="qualifications"
+                          sx={{ backgroundColor: "white" }}
+                        >
+                          <MenuItem value="">
+                            <em>None</em>
+                          </MenuItem>
+                          <MenuItem value={1}>1</MenuItem>
+                          <MenuItem value={2}>2</MenuItem>
+                          <MenuItem value={3}>3</MenuItem>
+                          <MenuItem value={4}>4</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={12} sm={12} md={12}>
+                      <TextField id="job-description" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={12} sm={12} md={12}>
+                      <TextField id="appointments" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={1} sm={0.1} md={1} lg={1} sx={{ mt: -1.3, ml: { xs: 0, sm: 0, md: 0, lg: 1 } }}>
+                      <IconButton aria-label="delete" size="small">
+                        <RemoveCircleOutlineIcon />
+                      </IconButton>
+                    </Grid>
+                  </TableCell>
+                </TableRow>
 
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4">
-          <Grid item xs={1} sm={1.3} md={1} lg={2} sx={{ ml: { xs: 4, sm: 3, md: 4, lg: 12 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              年月
-            </Typography>
-          </Grid>
-          <Grid item xs={1} sm={1} md={1} lg={2} sx={{ ml: { xs: 3, sm: 1, md: 7, lg: -2 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              年月
-            </Typography>
-          </Grid>
-          <Grid item xs={1.3} sm={1} md={1} lg={2} sx={{ ml: { xs: 3, sm: 4, md: 4, lg: -12 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              勤務時間
-            </Typography>
-          </Grid>
-          <Grid item xs={1.5} sm={1.5} md={2} lg={2} sx={{ ml: { xs: 2, sm: 4, md: 3, lg: -10 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              1か月の勤務日
-            </Typography>
-          </Grid>
-          <Grid item xs={1} sm={1} md={0.5} lg={2} sx={{ ml: { xs: 4, sm: 4, md: -3, lg: -5 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              資格
-            </Typography>
-          </Grid>
-          <Grid item xs={1.2} sm={1} md={1.5} lg={2} sx={{ ml: { xs: 0, sm: 2, md: 7, lg: -10 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              職種の内容
-            </Typography>
-          </Grid>
-          <Grid item xs={1.5} sm={2} md={1.5} lg={2} sx={{ ml: { xs: 2, sm: 4, md: 0, lg: -6 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              任免・発令者等
-            </Typography>
-          </Grid>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+      </Grid>
+      {/* end table excretion */}
+
+      {/* Start Grid Button + */}
+      <Grid container spacing={1} justifyContent='start' alignItems='center'>
+        <Grid item sx={{ mt: 1, mb: 2 }}>
+          <Button variant="contained" size="small" sx={{ width: 90, mt: 0.3, backgroundColor: "#99CCFF", color: "black" }}>+ 追加</Button>
         </Grid>
-        {/* End Grid */}
+      </Grid>
+      {/* End Grid Button + */}
 
-      </Box>
-      {/* End Box */}
-
-      {/* Start Box */}
-      <Box sx={{ border: '2px solid grey', width: { xs: 690, sm: 790, md: 900, lg: "100%" }, mt: 3, pb: 2, ml: { xs: 0, sm: 0, md: 0, lg: -1.5 } }}>
-
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4">
-
-          <Grid item xs={2.5} sm={2} md={2} lg={2.5} className="scale-75" sx={{ ml: { xs: -1.5, sm: -1, md: -1, lg: 5 }, mt: -1.5 }}>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DatePicker']}>
-                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} />
-              </DemoContainer>
-            </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DatePicker']}>
-                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} />
-              </DemoContainer>
-            </LocalizationProvider>
-          </Grid>
-
-          <Grid item xs={1.5} sm={1.5} md={1.5} lg={1} sx={{ ml: { xs: -2, sm: -2, md: -2, lg: -2.5 }, mt: -1.5 }}>
-            <FormControl size="small" fullWidth>
-              <Select
-                labelId="date-label"
-                id="date-select"
-                sx={{ backgroundColor: "white" }}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={1.5} sm={1.5} md={1.5} lg={1.1} sx={{ ml: { xs: -0.5, sm: -0.5, md: 0, lg: 1 }, mt: -1.5 }}>
-            <FormControl size="small" fullWidth>
-              <Select
-                labelId="workinghouse-label"
-                id="workinghouse-select"
-                sx={{ backgroundColor: "white" }}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={1.5} sm={1.7} md={1.5} lg={1.3} sx={{ ml: { xs: -0.5, sm: -0.5, md: 0, lg: 1.3 }, mt: -1.5 }}>
-            <FormControl size="small" fullWidth>
-              <Select
-                labelId="workingdayspermonth-label"
-                id="workingdayspermonth-select"
-                sx={{ backgroundColor: "white" }}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={1.5} sm={1.5} md={1.5} lg={1} sx={{ ml: { xs: 0, sm: -0.5, md: 0, lg: 1 }, mt: -1.5 }}>
-            <FormControl size="small" fullWidth>
-              <Select
-                labelId="workingdayspermonth-label"
-                id="workingdayspermonth-select"
-                sx={{ backgroundColor: "white" }}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={1.5} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: 0, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
-            <TextField id="job-description" name="job-description" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
-          </Grid>
-
-          <Grid item xs={1.5} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: 0, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
-            <TextField id="appointments-and-dismissals" name="appointments-and-dismissals" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
-          </Grid>
-
-          <Grid item xs={1} sm={0.1} md={1} lg={1} sx={{ mt: -1.3, ml: { xs: 0, sm: 0, md: 0, lg: 1 } }}>
-            <IconButton aria-label="delete" size="small">
-              <RemoveCircleOutlineIcon />
-            </IconButton>
-          </Grid>
-
-        </Grid>
-        {/* End Grid */}
-
-        {/* Start Grid Button + */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center'>
-          <Grid item sx={{ ml: { xs: 1, sm: 1, md: 1, lg: 1 }, mt: 1, mb: 2 }}>
-            <Button variant="contained" size="small" sx={{ width: 90, mt: 0.3, backgroundColor: "#99CCFF", color: "black" }}>+ 追加</Button>
-          </Grid>
-        </Grid>
-        {/* End Grid Button + */}
-      </Box>
 
       {/* Start その他の勤務履歴 Grid */}
-      <Grid className="mt-5 lg:mt-5" sx={{ ml: { xs: 0, sm: 0, md: 0, lg: -2 } }}>
+      <Grid className="mt-5 lg:mt-5">
         <Typography
           component="div"
           sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, backgroundColor: '#CCF0FD', fontWeight: 'bold', pt: { xs: 1.5, sm: 1.5, md: 1.5, lg: 1 } }}
@@ -466,100 +487,87 @@ export default function TeachPart() {
       </Grid>
       {/* End その他の勤務履歴 Grid */}
 
-      {/* Start Box 2 */}
-      <Box sx={{ backgroundColor: '#DCDCDC', width: { xs: 700, sm: 800, md: 910, lg: "100%" }, mt: 3, pb: 2, ml: { xs: 0, sm: 0, md: 0, lg: -1.5 } }}>
+      {/* start table excretion */}
+      <Grid container spacing={2} className='pt-5' justifyContent="center">
+        <Paper sx={{ width: '100%', Height: 2000, overflow: 'hidden' }} className='ms-4'>
+          <TableContainer sx={{ maxHeight: 2000 }}>
+            <Table stickyHeader aria-label="sticky table" size="small">
+              <TableHead >
+                <TableRow >
+                  {columns2.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth }}
+                    >
+                      <Typography variant="subtitle2" fontWeight="bold" sx={{
+                        fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },
+                      }}>{column.label}</Typography>
+                    </TableCell>
+                  )
+                  )}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow hover role="checkbox" tabIndex={-1} >
+                  <TableCell className="">
+                    <Grid container spacing={1} className='scale-75' justifyContent="center">
+                      <LocalizationProvider dateAdapter={AdapterDayjs} >
+                        <DemoContainer components={['DatePicker']}>
+                          <DatePicker label="Select Date" sx={{ backgroundColor: "white" }} className="" />
+                        </DemoContainer>
+                      </LocalizationProvider>
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={12} sm={12} md={12} lg={12}>
+                      <TextField id="working-hours" name="working-hours" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={12} sm={12} md={12} lg={12}>
+                      <TextField id="working-days" name="working-days" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={12} sm={12} md={12}>
+                      <TextField id="qualifications" name="qualifications" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={12} sm={12} md={12}>
+                      <TextField id="company-name" name="Company-name" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={12} sm={12} md={12}>
+                      <TextField id="remarks-input" name="remarks-input" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+                    </Grid>
+                  </TableCell>
+                  <TableCell className="">
+                    <Grid item xs={1} sm={0.1} md={1} lg={1} sx={{ mt: -1.3, ml: { xs: 0, sm: 0, md: 0, lg: 1 } }}>
+                      <IconButton aria-label="delete" size="small">
+                        <RemoveCircleOutlineIcon />
+                      </IconButton>
+                    </Grid>
+                  </TableCell>
+                </TableRow>
 
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4">
-          <Grid item xs={1} sm={1.3} md={1} lg={2} sx={{ ml: { xs: 4, sm: 3, md: 4, lg: 12 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              年月
-            </Typography>
-          </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={2} sx={{ ml: { xs: 7, sm: 2.5, md: 4, lg: -2 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              勤務時間
-            </Typography>
-          </Grid>
-          <Grid item xs={2} sm={1.5} md={2} lg={2} sx={{ ml: { xs: -2, sm: 1, md: 4, lg: -7 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              1か月の勤務日
-            </Typography>
-          </Grid>
-          <Grid item xs={2} sm={1} md={0.5} lg={2} sx={{ ml: { xs: 0, sm: 4, md: -1, lg: -1 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              資格
-            </Typography>
-          </Grid>
-          <Grid item xs={2} sm={2} md={1.5} lg={2} sx={{ ml: { xs: -5, sm: 3, md: 6, lg: -9 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              法人・施設名
-            </Typography>
-          </Grid>
-          <Grid item xs={2} sm={1} md={1.5} lg={2} sx={{ ml: { xs: -1, sm: -1, md: 2, lg: -5 } }}>
-            <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              備　考
-            </Typography>
-          </Grid>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+      </Grid>
+      {/* end table excretion */}
+
+      {/* Start Grid Button + */}
+      <Grid container spacing={1} justifyContent='start' alignItems='center'>
+        <Grid item sx={{ mt: 1, mb: 2 }}>
+          <Button variant="contained" size="small" sx={{ width: 90, mt: 0.3, backgroundColor: "#99CCFF", color: "black" }}>+ 追加</Button>
         </Grid>
-        {/* End Grid */}
+      </Grid>
+      {/* End Grid Button + */}
 
-      </Box>
-      {/* End Box 2 */}
-
-      {/* Start Box 3 */}
-      <Box sx={{ border: '2px solid grey', width: { xs: 690, sm: 790, md: 900, lg: "100%" }, mt: 3, pb: 2, ml: { xs: 0, sm: 0, md: 0, lg: -1.5 } }}>
-
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
-
-          <Grid xs={2.5} sm={2} md={2} lg={2.5} className="scale-75" sx={{ ml: { xs: 0, sm: -0.5, md: -1, lg: 5 }, mt: -1.5 }}>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DatePicker']}>
-                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} />
-              </DemoContainer>
-            </LocalizationProvider>
-          </Grid>
-          
-
-          <Grid item xs={1.7} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -2, sm: -2, md: -2, lg: -3.5 }, mt: -1.5 }}>
-            <TextField id="working-hours" name="working-hours" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
-          </Grid>
-
-          <Grid item xs={2} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -0.5, sm: 0, md: 0, lg: 0 }, mt: -1.5 }}>
-            <TextField id="working-days" name="working-days" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
-          </Grid>
-
-          <Grid item xs={1.7} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -0.5, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
-            <TextField id="qualifications" name="qualifications" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
-          </Grid>
-
-          <Grid item xs={1.7} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -0.5, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
-            <TextField id="Company-name" name="Company-name" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
-          </Grid>
-
-          <Grid item xs={1.7} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -0.5, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
-            <TextField id="remarks-input" name="remarks-input" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
-          </Grid>
-
-          <Grid item xs={1} sm={0.1} md={1} lg={1} sx={{ mt: -1.3, ml: { xs: 0, sm: 0, md: 0, lg: 1 } }}>
-            <IconButton aria-label="delete" size="small">
-              <RemoveCircleOutlineIcon />
-            </IconButton>
-          </Grid>
-
-        </Grid>
-        {/* End Grid */}
-
-        {/* Start Grid Button + */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center'>
-          <Grid item sx={{ ml: { xs: 1, sm: 1, md: 1, lg: 1 }, mt: 1, mb: 2 }}>
-            <Button variant="contained" size="small" sx={{ width: 90, mt: 0.3, backgroundColor: "#99CCFF", color: "black" }}>+ 追加</Button>
-          </Grid>
-        </Grid>
-        {/* End Grid Button + */}
-      </Box>
-      {/* End Box 3 */}
 
 
     </>
