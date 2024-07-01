@@ -317,7 +317,7 @@ export default function TeachPart() {
               1か月の勤務日
             </Typography>
           </Grid>
-          <Grid item xs={1} sm={1} md={0.5} lg={2} sx={{ ml: { xs: 4, sm: 4, md: -3, lg: -6 } }}>
+          <Grid item xs={1} sm={1} md={0.5} lg={2} sx={{ ml: { xs: 4, sm: 4, md: -3, lg: -5 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               資格
             </Typography>
@@ -520,12 +520,13 @@ export default function TeachPart() {
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
+          
 
-          <Grid item xs={1.7} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -2.5, sm: -2, md: -2, lg: -3.5 }, mt: -1.5 }}>
+          <Grid item xs={1.7} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -2, sm: -2, md: -2, lg: -3.5 }, mt: -1.5 }}>
             <TextField id="working-hours" name="working-hours" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
 
-          <Grid item xs={2} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: 0, sm: 0, md: 0, lg: 0 }, mt: -1.5 }}>
+          <Grid item xs={2} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -0.5, sm: 0, md: 0, lg: 0 }, mt: -1.5 }}>
             <TextField id="working-days" name="working-days" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
 
