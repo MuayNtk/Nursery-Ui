@@ -43,6 +43,8 @@ import WeeklyplanAddPages from "../pages/report/weeklyplan/WeeklyplanAddPages";
 import ActivityListPages from "../pages/accounting/activity/ActivityListPages";
 import ActivityAddPage from "../pages/accounting/activity/ActivityAddPage";
 import SupportFundAddPages from "../pages/accounting/supportfund/SupportFundAddPages";
+import ChargePages from "../pages/accounting/charge/ChargePages";
+import SupportFundListPages from "../pages/accounting/supportfund/SupportFundListPages";
 
 const Router = createBrowserRouter([
   {
@@ -94,8 +96,16 @@ const Router = createBrowserRouter([
         element: <ActivityAddPage />
       },
       {
+        path: "/accounting/supportfund",
+        element: <SupportFundListPages />
+      },
+      {
         path: "/accounting/supportfund/add",
         element: <SupportFundAddPages />
+      },
+      {
+        path: "/accounting/charge",
+        element: <ChargePages />
       },
       {
         path: "/report",
