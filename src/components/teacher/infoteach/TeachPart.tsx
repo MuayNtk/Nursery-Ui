@@ -293,41 +293,41 @@ export default function TeachPart() {
       {/* End 現施設での勤務履歴 Grid */}
 
       {/* Start Box */}
-      <Box sx={{ backgroundColor: '#DCDCDC', width: { xs: 500, sm: 800, md: 910, lg: "100%" }, mt: 3, pb: 2, ml: { xs: 0, sm: 0, md: 0, lg: -1.5 } }}>
+      <Box sx={{ backgroundColor: '#DCDCDC', width: { xs: 700, sm: 800, md: 910, lg: "100%" }, mt: 3, pb: 2, ml: { xs: 0, sm: 0, md: 0, lg: -1.5 } }}>
 
         {/* Start Grid */}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4">
-          <Grid item xs={2} sm={1.3} md={1} lg={2} sx={{ ml: { xs: 4, sm: 3, md: 4, lg: 12 } }}>
+          <Grid item xs={1} sm={1.3} md={1} lg={2} sx={{ ml: { xs: 4, sm: 3, md: 4, lg: 12 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               年月
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1} md={0.7} lg={2} sx={{ ml: { xs: 4, sm: 1, md: 4, lg: -2 } }}>
+          <Grid item xs={1} sm={1} md={1} lg={2} sx={{ ml: { xs: 3, sm: 1, md: 7, lg: -2 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               年月
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1} md={1} lg={2} sx={{ ml: { xs: 4, sm: 4, md: 4, lg: -12 } }}>
+          <Grid item xs={1.3} sm={1} md={1} lg={2} sx={{ ml: { xs: 3, sm: 4, md: 4, lg: -12 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               勤務時間
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={2} lg={2} sx={{ ml: { xs: 4, sm: 4, md: 4, lg: -10 } }}>
+          <Grid item xs={1.5} sm={1.5} md={2} lg={2} sx={{ ml: { xs: 2, sm: 4, md: 3, lg: -10 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               1か月の勤務日
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1} md={0.5} lg={2} sx={{ ml: { xs: 4, sm: 4, md: -3, lg: -6 } }}>
+          <Grid item xs={1} sm={1} md={0.5} lg={2} sx={{ ml: { xs: 4, sm: 4, md: -3, lg: -6 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               資格
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1} md={1.5} lg={2} sx={{ ml: { xs: 4, sm: 4, md: 9, lg: -10 } }}>
+          <Grid item xs={1.2} sm={1} md={1.5} lg={2} sx={{ ml: { xs: 0, sm: 2, md: 7, lg: -10 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               職種の内容
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={2} md={1.5} lg={2} sx={{ ml: { xs: 4, sm: 4, md: 0, lg: -6 } }}>
+          <Grid item xs={1.5} sm={2} md={1.5} lg={2} sx={{ ml: { xs: 2, sm: 4, md: 0, lg: -6 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               任免・発令者等
             </Typography>
@@ -339,25 +339,25 @@ export default function TeachPart() {
       {/* End Box */}
 
       {/* Start Box */}
-      <Box sx={{ border: '2px solid grey', width: { xs: 500, sm: 790, md: 900, lg: "100%" }, mt: 3, pb: 2, ml: { xs: 0, sm: 0, md: 0, lg: -1.5 } }}>
+      <Box sx={{ border: '2px solid grey', width: { xs: 690, sm: 790, md: 900, lg: "100%" }, mt: 3, pb: 2, ml: { xs: 0, sm: 0, md: 0, lg: -1.5 } }}>
 
         {/* Start Grid */}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4">
 
-          <Grid item xs={8} sm={2} md={2} lg={2.5} className="scale-75" sx={{ ml: { xs: -3.3, sm: -1, md: -1, lg: 5 }, mt: -1.5 }}>
+          <Grid item xs={2.5} sm={2} md={2} lg={2.5} className="scale-75" sx={{ ml: { xs: -1.5, sm: -1, md: -1, lg: 5 }, mt: -1.5 }}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
-                <DatePicker label="Start date" sx={{ backgroundColor: "white" }} />
+                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} />
               </DemoContainer>
             </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
-                <DatePicker label="Start date" sx={{ backgroundColor: "white" }} />
+                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} />
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
 
-          <Grid item xs={8} sm={1.5} md={1} lg={1} sx={{ ml: { xs: -3.3, sm: -2, md: -2, lg: -2.5 }, mt: -1.5 }}>
+          <Grid item xs={1.5} sm={1.5} md={1.5} lg={1} sx={{ ml: { xs: -2, sm: -2, md: -2, lg: -2.5 }, mt: -1.5 }}>
             <FormControl size="small" fullWidth>
               <Select
                 labelId="date-label"
@@ -375,7 +375,7 @@ export default function TeachPart() {
             </FormControl>
           </Grid>
 
-          <Grid item xs={8} sm={1.5} md={1.5} lg={1.1} sx={{ ml: { xs: -3.3, sm: -0.5, md: 0, lg: 1 }, mt: -1.5 }}>
+          <Grid item xs={1.5} sm={1.5} md={1.5} lg={1.1} sx={{ ml: { xs: -0.5, sm: -0.5, md: 0, lg: 1 }, mt: -1.5 }}>
             <FormControl size="small" fullWidth>
               <Select
                 labelId="workinghouse-label"
@@ -393,7 +393,7 @@ export default function TeachPart() {
             </FormControl>
           </Grid>
 
-          <Grid item xs={8} sm={1.7} md={1.5} lg={1.3} sx={{ ml: { xs: -3.3, sm: -0.5, md: 0, lg: 1.3 }, mt: -1.5 }}>
+          <Grid item xs={1.5} sm={1.7} md={1.5} lg={1.3} sx={{ ml: { xs: -0.5, sm: -0.5, md: 0, lg: 1.3 }, mt: -1.5 }}>
             <FormControl size="small" fullWidth>
               <Select
                 labelId="workingdayspermonth-label"
@@ -411,7 +411,7 @@ export default function TeachPart() {
             </FormControl>
           </Grid>
 
-          <Grid item xs={8} sm={1.5} md={1.5} lg={1} sx={{ ml: { xs: -3.3, sm: -0.5, md: 0, lg: 1 }, mt: -1.5 }}>
+          <Grid item xs={1.5} sm={1.5} md={1.5} lg={1} sx={{ ml: { xs: 0, sm: -0.5, md: 0, lg: 1 }, mt: -1.5 }}>
             <FormControl size="small" fullWidth>
               <Select
                 labelId="workingdayspermonth-label"
@@ -429,12 +429,12 @@ export default function TeachPart() {
             </FormControl>
           </Grid>
 
-          <Grid item xs={6} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -3.3, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
-            <TextField id="furigana" name="furigana" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+          <Grid item xs={1.5} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: 0, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
+            <TextField id="job-description" name="job-description" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
 
-          <Grid item xs={6} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -3.3, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
-            <TextField id="furigana" name="furigana" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+          <Grid item xs={1.5} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: 0, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
+            <TextField id="appointments-and-dismissals" name="appointments-and-dismissals" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
 
           <Grid item xs={1} sm={0.1} md={1} lg={1} sx={{ mt: -1.3, ml: { xs: 0, sm: 0, md: 0, lg: 1 } }}>
@@ -448,7 +448,7 @@ export default function TeachPart() {
 
         {/* Start Grid Button + */}
         <Grid container spacing={1} justifyContent='start' alignItems='center'>
-          <Grid item sx={{ ml: { xs: 0, sm: 1, md: 1, lg: 1 }, mt: 1, mb: 2 }}>
+          <Grid item sx={{ ml: { xs: 1, sm: 1, md: 1, lg: 1 }, mt: 1, mb: 2 }}>
             <Button variant="contained" size="small" sx={{ width: 90, mt: 0.3, backgroundColor: "#99CCFF", color: "black" }}>+ 追加</Button>
           </Grid>
         </Grid>
@@ -467,38 +467,38 @@ export default function TeachPart() {
       {/* End その他の勤務履歴 Grid */}
 
       {/* Start Box 2 */}
-      <Box sx={{ backgroundColor: '#DCDCDC', width: { xs: 500, sm: 800, md: 910, lg: "100%" }, mt: 3, pb: 2, ml: { xs: 0, sm: 0, md: 0, lg: -1.5 } }}>
+      <Box sx={{ backgroundColor: '#DCDCDC', width: { xs: 700, sm: 800, md: 910, lg: "100%" }, mt: 3, pb: 2, ml: { xs: 0, sm: 0, md: 0, lg: -1.5 } }}>
 
         {/* Start Grid */}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4">
-          <Grid item xs={2} sm={1.3} md={1} lg={2} sx={{ ml: { xs: 4, sm: 3, md: 4, lg: 12 } }}>
+          <Grid item xs={1} sm={1.3} md={1} lg={2} sx={{ ml: { xs: 4, sm: 3, md: 4, lg: 12 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               年月
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1} md={0.7} lg={2} sx={{ ml: { xs: 4, sm: 1, md: 4, lg: -2 } }}>
+          <Grid item xs={2} sm={1.5} md={1} lg={2} sx={{ ml: { xs: 7, sm: 2.5, md: 4, lg: -2 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               勤務時間
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={2} lg={2} sx={{ ml: { xs: 4, sm: 4, md: 4, lg: -10 } }}>
+          <Grid item xs={2} sm={1.5} md={2} lg={2} sx={{ ml: { xs: -2, sm: 1, md: 4, lg: -7 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               1か月の勤務日
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1} md={0.5} lg={2} sx={{ ml: { xs: 4, sm: 4, md: -3, lg: -6 } }}>
+          <Grid item xs={2} sm={1} md={0.5} lg={2} sx={{ ml: { xs: 0, sm: 4, md: -1, lg: -1 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               資格
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1} md={1.5} lg={2} sx={{ ml: { xs: 4, sm: 4, md: 9, lg: -10 } }}>
+          <Grid item xs={2} sm={2} md={1.5} lg={2} sx={{ ml: { xs: -5, sm: 3, md: 6, lg: -9 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
               法人・施設名
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={2} md={1.5} lg={2} sx={{ ml: { xs: 4, sm: 4, md: 0, lg: -6 } }}>
+          <Grid item xs={2} sm={1} md={1.5} lg={2} sx={{ ml: { xs: -1, sm: -1, md: 2, lg: -5 } }}>
             <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 12, lg: 16, } }} >
-              備考
+              備　考
             </Typography>
           </Grid>
         </Grid>
@@ -508,37 +508,37 @@ export default function TeachPart() {
       {/* End Box 2 */}
 
       {/* Start Box 3 */}
-      <Box sx={{ border: '2px solid grey', width: { xs: 500, sm: 790, md: 900, lg: "100%" }, mt: 3, pb: 2, ml: { xs: 0, sm: 0, md: 0, lg: -1.5 } }}>
+      <Box sx={{ border: '2px solid grey', width: { xs: 690, sm: 790, md: 900, lg: "100%" }, mt: 3, pb: 2, ml: { xs: 0, sm: 0, md: 0, lg: -1.5 } }}>
 
         {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4">
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
 
-          <Grid item xs={8} sm={2} md={2} lg={2.5} className="scale-75" sx={{ ml: { xs: -3.3, sm: -1, md: -1, lg: 5 }, mt: -1.5 }}>
+          <Grid xs={2.5} sm={2} md={2} lg={2.5} className="scale-75" sx={{ ml: { xs: 0, sm: -0.5, md: -1, lg: 5 }, mt: -1.5 }}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
-                <DatePicker label="Start date" sx={{ backgroundColor: "white" }} />
+                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} />
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
 
-          <Grid item xs={6} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -3.3, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
-            <TextField id="furigana" name="furigana" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+          <Grid item xs={1.7} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -2.5, sm: -2, md: -2, lg: -3.5 }, mt: -1.5 }}>
+            <TextField id="working-hours" name="working-hours" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
 
-          <Grid item xs={6} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -3.3, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
-            <TextField id="furigana" name="furigana" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+          <Grid item xs={2} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: 0, sm: 0, md: 0, lg: 0 }, mt: -1.5 }}>
+            <TextField id="working-days" name="working-days" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
 
-          <Grid item xs={6} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -3.3, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
-            <TextField id="furigana" name="furigana" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+          <Grid item xs={1.7} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -0.5, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
+            <TextField id="qualifications" name="qualifications" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
 
-          <Grid item xs={6} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -3.3, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
-            <TextField id="furigana" name="furigana" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+          <Grid item xs={1.7} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -0.5, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
+            <TextField id="Company-name" name="Company-name" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
 
-          <Grid item xs={6} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -3.3, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
-            <TextField id="furigana" name="furigana" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+          <Grid item xs={1.7} sm={1.7} md={1.5} lg={1.5} sx={{ ml: { xs: -0.5, sm: 0, md: 0, lg: 1 }, mt: -1.5 }}>
+            <TextField id="remarks-input" name="remarks-input" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
 
           <Grid item xs={1} sm={0.1} md={1} lg={1} sx={{ mt: -1.3, ml: { xs: 0, sm: 0, md: 0, lg: 1 } }}>
@@ -552,7 +552,7 @@ export default function TeachPart() {
 
         {/* Start Grid Button + */}
         <Grid container spacing={1} justifyContent='start' alignItems='center'>
-          <Grid item sx={{ ml: { xs: 0, sm: 1, md: 1, lg: 1 }, mt: 1, mb: 2 }}>
+          <Grid item sx={{ ml: { xs: 1, sm: 1, md: 1, lg: 1 }, mt: 1, mb: 2 }}>
             <Button variant="contained" size="small" sx={{ width: 90, mt: 0.3, backgroundColor: "#99CCFF", color: "black" }}>+ 追加</Button>
           </Grid>
         </Grid>
