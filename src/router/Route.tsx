@@ -49,6 +49,12 @@ import EnhancementPages from "../pages/accounting/enhancement/EnhancementPages";
 import EnhancementAddPages from "../pages/accounting/enhancement/EnhancementAddPages";
 import LunchSubsidyGrantPages from "../pages/accounting/lunch/LunchSubsidyGrantPages";
 import LunchAddPages from "../pages/accounting/lunch/LunchAddPages";
+import AppropriationPages from "../pages/accounting/appropriation/AppropriationPages";
+import AdditionalPages from "../pages/accounting/appropriation/AdditionalPages";
+import AdditionalAddPages from "../pages/accounting/appropriation/AdditionalAddPages";
+import ProvisionalAddPages from "../pages/accounting/appropriation/ProvisionalAddPages";
+import ProvisionalPages from "../pages/accounting/appropriation/ProvisionalPages";
+
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
 const Router = createBrowserRouter([
@@ -119,6 +125,26 @@ const Router = createBrowserRouter([
       {
         path: "/accounting/enhancement/add",
         element: <EnhancementAddPages />
+      },
+      {
+        path: "/accounting/appropriation",
+        element: <AppropriationPages />
+      },
+      {
+        path: "/accounting/appropriation/additional",
+        element: <AdditionalPages />
+      },
+      {
+        path: "/accounting/appropriation/additional/add",
+        element: <AdditionalAddPages />
+      },
+      {
+        path: "/accounting/appropriation/provisional",
+        element: <ProvisionalPages />
+      },
+      {
+        path: "/accounting/appropriation/provisional/add",
+        element: <ProvisionalAddPages />
       },
       {
         path: "/accounting/lunch",
