@@ -13,7 +13,7 @@ export default function Appropriation() {
           </Link>
         </Grid>
         <Grid item xs={6} sm={4} md={3}  className='pt-5 text-left'>
-          <Link href="/accounting/appropriation/provisiona"  underline="hover">
+          <Link href="/accounting/appropriation/provisional"  underline="hover">
               <Typography component="div" >
               【いちざき】R5_加算適用申請書（保育所）
               </Typography>

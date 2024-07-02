@@ -1,7 +1,7 @@
 import AppropriationProvisional from "../../../components/accounting/appropriation/AppropriationProvisional";
 
 
-export default function ProvisionaPages() {
+export default function ProvisionalPages() {
   return <AppropriationProvisional />;
 }
 

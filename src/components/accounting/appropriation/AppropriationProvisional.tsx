@@ -175,7 +175,7 @@ export default function AppropriationProvisional() {
       </Grid>
       <Grid container className='pt-7' justifyContent="right">
         <Grid>
-          <Button variant="contained" href="/accounting/enhancement/add" size='small' startIcon={<AddIcon />}>
+          <Button variant="contained" href="/accounting/appropriation/provisional/add" size='small' startIcon={<AddIcon />}>
             <Typography style={{ color: 'white' }}>
               ADD
             </Typography>       
