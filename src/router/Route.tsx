@@ -45,6 +45,11 @@ import ActivityAddPage from "../pages/accounting/activity/ActivityAddPage";
 import SupportFundAddPages from "../pages/accounting/supportfund/SupportFundAddPages";
 import ChargePages from "../pages/accounting/charge/ChargePages";
 import SupportFundListPages from "../pages/accounting/supportfund/SupportFundListPages";
+import EnhancementPages from "../pages/accounting/enhancement/EnhancementPages";
+import EnhancementAddPages from "../pages/accounting/enhancement/EnhancementAddPages";
+import LunchSubsidyGrantPages from "../pages/accounting/lunch/LunchSubsidyGrantPages";
+import LunchAddPages from "../pages/accounting/lunch/LunchAddPages";
+// import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
 const Router = createBrowserRouter([
   {
@@ -80,7 +85,7 @@ const Router = createBrowserRouter([
         element: <ListLeavePages />
       },
       {
-        path: "/accounting/listacc",
+        path: "/accounting",
         element: <ListMenuAccPages />
       },
       {
@@ -106,6 +111,22 @@ const Router = createBrowserRouter([
       {
         path: "/accounting/charge",
         element: <ChargePages />
+      },
+      {
+        path: "/accounting/enhancement",
+        element: <EnhancementPages />
+      },
+      {
+        path: "/accounting/enhancement/add",
+        element: <EnhancementAddPages />
+      },
+      {
+        path: "/accounting/lunch",
+        element: <LunchSubsidyGrantPages />
+      },
+      {
+        path: "/accounting/lunch/add",
+        element: <LunchAddPages />
       },
       {
         path: "/report",
