@@ -8,6 +8,9 @@ import Applicationtable from "../supportfund/componentTable/Applicationtable"
 import Bankacctable from "../supportfund/componentTable/Bankacctable"
 import Highpressure from "../supportfund/componentTable/Highpressure"
 import Gastable from "../supportfund/componentTable/Gastable"
+import Typetable from "../supportfund/componentTable/Typetable"
+import Type2table from "../supportfund/componentTable/Type2table"
+import Type3table from "../supportfund/componentTable/Type3table"
 
 
 export default function SupportFundAdd() {
@@ -24,7 +27,7 @@ export default function SupportFundAdd() {
             </Typography>
           </Grid>
           <Grid item xs={6} sm={5} md={4} lg={2} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', marginLeft: { xs: -1, sm: -1, md: -8, lg: -45 } }} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', marginLeft: { xs: -18, sm: -15, md: -25, lg: -45 } }} >
               566
             </Typography>
           </Grid>
@@ -85,7 +88,7 @@ export default function SupportFundAdd() {
 
         {/* Start 日時 Grid */}
         <Grid container spacing={2} className='pt-5'>
-          <Grid item xs={4} sm={3} md={3} lg={3} >
+          <Grid item xs={12} sm={12} md={12} lg={3} >
             <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-start'>
               (あて先)福岡市長
             </Typography>
@@ -94,7 +97,7 @@ export default function SupportFundAdd() {
         {/* End 日時 Grid */}
         {/* Start 日時 Grid */}
         <Grid container spacing={2} className=''>
-          <Grid item xs={4} sm={3} md={3} lg={12} >
+          <Grid item xs={12} sm={12} md={12} lg={12} >
             <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-start'>
               誓約・同意事項に誓約・同意の上、申請します。
             </Typography>
@@ -179,6 +182,21 @@ export default function SupportFundAdd() {
          {/* start table excretion */}
          <Grid item xs={12} sm={12} md={12} lg={12} className='pt-10 ml-20' >
           <Gastable />
+        </Grid>
+        {/* end table excretion */}
+         {/* start table excretion */}
+         <Grid item xs={12} sm={12} md={12} lg={12} className='pt-10 ml-20' >
+          <Typetable />
+        </Grid>
+        {/* end table excretion */}
+         {/* start table excretion */}
+         <Grid item xs={12} sm={12} md={12} lg={12} className='pt-10 ml-20' >
+          <Type2table />
+        </Grid>
+        {/* end table excretion */}
+         {/* start table excretion */}
+         <Grid item xs={12} sm={12} md={12} lg={12} className='pt-10 ml-20' >
+          <Type3table />
         </Grid>
         {/* end table excretion */}
 
