@@ -49,6 +49,20 @@ import EnhancementPages from "../pages/accounting/enhancement/EnhancementPages";
 import EnhancementAddPages from "../pages/accounting/enhancement/EnhancementAddPages";
 import LunchSubsidyGrantPages from "../pages/accounting/lunch/LunchSubsidyGrantPages";
 import LunchAddPages from "../pages/accounting/lunch/LunchAddPages";
+import AppropriationPages from "../pages/accounting/appropriation/AppropriationPages";
+import AdditionalPages from "../pages/accounting/appropriation/AdditionalPages";
+import AdditionalAddPages from "../pages/accounting/appropriation/AdditionalAddPages";
+import ProvisionalAddPages from "../pages/accounting/appropriation/ProvisionalAddPages";
+import ProvisionalPages from "../pages/accounting/appropriation/ProvisionalPages";
+import TreatmentPages from "../pages/accounting/treatment/TreatmentPages";
+import CareerTrainingPages from "../pages/accounting/treatment/CareerTrainingPages";
+import TreatmentPlanPages from "../pages/accounting/treatment/TreatmentPlanPage";
+import RateApplicationPages from "../pages/accounting/treatment/RateApplicationPage";
+import RequestBenefitsPages from "../pages/accounting/treatment/RequestBenefitsPages";
+import EligiblePersonsPages from "../pages/accounting/treatment/EligiblePersonsPages";
+import CareerTrainingAddPages from "../pages/accounting/treatment/CareerTrainingAddPages";
+import TreatmentPlanAddPages from "../pages/accounting/treatment/TreatmentPlanAddPages";
+
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
 const Router = createBrowserRouter([
@@ -119,6 +133,58 @@ const Router = createBrowserRouter([
       {
         path: "/accounting/enhancement/add",
         element: <EnhancementAddPages />
+      },
+      {
+        path: "/accounting/treatment",
+        element: <TreatmentPages />
+      },
+      {
+        path: "/accounting/careertraining",
+        element: <CareerTrainingPages />
+      },
+      {
+        path: "/accounting/careertraining/add",
+        element: <CareerTrainingAddPages />
+      },
+      {
+        path: "/accounting/treatmentplan",
+        element: <TreatmentPlanPages />
+      },
+      {
+        path: "/accounting/treatmentplan/add",
+        element: <TreatmentPlanAddPages />
+      },
+      {
+        path: "/accounting/rateapplication",
+        element: <RateApplicationPages />
+      },
+      {
+        path: "/accounting/requestbenefits",
+        element: <RequestBenefitsPages />
+      },
+      {
+        path: "/accounting/eligiblepersons",
+        element: <EligiblePersonsPages />
+      },
+      {
+        path: "/accounting/appropriation",
+        element: <AppropriationPages />
+      },
+      {
+        path: "/accounting/appropriation/additional",
+        element: <AdditionalPages />
+      },
+      {
+        path: "/accounting/appropriation/additional/add",
+        element: <AdditionalAddPages />
+      },
+      {
+        path: "/accounting/appropriation/provisional",
+        element: <ProvisionalPages />
+      },
+      {
+        path: "/accounting/appropriation/provisional/add",
+        element: <ProvisionalAddPages />
       },
       {
         path: "/accounting/lunch",
