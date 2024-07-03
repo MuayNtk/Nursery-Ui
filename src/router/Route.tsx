@@ -30,7 +30,7 @@ import ProgressdOnePages from "../pages/student/studentprogressd/ProgressdOnePag
 import InformationPages from "../pages/setting/informationPages";
 import AnnualplanPages from "../pages/report/AnnualplanPages";
 import MonthlyplanPages from "../pages/report/monthlyplan/MonthlyplanPages";
-import WeeklyplanPages from "../pages/report/WeeklyplanPages";
+import WeeklyplanPages from "../pages/report/weeklyplan/WeeklyplanPages";
 import CareDiaryPages from "../pages/report/CareDiaryPages";
 import DaycareRecordPages from "../pages/student/studentdaycarerecord/DaycareRecordPages";
 import OverallPlanAddPages from "../pages/report/OverallPlanAddPages";
@@ -38,6 +38,32 @@ import AnnualplanAddPages from "../pages/report/AnnualplanAddPages";
 import CareDiaryAddPages from "../pages/report/CareDiaryAddPages";
 import AddPerfPages from "../pages/accounting/addperf/AddPerfPages";
 import MonthlyplanAddPages from "../pages/report/monthlyplan/MonthlyplanAddPages";
+import InfoTeachAddPages from "../pages/teacher/infoteach/InfoTeachddPages";
+import WeeklyplanAddPages from "../pages/report/weeklyplan/WeeklyplanAddPages";
+import ActivityListPages from "../pages/accounting/activity/ActivityListPages";
+import ActivityAddPage from "../pages/accounting/activity/ActivityAddPage";
+import SupportFundAddPages from "../pages/accounting/supportfund/SupportFundAddPages";
+import ChargePages from "../pages/accounting/charge/ChargePages";
+import SupportFundListPages from "../pages/accounting/supportfund/SupportFundListPages";
+import EnhancementPages from "../pages/accounting/enhancement/EnhancementPages";
+import EnhancementAddPages from "../pages/accounting/enhancement/EnhancementAddPages";
+import LunchSubsidyGrantPages from "../pages/accounting/lunch/LunchSubsidyGrantPages";
+import LunchAddPages from "../pages/accounting/lunch/LunchAddPages";
+import AppropriationPages from "../pages/accounting/appropriation/AppropriationPages";
+import AdditionalPages from "../pages/accounting/appropriation/AdditionalPages";
+import AdditionalAddPages from "../pages/accounting/appropriation/AdditionalAddPages";
+import ProvisionalAddPages from "../pages/accounting/appropriation/ProvisionalAddPages";
+import ProvisionalPages from "../pages/accounting/appropriation/ProvisionalPages";
+import TreatmentPages from "../pages/accounting/treatment/TreatmentPages";
+import CareerTrainingPages from "../pages/accounting/treatment/CareerTrainingPages";
+import TreatmentPlanPages from "../pages/accounting/treatment/TreatmentPlanPage";
+import RateApplicationPages from "../pages/accounting/treatment/RateApplicationPage";
+import RequestBenefitsPages from "../pages/accounting/treatment/RequestBenefitsPages";
+import EligiblePersonsPages from "../pages/accounting/treatment/EligiblePersonsPages";
+import CareerTrainingAddPages from "../pages/accounting/treatment/CareerTrainingAddPages";
+import TreatmentPlanAddPages from "../pages/accounting/treatment/TreatmentPlanAddPages";
+
+// import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
 const Router = createBrowserRouter([
   {
@@ -73,12 +99,100 @@ const Router = createBrowserRouter([
         element: <ListLeavePages />
       },
       {
-        path: "/accounting/listacc",
+        path: "/accounting",
         element: <ListMenuAccPages />
       },
       {
         path: "/accounting/addperf",
         element: <AddPerfPages />
+      },
+      {
+        path: "/accounting/activity",
+        element: <ActivityListPages />
+      },
+      {
+        path: "/accounting/activity/add",
+        element: <ActivityAddPage />
+      },
+      {
+        path: "/accounting/supportfund",
+        element: <SupportFundListPages />
+      },
+      {
+        path: "/accounting/supportfund/add",
+        element: <SupportFundAddPages />
+      },
+      {
+        path: "/accounting/charge",
+        element: <ChargePages />
+      },
+      {
+        path: "/accounting/enhancement",
+        element: <EnhancementPages />
+      },
+      {
+        path: "/accounting/enhancement/add",
+        element: <EnhancementAddPages />
+      },
+      {
+        path: "/accounting/treatment",
+        element: <TreatmentPages />
+      },
+      {
+        path: "/accounting/careertraining",
+        element: <CareerTrainingPages />
+      },
+      {
+        path: "/accounting/careertraining/add",
+        element: <CareerTrainingAddPages />
+      },
+      {
+        path: "/accounting/treatmentplan",
+        element: <TreatmentPlanPages />
+      },
+      {
+        path: "/accounting/treatmentplan/add",
+        element: <TreatmentPlanAddPages />
+      },
+      {
+        path: "/accounting/rateapplication",
+        element: <RateApplicationPages />
+      },
+      {
+        path: "/accounting/requestbenefits",
+        element: <RequestBenefitsPages />
+      },
+      {
+        path: "/accounting/eligiblepersons",
+        element: <EligiblePersonsPages />
+      },
+      {
+        path: "/accounting/appropriation",
+        element: <AppropriationPages />
+      },
+      {
+        path: "/accounting/appropriation/additional",
+        element: <AdditionalPages />
+      },
+      {
+        path: "/accounting/appropriation/additional/add",
+        element: <AdditionalAddPages />
+      },
+      {
+        path: "/accounting/appropriation/provisional",
+        element: <ProvisionalPages />
+      },
+      {
+        path: "/accounting/appropriation/provisional/add",
+        element: <ProvisionalAddPages />
+      },
+      {
+        path: "/accounting/lunch",
+        element: <LunchSubsidyGrantPages />
+      },
+      {
+        path: "/accounting/lunch/add",
+        element: <LunchAddPages />
       },
       {
         path: "/report",
@@ -119,6 +233,10 @@ const Router = createBrowserRouter([
       {
         path: "/report/weeklyplan",
         element: <WeeklyplanPages />
+      },
+      {
+        path: "/report/weeklyplan/add",
+        element: <WeeklyplanAddPages />
       },
       {
         path: "/report/carediary",
@@ -187,6 +305,10 @@ const Router = createBrowserRouter([
       {
         path: "/infoteach",
         element: <InfoTeachListPages />
+      },
+      {
+        path: "/infoteach/add",
+        element: <InfoTeachAddPages />
       },
       {
         path: "/infostaff",

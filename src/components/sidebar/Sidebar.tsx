@@ -175,10 +175,10 @@ export default function Sidebar(props: Props) {
                 </ListItem>
             </Link>
 
-            <Link to={'/accounting/listacc'}>
+            <Link to={'/accounting'}>
                 <ListItem
                     disablePadding
-                    className={`text-white rounded-lg mt-2 mb-2 pl-4 group ${highlightedItem === '/accounting/listacc' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                    className={`text-white rounded-lg mt-2 mb-2 pl-4 group ${highlightedItem === '/accounting' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
                         }`}
                 >
                     <ListItemButton>
