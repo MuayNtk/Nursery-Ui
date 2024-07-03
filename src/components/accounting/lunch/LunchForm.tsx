@@ -3,6 +3,7 @@ import YearForm from "../../componentsform/YearForm";
 import MonthForm from "../../componentsform/MonthForm";
 import DayForm from "../../componentsform/DayForm";
 
+
 export default function LunchForm() {
 
   return (
@@ -139,7 +140,7 @@ export default function LunchForm() {
           </Table>
         </TableContainer>
       </Grid>
-      {/* End Table 2 */}
+      {/* End Table 1 */}
 
       {/* Start 2 交付申額 Card */}
       <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 2 } }}>
@@ -236,50 +237,46 @@ export default function LunchForm() {
       </Grid>
       {/* End ※収入・支出の部の計は一致 Grid */}
 
-      {/* Start Table 1 */}
+      {/* Start Table 2 */}
       <Grid container className='pt-3' justifyContent="center">
-        <TableContainer component={Paper} className="mt-5" sx={{ width: { xs: 'auto', sm: 'auto', md: 'auto', lg: 900 } }}>
-          <Table sx={{ minWidth: 900 }} aria-label="simple table">
+        <TableContainer component={Paper} className="mt-5" sx={{ width: { xs: 'auto', sm: 'auto', md: 'auto', lg: 'auto' } }}>
+          <Table sx={{ minWidth: 750 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell style={{ width: 50, fontWeight: "bold" }}>区</TableCell>
-                <TableCell align="left" style={{ width: 400, fontWeight: "bold" }}>分</TableCell>
-                <TableCell align="right" style={{ fontWeight: "bold" }}>金　額</TableCell>
-                <TableCell align="center" style={{ width: 200, fontWeight: "bold" }}>說　明</TableCell>
+                <TableCell style={{ fontWeight: "bold" }} colSpan={2} align="left">区　　分</TableCell>
+                <TableCell style={{ fontWeight: "bold" }} align="center">金　額</TableCell>
+                <TableCell style={{ fontWeight: "bold" }} align="center">說　明</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               <TableRow>
-                <TableCell align="right"></TableCell>
+                <TableCell style={{ width: 50 }} rowSpan={3} align="left">收入の部</TableCell>
                 <TableCell align="left">福岡市補助金収入</TableCell>
                 <TableCell align="right">1,157,100円</TableCell>
-                <TableCell align="left"></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell align="right">收入の部</TableCell>
-                <TableCell align="left">自己資金</TableCell>
-                <TableCell align="right">0円</TableCell>
-                <TableCell align="left"></TableCell>
-              </TableRow>
-              <TableRow>
                 <TableCell align="right"></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="left">自　己　資　金</TableCell>
+                <TableCell align="right">0</TableCell>
+                <TableCell align="right"></TableCell>
+              </TableRow>
+              <TableRow>
                 <TableCell align="right">計</TableCell>
                 <TableCell align="right">1,157,100円</TableCell>
-                <TableCell align="left"></TableCell>
+                <TableCell align="right"></TableCell>
               </TableRow>
             </TableBody>
-              <TableRow>
-                <TableCell align="right">支出の部</TableCell>
-                <TableCell align="left">保育所等給食支援費補助金の対象事業に要する費用(物価上昇影響額相当)</TableCell>
-                <TableCell align="right">1,157,100円</TableCell>
-                <TableCell align="left"></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell align="right"></TableCell>
-                <TableCell align="right">計</TableCell>
-                <TableCell align="right">1,157,100円</TableCell>
-                <TableCell align="left"></TableCell>
-              </TableRow>
+            <TableRow>
+              <TableCell style={{ width: 50 }} rowSpan={2} align="left">收入の部</TableCell>
+              <TableCell style={{ width: 350 }} align="left">保育所等給食支援費補助金の対象事業に要する費用(物価上昇影響額相当)</TableCell>
+              <TableCell style={{ width: 200 }} align="right">1,157,100円</TableCell>
+              <TableCell style={{ width: 200 }} align="right"></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell align="right">計</TableCell>
+              <TableCell align="right">1,157,100円</TableCell>
+              <TableCell align="right"></TableCell>
+            </TableRow>
           </Table>
         </TableContainer>
       </Grid>
