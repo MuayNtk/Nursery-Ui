@@ -30,7 +30,7 @@ function Gastable() {
                 </Select>
             </FormControl>
         </Grid>
-        <Grid item xs={4} sm={3} md={2} lg={2} className='pt-2 ' >
+        <Grid item xs={4} sm={4} md={4} lg={4} className='pt-2 ' >
             <Typography
                 component="div"
                 sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
@@ -80,8 +80,8 @@ function Gastable() {
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                     </TableRow>
                     <TableRow hover role="checkbox" tabIndex={-1} >
                         <TableCell align="left">R3年度</TableCell>
@@ -98,26 +98,26 @@ function Gastable() {
                         <TableCell  align="right"></TableCell>
                         <TableCell  align="right"></TableCell>
                         <TableCell  align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                     </TableRow>
                     <TableRow hover role="checkbox" tabIndex={-1} >
                         <TableCell ></TableCell>
                         <TableCell align="left">单価(円/m3)</TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                     </TableRow>
                     <TableRow hover role="checkbox" tabIndex={-1} >
                         <TableCell ></TableCell>
@@ -134,8 +134,8 @@ function Gastable() {
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                     </TableRow>
                     <TableRow hover role="checkbox" tabIndex={-1} >
                         <TableCell align="left">R4年度</TableCell>
@@ -152,26 +152,26 @@ function Gastable() {
                         <TableCell  align="right"></TableCell>
                         <TableCell  align="right"></TableCell>
                         <TableCell  align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                     </TableRow>
                     <TableRow hover role="checkbox" tabIndex={-1} >
                         <TableCell ></TableCell>
                         <TableCell align="left">单価(円/m3)</TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                     </TableRow>
                     <TableRow hover role="checkbox" tabIndex={-1} >
                         <TableCell ></TableCell>
@@ -188,8 +188,8 @@ function Gastable() {
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                     </TableRow>
                     <TableRow hover role="checkbox" tabIndex={-1} >
                         <TableCell align="left">R5年度</TableCell>
@@ -206,14 +206,14 @@ function Gastable() {
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                     </TableRow>
                     <TableRow hover role="checkbox" tabIndex={-1} >
                         <TableCell ></TableCell>
                         <TableCell align="left">单価(円/m3)</TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
@@ -224,8 +224,8 @@ function Gastable() {
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                        <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                        <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                     </TableRow>
 
 
