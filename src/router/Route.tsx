@@ -42,7 +42,7 @@ import InfoTeachAddPages from "../pages/teacher/infoteach/InfoTeachddPages";
 import WeeklyplanAddPages from "../pages/report/weeklyplan/WeeklyplanAddPages";
 import ActivityListPages from "../pages/accounting/activity/ActivityListPages";
 import ActivityAddPage from "../pages/accounting/activity/ActivityAddPage";
-import SupportFundAddPages from "../pages/accounting/supportfund/SupportFundAddPages";
+// import SupportFundAddPages from "../pages/accounting/supportfund/SupportFundAddPages";
 import ChargePages from "../pages/accounting/charge/ChargePages";
 import SupportFundListPages from "../pages/accounting/supportfund/SupportFundListPages";
 import EnhancementPages from "../pages/accounting/enhancement/EnhancementPages";
@@ -62,6 +62,10 @@ import RequestBenefitsPages from "../pages/accounting/treatment/RequestBenefitsP
 import EligiblePersonsPages from "../pages/accounting/treatment/EligiblePersonsPages";
 import CareerTrainingAddPages from "../pages/accounting/treatment/CareerTrainingAddPages";
 import TreatmentPlanAddPages from "../pages/accounting/treatment/TreatmentPlanAddPages";
+import RateApplicationAddPages from "../pages/accounting/treatment/RateApplicationAddPages";
+import RequestBenefitsAddPages from "../pages/accounting/treatment/RequestBenefitsAddPages";
+import EligiblePersonsAddPages from "../pages/accounting/treatment/EligiblePersonsAddPases";
+import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
@@ -120,7 +124,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/accounting/supportfund/add",
-        element: <SupportFundAddPages />
+        element: <SupportFundTabPages />
       },
       {
         path: "/accounting/charge",
@@ -159,12 +163,24 @@ const Router = createBrowserRouter([
         element: <RateApplicationPages />
       },
       {
+        path: "/accounting/rateapplication/add",
+        element: <RateApplicationAddPages />
+      },
+      {
         path: "/accounting/requestbenefits",
         element: <RequestBenefitsPages />
       },
       {
+        path: "/accounting/requestbenefits/add",
+        element: <RequestBenefitsAddPages />
+      },
+      {
         path: "/accounting/eligiblepersons",
         element: <EligiblePersonsPages />
+      },
+      {
+        path: "/accounting/eligiblepersons/add",
+        element: <EligiblePersonsAddPages />
       },
       {
         path: "/accounting/appropriation",

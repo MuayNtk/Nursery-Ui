@@ -9,28 +9,14 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { styled } from '@mui/material';
-import WageImprovementOne from './WageImprovementOne';
-import WageAdjustmentsOne from './WageAdjustmentsOne';
-import ResultsEarningsListOne from './ResultsEarningsListOne';
-import WageImprovementTwo from './WageImprovementTwo';
-import ResultsEarningsListTwo from './ResultsEarningsListTwo';
-import DetailedStatement from './DetailedStatement';
-import ImprovementStaff from './ImprovementStaff';
-import WageImprovementThree from './WageImprovementThree';
-import WageAdjustmentsThree from './WageImprovementThree';
-import ResultsEarningsListThree from './ResultsEarningsListThree';
+import PassProf from './PassProf';
+import RateCertification from './RateCertification';
+
 
 const steps = [
-  '①【様式５】計画書Ⅰ',
-  '②【様式５別添１】賃金改善明細書',
-  '③【様式５別添２】一覧表',
-  '④【様式７】計画書Ⅱ',
-  '⑤【様式７別添１】内訳書',
-  '⑥【様式７別添２】一覧表',
-  '⑦ 処遇Ⅱ加算対象職員名簿',
-  '⑧【様式９】計画書Ⅲ',
-  '⑨【様式９別添１】賃金改善明細書（職員別）',
-  '⑩【様式９別添２】一覧表',
+  '1.【様式１】加算率認定（必須）',
+  '4.【様式２】ｷｬﾘｱﾊﾟｽ要件',
+
 ];
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
@@ -55,14 +41,14 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   },
 }));
 
-export default function TreatmentPlanAdd() {
+export default function RateApplicationAdd() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completedSteps, setCompletedSteps] = React.useState<number[]>([]);
   const navigate = useNavigate();
 
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
-      navigate('/accounting/treatmentplan');
+      navigate('/accounting/rateapplication');
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
       setCompletedSteps([...completedSteps, activeStep]);
@@ -89,26 +75,9 @@ export default function TreatmentPlanAdd() {
   const getStepContent = (step: number) => {
     switch (step) {
       case 0:
-        return <WageImprovementOne />;
+        return <RateCertification />;
       case 1:
-        return <WageAdjustmentsOne />;
-      case 2:
-        return <ResultsEarningsListOne />;
-      case 3:
-        return <WageImprovementTwo />;
-      case 4:
-        return <DetailedStatement />;
-      case 5:
-        return <ResultsEarningsListTwo />;
-      case 6:
-        return <ImprovementStaff />;
-      case 7:
-        return <WageImprovementThree />;
-      case 8:
-        return <WageAdjustmentsThree />;
-      case 9:
-        return <ResultsEarningsListThree />;
-
+        return <PassProf />;
       default:
         return 'Unknown step';
     }
