@@ -390,7 +390,7 @@ export default function InvoiceEnhancement() {
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={12} md={9} lg={7}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-start'>
-            連絡先電話番号:092-406-8215
+            連絡先電話番号 : 092-406-8215
           </Typography>
         </Grid>
       </Grid>
