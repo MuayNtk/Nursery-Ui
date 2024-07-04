@@ -5,7 +5,7 @@ function Typetable() {
     return (
         <div>
             <Grid container className='h-14' justifyContent="start" bgcolor={"#DEDEDE"}>
-                <Grid item xs={3} sm={2.5} md={1.5} lg={1} className='pt-2 ' >
+                <Grid item xs={3} sm={2.5} md={2} lg={2} className='pt-2 ' >
                     <Typography
                         component="div"
                         sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
@@ -13,13 +13,13 @@ function Typetable() {
                         電気料金:
                     </Typography>
                 </Grid>
-                <Grid item xs={4} sm={3} md={2} lg={1} className='pt-2 pl-2' >
+                <Grid item xs={4} sm={3} md={2} lg={1} className='pt-2 pl-2' sx={{  ml: { xs: 1, sm: 3, md: -5, lg: -10 }}}>
                     <FormControl size="small" fullWidth >
                         <InputLabel id="era-select-label"></InputLabel>
                         <Select
                             id="era-select"
                             labelId="era-select-label"
-                            sx={{ backgroundColor: "white" }}
+                            sx={{ backgroundColor: "white", }}
                         >
                             <MenuItem value="">
                                 <em>None</em>
@@ -47,7 +47,7 @@ function Typetable() {
                     <Table sx={{ minWidth: 500 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell style={{ width: 50, fontWeight: 'bold' }}></TableCell>
+                                <TableCell style={{ width: 80, fontWeight: 'bold' }}></TableCell>
                                 <TableCell style={{ width: 80, fontWeight: 'bold' }}>区分</TableCell>
                                 <TableCell style={{ width: 50, fontWeight: 'bold' }} align="center">7月</TableCell>
                                 <TableCell style={{ width: 50, fontWeight: 'bold' }} align="center">8月</TableCell>
@@ -66,7 +66,7 @@ function Typetable() {
                                 <TableCell align="right"></TableCell>
                                 <TableCell align="right"></TableCell>
                                 <TableCell align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                             </TableRow>
                             <TableRow hover role="checkbox" tabIndex={-1} >
                                 <TableCell align="left">R5年度</TableCell>
@@ -76,17 +76,17 @@ function Typetable() {
                                 <TableCell align="right"></TableCell>
                                 <TableCell align="right"></TableCell>
                                 <TableCell align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                             </TableRow>
                             <TableRow hover role="checkbox" tabIndex={-1} >
                                 <TableCell ></TableCell>
                                 <TableCell align="left">单価(円/kwh)</TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                             </TableRow>
 
 

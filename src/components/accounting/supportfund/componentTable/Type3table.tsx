@@ -31,7 +31,7 @@ function Type3table() {
                         </Select>
                     </FormControl>
                 </Grid>
-                <Grid item xs={4} sm={3} md={2} lg={2} className='pt-2 ' >
+                <Grid item xs={5} sm={5} md={3} lg={3} className='pt-2 ' >
                     <Typography
                         component="div"
                         sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
@@ -44,10 +44,10 @@ function Type3table() {
             </Grid>
             <Grid container className='' justifyContent="center">
                 <TableContainer component={Paper} className="mt-5" sx={{ width: { xs: 'auto', sm: 'auto', md: 'auto', lg: 2000 } }}>
-                    <Table sx={{ minWidth: 100 }} aria-label="simple table">
+                    <Table sx={{ minWidth: 500 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell style={{ width: 50, fontWeight: 'bold' }}></TableCell>
+                                <TableCell style={{ width: 80, fontWeight: 'bold' }}></TableCell>
                                 <TableCell style={{ width: 80, fontWeight: 'bold' }}>区分</TableCell>
                                 <TableCell style={{ width: 50, fontWeight: 'bold' }} align="center">7月</TableCell>
                                 <TableCell style={{ width: 50, fontWeight: 'bold' }} align="center">8月</TableCell>
@@ -66,7 +66,7 @@ function Type3table() {
                                 <TableCell align="right"></TableCell>
                                 <TableCell align="right"></TableCell>
                                 <TableCell align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                             </TableRow>
                             <TableRow hover role="checkbox" tabIndex={-1} >
                                 <TableCell align="left">R5年度</TableCell>
@@ -76,17 +76,17 @@ function Type3table() {
                                 <TableCell align="right"></TableCell>
                                 <TableCell align="right"></TableCell>
                                 <TableCell align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                             </TableRow>
                             <TableRow hover role="checkbox" tabIndex={-1} >
                                 <TableCell ></TableCell>
                                 <TableCell align="left">单価(円/kwh)</TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }}align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }}align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }}align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }}align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }}align="right"></TableCell>
-                                <TableCell style={{ backgroundColor: "#F6FC4A" }} align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }}align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }}align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }}align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }}align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }}align="right"></TableCell>
+                                <TableCell style={{ backgroundColor: "#FEFFE3" }} align="right"></TableCell>
                             </TableRow>
                            
 
