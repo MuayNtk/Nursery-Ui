@@ -44,7 +44,7 @@ export default function AttachmentCertification() {
       {/* Start Table 1 */}
       <Grid container className='pt-3' justifyContent="center">
         <TableContainer component={Paper} className="mt-5" sx={{ width: { xs: 'auto', sm: 'auto', md: 'auto', lg: 'auto' } }}>
-          <Table sx={{ minWidth: 1000 }} aria-label="simple table">
+          <Table sx={{ minWidth: 1000 }} aria-label="simple table" size="small">
             <TableHead>
               <TableRow>
                 <TableCell align="left" style={{ fontWeight: "bold" }}>氏名</TableCell>

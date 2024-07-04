@@ -71,7 +71,7 @@ export default function ImplementationPlan1() {
       {/* Start Table 1 */}
       <Grid container className='pt-3' justifyContent="center">
         <TableContainer component={Paper} className="mt-5" sx={{ width: { xs: 'auto', sm: 'auto', md: 'auto', lg: 'auto' } }}>
-          <Table sx={{ minWidth: 800 }} aria-label="simple table">
+          <Table sx={{ minWidth: 800 }} aria-label="simple table" size="small">
             <TableHead>
               <TableRow>
                 <TableCell align="center" style={{ width: 100, fontWeight: "bold" }}>該当</TableCell>
