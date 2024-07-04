@@ -175,7 +175,7 @@ export default function EligiblePersons() {
       </Grid>
       <Grid container className='pt-7' justifyContent="right">
         <Grid>
-          <Button variant="contained" href="/accounting/appropriation/additional/add" size='small' startIcon={<AddIcon />}>
+          <Button variant="contained" href="/accounting/eligiblepersons/add" size='small' startIcon={<AddIcon />}>
             <Typography style={{ color: 'white' }}>
               ADD
             </Typography>       

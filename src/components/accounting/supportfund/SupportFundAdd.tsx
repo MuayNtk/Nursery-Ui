@@ -1,5 +1,4 @@
 import { Card, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
-import ContentMain from "../../content/Content";
 import Infotable from "../supportfund/componentTable/Infotable"
 import YearForm from "../../componentsform/YearForm";
 import MonthForm from "../../componentsform/MonthForm";
@@ -18,7 +17,7 @@ export default function SupportFundAdd() {
 
   return (
     <>
-      <ContentMain>
+      <div>
         {/* Start Facility Director  */}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4  ">
           <Grid item xs={3} sm={3} md={2} lg={2} >
@@ -206,7 +205,7 @@ export default function SupportFundAdd() {
 
 
 
-      </ContentMain>
+      </div>
     </>
   );
 }
