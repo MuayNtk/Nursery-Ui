@@ -32,9 +32,9 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">String</TableCell>
                             <TableCell align="left">
                                 <FormControl size="small" fullWidth>
-                                    <InputLabel id="date-label">研修分野</InputLabel>
+                                    <InputLabel id="training-field-label">研修分野</InputLabel>
                                     <Select
-                                        labelId="date-label"
+                                        labelId="training-field-label"
                                         id="date-select"
                                         label="研修分野"
                                         sx={{ backgroundColor: "white" }}
@@ -55,10 +55,10 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">String</TableCell>
                             <TableCell align="left">
                                 <FormControl size="small" fullWidth>
-                                    <InputLabel id="date-label">研修分野</InputLabel>
+                                    <InputLabel id="training-field-label">研修分野</InputLabel>
                                     <Select
-                                        labelId="date-label"
-                                        id="date-select"
+                                        labelId="training-field-label"
+                                        id="training-field-select"
                                         label="研修分野"
                                         sx={{ backgroundColor: "white" }}
                                     >
@@ -86,9 +86,9 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">String</TableCell>
                             <TableCell align="left">
                                 <FormControl size="small" fullWidth>
-                                    <InputLabel id="date-label">研修分野</InputLabel>
+                                    <InputLabel id="training-field-label">研修分野</InputLabel>
                                     <Select
-                                        labelId="date-label"
+                                        labelId="training-field-label"
                                         id="date-select"
                                         label="研修分野"
                                         sx={{ backgroundColor: "white" }}
@@ -109,9 +109,9 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">String</TableCell>
                             <TableCell align="left">
                                 <FormControl size="small" fullWidth>
-                                    <InputLabel id="date-label">研修分野</InputLabel>
+                                    <InputLabel id="training-field-label">研修分野</InputLabel>
                                     <Select
-                                        labelId="date-label"
+                                        labelId="training-field-label"
                                         id="date-select"
                                         label="研修分野"
                                         sx={{ backgroundColor: "white" }}
@@ -140,9 +140,9 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">String</TableCell>
                             <TableCell align="left">
                                 <FormControl size="small" fullWidth>
-                                    <InputLabel id="date-label">研修分野</InputLabel>
+                                    <InputLabel id="training-field-label">研修分野</InputLabel>
                                     <Select
-                                        labelId="date-label"
+                                        labelId="training-field-label"
                                         id="date-select"
                                         label="研修分野"
                                         sx={{ backgroundColor: "white" }}
@@ -163,9 +163,9 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">String</TableCell>
                             <TableCell align="left">
                                 <FormControl size="small" fullWidth>
-                                    <InputLabel id="date-label">研修分野</InputLabel>
+                                    <InputLabel id="training-field-label">研修分野</InputLabel>
                                     <Select
-                                        labelId="date-label"
+                                        labelId="training-field-label"
                                         id="date-select"
                                         label="研修分野"
                                         sx={{ backgroundColor: "white" }}
@@ -194,9 +194,9 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">String</TableCell>
                             <TableCell align="left">
                                 <FormControl size="small" fullWidth>
-                                    <InputLabel id="date-label">研修分野</InputLabel>
+                                    <InputLabel id="training-field-label">研修分野</InputLabel>
                                     <Select
-                                        labelId="date-label"
+                                        labelId="training-field-label"
                                         id="date-select"
                                         label="研修分野"
                                         sx={{ backgroundColor: "white" }}
@@ -217,9 +217,9 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">String</TableCell>
                             <TableCell align="left">
                                 <FormControl size="small" fullWidth>
-                                    <InputLabel id="date-label">研修分野</InputLabel>
+                                    <InputLabel id="training-field-label">研修分野</InputLabel>
                                     <Select
-                                        labelId="date-label"
+                                        labelId="training-field-label"
                                         id="date-select"
                                         label="研修分野"
                                         sx={{ backgroundColor: "white" }}
@@ -248,9 +248,9 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">String</TableCell>
                             <TableCell align="left">
                                 <FormControl size="small" fullWidth>
-                                    <InputLabel id="date-label">研修分野</InputLabel>
+                                    <InputLabel id="training-field-label">研修分野</InputLabel>
                                     <Select
-                                        labelId="date-label"
+                                        labelId="training-field-label"
                                         id="date-select"
                                         label="研修分野"
                                         sx={{ backgroundColor: "white" }}
@@ -271,9 +271,9 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">String</TableCell>
                             <TableCell align="left">
                                 <FormControl size="small" fullWidth>
-                                    <InputLabel id="date-label">研修分野</InputLabel>
+                                    <InputLabel id="training-field-label">研修分野</InputLabel>
                                     <Select
-                                        labelId="date-label"
+                                        labelId="training-field-label"
                                         id="date-select"
                                         label="研修分野"
                                         sx={{ backgroundColor: "white" }}
@@ -301,8 +301,8 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
+                                    id="subtotal"
+                                    name="subtotal"
                                     label=""
                                     type="text"
                                     size='small'
@@ -314,8 +314,8 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
+                                    id="subtotal"
+                                    name="subtotal"
                                     label=""
                                     type="text"
                                     size='small'
@@ -328,8 +328,8 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
+                                    id="subtotal"
+                                    name="subtotal"
                                     label=""
                                     type="text"
                                     size='small'
@@ -341,8 +341,8 @@ function StaffTrainingHistoryTable1() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
+                                    id="subtotal"
+                                    name="subtotal"
                                     label=""
                                     type="text"
                                     size='small'

@@ -86,10 +86,10 @@ export default function TrainingHistory() {
                 <TableCell align="left">施設類型</TableCell>
                 <TableCell align="left">
                   <FormControl size="small" fullWidth>
-                    <InputLabel id="date-label">保育所</InputLabel>
+                    <InputLabel id="facility-type-label">保育所</InputLabel>
                     <Select
-                      labelId="date-label"
-                      id="date-select"
+                      labelId="facility-type-label"
+                      id="facility-type-select"
                       label="保育所"
                       sx={{ backgroundColor: "white" }}
                     >

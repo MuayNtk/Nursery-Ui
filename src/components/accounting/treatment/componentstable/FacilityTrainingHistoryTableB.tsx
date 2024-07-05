@@ -40,9 +40,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-1"
+                                    name="management-1"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -53,9 +52,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-2"
+                                    name="management-2"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -66,9 +64,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-3"
+                                    name="management-3"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -79,9 +76,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-4"
+                                    name="management-4"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -92,9 +88,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-5"
+                                    name="management-5"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -105,9 +100,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-6"
+                                    name="management-6"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -128,9 +122,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-7"
+                                    name="management-7"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -141,9 +134,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-8"
+                                    name="management-8"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -154,9 +146,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-9"
+                                    name="management-9"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -167,9 +158,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-10"
+                                    name="management-10"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -180,9 +170,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-11"
+                                    name="management-11"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -193,9 +182,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-12"
+                                    name="management-12"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -216,9 +204,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-14"
+                                    name="management-14"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -229,9 +216,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-15"
+                                    name="management-15"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -242,9 +228,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-16"
+                                    name="management-16"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -255,9 +240,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-17"
+                                    name="management-17"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -268,9 +252,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-18"
+                                    name="management-18"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -281,9 +264,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-19"
+                                    name="management-19"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -304,9 +286,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-20"
+                                    name="management-20"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -317,9 +298,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-21"
+                                    name="management-21"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -330,9 +310,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-22"
+                                    name="management-22"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -343,9 +322,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-23"
+                                    name="management-23"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -356,9 +334,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-24"
+                                    name="management-24"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -369,9 +346,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-25"
+                                    name="management-25"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -392,9 +368,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-26"
+                                    name="management-26"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -405,9 +380,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-27"
+                                    name="management-27"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -418,9 +392,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-28"
+                                    name="management-28"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -431,9 +404,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-29"
+                                    name="management-29"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -444,9 +416,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-30"
+                                    name="management-30"
                                     type="text"
                                     size='small'
                                     sx={{
@@ -457,9 +428,8 @@ function FacilityTrainingHistoryTableB() {
                             <TableCell align="left">
                                 <TextField
                                     className='w-full'
-                                    id="branch-office"
-                                    name="branch-office"
-                                    label=""
+                                    id="management-31"
+                                    name="management-31"
                                     type="text"
                                     size='small'
                                     sx={{
