@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import ContentMain from '../../content/Content';
 import OfficerList from '../../componentsform/OfficerList';
+import SupportFundAdd from './SupportFundAdd';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -52,7 +53,7 @@ export default function SupportFundTab() {
                   </Tabs>
                   </Box>
                   <CustomTabPanel value={value} index={0}>
-                  様式第１号
+                  <SupportFundAdd/>
                   </CustomTabPanel>
                   <CustomTabPanel value={value} index={1}>
                         <OfficerList/>
