@@ -1,4 +1,4 @@
-import { Button, Divider, FormControlLabel, Grid, InputAdornment, Paper, Radio, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, TextareaAutosize, Typography, } from '@mui/material'
+import {  Grid, InputAdornment, Paper,  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, TextareaAutosize, Typography, } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 export default function BonusForm() {
 
@@ -222,7 +222,7 @@ export default function BonusForm() {
             *
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={12} md={2} lg={2} className='pt-2 ' sx={{ marginLeft: { xs: 1, sm: 1, md: -8, lg: 2 } }}>
+        <Grid item xs={12} sm={12} md={2} lg={2} className='pt-2 ' sx={{ marginLeft: { xs: 1, sm: 1, md: -8, lg: 4 } }}>
           <Typography
             component="div"
             sx={{ color: '#45CBFF', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
