@@ -28,7 +28,7 @@ export default function StaffTrainingHistory() {
       {/* Start Table 1 */}
       <Grid container className='pt-3' justifyContent="center">
         <TableContainer component={Paper} className="mt-5" sx={{ width: { xs: 'auto', sm: 'auto', md: 'auto', lg: 'auto' } }}>
-          <Table sx={{ minWidth: 700 }} aria-label="simple table" size="small">
+          <Table sx={{ minWidth: 690 }} aria-label="simple table" size="small">
             <TableBody>
               {/* Start Rows1 */}
               <TableRow hover role="checkbox" tabIndex={-1}>
