@@ -7,9 +7,23 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import HealthCheckForm from "./HealthCheckForm";
+import Loading from '../../Loading';
+import { useEffect, useState } from 'react';
 
 
 export default function StudentHistory() {
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false); // Set loading to false after simulated data fetch
+    }, 1000); // Simulate 2 seconds loading time
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
 

@@ -8,12 +8,23 @@ import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import WarningIcon from '@mui/icons-material/Warning';
 import EmailIcon from '@mui/icons-material/Email';
-
+import Loading from "../components/Loading";
+import { useEffect, useState } from 'react';
 
 
 
 export default function DashboardAdmin() {
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false); // Set loading to false after simulated data fetch
+    }, 1000); // Simulate 2 seconds loading time
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
 
