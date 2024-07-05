@@ -44,13 +44,13 @@ export default function AttachmentCertification() {
       {/* Start Table 1 */}
       <Grid container className='pt-3' justifyContent="center">
         <TableContainer component={Paper} className="mt-5" sx={{ width: { xs: 'auto', sm: 'auto', md: 'auto', lg: 'auto' } }}>
-          <Table sx={{ minWidth: 1000 }} aria-label="simple table" size="small">
+          <Table sx={{ minWidth: 900 }} aria-label="simple table" size="small">
             <TableHead>
               <TableRow>
                 <TableCell align="left" style={{ fontWeight: "bold" }}>氏名</TableCell>
                 <TableCell align="left" style={{ fontWeight: "bold" }}>人件費</TableCell>
-                <TableCell align="left" style={{ fontWeight: "bold" }}>人件費合計(A)</TableCell>
-                <TableCell align="left" style={{ fontWeight: "bold" }}>補助上限額(B)</TableCell>
+                <TableCell align="left" style={{ width:150 ,fontWeight: "bold" }}>人件費合計(A)</TableCell>
+                <TableCell align="left" style={{ width:150 ,fontWeight: "bold" }}>補助上限額(B)</TableCell>
                 <TableCell align="left" style={{ fontWeight: "bold" }}>補助金額(A)と(B)の少ない額</TableCell>
               </TableRow>
             </TableHead>

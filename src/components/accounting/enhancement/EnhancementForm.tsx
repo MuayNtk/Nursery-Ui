@@ -224,10 +224,10 @@ export default function EnhancementForm() {
       {/* Start Table 1 */}
       <Grid container className='pt-3' justifyContent="center">
         <TableContainer component={Paper} className="mt-5" sx={{ width: { xs: 'auto', sm: 'auto', md: 'auto', lg: 'auto' } }}>
-          <Table sx={{ minWidth: 800 }} aria-label="simple table" size="small">
+          <Table sx={{ minWidth: 600 }} aria-label="simple table" size="small">
             <TableHead>
               <TableRow>
-                <TableCell align="left" style={{ width: 350, fontWeight: "bold" }}>区分</TableCell>
+                <TableCell align="left" style={{ width: 300, fontWeight: "bold" }}>区分</TableCell>
                 <TableCell align="left" style={{ fontWeight: "bold" }}>金額</TableCell>
               </TableRow>
             </TableHead>
