@@ -23,9 +23,11 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
   };
 }) as typeof Chip;
 
-function handleClick(event: React.MouseEvent<Element, MouseEvent>) {
+function handleClick(event: React.MouseEvent<Element, MouseEvent>, href?: string) {
   event.preventDefault();
-  console.info('You clicked a breadcrumb.');
+  if (href) {
+    window.location.href = href; // Redirect to the specified href
+  }
 }
 
 interface Breadcrumb {
@@ -39,9 +41,9 @@ interface CustomizedBreadcrumbsProps {
   breadcrumbs: Breadcrumb[];
 }
 
-export default function CustomizedBreadcrumbs({ breadcrumbs }: CustomizedBreadcrumbsProps) {
+const CustomizedBreadcrumbs: React.FC<CustomizedBreadcrumbsProps> = ({ breadcrumbs }) => {
   return (
-    <div role="presentation" onClick={handleClick}>
+    <div role="presentation">
       <Breadcrumbs aria-label="breadcrumb">
         {breadcrumbs.map((breadcrumb, index) => (
           <StyledBreadcrumb
@@ -50,10 +52,12 @@ export default function CustomizedBreadcrumbs({ breadcrumbs }: CustomizedBreadcr
             href={breadcrumb.href}
             label={breadcrumb.label}
             icon={breadcrumb.icon}
-            onDelete={breadcrumb.onDelete}
+            onClick={(event) => handleClick(event, breadcrumb.href)}
           />
         ))}
       </Breadcrumbs>
     </div>
   );
 }
+
+export default CustomizedBreadcrumbs;
