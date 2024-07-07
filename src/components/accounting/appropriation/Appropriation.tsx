@@ -1,8 +1,7 @@
 import { Box, Grid, Typography } from '@mui/material';
 import ContentMain from '../../content/Content';
 import Link from '@mui/material/Link';
-import BadgeTwoToneIcon from '@mui/icons-material/BadgeTwoTone';
-import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+import ArticleIcon from '@mui/icons-material/Article';
 
 export default function Appropriation() {
   return (
@@ -21,7 +20,7 @@ export default function Appropriation() {
                     borderRadius: '8px'
                   }}
                 >
-                  <BadgeTwoToneIcon style={{ fontSize: 40 ,color:'#05a9dc'}} />
+                  <ArticleIcon style={{ fontSize: 40 ,color:'#05a9dc'}} />
                   <Typography component="div" sx={{ marginLeft: '10px', marginTop: '9px' ,color:'#686868'}}>
                   【提出様式】R5_加算申請書（仮）保育所用
                   </Typography>
@@ -41,7 +40,7 @@ export default function Appropriation() {
                     borderRadius: '8px'
                   }}
                 >
-                  <MedicalServicesIcon style={{ fontSize: 40 ,color:'#05a9dc'}} />
+                  <ArticleIcon style={{ fontSize: 40 ,color:'#05a9dc'}} />
                   <Typography component="div" sx={{ marginLeft: '10px', marginTop: '9px' ,color:'#686868'}}>
                   【いちざき】R5_加算適用申請書（保育所）
                   </Typography>
