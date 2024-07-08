@@ -7,13 +7,19 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
-import JoinActivity from './JoinActivity';
-import JoinActivityForm from './JoinActivityForm';
-import JoinActivitySum from './JoinActivitySum';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { styled } from '@mui/material';
+import StaffCalc from './StaffCalc';
+import RequestBenefitsForm from './RequestBenefitsForm';
+import AgeCalc from './AgeCalc';
 
-const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+
+const steps = [
+  '加算対象職員数計算表（必須）',
+  '処遇Ⅱ申請書（必須）',
+  '平均年齢別児童数計算表',
+
+];
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -37,16 +43,14 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   },
 }));
 
-export default function ActivityAdd() {
+export default function RateApplicationAdd() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completedSteps, setCompletedSteps] = React.useState<number[]>([]);
   const navigate = useNavigate();
 
-
   const handleNext = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (activeStep === steps.length - 1) {
-      navigate('/accounting/activity');
+      navigate('/accounting/requestbenefits');
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
       setCompletedSteps([...completedSteps, activeStep]);
@@ -64,21 +68,20 @@ export default function ActivityAdd() {
     const stepIconStyle = {
       color: isActive ? '#2196F3' : isCompleted ? '#4CAF50' : 'inherit',
     };
-  return (
-      <StepLabel StepIconProps={{ style: stepIconStyle }}>
-           {/* {steps[index]}  */}
-      </StepLabel>
+
+    return (
+      <StepLabel StepIconProps={{ style: stepIconStyle }}/>
     );
   };
 
   const getStepContent = (step: number) => {
     switch (step) {
       case 0:
-        return <JoinActivity />;
+        return <StaffCalc />;
       case 1:
-        return <JoinActivityForm />;
+        return <RequestBenefitsForm />;
       case 2:
-        return <JoinActivitySum />;
+        return <AgeCalc />;
       default:
         return 'Unknown step';
     }
@@ -86,52 +89,53 @@ export default function ActivityAdd() {
 
   return (
     <>
-     <ContentMain  className="flex flex-col min-h-screen">
-      <Stepper activeStep={activeStep} connector={<ColorlibConnector />} className='mt-7'>
-        {steps.map((label, index) => (
-          <Step key={label}>
-            {getStepLabelComponent(index)}
-          </Step>
-        ))}
-      </Stepper>
-      {activeStep === steps.length ? (
-        <Typography sx={{ mt: 2, mb: 1 }}>
-          All steps completed - you&apos;re finished
-        </Typography>
-      ) : (
-        
-        <React.Fragment>
-          <Box sx={{ mt: 2, mb: 1 }}>
-            {getStepContent(activeStep)}
-          </Box>
-          <div className="mt-auto" >
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, gap: 2 }} justifyContent="center" >
-              <Button
-                variant="contained"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 , backgroundColor: '#1976d2',color: 'white',}}
-              >
-                戻る
-              </Button>
-              <Button
-                variant="contained"
-                onClick={handleNext}
-                sx={{
-                  backgroundColor: activeStep === steps.length - 1 ? '#41b146' : '#f7b941',
-                  color: 'white',
-                  '&:hover': {
-                    backgroundColor: activeStep === steps.length - 1 ? '#388E3C' : '#f7b941',
-                  },
-                }}
-              >
-                {activeStep === steps.length - 1 ? '修正' : '次へ'}
-              </Button>
-            </Box>
-          </div>
-        </React.Fragment>
-      )}
-  </ContentMain>
+      <ContentMain  className="flex flex-col min-h-screen">
+      
+          <Stepper activeStep={activeStep} connector={<ColorlibConnector />}>
+            {steps.map((label, index) => (
+              <Step key={label}>
+                {getStepLabelComponent(index)}
+              </Step>
+            ))}
+          </Stepper>
+          {activeStep === steps.length ? (
+            <Typography sx={{ mt: 2, mb: 1 }}>
+              All steps completed - you&apos;re finished
+            </Typography>
+          ) : (
+            
+            <React.Fragment>
+              <Box sx={{ mt: 2, mb: 1 }}>
+                {getStepContent(activeStep)}
+              </Box>
+              <div className="mt-auto" >
+                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, gap: 2 }} justifyContent="center" >
+                  <Button
+                    variant="contained"
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    sx={{ mr: 1 , backgroundColor: '#1976d2',color: 'white',}}
+                  >
+                    戻る
+                  </Button>
+                  <Button
+                    variant="contained"
+                    onClick={handleNext}
+                    sx={{
+                      backgroundColor: activeStep === steps.length - 1 ? '#41b146' : '#f7b941',
+                      color: 'white',
+                      '&:hover': {
+                        backgroundColor: activeStep === steps.length - 1 ? '#388E3C' : '#f7b941',
+                      },
+                    }}
+                  >
+                    {activeStep === steps.length - 1 ? '修正' : '次へ'}
+                  </Button>
+                </Box>
+              </div>
+            </React.Fragment>
+          )}
+      </ContentMain>
     </>
   );
 }

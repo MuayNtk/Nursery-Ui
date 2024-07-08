@@ -62,7 +62,7 @@ export default function TreatmentPlanAdd() {
 
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
-      navigate('/accounting/careertraining');
+      navigate('/accounting/treatmentplan');
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
       setCompletedSteps([...completedSteps, activeStep]);

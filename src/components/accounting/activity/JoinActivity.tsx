@@ -1,9 +1,9 @@
+import { SetStateAction, useState } from "react";
 import { FormControl, Grid, InputLabel, MenuItem, Select, Typography, Box } from "@mui/material";
 import YearForm from "../../componentsform/YearForm";
 import MonthForm from "../../componentsform/MonthForm";
 import DayForm from "../../componentsform/DayForm";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-
 
 const columns: readonly GridColDef[] = [
   {
@@ -19,7 +19,7 @@ const columns: readonly GridColDef[] = [
     editable: false,
   },
   {
-    field: 'expense Head',
+    field: 'expenseHead',
     headerName: '事業費',
     width: 120,
     editable: false,
@@ -37,16 +37,17 @@ const rows = [
   { id: 2, Applicable: '異年齡児交流等事業', expense1: '250千円以內', expense2: "100千円以內" },
   { id: 3, Applicable: '育児講座・育児と仕事両立支援', expense1: '250千円以內', expense2: "100千円以內" },
   { id: 4, Applicable: '地域の特性に応じた保育需要への対応', expense1: '250千円以內', expense2: "100千円以內" },
-
 ];
 
-
-
 export default function JoinActivity() {
+  const [era, setEra] = useState('');
+
+  const handleEraChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+    setEra(event.target.value);
+  };
 
   return (
     <>
-
       {/* Start あて先 Grid */}
       <Grid container spacing={2} className='pt-5'>
         <Grid item xs={3} sm={2.5} md={3} lg={3}>
@@ -81,6 +82,8 @@ export default function JoinActivity() {
               id="era-select"
               labelId="era-select-label"
               label="平成"
+              value={era}
+              onChange={handleEraChange}
               sx={{ backgroundColor: "white" }}
             >
               <MenuItem value="">
@@ -146,7 +149,7 @@ export default function JoinActivity() {
       {/* End 法人名代表者氏名名 Grid */}
 
       {/* Start Data Table */}
-      <Box sx={{ height: 400, width: '100%', pt: 5, }}>
+      <Box sx={{ height: 400, width: '100%', pt: 5 }}>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -163,9 +166,6 @@ export default function JoinActivity() {
         />
       </Box>
       {/* End Data Table */}
-
-
-
     </>
   );
 }
