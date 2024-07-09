@@ -9,6 +9,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import SaveIcon from '@mui/icons-material/Save';
+import { useState } from 'react';
+import Numpad from "../../content/Numpad";
 
 interface Column {
   id: 'name' | 'classroom' | 'date' | 'sub' | 'fu' | 'uu';
@@ -30,6 +32,22 @@ const columns: readonly Column[] = [
 
 
 export default function TeachFull() {
+  const [numpadOpen, setNumpadOpen] = useState(false);
+  const [currentInputId, setCurrentInputId] = useState('');
+
+  const handleInputClick = (id: string) => {
+    setCurrentInputId(id);
+    setNumpadOpen(true);
+  };
+
+  const handleNumpadInput = (value: string) => {
+    const input = document.getElementById(currentInputId) as HTMLInputElement;
+    if (input) {
+      input.value = value;
+    }
+    setNumpadOpen(false);
+  };
+
   return (
     <>
       <Grid container spacing={2}>
@@ -114,7 +132,18 @@ export default function TeachFull() {
             </Typography>
           </Grid>
           <Grid item xs={3} sm={3} md={1.5}>
-            <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+            <TextField 
+              id="age" 
+              type="text" 
+              size="small" 
+              fullWidth sx={{ backgroundColor: 'white' }} 
+              onClick={() => handleInputClick('age')}
+              InputLabelProps={{ shrink: true }} 
+              InputProps={{
+                  readOnly: true 
+                }}
+            />
+             <Numpad open={numpadOpen} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
           </Grid>
         </Grid>
 
