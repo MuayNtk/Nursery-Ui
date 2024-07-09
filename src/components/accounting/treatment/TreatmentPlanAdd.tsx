@@ -17,7 +17,7 @@ import ResultsEarningsListTwo from './ResultsEarningsListTwo';
 import DetailedStatement from './DetailedStatement';
 import ImprovementStaff from './ImprovementStaff';
 import WageImprovementThree from './WageImprovementThree';
-import WageAdjustmentsThree from './WageImprovementThree';
+import WageAdjustmentsThree from './WageAdjustmentsThree';
 import ResultsEarningsListThree from './ResultsEarningsListThree';
 
 const steps = [
