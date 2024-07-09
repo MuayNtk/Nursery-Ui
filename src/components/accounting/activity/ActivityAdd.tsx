@@ -42,7 +42,9 @@ export default function ActivityAdd() {
   const [completedSteps, setCompletedSteps] = React.useState<number[]>([]);
   const navigate = useNavigate();
 
+
   const handleNext = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (activeStep === steps.length - 1) {
       navigate('/accounting/activity');
     } else {
@@ -84,9 +86,8 @@ export default function ActivityAdd() {
 
   return (
     <>
-     <ContentMain  className="flex flex-col min-h-screen ">
-      
-      <Stepper activeStep={activeStep} connector={<ColorlibConnector />}>
+     <ContentMain  className="flex flex-col min-h-screen">
+      <Stepper activeStep={activeStep} connector={<ColorlibConnector />} className='mt-7'>
         {steps.map((label, index) => (
           <Step key={label}>
             {getStepLabelComponent(index)}

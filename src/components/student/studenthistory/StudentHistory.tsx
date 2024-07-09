@@ -7,14 +7,44 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import HealthCheckForm from "./HealthCheckForm";
+import Loading from '../../Loading';
+import { useEffect, useState } from 'react';
+import Numpad from "../../content/Numpad";
 
 
 export default function StudentHistory() {
 
+  const [loading, setLoading] = useState(true);
+  const [numpadOpen, setNumpadOpen] = useState(false);
+  const [currentInputId, setCurrentInputId] = useState('');
+
+  const handleInputClick = (id: string) => {
+    setCurrentInputId(id);
+    setNumpadOpen(true);
+  };
+
+  const handleNumpadInput = (value: string) => {
+    const input = document.getElementById(currentInputId) as HTMLInputElement;
+    if (input) {
+      input.value = value;
+    }
+    setNumpadOpen(false);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false); // Set loading to false after simulated data fetch
+    }, 1000); // Simulate 2 seconds loading time
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
 
     <>
-      <ContentMain className="flex flex-col min-h-screen">
+      <ContentMain className="flex flex-col min-h-screen ">
 
         {/* Start Radiogroup Box */}
         <RadioGroup
@@ -370,14 +400,25 @@ export default function StudentHistory() {
           <Grid item xs={10} sm={5} md={2.5}>
             <TextField
               className='w-full'
-              id="Tel-input"
-              label="Tel"
-              type="text"
+              id="tel"
+              name="tel"
+              type="tel"
               size='small'
               sx={{
                 backgroundColor: "white",
               }}
+              onClick={() => handleInputClick('tel')}
+              InputLabelProps={{ shrink: true }} 
+              InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      Tel:
+                    </InputAdornment>
+                  ),
+                  readOnly: true 
+                }}
             />
+            <Numpad open={numpadOpen && currentInputId === 'tel'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
           </Grid>
           <Grid item xs={10} sm={5} md={3}>
             <TextField
@@ -557,14 +598,20 @@ export default function StudentHistory() {
           <Grid item xs={7.5} sm={7} md={4}>
             <TextField
               className='w-full'
-              id="furigana-input"
+              id="tel1"
               label=""
               type="text"
               size='small'
               sx={{
                 backgroundColor: "white",
               }}
+              onClick={() => handleInputClick('tel1')}
+              InputLabelProps={{ shrink: true }} 
+              InputProps={{
+                  readOnly: true 
+                }}
             />
+            <Numpad open={numpadOpen && currentInputId === 'tel1'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
           </Grid>
 
         </Grid>
@@ -639,14 +686,20 @@ export default function StudentHistory() {
           <Grid item xs={8} sm={8} md={3}>
             <TextField
               className='w-full'
-              id="furigana-input"
+              id="tel2"
               label=""
               type="text"
               size='small'
               sx={{
                 backgroundColor: "white",
               }}
+              onClick={() => handleInputClick('tel2')}
+              InputLabelProps={{ shrink: true }} 
+              InputProps={{
+                  readOnly: true 
+                }}
             />
+            <Numpad open={numpadOpen && currentInputId === 'tel2'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
           </Grid>
 
         </Grid>
@@ -675,14 +728,21 @@ export default function StudentHistory() {
           <Grid item xs={8} sm={8} md={3}>
             <TextField
               className='w-full'
-              id="furigana-input"
+              id="tel3"
+              name="tel3"
               label=""
               type="text"
               size='small'
               sx={{
                 backgroundColor: "white",
               }}
+              onClick={() => handleInputClick('tel3')}
+              InputLabelProps={{ shrink: true }} 
+              InputProps={{
+                  readOnly: true 
+                }}
             />
+            <Numpad open={numpadOpen && currentInputId === 'tel3'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
           </Grid>
 
         </Grid>
@@ -711,14 +771,21 @@ export default function StudentHistory() {
           <Grid item xs={8} sm={8} md={3}>
             <TextField
               className='w-full'
-              id="furigana-input"
+              id="tel4"
+              name=""
               label=""
               type="text"
               size='small'
               sx={{
                 backgroundColor: "white",
               }}
+              onClick={() => handleInputClick('tel4')}
+              InputLabelProps={{ shrink: true }} 
+              InputProps={{
+                  readOnly: true 
+                }}
             />
+            <Numpad open={numpadOpen && currentInputId === 'tel4'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
           </Grid>
 
         </Grid>
