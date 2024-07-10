@@ -16,7 +16,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 // import IconMessage from '../../assets/Icons/IconMessage.svg'
 import LogoutIcon from '@mui/icons-material/Logout';
 
-const drawerWidth = 280;
+const drawerWidth = 240;
 
 // const Search = styled('div')(({ theme }) => ({
 //     position: 'relative',
