@@ -574,10 +574,9 @@ export default function ElderlyBenefits() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={1}>いちざきみんなの家 </MenuItem>
+              <MenuItem value={2}>上田みんなの家</MenuItem>
+              <MenuItem value={3}>鈴木みんなの家</MenuItem>
             </Select>
           </FormControl>
         </Grid>

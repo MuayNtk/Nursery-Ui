@@ -25,9 +25,7 @@ function Type2table() {
                                 <em>None</em>
                             </MenuItem>
                             <MenuItem value={1}>高圧</MenuItem>
-                            <MenuItem value={2}>2</MenuItem>
-                            <MenuItem value={3}>3</MenuItem>
-                            <MenuItem value={4}>4</MenuItem>
+                            <MenuItem value={2}>低圧</MenuItem>
                         </Select>
                     </FormControl>
                 </Grid>

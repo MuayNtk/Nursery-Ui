@@ -6,6 +6,10 @@ import TableEmployeesBonus from "../addperf/componentstable/TableEmployeesBonus"
 import Tableresults from "../addperf/componentstable/Tableresults"
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -31,77 +35,30 @@ export default function AddPerf() {
     <>
       <ContentMain >
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
-          <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }}>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3' >
+          <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-4" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }}>
             日付:
           </Typography>
-          <Grid item xs={3.5} sm={3} md={1.5}>
+          <Grid item xs={5} sm={3} md={1.5} lg={1.5}>
             <FormControl size="small" fullWidth>
               <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white", }}>
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={1}>昭和</MenuItem>
+                <MenuItem value={2}>平成</MenuItem>
+                <MenuItem value={3}>令和</MenuItem>
               </Select>
             </FormControl>
           </Grid>
 
-          <Grid item xs={3.3} sm={4} md={2}>
-            <TextField
-              className='w-full '
-              id="-input"
-              label=""
-              type="text"
-              size='small'
-              sx={{
-                backgroundColor: "white",
-              }}
-            />
+          <Grid item xs={12} sm={6} md={4} lg={5} className='scale-75 ' sx={{  mt:{xs: -1.5, sm: -1.8, md: -1.9,lg:-1.5},ml:{xs: 4.5, sm: -1, md: -3,lg:-5}}}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker label="開始日" sx={{ backgroundColor: 'white' }}/>
+              </DemoContainer>
+            </LocalizationProvider>
           </Grid>
-
-          <Typography component='div' className="pl-2 pt-6 lg:pl-1 lg:pr-4 " sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }}>
-            年
-          </Typography>
-          <Typography component='div' className="pl-[85px] pt-6 md:pl-[100px] lg:pl-0 "></Typography>
-
-          <Grid item xs={3.5} sm={3} md={1.1}>
-            <FormControl size="small" fullWidth>
-              <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white", }}>
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-
-          <Typography component='div' className="pl-1 md:pl-1 md:pr-2 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }}>
-            月
-          </Typography>
-
-          <Grid item xs={3.3} sm={4} md={1.1}>
-            <FormControl size="small" fullWidth>
-              <Select defaultValue="" id="grouped-select" sx={{ backgroundColor: "white", }}>
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-
-          <Typography component='div' className="pl-2 md:pl-1 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }}>
-            日
-          </Typography>
 
         </Grid>
         {/* End Grid */}
@@ -257,8 +214,8 @@ export default function AddPerf() {
         {/* End Card */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
-          <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -3, sm: -5, md: -5, lg: 3.5, } }}>
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-9' >
+          <Typography component='div' className=" md:pl-[60px] lg:pl-[115px] pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: -3.9, md: -5, lg: 3.5, } }}>
             加算額(実績)A:
           </Typography>
           <Grid item xs={3} sm={3} md={2}>
@@ -277,7 +234,7 @@ export default function AddPerf() {
               }}
             />
           </Grid>
-          <Typography component='div' className="pl-2 pt-6 lg:pl-1 lg:pr-4 " sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1, md: 3, lg: 4, } }}>
+          <Typography component='div' className="pl-2 pt-6 lg:pl-20 lg:pr-4 " sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1, md: -1.5, lg: 4, } }}>
             実支出額B:
           </Typography>
           <Grid item xs={3.} sm={3} md={2}>
@@ -301,8 +258,8 @@ export default function AddPerf() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-3' >
-          <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -3, sm: -5, md: -5, lg: 4, } }}>
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-4 pl-4' >
+          <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -3, sm: -5, md: -5.5, lg: 4, } }}>
             加算額の残額(A-B)
           </Typography>
           <Grid item xs={6} sm={7} md={2}>
@@ -322,11 +279,11 @@ export default function AddPerf() {
               }}
             />
           </Grid>
-          <Typography component='div' className="pl-2 pt-6 lg:pl-1 lg:pr-4 " sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1.5, md: 3, lg: 4, } }}>
+          <Typography component='div' className="pl-2 pt-6 lg:pl-1 lg:pr-4 " sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1.5, md: 2, lg: 4, } }}>
             (残額が生じた理由):
           </Typography>
           <Typography component='div' className="pl-[85px] pt-6 md:pl-[100px] lg:pl-0 "></Typography>
-          <Grid item xs={5} sm={6} md={2}>
+          <Grid item xs={4.5} sm={6} md={2}>
             <TextField
               className='w-full '
               id="-input"
@@ -345,13 +302,13 @@ export default function AddPerf() {
 
         {/* Start Grid */}
         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-1 pl-3' >
-          <Grid item xs={6} sm={4} md={4}>
-            <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -17, sm: -15, md: -19, lg: -15, } }}>
+          <Grid item xs={6} sm={4} md={4} lg={3}>
+            <Typography component='div' className="pt-6" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -4, sm: 1, md: 1, lg: 20, } }}>
               (残額の使途)
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={8} md={8}>
-            <Typography component='div' className="pl-[45px] md:pl-[60px] lg:pl-28 pt-6" sx={{ color: 'red', fontSize: { xs: 8, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -18, sm: -25, md: -52, lg: -80, } }}>
+          <Grid item xs={6} sm={8} md={8} lg={9}>
+            <Typography component='div' className="pt-6 text-justify" sx={{ color: 'red', fontSize: { xs: 8, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: -8, sm: -3, md: -7, lg: -1, } }}>
               (記載例)・〇年〇月に全ての職員に対し、一時金として支給など
             </Typography>
           </Grid>
@@ -359,7 +316,7 @@ export default function AddPerf() {
         {/* End Grid */}
 
         {/* Start Grid */}
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-1 pl-3' >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 pl-9' >
           <Grid item xs={9} sm={8} md={4}>
             <TextField
               className='w-full '
