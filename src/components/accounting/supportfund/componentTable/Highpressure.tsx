@@ -23,10 +23,8 @@ function Highpressure() {
                             <MenuItem value="">
                                 <em>None</em>
                             </MenuItem>
-                            <MenuItem value={1}>高圧</MenuItem>
-                            <MenuItem value={2}>2</MenuItem>
-                            <MenuItem value={3}>3</MenuItem>
-                            <MenuItem value={4}>4</MenuItem>
+                            <MenuItem value={1}>高压</MenuItem>
+                            <MenuItem value={2}>低压</MenuItem>
                         </Select>
                     </FormControl>
                 </Grid>

@@ -80,8 +80,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 100, fontWeight: 'bold', }} align="center">入力不要</TableCell>
@@ -287,8 +286,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -301,8 +299,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -319,8 +316,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -333,8 +329,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -351,8 +346,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -365,8 +359,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -383,8 +376,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -397,8 +389,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -439,8 +430,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -453,8 +443,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -471,8 +460,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -485,8 +473,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -503,8 +490,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -517,8 +503,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -535,8 +520,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -549,8 +533,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -567,8 +550,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -581,8 +563,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -599,8 +580,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -613,8 +593,7 @@ export default function CalculationStaff() {
                       <em>None</em>
                     </MenuItem>
                     <MenuItem value={10}>なし</MenuItem>
-                    <MenuItem value={20}>2</MenuItem>
-                    <MenuItem value={30}>3</MenuItem>
+                    <MenuItem value={20}>あり</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
