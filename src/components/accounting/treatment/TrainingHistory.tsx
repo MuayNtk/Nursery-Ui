@@ -41,10 +41,9 @@ export default function TrainingHistory() {
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value={1}>1</MenuItem>
-                      <MenuItem value={2}>2</MenuItem>
-                      <MenuItem value={3}>3</MenuItem>
-                      <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>昭和</MenuItem>
+                      <MenuItem value={2}>平成</MenuItem>
+                      <MenuItem value={3}>令和</MenuItem>
                     </Select>
                   </FormControl>
                 </TableCell>
@@ -96,10 +95,8 @@ export default function TrainingHistory() {
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value={1}>1</MenuItem>
-                      <MenuItem value={2}>2</MenuItem>
-                      <MenuItem value={3}>3</MenuItem>
-                      <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>保育所</MenuItem>
+                      <MenuItem value={2}>地域型保育事業</MenuItem>
                     </Select>
                   </FormControl>
                 </TableCell>

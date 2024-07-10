@@ -174,10 +174,8 @@ export default function RequestBenefitsForm() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>該当v</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>該当</MenuItem>
+                    <MenuItem value={2}>非該当</MenuItem>
                   </Select>
                 </FormControl></TableCell>
               </TableRow>
@@ -207,10 +205,18 @@ export default function RequestBenefitsForm() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>該当v</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>令和5年4月</MenuItem>
+                    <MenuItem value={2}>令和5年5月</MenuItem>
+                    <MenuItem value={3}>令和5年6月</MenuItem>
+                    <MenuItem value={4}>令和5年7月</MenuItem>
+                    <MenuItem value={5}>令和5年8月</MenuItem>
+                    <MenuItem value={6}>令和5年9月</MenuItem>
+                    <MenuItem value={7}>令和5年10月</MenuItem>
+                    <MenuItem value={8}>令和5年11月</MenuItem>
+                    <MenuItem value={9}>令和5年12月</MenuItem>
+                    <MenuItem value={10}>令和6年1月</MenuItem>
+                    <MenuItem value={11}>令和6年2月</MenuItem>
+                    <MenuItem value={12}>令和6年3月</MenuItem>
                   </Select>
                 </FormControl></TableCell>
 
