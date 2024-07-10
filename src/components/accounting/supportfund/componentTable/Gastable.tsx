@@ -24,9 +24,7 @@ function Gastable() {
                         <em>None</em>
                     </MenuItem>
                     <MenuItem value={1}>都市ガス</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={2}>LPガス</MenuItem>
                 </Select>
             </FormControl>
         </Grid>

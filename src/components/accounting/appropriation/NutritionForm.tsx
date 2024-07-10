@@ -152,10 +152,11 @@ export default function NutritionForm() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={1}>直接雇用(人材派遣を含む) (A)</MenuItem>
+              <MenuItem value={2}>直接雇用(人材派遣を含む) (B)</MenuItem>
+              <MenuItem value={3}>嘱託(外部委託) (C)</MenuItem>
+              <MenuItem value={4}>法人本部で雇用(同一法人内の他施設勤務を含む) (A)</MenuItem>
+              <MenuItem value={4}>その他(具体的に記入↓)</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -202,10 +203,9 @@ export default function NutritionForm() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={1}>献立作成(施設・事業所職員への指導・助言を含む。)</MenuItem>
+              <MenuItem value={2}>アレルギー・アトピー等への対応 (施設・事業所職員への指導・助言を含む。)</MenuItem>
+              <MenuItem value={3}>食育活動の実施等 (活動内容を具体的に記入↓)</MenuItem>
             </Select>
           </FormControl>
         </Grid>
