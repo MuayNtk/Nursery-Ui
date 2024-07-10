@@ -2532,33 +2532,33 @@ export default function ProgressdTwoForm() {
               施設長 :
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, ml:{ xs: -10, sm: -11, md: -22, lg: -8, }, fontWeight: 'bold', }} >
               濃部
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
-              圭子
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },ml:{ xs: -30, sm: -30, md: -60, lg: -9, }, fontWeight: 'bold', }} >
+              多子多子
             </Typography>
           </Grid>
         </Grid >
         {/* End Facility Director  */}
 
         {/* Start director  */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7 ">
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 ">
           <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, ml:{ xs: 1, sm: 1, md: 1, lg: 2, }, }} >
               主任 :
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, ml:{ xs: -10, sm: -11, md: -22, lg: -8, }, fontWeight: 'bold', }} >
               渡部
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },ml:{ xs: -33, sm: -33, md: -62, lg: -13, }, fontWeight: 'bold', }} >
               史朗
             </Typography>
           </Grid>
@@ -2566,19 +2566,19 @@ export default function ProgressdTwoForm() {
         {/* End director  */}
 
         {/* Start Responsible */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7 ">
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 ">
           <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, ml:{ xs: 1, sm: 1, md: 1, lg: 2, }, }} >
               担任 :
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, ml:{ xs: -10, sm: -11, md: -22, lg: -8, },fontWeight: 'bold', }} >
               中川
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },ml:{ xs: -33, sm: -33, md: -62, lg: -13, }, fontWeight: 'bold', }} >
               康嘉
             </Typography>
           </Grid>
@@ -2587,14 +2587,14 @@ export default function ProgressdTwoForm() {
         {/* End Responsible  */}
 
         {/* Start Child's name */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7 ">
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 ">
           <Grid item xs={2} sm={1.5} md={1} lg={1} >
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
               児童名 :
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, ml:{ xs: -10, sm: -10, md: -20, lg: -6, }, fontWeight: 'bold', }} >
               長谷川
             </Typography>
           </Grid>

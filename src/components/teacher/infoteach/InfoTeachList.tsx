@@ -161,11 +161,8 @@ export default function InfoTeachList() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>1</MenuItem>
-              <MenuItem value={20}>2</MenuItem>
-              <MenuItem value={30}>3</MenuItem>
-              <MenuItem value={30}>4</MenuItem>
-              <MenuItem value={30}>5</MenuItem>
+              <MenuItem value={10}>履歴書 (正規職員用)</MenuItem>
+              <MenuItem value={20}>履歴書 (賃金職員用)</MenuItem>
             </Select>
           </FormControl>
         </Grid>
