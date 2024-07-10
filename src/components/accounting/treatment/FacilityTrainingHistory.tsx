@@ -40,10 +40,9 @@ export default function FacilityTrainingHistory() {
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value={1}>1</MenuItem>
-                      <MenuItem value={2}>2</MenuItem>
-                      <MenuItem value={3}>3</MenuItem>
-                      <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>昭和</MenuItem>
+                      <MenuItem value={2}>平成</MenuItem>
+                      <MenuItem value={3}>令和</MenuItem>
                     </Select>
                   </FormControl>
                 </TableCell>
@@ -95,10 +94,10 @@ export default function FacilityTrainingHistory() {
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value={1}>1</MenuItem>
-                      <MenuItem value={2}>2</MenuItem>
-                      <MenuItem value={3}>3</MenuItem>
-                      <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>幼保連携型認定こども園</MenuItem>
+                      <MenuItem value={2}>幼稚園型認定こども園</MenuItem>
+                      <MenuItem value={3}>保育所型認定こども園</MenuItem>
+                      <MenuItem value={4}>地方裁量型認定こども園</MenuItem>
                     </Select>
                   </FormControl>
                 </TableCell>

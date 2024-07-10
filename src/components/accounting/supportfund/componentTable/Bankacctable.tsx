@@ -39,7 +39,7 @@ function Bankacctable() {
                                                             <em>None</em>
                                                         </MenuItem>
                                                         <MenuItem value={1}>はい</MenuItem>
-                                                        <MenuItem value={2}>2</MenuItem>
+                                                        <MenuItem value={2}>いいえ</MenuItem>
                                                     </Select>
                                                 </FormControl>
                                             </Grid>
