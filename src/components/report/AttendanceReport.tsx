@@ -40,9 +40,6 @@ export default function AttendanceReport() {
                 </MenuItem>
                 <MenuItem value={10}>1</MenuItem>
                 <MenuItem value={20}>2</MenuItem>
-                <MenuItem value={30}>3</MenuItem>
-                <MenuItem value={30}>4</MenuItem>
-                <MenuItem value={30}>5</MenuItem>
               </Select>
             </FormControl>
           </Grid>

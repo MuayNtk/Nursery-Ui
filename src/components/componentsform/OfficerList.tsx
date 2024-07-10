@@ -127,9 +127,8 @@ export default function OfficerList() {
                           <MenuItem value="">
                             <em>None</em>
                           </MenuItem>
-                          <MenuItem value={10}>1</MenuItem>
-                          <MenuItem value={20}>2</MenuItem>
-                          <MenuItem value={30}>3</MenuItem>
+                          <MenuItem value={10}>女</MenuItem>
+                          <MenuItem value={20}>男</MenuItem>
                         </Select>
                       </FormControl>
                     </TableCell>
@@ -142,9 +141,10 @@ export default function OfficerList() {
                           <MenuItem value="">
                             <em>None</em>
                           </MenuItem>
-                          <MenuItem value={10}>1</MenuItem>
-                          <MenuItem value={20}>2</MenuItem>
-                          <MenuItem value={30}>3</MenuItem>
+                          <MenuItem value={10}>大正</MenuItem>
+                          <MenuItem value={20}>昭和</MenuItem>
+                          <MenuItem value={30}>平成</MenuItem>
+                          <MenuItem value={30}>令和</MenuItem>
                         </Select>
                       </FormControl>
                     </TableCell>

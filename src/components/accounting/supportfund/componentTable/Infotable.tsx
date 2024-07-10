@@ -42,9 +42,12 @@ function infotable() {
                                                         <em>None</em>
                                                     </MenuItem>
                                                     <MenuItem value={1}>私立保育所</MenuItem>
-                                                    <MenuItem value={2}>2</MenuItem>
-                                                    <MenuItem value={3}>3</MenuItem>
-                                                    <MenuItem value={4}>4</MenuItem>
+                                                    <MenuItem value={2}>保育所型認定こども園</MenuItem>
+                                                    <MenuItem value={3}>幼保連携型型認定こども園</MenuItem>
+                                                    <MenuItem value={4}>地域型保育事業所</MenuItem>
+                                                    <MenuItem value={4}>認可外保育施設</MenuItem>
+                                                    <MenuItem value={4}>各種学校</MenuItem>
+                                                    <MenuItem value={4}>その他施設</MenuItem>
                                                 </Select>
                                             </FormControl>
                                         </Grid>

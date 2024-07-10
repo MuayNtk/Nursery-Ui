@@ -1,4 +1,4 @@
-import { Grid, Typography, TextField, InputAdornment, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, FormControl, Select, MenuItem, TextareaAutosize } from "@mui/material";
+import { Grid, Typography, TextField, InputAdornment, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, FormControl, Select, MenuItem } from "@mui/material";
 
 export default function TargetCalcReq() {
 
@@ -80,10 +80,8 @@ export default function TargetCalcReq() {
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value={1}>1</MenuItem>
-                      <MenuItem value={2}>2</MenuItem>
-                      <MenuItem value={3}>3</MenuItem>
-                      <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                     </Select>
                   </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center">本園分を</TableCell>
@@ -402,10 +400,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"><TextField
@@ -560,10 +556,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -583,10 +577,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -609,10 +601,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -648,10 +638,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -660,10 +648,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"><TextField
@@ -697,10 +683,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -736,10 +720,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -748,10 +730,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"><TextField
@@ -785,10 +765,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -824,10 +802,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -836,10 +812,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"><TextField
@@ -873,10 +847,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -949,10 +921,8 @@ export default function TargetCalcReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>

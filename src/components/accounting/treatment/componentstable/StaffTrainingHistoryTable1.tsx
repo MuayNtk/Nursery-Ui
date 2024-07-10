@@ -42,10 +42,14 @@ function StaffTrainingHistoryTable1() {
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>1</MenuItem>
-                                        <MenuItem value={2}>2</MenuItem>
-                                        <MenuItem value={3}>3</MenuItem>
-                                        <MenuItem value={4}>4</MenuItem>
+                                        <MenuItem value={1}>① 乳児保育</MenuItem>
+                                        <MenuItem value={2}>② 幼児教育</MenuItem>
+                                        <MenuItem value={3}>③ 障害児保育</MenuItem>
+                                        <MenuItem value={4}>④ 食育・アレルギー対応</MenuItem>
+                                        <MenuItem value={4}>⑤ 保健衛生.安全対策</MenuItem>
+                                        <MenuItem value={4}>⑥ 保護者支援・子育て支援</MenuItem>
+                                        <MenuItem value={4}>⑦ マネジメント</MenuItem>
+                                        <MenuItem value={4}>⑧ 保育実践</MenuItem>
                                     </Select>
                                 </FormControl>
                             </TableCell>
@@ -65,10 +69,14 @@ function StaffTrainingHistoryTable1() {
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>1</MenuItem>
-                                        <MenuItem value={2}>2</MenuItem>
-                                        <MenuItem value={3}>3</MenuItem>
-                                        <MenuItem value={4}>4</MenuItem>
+                                        <MenuItem value={1}>① 乳児保育</MenuItem>
+                                        <MenuItem value={2}>② 幼児教育</MenuItem>
+                                        <MenuItem value={3}>③ 障害児保育</MenuItem>
+                                        <MenuItem value={4}>④ 食育・アレルギー対応</MenuItem>
+                                        <MenuItem value={4}>⑤ 保健衛生.安全対策</MenuItem>
+                                        <MenuItem value={4}>⑥ 保護者支援・子育て支援</MenuItem>
+                                        <MenuItem value={4}>⑦ マネジメント</MenuItem>
+                                        <MenuItem value={4}>⑧ 保育実践</MenuItem>
                                     </Select>
                                 </FormControl>
                             </TableCell>
@@ -96,10 +104,14 @@ function StaffTrainingHistoryTable1() {
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>1</MenuItem>
-                                        <MenuItem value={2}>2</MenuItem>
-                                        <MenuItem value={3}>3</MenuItem>
-                                        <MenuItem value={4}>4</MenuItem>
+                                        <MenuItem value={1}>① 乳児保育</MenuItem>
+                                        <MenuItem value={2}>② 幼児教育</MenuItem>
+                                        <MenuItem value={3}>③ 障害児保育</MenuItem>
+                                        <MenuItem value={4}>④ 食育・アレルギー対応</MenuItem>
+                                        <MenuItem value={4}>⑤ 保健衛生.安全対策</MenuItem>
+                                        <MenuItem value={4}>⑥ 保護者支援・子育て支援</MenuItem>
+                                        <MenuItem value={4}>⑦ マネジメント</MenuItem>
+                                        <MenuItem value={4}>⑧ 保育実践</MenuItem>
                                     </Select>
                                 </FormControl>
                             </TableCell>
@@ -119,10 +131,14 @@ function StaffTrainingHistoryTable1() {
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>1</MenuItem>
-                                        <MenuItem value={2}>2</MenuItem>
-                                        <MenuItem value={3}>3</MenuItem>
-                                        <MenuItem value={4}>4</MenuItem>
+                                        <MenuItem value={1}>① 乳児保育</MenuItem>
+                                        <MenuItem value={2}>② 幼児教育</MenuItem>
+                                        <MenuItem value={3}>③ 障害児保育</MenuItem>
+                                        <MenuItem value={4}>④ 食育・アレルギー対応</MenuItem>
+                                        <MenuItem value={4}>⑤ 保健衛生.安全対策</MenuItem>
+                                        <MenuItem value={4}>⑥ 保護者支援・子育て支援</MenuItem>
+                                        <MenuItem value={4}>⑦ マネジメント</MenuItem>
+                                        <MenuItem value={4}>⑧ 保育実践</MenuItem>
                                     </Select>
                                 </FormControl>
                             </TableCell>
@@ -150,10 +166,14 @@ function StaffTrainingHistoryTable1() {
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>1</MenuItem>
-                                        <MenuItem value={2}>2</MenuItem>
-                                        <MenuItem value={3}>3</MenuItem>
-                                        <MenuItem value={4}>4</MenuItem>
+                                        <MenuItem value={1}>① 乳児保育</MenuItem>
+                                        <MenuItem value={2}>② 幼児教育</MenuItem>
+                                        <MenuItem value={3}>③ 障害児保育</MenuItem>
+                                        <MenuItem value={4}>④ 食育・アレルギー対応</MenuItem>
+                                        <MenuItem value={4}>⑤ 保健衛生.安全対策</MenuItem>
+                                        <MenuItem value={4}>⑥ 保護者支援・子育て支援</MenuItem>
+                                        <MenuItem value={4}>⑦ マネジメント</MenuItem>
+                                        <MenuItem value={4}>⑧ 保育実践</MenuItem>
                                     </Select>
                                 </FormControl>
                             </TableCell>
@@ -173,10 +193,14 @@ function StaffTrainingHistoryTable1() {
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>1</MenuItem>
-                                        <MenuItem value={2}>2</MenuItem>
-                                        <MenuItem value={3}>3</MenuItem>
-                                        <MenuItem value={4}>4</MenuItem>
+                                        <MenuItem value={1}>① 乳児保育</MenuItem>
+                                        <MenuItem value={2}>② 幼児教育</MenuItem>
+                                        <MenuItem value={3}>③ 障害児保育</MenuItem>
+                                        <MenuItem value={4}>④ 食育・アレルギー対応</MenuItem>
+                                        <MenuItem value={4}>⑤ 保健衛生.安全対策</MenuItem>
+                                        <MenuItem value={4}>⑥ 保護者支援・子育て支援</MenuItem>
+                                        <MenuItem value={4}>⑦ マネジメント</MenuItem>
+                                        <MenuItem value={4}>⑧ 保育実践</MenuItem>
                                     </Select>
                                 </FormControl>
                             </TableCell>
@@ -204,10 +228,14 @@ function StaffTrainingHistoryTable1() {
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>1</MenuItem>
-                                        <MenuItem value={2}>2</MenuItem>
-                                        <MenuItem value={3}>3</MenuItem>
-                                        <MenuItem value={4}>4</MenuItem>
+                                        <MenuItem value={1}>① 乳児保育</MenuItem>
+                                        <MenuItem value={2}>② 幼児教育</MenuItem>
+                                        <MenuItem value={3}>③ 障害児保育</MenuItem>
+                                        <MenuItem value={4}>④ 食育・アレルギー対応</MenuItem>
+                                        <MenuItem value={4}>⑤ 保健衛生.安全対策</MenuItem>
+                                        <MenuItem value={4}>⑥ 保護者支援・子育て支援</MenuItem>
+                                        <MenuItem value={4}>⑦ マネジメント</MenuItem>
+                                        <MenuItem value={4}>⑧ 保育実践</MenuItem>
                                     </Select>
                                 </FormControl>
                             </TableCell>
@@ -227,10 +255,14 @@ function StaffTrainingHistoryTable1() {
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>1</MenuItem>
-                                        <MenuItem value={2}>2</MenuItem>
-                                        <MenuItem value={3}>3</MenuItem>
-                                        <MenuItem value={4}>4</MenuItem>
+                                        <MenuItem value={1}>① 乳児保育</MenuItem>
+                                        <MenuItem value={2}>② 幼児教育</MenuItem>
+                                        <MenuItem value={3}>③ 障害児保育</MenuItem>
+                                        <MenuItem value={4}>④ 食育・アレルギー対応</MenuItem>
+                                        <MenuItem value={4}>⑤ 保健衛生.安全対策</MenuItem>
+                                        <MenuItem value={4}>⑥ 保護者支援・子育て支援</MenuItem>
+                                        <MenuItem value={4}>⑦ マネジメント</MenuItem>
+                                        <MenuItem value={4}>⑧ 保育実践</MenuItem>
                                     </Select>
                                 </FormControl>
                             </TableCell>
@@ -258,10 +290,14 @@ function StaffTrainingHistoryTable1() {
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>1</MenuItem>
-                                        <MenuItem value={2}>2</MenuItem>
-                                        <MenuItem value={3}>3</MenuItem>
-                                        <MenuItem value={4}>4</MenuItem>
+                                        <MenuItem value={1}>① 乳児保育</MenuItem>
+                                        <MenuItem value={2}>② 幼児教育</MenuItem>
+                                        <MenuItem value={3}>③ 障害児保育</MenuItem>
+                                        <MenuItem value={4}>④ 食育・アレルギー対応</MenuItem>
+                                        <MenuItem value={4}>⑤ 保健衛生.安全対策</MenuItem>
+                                        <MenuItem value={4}>⑥ 保護者支援・子育て支援</MenuItem>
+                                        <MenuItem value={4}>⑦ マネジメント</MenuItem>
+                                        <MenuItem value={4}>⑧ 保育実践</MenuItem>
                                     </Select>
                                 </FormControl>
                             </TableCell>
@@ -281,10 +317,14 @@ function StaffTrainingHistoryTable1() {
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>1</MenuItem>
-                                        <MenuItem value={2}>2</MenuItem>
-                                        <MenuItem value={3}>3</MenuItem>
-                                        <MenuItem value={4}>4</MenuItem>
+                                        <MenuItem value={1}>① 乳児保育</MenuItem>
+                                        <MenuItem value={2}>② 幼児教育</MenuItem>
+                                        <MenuItem value={3}>③ 障害児保育</MenuItem>
+                                        <MenuItem value={4}>④ 食育・アレルギー対応</MenuItem>
+                                        <MenuItem value={4}>⑤ 保健衛生.安全対策</MenuItem>
+                                        <MenuItem value={4}>⑥ 保護者支援・子育て支援</MenuItem>
+                                        <MenuItem value={4}>⑦ マネジメント</MenuItem>
+                                        <MenuItem value={4}>⑧ 保育実践</MenuItem>
                                     </Select>
                                 </FormControl>
                             </TableCell>
