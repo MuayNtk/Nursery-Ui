@@ -25,15 +25,15 @@ export default function LeaveAdd() {
         
         {/* Era, Year, Month, Day Form */}
         <Grid item xs={12}>
-          <Grid container justifyContent="flex-end" spacing={1}>
-            <Grid item xs={12} sm={3} md={2}>
+          <Grid container justifyContent="end" spacing={1}>
+            <Grid item xs={12} sm={3} md={2} lg={2}>
               <EraForm />
             </Grid>
-            <Grid item xs={12} sm={3} md={2}>
+            <Grid item xs={12} sm={3} md={3} lg={2}>
               <YearForm />
             </Grid>
-            <Grid item xs={12} sm={3} md={3}>
-              <Grid container spacing={1}>
+            <Grid item xs={12} sm={4.5} md={3} lg={2}>
+              <Grid container spacing={4}>
                 <Grid item xs={6}>
                   <MonthForm />
                 </Grid>
@@ -47,48 +47,48 @@ export default function LeaveAdd() {
         
         {/* 所属, 役職 Fields */}
         <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={6} sm={2} md={1}>
+          <Grid item xs={3} sm={3} md={2} lg={1}>
             <Typography style={{ fontSize: '16px' }} className='pt-2'>
               所　属 :
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={2} md={3}>
+          <Grid item xs={7} sm={7} md={3} lg={2}>
             <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
-          <Grid item xs={6} sm={2} md={1}>
+          <Grid item xs={3} sm={3} md={2} lg={1}>
             <Typography style={{ fontSize: '16px' }} className='pt-2'>
               役　職 :
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={2} md={3}>
+          <Grid item xs={7} sm={7} md={3} lg={2}>
             <TextField id="outlined-search" type="text" size="small" fullWidth  sx={{ backgroundColor: 'white' }} />
           </Grid>
         </Grid>
         
         {/* 氏名 Field */}
         <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={6} sm={2} md={1}>
+          <Grid item xs={3} sm={3} md={2} lg={1}>
             <Typography style={{ fontSize: '16px' }} className='pt-2'>
               氏　名 :
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={2} md={3}>
+          <Grid item xs={7} sm={7} md={3} lg={2}>
             <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }}/>
           </Grid>
-          <Grid item xs={6} sm={2} md={1}></Grid>
-          <Grid item xs={6} sm={2} md={3}></Grid>
+          <Grid item xs={3} sm={3} md={2} lg={1}></Grid>
+          <Grid item xs={7} sm={7} md={3} lg={2}></Grid>
         </Grid>
         
         {/* 適用 Radio Group */}
         <Grid container spacing={2} className='pt-7'>
-        <Grid item xs={6} sm={2} md={1}></Grid>
-        <Grid item xs={6} sm={2} md={1}></Grid>
-          <Grid item xs={6} sm={2} md={1} >
+        <Grid item xs={6} sm={1} md={1}></Grid>
+        <Grid item xs={6} sm={1} md={1}></Grid>
+          <Grid item xs={4} sm={3} md={2} lg={1}>
             <Typography style={{ fontSize: '16px' }} className='pt-2'>
               適　用 :
             </Typography>
           </Grid> 
-          <Grid item xs={6} sm={2} md={8}>
+          <Grid item xs={6} sm={4} md={8} lg={8}>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
               defaultValue="paidleave"
@@ -106,24 +106,24 @@ export default function LeaveAdd() {
         {/* Date Pickers */}
         <Grid container spacing={2} className='pt-7' justifyContent="center">
           
-          <Grid item xs={6} sm={2} md={1}>
+          <Grid item xs={3} sm={3} md={2} lg={1}>
             <Typography style={{ fontSize: '16px' }} className='pt-5'>
               期　間 :
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={2} md={3}>
+          <Grid item xs={7} sm={7} md={3} lg={3} className='scale-90'>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="開始日" sx={{ backgroundColor: 'white' }}/>
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={6} sm={2} md={1}>
+          <Grid item xs={3} sm={3} md={1} lg={1}  sx={{  ml:{lg:-8}}}>
             <Typography style={{ fontSize: '16px' }} className='pt-5'>
                 ～
             </Typography>
           </Grid>
-          <Grid item xs={6} sm={2} md={3}>
+          <Grid item xs={7} sm={7} md={3} lg={3} className='scale-90'sx={{  ml:{lg:-5}}}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="終了日" sx={{ backgroundColor: 'white' }}/>
@@ -133,17 +133,15 @@ export default function LeaveAdd() {
         </Grid>
         
         {/* 日間 Field */}
-        <Grid container spacing={2} className='pt-7' >
-        <Grid item xs={3} sm={2} md={1}></Grid>
-        <Grid item xs={3} sm={2} md={3}></Grid>
-          <Grid item xs={6} sm={5} md={2}>
+        <Grid container spacing={2} className='pt-7 ' >
+          <Grid item xs={6} sm={5} md={3} lg={3}>
             <TextField 
               id="outlined-search" 
               type="text" 
               size="small"  
               variant="outlined" 
               fullWidth
-              sx={{ backgroundColor: 'white' }}
+              sx={{ backgroundColor: 'white', ml:{xs:4, sm:5, md:15, lg:24}}}
               InputProps={{
                   endAdornment: <InputAdornment position="end">日間</InputAdornment>,
               }} />
