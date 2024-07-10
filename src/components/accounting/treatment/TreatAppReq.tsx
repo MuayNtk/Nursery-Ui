@@ -1,10 +1,10 @@
-import { Grid,  TextField, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody,  Typography, FormControl, InputAdornment, MenuItem, Select } from "@mui/material";
+import { Grid, TextField, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Typography, FormControl, InputAdornment, MenuItem, Select } from "@mui/material";
 
 export default function TreatAppReq() {
-  
-      return (
-        <>
-           <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3 justify-end' >
+
+  return (
+    <>
+      <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3 justify-end' >
         <Typography component='div' fontWeight={500} className="pl-5 lg:pl-24 pt-6">
           團番号:
         </Typography>
@@ -174,10 +174,8 @@ export default function TreatAppReq() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>該当v</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>該当</MenuItem>
+                    <MenuItem value={2}>非該当</MenuItem>
                   </Select>
                 </FormControl></TableCell>
               </TableRow>
@@ -187,7 +185,7 @@ export default function TreatAppReq() {
       </Grid >
       {/* End Table */}
 
-     
+
 
       <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-14 pl-3 justify-start' >
         <Typography
@@ -267,11 +265,11 @@ export default function TreatAppReq() {
       <Grid container spacing={2} className='pt-7'>
         <Grid item xs={4.5} sm={4} md={4} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
-          ➂各種加算の適用状況
-          保育所:　3歲配置改善加算::
+            ➂各種加算の適用状況
+            保育所:　3歲配置改善加算 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={1}>
+        <Grid item xs={6} sm={5} md={4} lg={1.5}>
           <TextField id="school-number" name="school-number" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
         </Grid>
       </Grid>
@@ -279,10 +277,10 @@ export default function TreatAppReq() {
       <Grid container spacing={2} className='pt-7'>
         <Grid item xs={4.5} sm={4} md={4} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
-          保育標準時間認定の子どもの有無 :
+            保育標準時間認定の子どもの有無 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={1}>
+        <Grid item xs={6} sm={5} md={4} lg={1.5}>
           <TextField id="school-number" name="school-number" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
         </Grid>
       </Grid>
@@ -290,10 +288,10 @@ export default function TreatAppReq() {
       <Grid container spacing={2} className='pt-7'>
         <Grid item xs={4.5} sm={4} md={4} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
-          主任保育士寿任加算 :
+            主任保育士寿任加算 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={1}>
+        <Grid item xs={6} sm={5} md={4} lg={1.5}>
           <TextField id="school-number" name="school-number" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
         </Grid>
       </Grid>
@@ -301,10 +299,10 @@ export default function TreatAppReq() {
       <Grid container spacing={2} className='pt-7'>
         <Grid item xs={4.5} sm={4} md={4} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
-          療育支援加算(A·B) :
+            療育支援加算(A·B) :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={1}>
+        <Grid item xs={6} sm={5} md={4} lg={1.5}>
           <TextField id="school-number" name="school-number" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
         </Grid>
       </Grid>
@@ -312,10 +310,10 @@ export default function TreatAppReq() {
       <Grid container spacing={2} className='pt-7'>
         <Grid item xs={4.5} sm={4} md={4} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
-          事務職員雇上費加算 :
+            事務職員雇上費加算 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={1}>
+        <Grid item xs={6} sm={5} md={4} lg={1.5}>
           <TextField id="school-number" name="school-number" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
         </Grid>
       </Grid>
@@ -323,10 +321,10 @@ export default function TreatAppReq() {
       <Grid container spacing={2} className='pt-7'>
         <Grid item xs={4.5} sm={4} md={4} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
-          休日保育加算 :
+            休日保育加算 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={1}>
+        <Grid item xs={6} sm={5} md={4} lg={1.5}>
           <TextField id="school-number" name="school-number" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
         </Grid>
       </Grid>
@@ -334,10 +332,10 @@ export default function TreatAppReq() {
       <Grid container spacing={2} className='pt-7'>
         <Grid item xs={4.5} sm={4} md={4} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
-          夜間保育加算 :
+            夜間保育加算 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={1}>
+        <Grid item xs={6} sm={5} md={4} lg={1.5}>
           <TextField id="school-number" name="school-number" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
         </Grid>
       </Grid>
@@ -345,10 +343,10 @@ export default function TreatAppReq() {
       <Grid container spacing={2} className='pt-7'>
         <Grid item xs={4.5} sm={4} md={4} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
-          チーム保育推進加算 :
+            チーム保育推進加算 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={1}>
+        <Grid item xs={6} sm={5} md={4} lg={1.5}>
           <TextField id="school-number" name="school-number" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
         </Grid>
       </Grid>
@@ -356,11 +354,11 @@ export default function TreatAppReq() {
       <Grid container spacing={2} className='pt-7'>
         <Grid item xs={4.5} sm={4} md={4} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
-          栄養管理加算(A:配置の場合): 非該当
-          分園の場合の減算 :
+            栄養管理加算(A:配置の場合): 非該当
+            分園の場合の減算 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={1}>
+        <Grid item xs={6} sm={5} md={4} lg={1.5}>
           <TextField id="school-number" name="school-number" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
         </Grid>
       </Grid>
@@ -368,20 +366,20 @@ export default function TreatAppReq() {
       <Grid container spacing={2} className='pt-7'>
         <Grid item xs={4.5} sm={4} md={4} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
-          分園の場合の減算 :
+            分園の場合の減算 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={1}>
+        <Grid item xs={6} sm={5} md={4} lg={1.5}>
           <TextField id="school-number" name="school-number" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
         </Grid>
       </Grid>
       <Grid container spacing={2} className='pt-7'>
         <Grid item xs={4.5} sm={4} md={4} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
-          施設長を配置していない場合の減算 :
+            施設長を配置していない場合の減算 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={1}>
+        <Grid item xs={6} sm={5} md={4} lg={1.5}>
           <TextField id="school-number" name="school-number" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
         </Grid>
       </Grid>
@@ -389,7 +387,7 @@ export default function TreatAppReq() {
       <Grid container spacing={2} className='pt-7'>
         <Grid item xs={4.5} sm={4} md={4} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
-          ➃ 加算対象人数の基礎となる職員数:
+            ➃ 加算対象人数の基礎となる職員数:
           </Typography>
         </Grid>
         <Grid item xs={6} sm={5} md={4} lg={3}>
@@ -403,7 +401,7 @@ export default function TreatAppReq() {
       <Grid container className='pt-8' justifyContent="start">
         <Grid item xs={12} sm={12} md={12} lg={12}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-start'>
-            ※　1について各月平均の年齢別児童数とする場合は、算出方法を示した書類を添付すること。 
+            ※　1について各月平均の年齢別児童数とする場合は、算出方法を示した書類を添付すること。
           </Typography>
         </Grid>
       </Grid>
@@ -414,7 +412,6 @@ export default function TreatAppReq() {
           </Typography>
         </Grid>
       </Grid>
-        </>
-      );
-    }
-    
+    </>
+  );
+}

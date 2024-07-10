@@ -209,10 +209,8 @@ export default function PassProf() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={1}>該当</MenuItem>
+              <MenuItem value={2}>非該当</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -268,10 +266,8 @@ export default function PassProf() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={1}>該当</MenuItem>
+              <MenuItem value={2}>非該当</MenuItem>
             </Select>
           </FormControl>
         </Grid>

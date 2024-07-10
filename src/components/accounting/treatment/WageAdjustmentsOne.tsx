@@ -1,4 +1,4 @@
-import { Grid, Paper, Table, TableCell, TableContainer, TableRow, Typography, TableBody, FormControl, InputLabel, Select, MenuItem, Divider, TableHead, Checkbox, TextField, TableFooter } from "@mui/material";
+import { Grid, Paper, Table, TableCell, TableContainer, TableRow, Typography, TableBody, FormControl, Select, MenuItem, Divider, TableHead, Checkbox, TextField, TableFooter } from "@mui/material";
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -120,39 +120,46 @@ export default function WageAdjustmentsOne() {
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>施設長</MenuItem>
+                    <MenuItem value={2}>副園長</MenuItem>
+                    <MenuItem value={3}>教頭</MenuItem>
+                    <MenuItem value={4}>主幹教諭</MenuItem>
+                    <MenuItem value={5}>主任保育士</MenuItem>
+                    <MenuItem value={6}>教諭</MenuItem>
+                    <MenuItem value={7}>保育士</MenuItem>
+                    <MenuItem value={8}>看護師</MenuItem>
+                    <MenuItem value={9}>准看護師</MenuItem>
+                    <MenuItem value={10}>調理士</MenuItem>
+                    <MenuItem value={11}>調理士(栄養士)</MenuItem>
+                    <MenuItem value={12}>栄養士</MenuItem>
+                    <MenuItem value={13}>事務員</MenuItem>
+                    <MenuItem value={14}>用務員</MenuItem>
+                    <MenuItem value={15}>パート保育士</MenuItem>
+                    <MenuItem value={16}>パート調理士</MenuItem>
+                    <MenuItem value={17}>その他</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>常勤</MenuItem>
+                    <MenuItem value={2}>非常勤</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
@@ -209,39 +216,46 @@ export default function WageAdjustmentsOne() {
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>施設長</MenuItem>
+                    <MenuItem value={2}>副園長</MenuItem>
+                    <MenuItem value={3}>教頭</MenuItem>
+                    <MenuItem value={4}>主幹教諭</MenuItem>
+                    <MenuItem value={5}>主任保育士</MenuItem>
+                    <MenuItem value={6}>教諭</MenuItem>
+                    <MenuItem value={7}>保育士</MenuItem>
+                    <MenuItem value={8}>看護師</MenuItem>
+                    <MenuItem value={9}>准看護師</MenuItem>
+                    <MenuItem value={10}>調理士</MenuItem>
+                    <MenuItem value={11}>調理士(栄養士)</MenuItem>
+                    <MenuItem value={12}>栄養士</MenuItem>
+                    <MenuItem value={13}>事務員</MenuItem>
+                    <MenuItem value={14}>用務員</MenuItem>
+                    <MenuItem value={15}>パート保育士</MenuItem>
+                    <MenuItem value={16}>パート調理士</MenuItem>
+                    <MenuItem value={17}>その他</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>常勤</MenuItem>
+                    <MenuItem value={2}>非常勤</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
@@ -298,39 +312,46 @@ export default function WageAdjustmentsOne() {
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>施設長</MenuItem>
+                    <MenuItem value={2}>副園長</MenuItem>
+                    <MenuItem value={3}>教頭</MenuItem>
+                    <MenuItem value={4}>主幹教諭</MenuItem>
+                    <MenuItem value={5}>主任保育士</MenuItem>
+                    <MenuItem value={6}>教諭</MenuItem>
+                    <MenuItem value={7}>保育士</MenuItem>
+                    <MenuItem value={8}>看護師</MenuItem>
+                    <MenuItem value={9}>准看護師</MenuItem>
+                    <MenuItem value={10}>調理士</MenuItem>
+                    <MenuItem value={11}>調理士(栄養士)</MenuItem>
+                    <MenuItem value={12}>栄養士</MenuItem>
+                    <MenuItem value={13}>事務員</MenuItem>
+                    <MenuItem value={14}>用務員</MenuItem>
+                    <MenuItem value={15}>パート保育士</MenuItem>
+                    <MenuItem value={16}>パート調理士</MenuItem>
+                    <MenuItem value={17}>その他</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>常勤</MenuItem>
+                    <MenuItem value={2}>非常勤</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
@@ -387,39 +408,46 @@ export default function WageAdjustmentsOne() {
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>施設長</MenuItem>
+                    <MenuItem value={2}>副園長</MenuItem>
+                    <MenuItem value={3}>教頭</MenuItem>
+                    <MenuItem value={4}>主幹教諭</MenuItem>
+                    <MenuItem value={5}>主任保育士</MenuItem>
+                    <MenuItem value={6}>教諭</MenuItem>
+                    <MenuItem value={7}>保育士</MenuItem>
+                    <MenuItem value={8}>看護師</MenuItem>
+                    <MenuItem value={9}>准看護師</MenuItem>
+                    <MenuItem value={10}>調理士</MenuItem>
+                    <MenuItem value={11}>調理士(栄養士)</MenuItem>
+                    <MenuItem value={12}>栄養士</MenuItem>
+                    <MenuItem value={13}>事務員</MenuItem>
+                    <MenuItem value={14}>用務員</MenuItem>
+                    <MenuItem value={15}>パート保育士</MenuItem>
+                    <MenuItem value={16}>パート調理士</MenuItem>
+                    <MenuItem value={17}>その他</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>常勤</MenuItem>
+                    <MenuItem value={2}>非常勤</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
@@ -476,39 +504,46 @@ export default function WageAdjustmentsOne() {
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>施設長</MenuItem>
+                    <MenuItem value={2}>副園長</MenuItem>
+                    <MenuItem value={3}>教頭</MenuItem>
+                    <MenuItem value={4}>主幹教諭</MenuItem>
+                    <MenuItem value={5}>主任保育士</MenuItem>
+                    <MenuItem value={6}>教諭</MenuItem>
+                    <MenuItem value={7}>保育士</MenuItem>
+                    <MenuItem value={8}>看護師</MenuItem>
+                    <MenuItem value={9}>准看護師</MenuItem>
+                    <MenuItem value={10}>調理士</MenuItem>
+                    <MenuItem value={11}>調理士(栄養士)</MenuItem>
+                    <MenuItem value={12}>栄養士</MenuItem>
+                    <MenuItem value={13}>事務員</MenuItem>
+                    <MenuItem value={14}>用務員</MenuItem>
+                    <MenuItem value={15}>パート保育士</MenuItem>
+                    <MenuItem value={16}>パート調理士</MenuItem>
+                    <MenuItem value={17}>その他</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>常勤</MenuItem>
+                    <MenuItem value={2}>非常勤</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
@@ -565,39 +600,46 @@ export default function WageAdjustmentsOne() {
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>施設長</MenuItem>
+                    <MenuItem value={2}>副園長</MenuItem>
+                    <MenuItem value={3}>教頭</MenuItem>
+                    <MenuItem value={4}>主幹教諭</MenuItem>
+                    <MenuItem value={5}>主任保育士</MenuItem>
+                    <MenuItem value={6}>教諭</MenuItem>
+                    <MenuItem value={7}>保育士</MenuItem>
+                    <MenuItem value={8}>看護師</MenuItem>
+                    <MenuItem value={9}>准看護師</MenuItem>
+                    <MenuItem value={10}>調理士</MenuItem>
+                    <MenuItem value={11}>調理士(栄養士)</MenuItem>
+                    <MenuItem value={12}>栄養士</MenuItem>
+                    <MenuItem value={13}>事務員</MenuItem>
+                    <MenuItem value={14}>用務員</MenuItem>
+                    <MenuItem value={15}>パート保育士</MenuItem>
+                    <MenuItem value={16}>パート調理士</MenuItem>
+                    <MenuItem value={17}>その他</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>常勤</MenuItem>
+                    <MenuItem value={2}>非常勤</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
@@ -654,39 +696,46 @@ export default function WageAdjustmentsOne() {
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>施設長</MenuItem>
+                    <MenuItem value={2}>副園長</MenuItem>
+                    <MenuItem value={3}>教頭</MenuItem>
+                    <MenuItem value={4}>主幹教諭</MenuItem>
+                    <MenuItem value={5}>主任保育士</MenuItem>
+                    <MenuItem value={6}>教諭</MenuItem>
+                    <MenuItem value={7}>保育士</MenuItem>
+                    <MenuItem value={8}>看護師</MenuItem>
+                    <MenuItem value={9}>准看護師</MenuItem>
+                    <MenuItem value={10}>調理士</MenuItem>
+                    <MenuItem value={11}>調理士(栄養士)</MenuItem>
+                    <MenuItem value={12}>栄養士</MenuItem>
+                    <MenuItem value={13}>事務員</MenuItem>
+                    <MenuItem value={14}>用務員</MenuItem>
+                    <MenuItem value={15}>パート保育士</MenuItem>
+                    <MenuItem value={16}>パート調理士</MenuItem>
+                    <MenuItem value={17}>その他</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>常勤</MenuItem>
+                    <MenuItem value={2}>非常勤</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
@@ -743,39 +792,46 @@ export default function WageAdjustmentsOne() {
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>施設長</MenuItem>
+                    <MenuItem value={2}>副園長</MenuItem>
+                    <MenuItem value={3}>教頭</MenuItem>
+                    <MenuItem value={4}>主幹教諭</MenuItem>
+                    <MenuItem value={5}>主任保育士</MenuItem>
+                    <MenuItem value={6}>教諭</MenuItem>
+                    <MenuItem value={7}>保育士</MenuItem>
+                    <MenuItem value={8}>看護師</MenuItem>
+                    <MenuItem value={9}>准看護師</MenuItem>
+                    <MenuItem value={10}>調理士</MenuItem>
+                    <MenuItem value={11}>調理士(栄養士)</MenuItem>
+                    <MenuItem value={12}>栄養士</MenuItem>
+                    <MenuItem value={13}>事務員</MenuItem>
+                    <MenuItem value={14}>用務員</MenuItem>
+                    <MenuItem value={15}>パート保育士</MenuItem>
+                    <MenuItem value={16}>パート調理士</MenuItem>
+                    <MenuItem value={17}>その他</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>常勤</MenuItem>
+                    <MenuItem value={2}>非常勤</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
@@ -832,39 +888,46 @@ export default function WageAdjustmentsOne() {
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>施設長</MenuItem>
+                    <MenuItem value={2}>副園長</MenuItem>
+                    <MenuItem value={3}>教頭</MenuItem>
+                    <MenuItem value={4}>主幹教諭</MenuItem>
+                    <MenuItem value={5}>主任保育士</MenuItem>
+                    <MenuItem value={6}>教諭</MenuItem>
+                    <MenuItem value={7}>保育士</MenuItem>
+                    <MenuItem value={8}>看護師</MenuItem>
+                    <MenuItem value={9}>准看護師</MenuItem>
+                    <MenuItem value={10}>調理士</MenuItem>
+                    <MenuItem value={11}>調理士(栄養士)</MenuItem>
+                    <MenuItem value={12}>栄養士</MenuItem>
+                    <MenuItem value={13}>事務員</MenuItem>
+                    <MenuItem value={14}>用務員</MenuItem>
+                    <MenuItem value={15}>パート保育士</MenuItem>
+                    <MenuItem value={16}>パート調理士</MenuItem>
+                    <MenuItem value={17}>その他</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>常勤</MenuItem>
+                    <MenuItem value={2}>非常勤</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
@@ -921,39 +984,46 @@ export default function WageAdjustmentsOne() {
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>施設長</MenuItem>
+                    <MenuItem value={2}>副園長</MenuItem>
+                    <MenuItem value={3}>教頭</MenuItem>
+                    <MenuItem value={4}>主幹教諭</MenuItem>
+                    <MenuItem value={5}>主任保育士</MenuItem>
+                    <MenuItem value={6}>教諭</MenuItem>
+                    <MenuItem value={7}>保育士</MenuItem>
+                    <MenuItem value={8}>看護師</MenuItem>
+                    <MenuItem value={9}>准看護師</MenuItem>
+                    <MenuItem value={10}>調理士</MenuItem>
+                    <MenuItem value={11}>調理士(栄養士)</MenuItem>
+                    <MenuItem value={12}>栄養士</MenuItem>
+                    <MenuItem value={13}>事務員</MenuItem>
+                    <MenuItem value={14}>用務員</MenuItem>
+                    <MenuItem value={15}>パート保育士</MenuItem>
+                    <MenuItem value={16}>パート調理士</MenuItem>
+                    <MenuItem value={17}>その他</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
               <TableCell align="left" style={{ width: 150, }}>
                 <FormControl size="small" fullWidth>
-                  <InputLabel id="training-field-label">研修分野</InputLabel>
                   <Select
                     labelId="training-field-label"
                     id="date-select"
-                    label="研修分野"
                     sx={{ backgroundColor: "white" }}
                   >
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>常勤</MenuItem>
+                    <MenuItem value={2}>非常勤</MenuItem>
                   </Select>
                 </FormControl>
               </TableCell>
