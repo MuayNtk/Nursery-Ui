@@ -54,10 +54,8 @@ export default function StaffCalc() {
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value={1}>1</MenuItem>
-                      <MenuItem value={2}>2</MenuItem>
-                      <MenuItem value={3}>3</MenuItem>
-                      <MenuItem value={4}>4</MenuItem>
+                      <MenuItem value={1}>あり</MenuItem>
+                      <MenuItem value={2}>なし</MenuItem>
                     </Select>
                   </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center">本園分を記入</TableCell>
@@ -351,10 +349,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -364,10 +360,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -501,10 +495,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -524,10 +516,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -550,10 +540,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -573,10 +561,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -599,10 +585,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -622,10 +606,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -648,10 +630,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -671,10 +651,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -697,10 +675,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -720,10 +696,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -746,10 +720,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl>
                 </TableCell>
@@ -769,10 +741,8 @@ export default function StaffCalc() {
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={1}>あり</MenuItem>
+                    <MenuItem value={2}>なし</MenuItem>
                   </Select>
                 </FormControl></TableCell>
                 <TableCell style={{ width: 20, }} align="center"></TableCell>
@@ -910,7 +880,7 @@ export default function StaffCalc() {
       </Grid>
       <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3 justify-start' >
         <Typography component='div' fontWeight={500} className="pl-5 lg:pl-24 pt-6">
-        人数B　(職員数の1/5):
+          人数B　(職員数の1/5):
         </Typography>
         <Grid item xs={7.5} sm={7} md={3} lg={2}>
           <TextField
@@ -937,7 +907,7 @@ export default function StaffCalc() {
       </Grid>
       <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3 justify-start' >
         <Typography component='div' fontWeight={500} className="pl-5 lg:pl-[95px] pt-6">
-        48,900円　x　人数A:
+          48,900円　x　人数A:
         </Typography>
         <Grid item xs={7.5} sm={7} md={3} lg={2}>
           <TextField
@@ -954,7 +924,7 @@ export default function StaffCalc() {
       </Grid>
       <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3 justify-start' >
         <Typography component='div' fontWeight={500} className="pl-5 lg:pl-[120px] pt-6">
-        6,110円　x　人B:
+          6,110円　x　人B:
         </Typography>
         <Grid item xs={7.5} sm={7} md={3} lg={2}>
           <TextField
@@ -971,7 +941,7 @@ export default function StaffCalc() {
       </Grid>
       <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3 justify-start' >
         <Typography component='div' fontWeight={500} className="pl-5 lg:pl-52 pt-6">
-        合計:
+          合計:
         </Typography>
         <Grid item xs={7.5} sm={7} md={3} lg={2}>
           <TextField
@@ -988,7 +958,7 @@ export default function StaffCalc() {
       </Grid>
       <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pl-3 justify-start' >
         <Typography component='div' fontWeight={500} className="pl-5 lg:pl-40 pt-6">
-        年間見込額:
+          年間見込額:
         </Typography>
         <Grid item xs={7.5} sm={7} md={3} lg={2}>
           <TextField
