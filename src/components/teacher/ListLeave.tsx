@@ -122,11 +122,6 @@ export default function ListLeave() {
     setClass(event.target.value as string);
   };
 
-  const [searchInput, setSearchInput] = React.useState('');
-  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
-  };
-
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -137,6 +132,11 @@ export default function ListLeave() {
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+
+  const [searchInput, setSearchInput] = React.useState('');
+  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
   };
 
   // Filtered rows based on search input and selected classroom
@@ -209,7 +209,7 @@ export default function ListLeave() {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
-                      <TableRow key={row.id}>
+                      <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
