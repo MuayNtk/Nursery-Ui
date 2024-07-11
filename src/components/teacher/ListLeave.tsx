@@ -72,7 +72,7 @@ function createData(
 }
 
 // Example data (you can replace this with your actual data)
-const rows = [
+const initialRows = [
   createData('1', 'John Doe', 'Math', 20230619, 830, 1030,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
@@ -122,6 +122,11 @@ export default function ListLeave() {
     setClass(event.target.value as string);
   };
 
+  const [searchInput, setSearchInput] = React.useState('');
+  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
+  };
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -134,11 +139,17 @@ export default function ListLeave() {
     setPage(0);
   };
 
+  // Filtered rows based on search input and selected classroom
+  const filteredRows = initialRows.filter(row =>
+    row.name.toLowerCase().includes(searchInput.toLowerCase()) &&
+    (classroom === '' || row.classroom === classroom)
+  );
+
   return (
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
         <Grid item xs={3} sm={4} md={2} lg={2}>
-          <TextField id="outlined-search" label="氏名" type="search" size="small" />
+          <TextField id="outlined-search" label="氏名" type="search" size="small" onChange={handleSearchInputChange} />
         </Grid>
         <Grid item xs={3} sm={4} md={2} lg={2} style={{ textAlign: 'center' }}>
           <FormControl sx={{ minWidth: 125 }} size="small" fullWidth>
@@ -153,9 +164,9 @@ export default function ListLeave() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>うさぎ</MenuItem>
-              <MenuItem value={20}>くま</MenuItem>
-              <MenuItem value={30}>ぱんだ</MenuItem>
+              <MenuItem value="Math">Math (うさぎ)</MenuItem>
+              <MenuItem value="Science">Science (くま)</MenuItem>
+              <MenuItem value="History">History (ぱんだ)</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -194,7 +205,7 @@ export default function ListLeave() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
+                {filteredRows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
@@ -218,7 +229,7 @@ export default function ListLeave() {
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={rows.length}
+            count={filteredRows.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
