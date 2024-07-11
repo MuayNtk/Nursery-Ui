@@ -107,51 +107,73 @@ export default function MonthlyThreeYearsAbove() {
         </Card>
       </Grid>
       {/* End Card ねらい*/}
-
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-24">
-        <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+ {/* Start 健康·安全 Grid */}
+ <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
+        <Grid item xs={6} sm={6} md={6} lg={6} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, ml: { xs: 8, sm: 5, md: 12, lg: 11 } }} >
           養護
-        </Typography>
-      </Grid>
-      {/* start grid  養護*/}
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
-        <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-          <TextareaAutosize id="maintenance" name="maintenance" minRows={3.5} maxRows={100}
-            className="lg:w-96 md:w-60 "
-            style={{ border: '1px solid gray', borderRadius: '4px' }} />
+          </Typography>
         </Grid>
-      </Grid>
-      {/* End grid  養護*/}
-
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4 pl-24">
-        <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+        <Grid item xs={6} sm={6} md={6} lg={6} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, ml: { xs: 1, sm: 5, md: -1, lg: 3 } }} >
           教育
-        </Typography>
-      </Grid>
-      {/* start grid  教育*/}
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
-        <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-          <TextareaAutosize id="educate" name="educate" minRows={3.5} maxRows={100}
-            className="lg:w-96 md:w-60 "
-            style={{ border: '1px solid gray', borderRadius: '4px' }} />
+          </Typography>
         </Grid>
       </Grid>
-      {/* End grid  教育*/}
+      {/* End 健康·安全 Grid */}
 
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4 pl-24">
-        <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
-          健康安全
-        </Typography>
-      </Grid>
-      {/* start grid  健康安全*/}
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
-        <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-          <TextareaAutosize id="healthasafety" name="healthasafety" minRows={3.5} maxRows={100}
-            className="lg:w-96 md:w-60 "
-            style={{ border: '1px solid gray', borderRadius: '4px' }} />
+      {/* Start health-safety-input Grid */}
+      <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5 } }}>
+        <Grid item xs={4} sm={4} md={4} lg={4} sx={{ ml: { xs: 3, sm: 8, md: 2, lg: 4 } }}>
+          <TextareaAutosize
+            id="health-safety-input"
+            name="health-safety-input"
+            minRows={3}
+            maxRows={100}
+            className="w-full"
+            style={{ border: '1px solid gray', borderRadius: '4px' }}
+          />
+        </Grid>
+        <Grid item xs={4} sm={4} md={4} lg={4} sx={{ ml: { xs: 1, sm: 1, md: 2, lg: 2 } }}>
+          <TextareaAutosize
+            id="cooperation-input"
+            name="cooperation-input"
+            minRows={3}
+            maxRows={100}
+            className="w-full"
+            style={{ border: '1px solid gray', borderRadius: '4px' }}
+          />
         </Grid>
       </Grid>
-      {/* End grid  健康安全*/}
+      {/* End health-safety-input Grid */}
+
+      {/* Start 健康·安全 Grid */}
+ <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
+        <Grid item xs={6} sm={6} md={6} lg={6} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, ml: { xs: 8, sm: 13, md: 12, lg: 11 } }} >
+          健康安全
+          </Typography>
+        </Grid>
+      </Grid>
+      {/* End 健康·安全 Grid */}
+
+      {/* Start health-safety-input Grid */}
+      <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5 } }}>
+        <Grid item xs={4} sm={4} md={4} lg={4} sx={{ ml: { xs: 3, sm: 8, md: 2, lg: 4 } }}>
+          <TextareaAutosize
+            id="health-safety-input"
+            name="health-safety-input"
+            minRows={3}
+            maxRows={100}
+            className="w-full"
+            style={{ border: '1px solid gray', borderRadius: '4px' }}
+          />
+        </Grid>
+      </Grid>
+      {/* End health-safety-input Grid */}
+      
+
+      
 
       {/* Start Card 指導の内容*/}
       <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-14 pl-10 flex '  >
@@ -376,62 +398,90 @@ export default function MonthlyThreeYearsAbove() {
         </Grid>
       </Grid >
       {/* End 教育 Grid */}
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-24">
-        <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
-        健康人間係環境・言葉表現
-        </Typography>
-      </Grid>
-      {/* start grid  健康人間係環境・言葉表現*/}
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
-        <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-          <TextareaAutosize id="healthyhuman" name="healthyhuman" minRows={3.5} maxRows={100}
-            className="lg:w-96 md:w-60 "
-            style={{ border: '1px solid gray', borderRadius: '4px' }} />
+
+
+{/* Start 健康·安全 Grid */}
+<Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
+        <Grid item xs={6} sm={6} md={6} lg={6} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, ml: { xs: 8, sm: 5, md: 12, lg: 11 } }} >
+          健康人間係環境・言葉表現
+          </Typography>
+        </Grid>
+        <Grid item xs={6} sm={6} md={6} lg={6} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, ml: { xs: 1, sm: 5, md: -1, lg: 3 } }} >
+          组運営·個別刘応
+          </Typography>
         </Grid>
       </Grid>
-      {/* End grid  健康人間係環境・言葉表現*/}
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-24">
-        <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
-        组運営·個別刘応
-        </Typography>
-      </Grid>
-      {/* start grid  组運営·個別刘応*/}
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
-        <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-          <TextareaAutosize id="groupmanagement" name="groupmanagement" minRows={3.5} maxRows={100}
-            className="lg:w-96 md:w-60 "
-            style={{ border: '1px solid gray', borderRadius: '4px' }} />
+      {/* End 健康·安全 Grid */}
+
+      {/* Start health-safety-input Grid */}
+      <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5 } }}>
+        <Grid item xs={4} sm={4} md={4} lg={4} sx={{ ml: { xs: 3, sm: 8, md: 2, lg: 4 } }}>
+          <TextareaAutosize
+            id="health-safety-input"
+            name="health-safety-input"
+            minRows={3}
+            maxRows={100}
+            className="w-full"
+            style={{ border: '1px solid gray', borderRadius: '4px' }}
+          />
+        </Grid>
+        <Grid item xs={4} sm={4} md={4} lg={4} sx={{ ml: { xs: 1, sm: 1, md: 2, lg: 2 } }}>
+          <TextareaAutosize
+            id="cooperation-input"
+            name="cooperation-input"
+            minRows={3}
+            maxRows={100}
+            className="w-full"
+            style={{ border: '1px solid gray', borderRadius: '4px' }}
+          />
         </Grid>
       </Grid>
-      {/* End grid  组運営·個別刘応*/}
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-24">
-        <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
-        連携家庭・地域との
-        </Typography>
-      </Grid>
-      {/* start grid  連携家庭・地域との*/}
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
-        <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-          <TextareaAutosize id="familieacommunities" name="familieacommunities" minRows={3.5} maxRows={100}
-            className="lg:w-96 md:w-60 "
-            style={{ border: '1px solid gray', borderRadius: '4px' }} />
+      {/* End health-safety-input Grid */}
+
+      {/* Start 健康·安全 Grid */}
+<Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
+        <Grid item xs={6} sm={6} md={6} lg={6} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, ml: { xs: 8, sm: 5, md: 12, lg: 11 } }} >
+          連携家庭・地域との
+          </Typography>
+        </Grid>
+        <Grid item xs={6} sm={6} md={6} lg={6} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, ml: { xs: 1, sm: 5, md: -1, lg: 3 } }} >
+          行事
+          </Typography>
         </Grid>
       </Grid>
-      {/* End grid  連携家庭・地域との*/}
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-24">
-        <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
-        行事
-        </Typography>
-      </Grid>
-      {/* start grid  行事*/}
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3 pl-20">
-        <Grid item xs={8} sm={3} md={3} lg={2} className="" sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-          <TextareaAutosize id="event" name="event" minRows={3.5} maxRows={100}
-            className="lg:w-96 md:w-60 "
-            style={{ border: '1px solid gray', borderRadius: '4px' }} />
+      {/* End 健康·安全 Grid */}
+
+      {/* Start health-safety-input Grid */}
+      <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5 } }}>
+        <Grid item xs={4} sm={4} md={4} lg={4} sx={{ ml: { xs: 3, sm: 8, md: 2, lg: 4 } }}>
+          <TextareaAutosize
+            id="health-safety-input"
+            name="health-safety-input"
+            minRows={3}
+            maxRows={100}
+            className="w-full"
+            style={{ border: '1px solid gray', borderRadius: '4px' }}
+          />
+        </Grid>
+        <Grid item xs={4} sm={4} md={4} lg={4} sx={{ ml: { xs: 1, sm: 1, md: 2, lg: 2 } }}>
+          <TextareaAutosize
+            id="cooperation-input"
+            name="cooperation-input"
+            minRows={3}
+            maxRows={100}
+            className="w-full"
+            style={{ border: '1px solid gray', borderRadius: '4px' }}
+          />
         </Grid>
       </Grid>
-      {/* End grid  行事*/}
+      {/* End health-safety-input Grid */}
+
+     
+      
 
       <Grid container className='pt-7' justifyContent="start">
         <Grid>
