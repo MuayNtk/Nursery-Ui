@@ -259,11 +259,13 @@ export default function Student() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
+              <MenuItem value={30}>0</MenuItem>
               <MenuItem value={10}>1</MenuItem>
               <MenuItem value={20}>2</MenuItem>
               <MenuItem value={30}>3</MenuItem>
               <MenuItem value={30}>4</MenuItem>
               <MenuItem value={30}>5</MenuItem>
+              <MenuItem value={30}>6</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -280,11 +282,12 @@ export default function Student() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>a</MenuItem>
-              <MenuItem value={20}>b</MenuItem>
-              <MenuItem value={30}>c</MenuItem>
-              <MenuItem value={40}>d</MenuItem>
-              <MenuItem value={50}>e</MenuItem>
+              <MenuItem value={10}>うさぎ</MenuItem>
+              <MenuItem value={20}>くま</MenuItem>
+              <MenuItem value={30}>ぱんだ</MenuItem>
+              <MenuItem value={40}>かめ</MenuItem>
+              <MenuItem value={50}>りす</MenuItem>
+              <MenuItem value={60}>とり</MenuItem>
             </Select>
           </FormControl>
         </Grid>
