@@ -1,178 +1,194 @@
-import React from "react";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
-import { ViewState } from "@devexpress/dx-react-scheduler";
-import {
-  Scheduler,
-  Resources,
-  MonthView,
-  Toolbar,
-  DateNavigator,
-  TodayButton,
-  Appointments,
-  AppointmentTooltip,
-} from "@devexpress/dx-react-scheduler-material-ui";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
+import React, { useState } from 'react';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
+import { EventInput, EventClickArg } from '@fullcalendar/core';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, TextField, Grid } from '@mui/material';
+import { Event, LocationOn } from '@mui/icons-material';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import DescriptionIcon from '@mui/icons-material/Description';
 
-const PREFIX = "Demo";
-
-interface Resource {
-  fieldName: string;
-  title: string;
-  instances: { id: string | number; text: string }[];
-  allowMultiple?: boolean; // Optional property for resources with multiple selections
+interface EventDetailsProps {
+  event: EventClickArg | null;
+  open: boolean;
+  handleClose: () => void;
+  handleDelete: () => void;
+  handleUpdateTitle: (newTitle: string) => void; // New prop for update title functionality
 }
 
-interface Appointment {
-  title: string;
-  startDate: Date;
-  endDate: Date;
-  id: number;
-  members?: number[];
-  location?: string;
-}
+const EventDetails: React.FC<EventDetailsProps> = ({ event, open, handleClose, handleDelete, handleUpdateTitle }) => {
+  const [editedTitle, setEditedTitle] = useState<string>(event?.event.title || '');
 
-const classes = {
-  container: `${PREFIX}-container`,
-  text: `${PREFIX}-text`,
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEditedTitle(e.target.value);
+  };
+
+  const handleSave = () => {
+    handleUpdateTitle(editedTitle);
+    handleClose();
+  };
+
+  const handleDeleteClick = () => {
+    handleDelete();
+    handleClose();
+  };
+
+  return (
+    <Dialog open={open} onClose={handleClose}>
+      <DialogTitle>
+        <Event /> 
+        <TextField
+          autoFocus
+          margin="dense"
+          label="Event Title"
+          fullWidth
+          value={editedTitle}
+          onChange={handleTitleChange}
+        />
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText>
+          <AccessAlarmIcon sx={{ pr: 1 }} />
+          <strong>Start:</strong> {event?.event.start?.toLocaleString()}
+        </DialogContentText>
+        <DialogContentText sx={{ pt: 1 }}>
+          <LocationOn sx={{ pr: 1 }} />
+          <strong>Location:</strong> {event?.event.extendedProps?.location || 'No location specified.'}
+        </DialogContentText>
+        <DialogContentText sx={{ pt: 1 }}>
+          <DescriptionIcon sx={{ pr: 1 }} />
+          <strong>Description:</strong> {event?.event.extendedProps?.description || 'No description provided.'}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleDeleteClick} color="error">
+          Delete
+        </Button>
+        <Button onClick={handleSave} color="primary">
+          Save
+        </Button>
+        <Button onClick={handleClose} color="primary">
+          Close
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
 };
 
-const StyledDiv = styled("div")(({ theme }) => ({
-  [`&.${classes.container}`]: {
-    display: "flex",
-    marginBottom: theme.spacing(2),
-    justifyContent: "flex-end",
-  },
-  [`& .${classes.text}`]: {
-    ...theme.typography.h6,
-    marginRight: theme.spacing(2),
-  },
-}));
+const Calendar: React.FC = () => {
+  const [selectedEvent, setSelectedEvent] = useState<EventClickArg | null>(null);
+  const [open, setOpen] = useState(false);
+  const [events, setEvents] = useState<EventInput[]>([
+    { id: '1', title: 'Event 1', start: '2024-07-01', extendedProps: { description: 'Description for Event 1', location: 'Location 1' } },
+    { id: '2', title: 'Event 2', start: '2024-07-02', extendedProps: { description: 'Description for Event 2', location: 'Location 2' } },
+  ]);
+  const [newEventDialogOpen, setNewEventDialogOpen] = useState(false);
+  const [newEventTitle, setNewEventTitle] = useState('');
+  const [newEventDate, setNewEventDate] = useState('');
 
-const appointments: Appointment[] = [
-  {
-    title: "Install New Router in Dev Room",
-    startDate: new Date(2024, 5, 19, 12, 35),
-    endDate: new Date(2024, 5, 19, 15, 0),
-    id: 2,
-    members: [3],
-    location: "Room 3",
-  },
-  {
-    title: "Approve Personal Computer Upgrade Plan",
-    startDate: new Date(2024, 5, 28, 12, 35),
-    endDate: new Date(2024, 5, 28, 15, 0),
-    id: 3,
-    members: [4, 1],
-    location: "Room 4",
-  },
-  {
-    title: "Final Budget Review",
-    startDate: new Date(2024, 5, 29, 12, 35),
-    endDate: new Date(2024, 5, 29, 15, 0),
-    id: 4,
-    members: [5, 1, 3],
-    location: "Room 5",
-  },
-];
+  const handleEventClick = (clickInfo: EventClickArg) => {
+    setSelectedEvent(clickInfo);
+    setOpen(true);
+  };
 
-const ResourceSwitcher = ({
-  mainResourceName,
-  onChange,
-  resources,
-}: {
-  mainResourceName: string;
-  onChange: (value: string) => void;
-  resources: Resource[];
-}) => (
-  <StyledDiv className={classes.container}>
-    <div className={classes.text}>
-      <p className="text-black">Main resource name : </p>
-      </div>
-    <Select
-      variant="standard"
-      value={mainResourceName}
-      onChange={(e) => onChange(e.target.value)}
-    >
-      {resources.map((resource) => (
-        <MenuItem key={resource.fieldName} value={resource.fieldName}>
-          {resource.title}
-        </MenuItem>
-      ))}
-    </Select>
-  </StyledDiv>
-);
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedEvent(null);
+  };
 
-export default class Demo extends React.PureComponent {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      data: appointments,
-      mainResourceName: "members",
-      resources: [
-        {
-          fieldName: "location",
-          title: "Location",
-          instances: [
-            { id: "Room 1", text: "Room 1" },
-            { id: "Room 2", text: "Room 2" },
-            { id: "Room 3", text: "Room 3" },
-            { id: "Room 4", text: "Room 4" },
-            { id: "Room 5", text: "Room 5" },
-          ],
-        },
-        {
-          fieldName: "members",
-          title: "Members",
-          allowMultiple: true,
-          instances: [
-            { id: 1, text: "Andrew Glover" },
-            { id: 2, text: "Arnie Schwartz" },
-            { id: 3, text: "John Heart" },
-            { id: 4, text: "Taylor Riley" },
-            { id: 5, text: "Brad Farkus" },
-          ],
-        },
-      ],
-    };
+  const handleDateClick = (arg: DateClickArg) => {
+    setNewEventDate(arg.dateStr);
+    setNewEventDialogOpen(true);
+  };
 
-    this.changeMainResource = this.changeMainResource.bind(this);
-  }
+  const handleNewEventDialogClose = () => {
+    setNewEventDialogOpen(false);
+    setNewEventTitle('');
+  };
 
-  changeMainResource(mainResourceName: string) {
-    this.setState({ mainResourceName });
-  }
+  const handleAddNewEvent = () => {
+    if (newEventTitle.trim()) {
+      const newEvent: EventInput = {
+        id: String(events.length + 1), // Assign unique ID
+        title: newEventTitle,
+        start: newEventDate,
+      };
+      setEvents([...events, newEvent]);
+      setNewEventDialogOpen(false);
+      setNewEventTitle('');
+    }
+  };
 
-  render() {
-    const { data, resources, mainResourceName } = this.state as {
-      data: Appointment[];
-      resources: Resource[];
-      mainResourceName: string;
-    };
+  const handleDeleteEvent = () => {
+    if (selectedEvent) {
+      const updatedEvents = events.filter((event) => event.id !== selectedEvent.event.id);
+      setEvents(updatedEvents);
+      setOpen(false);
+    }
+  };
 
-    return (
-      <>
-        <ResourceSwitcher
-          resources={resources}
-          mainResourceName={mainResourceName}
-          onChange={this.changeMainResource}
+  const handleUpdateEventTitle = (newTitle: string) => {
+    if (selectedEvent) {
+      const updatedEvents = events.map((event) => {
+        if (event.id === selectedEvent.event.id) {
+          return {
+            ...event,
+            title: newTitle,
+          };
+        }
+        return event;
+      });
+      setEvents(updatedEvents);
+    }
+  };
+
+  return (
+    <Grid container spacing={3} sx={{ width: '100%' }} className='pt-10 pl-10'>
+      <Grid item xs={12}>
+        <FullCalendar
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+          initialView="dayGridMonth"
+          headerToolbar={{
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          }}
+          events={events}
+          eventClick={handleEventClick}
+          dateClick={handleDateClick}
+          editable={true}
+          eventDrop={(info) => console.log(info.event.title, info.event.start, info.event.end)}
+          eventResize={(info) => console.log(info.event.title, info.event.start, info.event.end)}
         />
-        <Paper>
-          <Scheduler data={data}>
-            <ViewState defaultCurrentDate="2024-06-19" />
-            <MonthView />
-            <Toolbar />
-            <DateNavigator />
-            <TodayButton />
-            <Appointments />
-            <AppointmentTooltip />
-            <Resources data={resources} mainResourceName={mainResourceName} />
-          </Scheduler>
-        </Paper>
-      </>
-    );
-  }
-}
+      </Grid>
+      <Grid item xs={12}>
+        <EventDetails event={selectedEvent} open={open} handleClose={handleClose} handleDelete={handleDeleteEvent} handleUpdateTitle={handleUpdateEventTitle} />
+      </Grid>
 
+      <Dialog open={newEventDialogOpen} onClose={handleNewEventDialogClose}>
+        <DialogTitle>Add New Event</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Event Title"
+            fullWidth
+            value={newEventTitle}
+            onChange={(e) => setNewEventTitle(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleNewEventDialogClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleAddNewEvent} color="primary">
+            Add
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Grid>
+  );
+};
 
+export default Calendar;
