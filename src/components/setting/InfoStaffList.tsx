@@ -135,7 +135,7 @@ export default function InfoStaffList() {
           氏名
         </Typography>
         <Grid item xs={8} sm={4} md={2} lg={2}>
-          <TextField id="outlined-search" label="氏名" type="search" size="small" onChange={handleSearchInputChange} />
+          <TextField id="outlined-search" label="氏名" type="search" sx={{bgcolor: 'white'}} size="small" onChange={handleSearchInputChange} />
         </Grid>
         <Grid item xs={6} sm={6} md={2}>
           <Button variant="contained" href="#contained-buttons" className='scale-90'>

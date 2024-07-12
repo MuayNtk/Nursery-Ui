@@ -151,7 +151,7 @@ export default function InfoTeachList() {
           氏名
         </Typography>
         <Grid item xs={8} sm={4} md={2} lg={2}>
-          <TextField id="outlined-search" label="氏名" type="search" size="small" onChange={handleSearchInputChange} />
+          <TextField id="outlined-search" label="氏名" type="search" sx={{bgcolor: 'white'}} size="small" onChange={handleSearchInputChange} />
         </Grid>
         <Grid item xs={4} sm={4} md={2} style={{ textAlign: 'center' }}>
           <FormControl sx={{ minWidth: 100 }} size="small" fullWidth>
@@ -162,6 +162,7 @@ export default function InfoTeachList() {
               value={classroom}
               label="クラス名"
               onChange={handleClassroomChange}
+              sx={{bgcolor: 'white'}}
             >
               <MenuItem value="">
                 <em>None</em>
