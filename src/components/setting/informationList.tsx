@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ContentMain from "../content/Content";
-import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent,  Typography } from '@mui/material';
+import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, Typography, SelectChangeEvent } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -42,7 +42,7 @@ function createData(
   businessname: string,
   detail: JSX.Element
 ): Data {
-  return { city,number, businessname, detail };
+  return { city, number, businessname, detail };
 }
 
 // Example data (you can replace this with your actual data)
@@ -60,7 +60,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('福岡市','999', 'いちざきみんなの家',
+  createData('福岡市', '999', 'いちざきみんなの家',
     <>
       <IconButton aria-label="edit" size="small">
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -73,18 +73,20 @@ const rows = [
       </IconButton>
     </>
   ),
-  
 ];
 
-export default function informationList() {
-  const [numbercity , setcClass] = React.useState('');
+const InformationList: React.FC = () => {
+  const [numbercity, setNumberCity] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredRows, setFilteredRows] = useState<Data[]>(rows);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setcClass(event.target.value as string);
+  const handleChangeSelect = (event: SelectChangeEvent<string>) => {
+    setNumberCity(event.target.value as string);
+    setSearchTerm('');
   };
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -94,6 +96,20 @@ export default function informationList() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  // Filtering rows based on selected numbercity or search term
+  React.useEffect(() => {
+    if (numbercity === '' && searchTerm === '') {
+      setFilteredRows(rows);
+    } else if (numbercity !== '') {
+      setFilteredRows(rows.filter(row => row.number === numbercity));
+    } else {
+      setFilteredRows(rows.filter(row =>
+        row.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        row.businessname.toLowerCase().includes(searchTerm.toLowerCase())
+      ));
+    }
+  }, [numbercity, searchTerm]);
 
   return (
     <ContentMain>
@@ -106,13 +122,13 @@ export default function informationList() {
               id="demo-select-small"
               value={numbercity}
               label="園番号"
-              onChange={handleChange}
+              onChange={handleChangeSelect}
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>566</MenuItem>
-              <MenuItem value={20}>999</MenuItem>
+              <MenuItem value={'566'}>566</MenuItem>
+              <MenuItem value={'999'}>999</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -151,29 +167,25 @@ export default function informationList() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
+                {filteredRows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
-                    return (
-                      <TableRow hover role="checkbox" tabIndex={-1} key={row.number}>
-                        {columns.map((column) => {
-                          const value = row[column.id];
-                          return (
-                            <TableCell key={column.id} align={column.align}>
-                              {typeof value === 'string' || typeof value === 'number' ? value : value}
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    );
-                  })}
+                  .map((row) => (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.number}>
+                      {columns.map((column) => (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.id === 'detail' ? row[column.id] :
+                            typeof row[column.id] === 'string' || typeof row[column.id] === 'number' ? row[column.id] : ''}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={rows.length}
+            count={filteredRows.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
@@ -184,3 +196,5 @@ export default function informationList() {
     </ContentMain>
   );
 };
+
+export default InformationList;
