@@ -76,7 +76,7 @@ export default function EnhancementForm() {
         <Grid item xs={3.5} sm={2} md={1} lg={1} sx={{ ml: { xs: -2, sm: 0.5, md: 1, lg: 2 }, mt: { xs: 1, sm: 0, md: 0, lg: 0 } }}>
           <DayForm />
         </Grid>
-        <Grid item xs={9} sm={2} md={1} lg={1} sx={{ ml: { xs: -20, sm: 0.5, md: 10, lg: 15 } }}>
+        {/* <Grid item xs={9} sm={2} md={1} lg={1} sx={{ ml: { xs: -20, sm: 0.5, md: 10, lg: 15 } }}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-3 text-end'>
             あて先 :
           </Typography>
@@ -85,12 +85,10 @@ export default function EnhancementForm() {
           <Typography fontWeight="bold" sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-3 text-start'>
             福岡市長
           </Typography>
-        </Grid>
+        </Grid> */}
       </Grid>
-      {/* End 令和 Grid */}
-
-      {/* Start 法人名 Grid */}
-      <Grid container className='pt-5' justifyContent="start">
+    
+      {/* <Grid container className='pt-5' justifyContent="start">
         <Grid item xs={4.65} sm={2.5} md={2} lg={1.5}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 pr-3 text-end'>
             法人名 :
@@ -101,11 +99,10 @@ export default function EnhancementForm() {
             社会福祉法人つばさ福祉会
           </Typography>
         </Grid>
-      </Grid>
-      {/* End 法人名 Grid */}
+      </Grid> */}
 
-      {/* Start 法人所在地 Grid */}
-      <Grid container className='pt-5' justifyContent="start">
+
+      {/* <Grid container className='pt-5' justifyContent="start">
         <Grid item xs={4.65} sm={2.5} md={2} lg={1.5}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 pr-3 text-end'>
             法人所在地 :
@@ -116,11 +113,10 @@ export default function EnhancementForm() {
             〒881-0032 崎県都市白馬町3地
           </Typography>
         </Grid>
-      </Grid>
-      {/* End 法人所在地 Grid */}
+      </Grid> */}
 
-      {/* Start 代表者職・名 Grid */}
-      <Grid container className='pt-5' justifyContent="start">
+
+      {/* <Grid container className='pt-5' justifyContent="start">
         <Grid item xs={4.65} sm={3} md={2} lg={1.5}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 pr-3 text-end'>
             代表者職・名 :
@@ -131,11 +127,10 @@ export default function EnhancementForm() {
             理事長部子
           </Typography>
         </Grid>
-      </Grid>
-      {/* End 代表者職・名 Grid */}
+      </Grid> */}
 
-      {/* Start 施設名 Grid */}
-      <Grid container className='pt-5' justifyContent="start">
+      
+      {/* <Grid container className='pt-5' justifyContent="start">
         <Grid item xs={4.65} sm={2.5} md={2} lg={1.5}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 pr-3 text-end'>
             施設名 :
@@ -146,11 +141,10 @@ export default function EnhancementForm() {
             理事長部子
           </Typography>
         </Grid>
-      </Grid>
-      {/* End 施設名 Grid */}
+      </Grid> */}
 
-      {/* Start Text Center Content Grid */}
-      <Grid container className='pt-3' justifyContent="start" sx={{ pl: { xs: 3, sm: 5, md: 10, lg: 10 }, pr: { xs: 3, sm: 5, md: 10, lg: 15 }, }}>
+    
+      {/* <Grid container className='pt-3' justifyContent="start" sx={{ pl: { xs: 3, sm: 5, md: 10, lg: 10 }, pr: { xs: 3, sm: 5, md: 10, lg: 15 }, }}>
         <Grid item xs={12} sm={12} md={12} lg={12}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-justify'>
             令和5年度保育体制強化事業について、補助金の交付を下記のとおり申請します。
@@ -160,9 +154,7 @@ export default function EnhancementForm() {
           </Typography>
         </Grid>
       </Grid>
-      {/* End Text Center Content Grid */}
-
-      {/* Start Text Center Content Grid */}
+    
       <Grid container className='pt-5' justifyContent="start" sx={{ pl: { xs: 3, sm: 5, md: 10, lg: 10 }, pr: { xs: 3, sm: 5, md: 10, lg: 15 }, }}>
         <Grid item xs={12} sm={12} md={12} lg={12}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-justify'>
@@ -172,18 +164,15 @@ export default function EnhancementForm() {
           </Typography>
         </Grid>
       </Grid>
-      {/* End Text Center Content Grid */}
-
-      {/* Start 記 Grid */}
+    
       <Grid container className='pt-5' justifyContent="center">
         <Grid item xs={3} sm={3} md={2} lg={2}>
           <Typography fontWeight="bold" sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-center'>
             記
           </Typography>
         </Grid>
-      </Grid>
-      {/* End 記 Grid */}
-
+      </Grid> */}
+   
       {/* Start 交付申請額 Grid */}
       <Grid container className='pt-5' justifyContent="start" sx={{ ml: { xs: 0, sm: 2, md: 5, lg: 6 } }}>
         <Grid item xs={4.5} sm={3.5} md={2.5} lg={1.5}>

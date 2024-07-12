@@ -10,6 +10,8 @@ import HealthCheckForm from "./HealthCheckForm";
 import Loading from '../../Loading';
 import { useEffect, useState } from 'react';
 import Numpad from "../../content/Numpad";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
 
 
 export default function StudentHistory() {
@@ -814,14 +816,21 @@ export default function StudentHistory() {
           <Grid item xs={8} sm={8} md={3}>
             <TextField
               className='w-full'
-              id="furigana-input"
+              id="tel5"
+              name="tel5"
               label=""
               type="text"
               size='small'
               sx={{
                 backgroundColor: "white",
               }}
+              onClick={() => handleInputClick('tel5')}
+              InputLabelProps={{ shrink: true }} 
+              InputProps={{
+                  readOnly: true 
+                }}
             />
+            <Numpad open={numpadOpen && currentInputId === 'tel5'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
           </Grid>
 
         </Grid>
@@ -850,14 +859,21 @@ export default function StudentHistory() {
           <Grid item xs={8} sm={8} md={3}>
             <TextField
               className='w-full'
-              id="furigana-input"
+              id="tel7"
+              name="tel7"
               label=""
               type="text"
               size='small'
               sx={{
                 backgroundColor: "white",
               }}
+              onClick={() => handleInputClick('tel7')}
+              InputLabelProps={{ shrink: true }} 
+              InputProps={{
+                  readOnly: true 
+                }}
             />
+            <Numpad open={numpadOpen && currentInputId === 'tel7'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
           </Grid>
 
         </Grid>
@@ -886,14 +902,21 @@ export default function StudentHistory() {
           <Grid item xs={8} sm={8} md={3}>
             <TextField
               className='w-full'
-              id="furigana-input"
+              id="tel8"
+              name="tel8"
               label=""
               type="text"
               size='small'
               sx={{
                 backgroundColor: "white",
               }}
+              onClick={() => handleInputClick('tel7')}
+              InputLabelProps={{ shrink: true }} 
+              InputProps={{
+                  readOnly: true 
+                }}
             />
+            <Numpad open={numpadOpen && currentInputId === 'tel8'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
           </Grid>
 
         </Grid>
@@ -2758,7 +2781,8 @@ export default function StudentHistory() {
             <Grid item xs={1.3} sm={1.5} md={1.5} sx={{ marginLeft: { xs: 3, sm: -2, md: -5 } }}>
               <TextField
                 className='w-full'
-                id="input"
+                id="temperature1"
+                name="temperature1"
                 type="text"
                 size='small'
                 sx={{
@@ -2767,12 +2791,16 @@ export default function StudentHistory() {
                 InputProps={{
                   endAdornment: <InputAdornment position="end">°c</InputAdornment>,
                 }}
+                onClick={() => handleInputClick('temperature1')}
+                InputLabelProps={{ shrink: true }} 
               />
+            <Numpad open={numpadOpen && currentInputId === 'temperature1'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
             </Grid>
             <Grid item xs={1.3} sm={1.5} md={1.5} sx={{ marginLeft: { xs: 0, sm: -2, md: -2 } }}>
               <TextField
                 className='w-full'
-                id="input"
+                id="temperature2"
+                name="temperature2"
                 type="text"
                 size='small'
                 sx={{
@@ -2781,12 +2809,16 @@ export default function StudentHistory() {
                 InputProps={{
                   endAdornment: <InputAdornment position="end">°c</InputAdornment>,
                 }}
+                onClick={() => handleInputClick('temperature2')}
+                InputLabelProps={{ shrink: true }} 
               />
+            <Numpad open={numpadOpen && currentInputId === 'temperature2'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
             </Grid>
             <Grid item xs={1.3} sm={1.5} md={1.5} sx={{ marginLeft: { xs: 0, sm: -2, md: -2 } }}>
               <TextField
                 className='w-full'
-                id="input"
+                id="temperature3"
+                name="temperature3"
                 type="text"
                 size='small'
                 sx={{
@@ -2795,12 +2827,16 @@ export default function StudentHistory() {
                 InputProps={{
                   endAdornment: <InputAdornment position="end">°c</InputAdornment>,
                 }}
+                onClick={() => handleInputClick('temperature3')}
+                InputLabelProps={{ shrink: true }} 
               />
+            <Numpad open={numpadOpen && currentInputId === 'temperature3'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
             </Grid>
             <Grid item xs={1.3} sm={1.5} md={1.5} sx={{ marginLeft: { xs: 0, sm: -2, md: -2 } }}>
               <TextField
                 className='w-full'
-                id="input"
+                id="temperature4"
+                name="temperature4"
                 type="text"
                 size='small'
                 sx={{
@@ -2809,12 +2845,16 @@ export default function StudentHistory() {
                 InputProps={{
                   endAdornment: <InputAdornment position="end">°c</InputAdornment>,
                 }}
+                onClick={() => handleInputClick('temperature4')}
+                InputLabelProps={{ shrink: true }} 
               />
+            <Numpad open={numpadOpen && currentInputId === 'temperature4'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
             </Grid>
             <Grid item xs={1.3} sm={1.5} md={1.5} sx={{ marginLeft: { xs: 0, sm: -2, md: -2 } }}>
               <TextField
                 className='w-full'
-                id="input"
+                id="temperature5"
+                name="temperature5"
                 type="text"
                 size='small'
                 sx={{
@@ -2823,12 +2863,16 @@ export default function StudentHistory() {
                 InputProps={{
                   endAdornment: <InputAdornment position="end">°c</InputAdornment>,
                 }}
+                onClick={() => handleInputClick('temperature5')}
+                InputLabelProps={{ shrink: true }} 
               />
+            <Numpad open={numpadOpen && currentInputId === 'temperature5'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
             </Grid>
             <Grid item xs={1.3} sm={1.5} md={1.5} sx={{ marginLeft: { xs: 0, sm: -2, md: -2 } }}>
               <TextField
                 className='w-full'
-                id="input"
+                id="temperature6"
+                name="temperature6"
                 type="text"
                 size='small'
                 sx={{
@@ -2837,12 +2881,16 @@ export default function StudentHistory() {
                 InputProps={{
                   endAdornment: <InputAdornment position="end">°c</InputAdornment>,
                 }}
+                onClick={() => handleInputClick('temperature6')}
+                InputLabelProps={{ shrink: true }} 
               />
+            <Numpad open={numpadOpen && currentInputId === 'temperature6'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
             </Grid>
             <Grid item xs={1.3} sm={1.5} md={1.5} sx={{ marginLeft: { xs: 0, sm: -2, md: -2 } }} className="pb-5">
               <TextField
                 className='w-full'
-                id="input"
+                id="temperature7"
+                name="temperature7"
                 type="text"
                 size='small'
                 sx={{
@@ -2851,7 +2899,10 @@ export default function StudentHistory() {
                 InputProps={{
                   endAdornment: <InputAdornment position="end">°c</InputAdornment>,
                 }}
+                onClick={() => handleInputClick('temperature7')}
+                InputLabelProps={{ shrink: true }} 
               />
+            <Numpad open={numpadOpen && currentInputId === 'temperature7'} onClose={() => setNumpadOpen(false)} onInput={handleNumpadInput} />
             </Grid>
           </Grid>
           {/* End Grid */}
@@ -3264,23 +3315,23 @@ export default function StudentHistory() {
         <HealthCheckForm/>
 
         <div className="mt-auto">
-          <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
-                <Grid item>
-                      <Button variant="contained" href="#" size='small' className='text-center'>
-                        <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
-                        戻る
-                        </Typography>
-                      </Button>
-                </Grid>
-                <Grid item>
-                      <Button variant="contained" href="#" size='small' className='text-center'>
-                        <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
-                        修正
-                        </Typography>
-                      </Button>
-                </Grid>
+        <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+          <Grid item>
+            <Button variant="contained" href="/student" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
+              <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                戻る
+              </Typography>
+            </Button>
           </Grid>
-        </div>
+          <Grid item>
+            <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success">
+              <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                修正
+              </Typography>
+            </Button>
+          </Grid>
+        </Grid>
+      </div>
       </ContentMain>
     </>
   );

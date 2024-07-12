@@ -3,6 +3,8 @@ import ContentMain from '../content/Content';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
 
 export default function InfoForm() {
       return (
@@ -176,14 +178,14 @@ export default function InfoForm() {
                   <div className="mt-auto">
                         <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
                               <Grid item>
-                                    <Button variant="contained" href="#" size='small' className='text-center'>
+                                    <Button variant="contained" href="/setting/info" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
                                     <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
                                     戻る
                                     </Typography>
                                     </Button>
                               </Grid>
                               <Grid item>
-                                    <Button variant="contained" href="#" size='small' className='text-center'>
+                                    <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success">
                                     <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
                                     修正
                                     </Typography>
