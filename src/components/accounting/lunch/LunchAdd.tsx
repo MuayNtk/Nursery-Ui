@@ -12,6 +12,10 @@ import LunchForm from './LunchForm';
 import LunchAttachment from './LunchAttachment';
 import LunchFundingPlan from './LunchFundingPlan';
 import LunchInvoice from './LunchInvoice';
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
+import { styled } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
 
 
 const steps = [
@@ -23,20 +27,60 @@ const steps = [
 
 ];
 
+const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
+  [`&.${stepConnectorClasses.alternativeLabel}`]: {
+    top: 22,
+  },
+  [`&.${stepConnectorClasses.active}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
+      backgroundImage: `linear-gradient(95deg, rgb(247,180,138) 0%, rgb(247,180,138) 25%, rgb(247,180,138) 0%, rgb(247,180,138) 0%, rgb(247,180,138) 0%);`,
+    },
+  },
+  [`&.${stepConnectorClasses.completed}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
+      backgroundImage: `linear-gradient(95deg, rgb(247,180,138) 0%, rgb(247,180,138) 25%, rgb(247,180,138) 0%, rgb(247,180,138) 0%, rgb(247,180,138) 0%);`,
+    },
+  },
+  [`& .${stepConnectorClasses.line}`]: {
+    height: 3,
+    border: 0,
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
+    borderRadius: 1,
+  },
+}));
+
 export default function LunchAdd() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const [completedSteps, setCompletedSteps] = React.useState<number[]>([]);
   const navigate = useNavigate();
 
+
   const handleNext = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (activeStep === steps.length - 1) {
-      navigate('/accounting/enhancement');
+      navigate('/accounting/lunch');
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      setCompletedSteps([...completedSteps, activeStep]);
     }
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setCompletedSteps(completedSteps.filter(step => step !== activeStep));
+  };
+
+  const getStepLabelComponent = (index: number) => {
+    const isActive = index === activeStep;
+    const isCompleted = completedSteps.includes(index);
+    const stepIconStyle = {
+      color: isActive ? '#2196F3' : isCompleted ? '#4CAF50' : 'inherit',
+    };
+  return (
+      <StepLabel StepIconProps={{ style: stepIconStyle }}>
+           {/* {steps[index]}  */}
+      </StepLabel>
+    );
   };
 
   const getStepContent = (step: number) => {
@@ -59,41 +103,57 @@ export default function LunchAdd() {
 
   return (
     <>
-      <ContentMain>
-        <Box sx={{ width: '100%' }}>
-          <Stepper activeStep={activeStep}>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          {activeStep === steps.length ? (
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you&apos;re finished
-            </Typography>
-          ) : (
-            <React.Fragment>
-              <Box sx={{ mt: 2, mb: 1 }}>
-                {getStepContent(activeStep)}
-              </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                <Button
-                  color="inherit"
-                  disabled={activeStep === 0}
-                  onClick={handleBack}
-                  sx={{ mr: 1 }}
-                >
-                  Back
-                </Button>
-                <Box sx={{ flex: '1 1 auto' }} />
-                <Button onClick={handleNext}>
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
-              </Box>
-            </React.Fragment>
-          )}
-        </Box>
+       <ContentMain  className="flex flex-col min-h-screen">
+      <Stepper activeStep={activeStep} connector={<ColorlibConnector />} className='mt-7'>
+        {steps.map((label, index) => (
+          <Step key={label}>
+            {getStepLabelComponent(index)}
+          </Step>
+        ))}
+      </Stepper>
+      {activeStep === steps.length ? (
+        <Typography sx={{ mt: 2, mb: 1 }}>
+          All steps completed - you&apos;re finished
+        </Typography>
+      ) : (
+        
+        <React.Fragment>
+          <Box sx={{ mt: 2, mb: 1 }}>
+            {getStepContent(activeStep)}
+          </Box>
+          <div className="mt-auto" >
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, gap: 2 }} justifyContent="center" >
+              <Button
+                variant="contained"
+                size='medium'
+                startIcon={<ArrowBackIcon />}  
+                color="warning"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{ mr: 1 ,color: 'white',}}
+              >
+                戻る
+              </Button>
+              <Button
+                variant="contained"
+                onClick={handleNext}
+                size='medium'
+                startIcon={<SaveIcon />} 
+                color="success"
+                sx={{
+                  backgroundColor: activeStep === steps.length - 1 ? '#41b146' : '#f7b941',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: activeStep === steps.length - 1 ? '#388E3C' : '#f7b941',
+                  },
+                }}
+              >
+                {activeStep === steps.length - 1 ? '修正' : '次へ'}
+              </Button>
+            </Box>
+          </div>
+        </React.Fragment>
+      )}
       </ContentMain>
     </>
   );

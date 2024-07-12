@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, TextareaAutosize, Typography, } from '@mui/material'
+import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, TextareaAutosize, Typography, } from '@mui/material'
 
 
 
@@ -289,29 +289,6 @@ export default function AdditionalForm() {
           />
         </Grid>
       </Grid>
-
-      {/* Start Grid Save Button */}
-      <Grid container className='pt-16' justifyContent="end">
-        <Grid item xs={6} sm={3} md={3} lg={1} className=' '>
-          <Button variant="contained" href="" size='small' sx={{ backgroundColor: "blue" }}>
-            <Typography style={{ color: 'white' }} className=''>
-              Submit
-            </Typography>
-          </Button>
-        </Grid>
-        <Grid item xs={6} sm={3} md={3} lg={1} className=' '>
-          <Button variant="contained" href="" size='small' sx={{ backgroundColor: "red" }}>
-            <Typography style={{ color: 'white' }}>
-              Cancel
-            </Typography>
-          </Button>
-        </Grid>
-      </Grid>
-      {/* End Grid Save Button */}
-
-      
-
-
     </>
   );
 }
