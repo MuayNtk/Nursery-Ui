@@ -13,7 +13,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 interface Column {
-  id: 'name' | 'classroom' | 'date';
+  id:   'name' | 'classroom' | 'date';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center';
@@ -1042,7 +1042,7 @@ export default function ProgressdZeroForm() {
                   {rows
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1091,7 +1091,7 @@ export default function ProgressdZeroForm() {
                   {rows2
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1139,7 +1139,7 @@ export default function ProgressdZeroForm() {
                   {rows3
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1187,7 +1187,7 @@ export default function ProgressdZeroForm() {
                   {rows4
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1235,7 +1235,7 @@ export default function ProgressdZeroForm() {
                   {rows5
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1283,7 +1283,7 @@ export default function ProgressdZeroForm() {
                   {rows6
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1331,7 +1331,7 @@ export default function ProgressdZeroForm() {
                   {rows7
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1379,7 +1379,7 @@ export default function ProgressdZeroForm() {
                   {rows8
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
