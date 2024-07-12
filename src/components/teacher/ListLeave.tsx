@@ -149,7 +149,7 @@ export default function ListLeave() {
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
         <Grid item xs={3} sm={4} md={2} lg={2}>
-          <TextField id="outlined-search" label="氏名" type="search" size="small" onChange={handleSearchInputChange} />
+          <TextField id="outlined-search" label="氏名" type="search" sx={{bgcolor: 'white'}} size="small" onChange={handleSearchInputChange} />
         </Grid>
         <Grid item xs={3} sm={4} md={2} lg={2} style={{ textAlign: 'center' }}>
           <FormControl sx={{ minWidth: 125 }} size="small" fullWidth>
@@ -160,6 +160,7 @@ export default function ListLeave() {
               value={classroom}
               label="クラス名"
               onChange={handleChange}
+              sx={{bgcolor: 'white'}}
             >
               <MenuItem value="">
                 <em>None</em>
