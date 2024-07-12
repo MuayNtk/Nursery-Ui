@@ -12,6 +12,8 @@ import JoinActivityForm from './JoinActivityForm';
 import JoinActivitySum from './JoinActivitySum';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { styled } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
 
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
@@ -108,15 +110,21 @@ export default function ActivityAdd() {
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, gap: 2 }} justifyContent="center" >
               <Button
                 variant="contained"
+                size='medium'
+                startIcon={<ArrowBackIcon />}  
+                color="warning"
                 disabled={activeStep === 0}
                 onClick={handleBack}
-                sx={{ mr: 1 , backgroundColor: '#1976d2',color: 'white',}}
+                sx={{ mr: 1 ,color: 'white',}}
               >
                 戻る
               </Button>
               <Button
                 variant="contained"
                 onClick={handleNext}
+                size='medium'
+                startIcon={<SaveIcon />} 
+                color="success"
                 sx={{
                   backgroundColor: activeStep === steps.length - 1 ? '#41b146' : '#f7b941',
                   color: 'white',
@@ -131,7 +139,7 @@ export default function ActivityAdd() {
           </div>
         </React.Fragment>
       )}
-  </ContentMain>
+      </ContentMain>
     </>
   );
 }

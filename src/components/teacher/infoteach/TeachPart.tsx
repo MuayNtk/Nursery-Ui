@@ -8,6 +8,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
 
 interface Column {
   id: 'date' | 'date2' | 'working-hours' | 'working-days' | 'qualifications' | 'job-description' | 'appointments';
@@ -568,7 +570,24 @@ export default function TeachPart() {
       </Grid>
       {/* End Grid Button + */}
 
-
+      <div className="mt-auto">
+        <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+          <Grid item>
+            <Button variant="contained" href="/infoteach" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
+              <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                戻る
+              </Typography>
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success">
+              <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                修正
+              </Typography>
+            </Button>
+          </Grid>
+        </Grid>
+      </div>
 
     </>
   );
