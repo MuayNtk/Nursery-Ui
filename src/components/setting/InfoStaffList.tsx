@@ -1,6 +1,6 @@
 import React from 'react';
 import ContentMain from "../content/Content";
-import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -16,10 +16,11 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface Column {
-  id: 'dep' | 'furigana' | 'fullname' | 'gender' | 'era' | 'year'| 'month'| 'day'| 'detail';
+  id: 'dep' | 'furigana' | 'fullname' | 'gender' | 'era' | 'year' | 'month' | 'day' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center';
+    format?: (value: number) => string;
 }
 
 const columns: readonly Column[] = [
@@ -61,7 +62,7 @@ function createData(
 }
 
 // Example data (you can replace this with your actual data)
-const rows = [
+const initialRows = [
   createData('理事長', 'ワタナベ　ケイコ', '渡部　圭子', '男', '昭和', '11', '2', '21',
     <>
       <IconButton aria-label="edit" size="small">
@@ -76,39 +77,34 @@ const rows = [
     </>
   ),
   createData('常務理事', 'ワタナベ　シロウ', '渡部　史朗', '男', '昭和', '43', '5', '22',
-      <>
-        <IconButton aria-label="edit" size="small">
-          <EditIcon fontSize="small" className='text-sky-600' />
-        </IconButton>
-        <IconButton aria-label="view" size="small">
-          <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-        </IconButton>
-        <IconButton aria-label="delete" size="small">
-          <DeleteIcon fontSize="small" className='text-red-600' />
-        </IconButton>
-      </>
-    ),
+    <>
+      <IconButton aria-label="edit" size="small">
+        <EditIcon fontSize="small" className='text-sky-600' />
+      </IconButton>
+      <IconButton aria-label="view" size="small">
+        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small">
+        <DeleteIcon fontSize="small" className='text-red-600' />
+      </IconButton>
+    </>
+  ),
   createData('理　　事', 'ナカガワ　ヤスヨシ', '中川　康嘉', '男', '昭和', '33', '11', '1',
-      <>
-        <IconButton aria-label="edit" size="small">
-          <EditIcon fontSize="small" className='text-sky-600' />
-        </IconButton>
-        <IconButton aria-label="view" size="small">
-          <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-        </IconButton>
-        <IconButton aria-label="delete" size="small">
-          <DeleteIcon fontSize="small" className='text-red-600' />
-        </IconButton>
-      </>
-    )
+    <>
+      <IconButton aria-label="edit" size="small">
+        <EditIcon fontSize="small" className='text-sky-600' />
+      </IconButton>
+      <IconButton aria-label="view" size="small">
+        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+      </IconButton>
+      <IconButton aria-label="delete" size="small">
+        <DeleteIcon fontSize="small" className='text-red-600' />
+      </IconButton>
+    </>
+  )
 ];
 
 export default function InfoStaffList() {
-  const [classroom, setcClass] = React.useState('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setcClass(event.target.value as string);
-  };
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -122,35 +118,24 @@ export default function InfoStaffList() {
     setPage(0);
   };
 
+  const [searchInput, setSearchInput] = React.useState('');
+  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
+  };
+
+  // Filtered rows based on search input and selected classroom
+  const filteredRows = initialRows.filter(row =>
+    row.fullname.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   return (
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
         <Typography component="div" style={{ color: 'black' }} className='pt-6'>
-            氏名
+          氏名
         </Typography>
         <Grid item xs={8} sm={4} md={2} lg={2}>
-          <TextField id="outlined-search" label="" type="search" size="small" className='' />
-        </Grid>
-        <Grid item xs={4} sm={4} md={2} style={{ textAlign: 'center' }}>
-          <FormControl sx={{ minWidth: 100 }} size="small" fullWidth>
-            <InputLabel id="demo-select-small-label">役職名</InputLabel>
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={classroom}
-              label="役職名"
-              onChange={handleChange}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>1</MenuItem>
-              <MenuItem value={20}>2</MenuItem>
-              <MenuItem value={30}>3</MenuItem>
-              <MenuItem value={40}>4</MenuItem>
-              <MenuItem value={50}>5</MenuItem>
-            </Select>
-          </FormControl>
+          <TextField id="outlined-search" label="氏名" type="search" size="small" onChange={handleSearchInputChange} />
         </Grid>
         <Grid item xs={6} sm={6} md={2}>
           <Button variant="contained" href="#contained-buttons" className='scale-90'>
@@ -187,7 +172,7 @@ export default function InfoStaffList() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
+                {filteredRows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
@@ -196,7 +181,9 @@ export default function InfoStaffList() {
                           const value = row[column.id];
                           return (
                             <TableCell key={column.id} align={column.align}>
-                              {typeof value === 'string' || typeof value === 'number' ? value : value}
+                              {column.format && typeof value === 'number'
+                                ? column.format(value)
+                                : value}
                             </TableCell>
                           );
                         })}
@@ -209,7 +196,7 @@ export default function InfoStaffList() {
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={rows.length}
+            count={filteredRows.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
