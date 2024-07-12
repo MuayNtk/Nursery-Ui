@@ -123,6 +123,7 @@ const InformationList: React.FC = () => {
               value={numbercity}
               label="園番号"
               onChange={handleChangeSelect}
+              sx={{bgcolor: 'white'}}
             >
               <MenuItem value="">
                 <em>None</em>

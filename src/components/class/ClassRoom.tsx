@@ -163,6 +163,7 @@ export default function ClassRoom() {
               size="small"
               value={searchText}
               onChange={handleSearchTextChange}
+              sx={{bgcolor: 'white'}}
             />
           </Grid>
           <Grid item xs={3} sm={4} md={1}>

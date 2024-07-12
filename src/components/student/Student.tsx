@@ -282,6 +282,7 @@ export default function Student() {
             size="small"
             value={searchText}
             onChange={handleSearchTextChange}
+            sx={{bgcolor: 'white'}}
           />
         </Grid>
         <Grid item xs={4} sm={4} md={2} style={{ textAlign: 'center' }}>
@@ -293,6 +294,7 @@ export default function Student() {
               value={classroom}
               label="歳児"
               onChange={handleClassroomChange}
+              sx={{bgcolor: 'white'}}
             >
               <MenuItem value="">
                 <em>None</em>
@@ -316,6 +318,7 @@ export default function Student() {
               value={classroom1}
               label="クラス名"
               onChange={handleClassroom1Change}
+              sx={{bgcolor: 'white'}}
             >
               <MenuItem value="">
                 <em>None</em>

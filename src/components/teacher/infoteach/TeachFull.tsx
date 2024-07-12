@@ -8,9 +8,10 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import SaveIcon from '@mui/icons-material/Save';
 import { useState } from 'react';
 import Numpad from "../../content/Numpad";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
 
 interface Column {
   id: 'name' | 'classroom' | 'date' | 'sub' | 'fu' | 'uu';
@@ -525,22 +526,29 @@ export default function TeachFull() {
             <Button variant="contained" size="small" sx={{ width: 90, mt: 0.3, backgroundColor: "#99CCFF", color: "black" }}>+ 追加</Button>
           </Grid>
         </Grid>
-        {/* End Grid Button + */}
+       
 
-        <Grid container className='pt-7' justifyContent="center">
-        <Grid>
-          <Button variant="contained" href="/report/annualplan/add" size='small' startIcon={<SaveIcon />} sx={{ backgroundColor: "green" }}>
-            <Typography style={{ color: 'white' }}>
-              Save
-            </Typography>
-          </Button>
+      
+      </Grid>
+
+      <div className="mt-auto">
+        <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+          <Grid item>
+            <Button variant="contained" href="/infoteach" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
+              <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                戻る
+              </Typography>
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success">
+              <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                修正
+              </Typography>
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
-
-
-
-
-      </Grid>
+      </div>
     </>
   );
 }
