@@ -2532,33 +2532,33 @@ export default function ProgressdTwoForm() {
               施設長 :
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, ml:{ xs: -10, sm: -11, md: -22, lg: -8, }, fontWeight: 'bold', }} >
               濃部
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
-              圭子
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },ml:{ xs: -30, sm: -30, md: -60, lg: -9, }, fontWeight: 'bold', }} >
+              多子多子
             </Typography>
           </Grid>
         </Grid >
         {/* End Facility Director  */}
 
         {/* Start director  */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7 ">
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 ">
           <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, ml:{ xs: 1, sm: 1, md: 1, lg: 2, }, }} >
               主任 :
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, ml:{ xs: -10, sm: -11, md: -22, lg: -8, }, fontWeight: 'bold', }} >
               渡部
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },ml:{ xs: -33, sm: -33, md: -62, lg: -13, }, fontWeight: 'bold', }} >
               史朗
             </Typography>
           </Grid>
@@ -2566,19 +2566,19 @@ export default function ProgressdTwoForm() {
         {/* End director  */}
 
         {/* Start Responsible */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7 ">
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 ">
           <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, ml:{ xs: 1, sm: 1, md: 1, lg: 2, }, }} >
               担任 :
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, ml:{ xs: -10, sm: -11, md: -22, lg: -8, },fontWeight: 'bold', }} >
               中川
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },ml:{ xs: -33, sm: -33, md: -62, lg: -13, }, fontWeight: 'bold', }} >
               康嘉
             </Typography>
           </Grid>
@@ -2587,14 +2587,14 @@ export default function ProgressdTwoForm() {
         {/* End Responsible  */}
 
         {/* Start Child's name */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7 ">
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 ">
           <Grid item xs={2} sm={1.5} md={1} lg={1} >
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
               児童名 :
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={1.5} md={1} lg={1} >
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', }} >
+          <Grid item xs={5} sm={4} md={4} lg={1} >
+            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, ml:{ xs: -10, sm: -10, md: -20, lg: -6, }, fontWeight: 'bold', }} >
               長谷川
             </Typography>
           </Grid>
@@ -2614,10 +2614,10 @@ export default function ProgressdTwoForm() {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={1}>昭和</MenuItem>
+                <MenuItem value={2}>平成</MenuItem>
+                <MenuItem value={3}>令和</MenuItem>
+
               </Select>
             </FormControl>
           </Grid>
@@ -2634,6 +2634,14 @@ export default function ProgressdTwoForm() {
                 <MenuItem value={2}>2</MenuItem>
                 <MenuItem value={3}>3</MenuItem>
                 <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+                <MenuItem value={6}>6</MenuItem>
+                <MenuItem value={7}>7</MenuItem>
+                <MenuItem value={8}>8</MenuItem>
+                <MenuItem value={9}>9</MenuItem>
+                <MenuItem value={10}>10</MenuItem>
+                <MenuItem value={11}>11</MenuItem>
+                <MenuItem value={12}>12</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -2646,10 +2654,37 @@ export default function ProgressdTwoForm() {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={1}>10</MenuItem>
-                <MenuItem value={2}>20</MenuItem>
-                <MenuItem value={3}>30</MenuItem>
-                <MenuItem value={4}>40</MenuItem>
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+                <MenuItem value={6}>6</MenuItem>
+                <MenuItem value={7}>7</MenuItem>
+                <MenuItem value={8}>8</MenuItem>
+                <MenuItem value={9}>9</MenuItem>
+                <MenuItem value={10}>10</MenuItem>
+                <MenuItem value={11}>11</MenuItem>
+                <MenuItem value={12}>12</MenuItem>
+                <MenuItem value={13}>13</MenuItem>
+                <MenuItem value={14}>14</MenuItem>
+                <MenuItem value={15}>15</MenuItem>
+                <MenuItem value={16}>16</MenuItem>
+                <MenuItem value={17}>17</MenuItem>
+                <MenuItem value={18}>18</MenuItem>
+                <MenuItem value={19}>19</MenuItem>
+                <MenuItem value={20}>20</MenuItem>
+                <MenuItem value={21}>21</MenuItem>
+                <MenuItem value={22}>22</MenuItem>
+                <MenuItem value={23}>23</MenuItem>
+                <MenuItem value={24}>24</MenuItem>
+                <MenuItem value={25}>25</MenuItem>
+                <MenuItem value={26}>26</MenuItem>
+                <MenuItem value={27}>27</MenuItem>
+                <MenuItem value={28}>28</MenuItem>
+                <MenuItem value={29}>29</MenuItem>
+                <MenuItem value={30}>30</MenuItem>
+                <MenuItem value={31}>31</MenuItem>
               </Select>
             </FormControl>
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginRight: { xs: 15, sm: 2, md: 10, lg: 7, } }} className="pt-3">
