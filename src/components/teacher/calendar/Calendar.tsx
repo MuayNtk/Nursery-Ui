@@ -323,7 +323,7 @@ const Calendar: React.FC = () => {
     <Grid
       container
       spacing={1}
-      sx={{ width: '100%', bgcolor: 'white', mt: 7, ml: 1 }}
+      sx={{ width: '100%', bgcolor: 'white', border: '1px solid', borderRadius: '5px', mt: 7, ml: 1, pr: 0.5 }}
     >
       <Grid item xs={12}>
         <FullCalendar
