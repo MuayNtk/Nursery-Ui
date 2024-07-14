@@ -8,7 +8,7 @@ export default function AttachmentCertification() {
 
       {/* Start 様式第1号 別添11(保育所、幼保連携型定ども園用) Grid */}
       <Grid container className='pt-3 pl-3' justifyContent="start">
-        <Grid item xs={10} sm={9} md={6} lg={4}>
+        <Grid item xs={10} sm={9} md={6} lg={5}>
           <Typography fontWeight="bold" sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-center'>
             様式第 1 号 別添 1 - 1(保育所、幼保連携型定ども園用)
           </Typography>

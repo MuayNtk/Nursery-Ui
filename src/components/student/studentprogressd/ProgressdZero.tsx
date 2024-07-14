@@ -13,7 +13,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 interface Column {
-  id: 'name' | 'classroom' | 'date';
+  id:   'name' | 'classroom' | 'date';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center';
@@ -936,10 +936,10 @@ export default function ProgressdZeroForm() {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={1}>平成</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={1}>昭和</MenuItem>
+                <MenuItem value={2}>平成</MenuItem>
+                <MenuItem value={3}>令和</MenuItem>
+                
               </Select>
             </FormControl>
           </Grid>
@@ -956,6 +956,14 @@ export default function ProgressdZeroForm() {
                 <MenuItem value={2}>2</MenuItem>
                 <MenuItem value={3}>3</MenuItem>
                 <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+                <MenuItem value={6}>6</MenuItem>
+                <MenuItem value={7}>7</MenuItem>
+                <MenuItem value={8}>8</MenuItem>
+                <MenuItem value={9}>9</MenuItem>
+                <MenuItem value={10}>10</MenuItem>
+                <MenuItem value={11}>11</MenuItem>
+                <MenuItem value={12}>12</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -968,10 +976,37 @@ export default function ProgressdZeroForm() {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={1}>10</MenuItem>
-                <MenuItem value={2}>20</MenuItem>
-                <MenuItem value={3}>30</MenuItem>
-                <MenuItem value={4}>40</MenuItem>
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+                <MenuItem value={6}>6</MenuItem>
+                <MenuItem value={7}>7</MenuItem>
+                <MenuItem value={8}>8</MenuItem>
+                <MenuItem value={9}>9</MenuItem>
+                <MenuItem value={10}>10</MenuItem>
+                <MenuItem value={11}>11</MenuItem>
+                <MenuItem value={12}>12</MenuItem>
+                <MenuItem value={13}>13</MenuItem>
+                <MenuItem value={14}>14</MenuItem>
+                <MenuItem value={15}>15</MenuItem>
+                <MenuItem value={16}>16</MenuItem>
+                <MenuItem value={17}>17</MenuItem>
+                <MenuItem value={18}>18</MenuItem>
+                <MenuItem value={19}>19</MenuItem>
+                <MenuItem value={20}>20</MenuItem>
+                <MenuItem value={21}>21</MenuItem>
+                <MenuItem value={22}>22</MenuItem>
+                <MenuItem value={23}>23</MenuItem>
+                <MenuItem value={24}>24</MenuItem>
+                <MenuItem value={25}>25</MenuItem>
+                <MenuItem value={26}>26</MenuItem>
+                <MenuItem value={27}>27</MenuItem>
+                <MenuItem value={28}>28</MenuItem>
+                <MenuItem value={29}>29</MenuItem>
+                <MenuItem value={30}>30</MenuItem>
+                <MenuItem value={31}>31</MenuItem>
               </Select>
             </FormControl>
             <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginRight: { xs: 15, sm: 2, md: 10, lg: 7, } }} className="pt-3">
@@ -1007,7 +1042,7 @@ export default function ProgressdZeroForm() {
                   {rows
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1056,7 +1091,7 @@ export default function ProgressdZeroForm() {
                   {rows2
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1104,7 +1139,7 @@ export default function ProgressdZeroForm() {
                   {rows3
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1152,7 +1187,7 @@ export default function ProgressdZeroForm() {
                   {rows4
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1200,7 +1235,7 @@ export default function ProgressdZeroForm() {
                   {rows5
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1248,7 +1283,7 @@ export default function ProgressdZeroForm() {
                   {rows6
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1296,7 +1331,7 @@ export default function ProgressdZeroForm() {
                   {rows7
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
@@ -1344,7 +1379,7 @@ export default function ProgressdZeroForm() {
                   {rows8
                     .map((row) => {
                       return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (

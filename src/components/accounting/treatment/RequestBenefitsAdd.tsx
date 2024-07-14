@@ -12,6 +12,8 @@ import { styled } from '@mui/material';
 import StaffCalc from './StaffCalc';
 import RequestBenefitsForm from './RequestBenefitsForm';
 import AgeCalc from './AgeCalc';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
 
 
 const steps = [
@@ -43,12 +45,14 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   },
 }));
 
-export default function RateApplicationAdd() {
+export default function RequestBenefitsAdd() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completedSteps, setCompletedSteps] = React.useState<number[]>([]);
   const navigate = useNavigate();
 
+
   const handleNext = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (activeStep === steps.length - 1) {
       navigate('/accounting/requestbenefits');
     } else {
@@ -68,9 +72,10 @@ export default function RateApplicationAdd() {
     const stepIconStyle = {
       color: isActive ? '#2196F3' : isCompleted ? '#4CAF50' : 'inherit',
     };
-
-    return (
-      <StepLabel StepIconProps={{ style: stepIconStyle }}/>
+  return (
+      <StepLabel StepIconProps={{ style: stepIconStyle }}>
+           {/* {steps[index]}  */}
+      </StepLabel>
     );
   };
 
@@ -89,52 +94,57 @@ export default function RateApplicationAdd() {
 
   return (
     <>
-      <ContentMain  className="flex flex-col min-h-screen">
-      
-          <Stepper activeStep={activeStep} connector={<ColorlibConnector />}>
-            {steps.map((label, index) => (
-              <Step key={label}>
-                {getStepLabelComponent(index)}
-              </Step>
-            ))}
-          </Stepper>
-          {activeStep === steps.length ? (
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you&apos;re finished
-            </Typography>
-          ) : (
-            
-            <React.Fragment>
-              <Box sx={{ mt: 2, mb: 1 }}>
-                {getStepContent(activeStep)}
-              </Box>
-              <div className="mt-auto" >
-                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, gap: 2 }} justifyContent="center" >
-                  <Button
-                    variant="contained"
-                    disabled={activeStep === 0}
-                    onClick={handleBack}
-                    sx={{ mr: 1 , backgroundColor: '#1976d2',color: 'white',}}
-                  >
-                    戻る
-                  </Button>
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{
-                      backgroundColor: activeStep === steps.length - 1 ? '#41b146' : '#f7b941',
-                      color: 'white',
-                      '&:hover': {
-                        backgroundColor: activeStep === steps.length - 1 ? '#388E3C' : '#f7b941',
-                      },
-                    }}
-                  >
-                    {activeStep === steps.length - 1 ? '修正' : '次へ'}
-                  </Button>
-                </Box>
-              </div>
-            </React.Fragment>
-          )}
+     <ContentMain  className="flex flex-col min-h-screen">
+      <Stepper activeStep={activeStep} connector={<ColorlibConnector />} className='mt-7'>
+        {steps.map((label, index) => (
+          <Step key={label}>
+            {getStepLabelComponent(index)}
+          </Step>
+        ))}
+      </Stepper>
+      {activeStep === steps.length ? (
+        <Typography sx={{ mt: 2, mb: 1 }}>
+          All steps completed - you&apos;re finished
+        </Typography>
+      ) : (
+        
+        <React.Fragment>
+          <Box sx={{ mt: 2, mb: 1 }}>
+            {getStepContent(activeStep)}
+          </Box>
+          <div className="mt-auto" >
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, gap: 2 }} justifyContent="center" >
+              <Button
+                variant="contained"
+                size='medium'
+                startIcon={<ArrowBackIcon />}  
+                color="warning"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{ mr: 1 ,color: 'white',}}
+              >
+                戻る
+              </Button>
+              <Button
+                variant="contained"
+                onClick={handleNext}
+                size='medium'
+                startIcon={<SaveIcon />} 
+                color="success"
+                sx={{
+                  backgroundColor: activeStep === steps.length - 1 ? '#41b146' : '#f7b941',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: activeStep === steps.length - 1 ? '#388E3C' : '#f7b941',
+                  },
+                }}
+              >
+                {activeStep === steps.length - 1 ? '修正' : '次へ'}
+              </Button>
+            </Box>
+          </div>
+        </React.Fragment>
+      )}
       </ContentMain>
     </>
   );

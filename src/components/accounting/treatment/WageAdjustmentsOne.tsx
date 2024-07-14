@@ -1083,7 +1083,7 @@ export default function WageAdjustmentsOne() {
       {/* Start 【記入における留意事項】 Grid */}
       <Grid container className='pt-3' justifyContent="start">
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Typography fontWeight="bold" sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-start'>
+          <Typography fontWeight="bold" sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '14px' } }} className='pt-2 text-start'>
             【記入における留意事項】
           </Typography>
         </Grid>
@@ -1093,7 +1093,7 @@ export default function WageAdjustmentsOne() {
       {/* Start 施設・事業所に現に勤務している職員全員(職種を問わず、非常勤を含む。)を記載すること。 Grid */}
       <Grid container className='pt-5' justifyContent="start">
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-1 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '12px' } }} className='pt-1 text-start'>
             施設・事業所に現に勤務している職員全員(職種を問わず、非常勤を含む。)を記載すること。
           </Typography>
         </Grid>
@@ -1103,7 +1103,7 @@ export default function WageAdjustmentsOne() {
       {/* Start 備考欄には、年度途中の採用や退職がある場合にはその旨、また、賃金改善額が他の職員と比較して高額 Grid */}
       <Grid container justifyContent="start">
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-1 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '12px' } }} className='pt-1 text-start'>
             備考欄には、年度途中の採用や退職がある場合にはその旨、また、賃金改善額が他の職員と比較して高額(低額、賃金改善を実施しない場合も含む)である場合につ
             いてはその理由を記載すること。
           </Typography>
@@ -1114,7 +1114,7 @@ export default function WageAdjustmentsOne() {
       {/* Start ※1経験年数については、「施設型給付費等に係る処遇改善等加算及び処遇改善等加算について」 Grid */}
       <Grid container justifyContent="start">
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-1 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '12px' } }} className='pt-1 text-start'>
             ※1経験年数については、「施設型給付費等に係る処遇改善等加算及び処遇改善等加算について」(冷和2年7月30日 府子本第761号、2文科初第643号、子発0730
             第2号以下「処遇改善等加算通知」という)第4の1によるものとする。
           </Typography>
@@ -1125,7 +1125,7 @@ export default function WageAdjustmentsOne() {
       {/* Start ※2「常勤」とは、原則として施設で定めた勤務時間(所定労働時間) Grid */}
       <Grid container justifyContent="start">
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-1 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '12px' } }} className='pt-1 text-start'>
             ※2「常勤」とは、原則として施設で定めた勤務時間(所定労働時間)の全てを勤務する者、又は1日6時間以上かつ20日以上勤務している者をいい、「非常勤」とは
             常勤以外の者をいう。
           </Typography>
@@ -1136,7 +1136,7 @@ export default function WageAdjustmentsOne() {
       {/* Start ※3常勤換算値について、常勤の者については1.0とし、非常勤の者については下記の算式によって得た値とする。 Grid */}
       <Grid container justifyContent="start">
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-1 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '12px' } }} className='pt-1 text-start'>
             ※3常勤換算値について、常勤の者については1.0とし、非常勤の者については下記の算式によって得た値とする。算式 常勤以外の職員の1か月の勤務時間数の合計
             各施設・事業所の就業規則等で定めた常勤職員の1か月の勤務時間数=常勤換算値
           </Typography>
@@ -1147,7 +1147,7 @@ export default function WageAdjustmentsOne() {
       {/* Start ※4法定福利費等の事業主負担額を除く。基準年度については、処遇改善等加算通知第4の2(1)キは(2)オによるものとする。 Grid */}
       <Grid container justifyContent="start">
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-1 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '12px' } }} className='pt-1 text-start'>
             ※4法定福利費等の事業主負担額を除く。基準年度については、処遇改善等加算通知第4の2(1)キは(2)オによるものとする。
           </Typography>
         </Grid>
@@ -1157,7 +1157,7 @@ export default function WageAdjustmentsOne() {
       {/* Start ※5人件費の改定状況部分については、施設の職員構成等を踏まえ、施設の判断で適切に配分を行った額を記入すること。法定福利費等の事業主負担額を除く。 Grid */}
       <Grid container justifyContent="start">
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-1 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '12px' } }} className='pt-1 text-start'>
             ※5人件費の改定状況部分については、施設の職員構成等を踏まえ、施設の判断で適切に配分を行った額を記入すること。法定福利費等の事業主負担額を除く。
           </Typography>
         </Grid>
@@ -1167,7 +1167,7 @@ export default function WageAdjustmentsOne() {
       {/* Start  ※7別紙様式7別添1(4)又は(5)における「処遇改善等加算による賃金改善額」 Grid */}
       <Grid container justifyContent="start">
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-1 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '12px' } }} className='pt-1 text-start'>
             ※7別紙様式7別添1(4)又は(5)における「処遇改善等加算による賃金改善額」の「うち基準翌年度から加算当年度における賃金改善分」を対象職員ごとに
             算出して記入すること。法定福利費等の事業主負担額を除く。
           </Typography>
@@ -1178,7 +1178,7 @@ export default function WageAdjustmentsOne() {
       {/* Start  ※8別紙様式9別添1における「加算血による賃金改善見込額」を対象職員ごとに記入すること。法定福利費等の事業主負担額を除く。 Grid */}
       <Grid container justifyContent="start">
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-1 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '12px' } }} className='pt-1 text-start'>
             ※8別紙様式9別添1における「加算血による賃金改善見込額」を対象職員ごとに記入すること。法定福利費等の事業主負担額を除く。
           </Typography>
         </Grid>

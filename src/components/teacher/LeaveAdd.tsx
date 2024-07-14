@@ -11,6 +11,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import InputAdornment from '@mui/material/InputAdornment';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save'
 
 export default function LeaveAdd() {
   return (
@@ -46,33 +48,33 @@ export default function LeaveAdd() {
         </Grid>
         
         {/* 所属, 役職 Fields */}
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={3} sm={3} md={2} lg={1}>
-            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+        <Grid container spacing={2} className='pt-7' justifyContent="left">
+          <Grid item xs={3} sm={3} md={2} lg={3}>
+            <Typography style={{ fontSize: '14px' }} className='pt-2 text-end'>
               所　属 :
             </Typography>
           </Grid>
-          <Grid item xs={7} sm={7} md={3} lg={2}>
+          <Grid item xs={7} sm={7} md={3} lg={2.5}>
             <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
           <Grid item xs={3} sm={3} md={2} lg={1}>
-            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+            <Typography style={{ fontSize: '14px' }} className='pt-2 text-end'>
               役　職 :
             </Typography>
           </Grid>
-          <Grid item xs={7} sm={7} md={3} lg={2}>
+          <Grid item xs={7} sm={7} md={3} lg={2.5}>
             <TextField id="outlined-search" type="text" size="small" fullWidth  sx={{ backgroundColor: 'white' }} />
           </Grid>
         </Grid>
         
         {/* 氏名 Field */}
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={3} sm={3} md={2} lg={1}>
-            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+        <Grid container spacing={2} className='pt-7' justifyContent="left">
+          <Grid item xs={3} sm={3} md={2} lg={3}>
+            <Typography style={{ fontSize: '14px' }} className='pt-2 text-end'>
               氏　名 :
             </Typography>
           </Grid>
-          <Grid item xs={7} sm={7} md={3} lg={2}>
+          <Grid item xs={7} sm={7} md={3} lg={2.5}>
             <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }}/>
           </Grid>
           <Grid item xs={3} sm={3} md={2} lg={1}></Grid>
@@ -80,11 +82,11 @@ export default function LeaveAdd() {
         </Grid>
         
         {/* 適用 Radio Group */}
-        <Grid container spacing={2} className='pt-7'>
+        <Grid container spacing={2} className='pt-7'justifyContent="left">
         <Grid item xs={6} sm={1} md={1}></Grid>
         <Grid item xs={6} sm={1} md={1}></Grid>
           <Grid item xs={4} sm={3} md={2} lg={1}>
-            <Typography style={{ fontSize: '16px' }} className='pt-2'>
+            <Typography style={{ fontSize: '14px' }} className='pt-2  text-end'>
               適　用 :
             </Typography>
           </Grid> 
@@ -104,26 +106,26 @@ export default function LeaveAdd() {
         </Grid>
 
         {/* Date Pickers */}
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
+        <Grid container spacing={2} className='pt-7' justifyContent="left">
           
-          <Grid item xs={3} sm={3} md={2} lg={1}>
-            <Typography style={{ fontSize: '16px' }} className='pt-5'>
+          <Grid item xs={3} sm={3} md={2} lg={3}>
+            <Typography style={{ fontSize: '14px' }} className='pt-5 text-end'>
               期　間 :
             </Typography>
           </Grid>
-          <Grid item xs={7} sm={7} md={3} lg={3} className='scale-90'>
+          <Grid item xs={7} sm={7} md={3} lg={2.5} className='scale-75'>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="開始日" sx={{ backgroundColor: 'white' }}/>
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={3} sm={3} md={1} lg={1}  sx={{  ml:{lg:-8}}}>
-            <Typography style={{ fontSize: '16px' }} className='pt-5'>
+          <Grid item xs={3} sm={3} md={1} lg={1.2}  sx={{  ml:{lg:-8}}}>
+            <Typography style={{ fontSize: '14px' }} className='pt-5 text-center'>
                 ～
             </Typography>
           </Grid>
-          <Grid item xs={7} sm={7} md={3} lg={3} className='scale-90'sx={{  ml:{lg:-5}}}>
+          <Grid item xs={7} sm={7} md={3} lg={2.5} className='scale-75'sx={{  ml:{lg:-5}}}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker label="終了日" sx={{ backgroundColor: 'white' }}/>
@@ -133,15 +135,16 @@ export default function LeaveAdd() {
         </Grid>
         
         {/* 日間 Field */}
-        <Grid container spacing={2} className='pt-7 ' >
-          <Grid item xs={6} sm={5} md={3} lg={3}>
+        <Grid container spacing={2} className='pt-7 ' justifyContent="left">
+          <Grid item xs={3.8} sm={3} md={2} lg={3.3}></Grid>
+          <Grid item xs={3} sm={3} md={3} lg={1.5}>
             <TextField 
               id="outlined-search" 
               type="text" 
               size="small"  
               variant="outlined" 
               fullWidth
-              sx={{ backgroundColor: 'white', ml:{xs:4, sm:5, md:15, lg:24}}}
+              sx={{ backgroundColor: 'white'}}
               InputProps={{
                   endAdornment: <InputAdornment position="end">日間</InputAdornment>,
               }} />
@@ -167,26 +170,27 @@ export default function LeaveAdd() {
             </FormGroup>
           </Grid>
         </Grid>
-        
-        <Grid container spacing={2} className='pt-5' justifyContent="center">
-          <Grid item>
-            <Button variant="contained" href="#" size='small' className='text-center'>
-              <Typography component="div" style={{ color: 'white', alignItems: 'center' }} >
-                戻る
-              </Typography>
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" href="#" size='small' className='text-center'>
-              <Typography component="div" style={{ color: 'white', alignItems: 'center' }} >
-                修正
-              </Typography>
-            </Button>
-          </Grid>
-              
-              
-        </Grid>
+    
       </Grid>
+
+      <div className="mt-auto">
+          <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+                <Grid item>
+                      <Button variant="contained" href="/teacher/listleave" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
+                      <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                      戻る
+                      </Typography>
+                      </Button>
+                </Grid>
+                <Grid item>
+                      <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success">
+                      <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                      修正
+                      </Typography>
+                      </Button>
+                </Grid>
+          </Grid>
+      </div>
     </ContentMain>
   );
 }

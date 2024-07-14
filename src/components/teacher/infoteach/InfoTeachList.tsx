@@ -73,8 +73,8 @@ function createData(
 }
 
 // Example data (you can replace this with your actual data)
-const rows = [
-  createData('1', '藤井　みさ', '2020年11月5日', ' 福岡市南区平和2-27-29-303','履歴書 (正規職員用)',
+const initialRows = [
+  createData('1', '藤井　みさ', '2020年11月5日', ' 福岡市南区平和2-27-29-303', '履歴書 (正規職員用)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -87,7 +87,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2', '髙本　泰世', '2020年12月10日', '福岡市南区三宅 3-13-30-402','履歴書 (正規職員用)',
+  createData('2', '髙本　泰世', '2020年12月10日', '福岡市南区三宅 3-13-30-402', '履歴書 (正規職員用)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -100,7 +100,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('3', '山崎　都', '2020年12月10日', '福岡市中央区白金2-10-2-902','履歴書 (賃金職員用)',
+  createData('3', '山崎　都', '2020年12月10日', '福岡市中央区白金2-10-2-902', '履歴書 (賃金職員用)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -113,20 +113,21 @@ const rows = [
       </IconButton>
     </>
   ),
- 
 ];
 
-
 export default function InfoTeachList() {
-  const [classroom, setcClass] = React.useState('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setcClass(event.target.value as string);
-  };
-
-
+  const [classroom, setClassroom] = React.useState('');
+  const [searchInput, setSearchInput] = React.useState('');
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleClassroomChange = (event: SelectChangeEvent) => {
+    setClassroom(event.target.value as string);
+  };
+
+  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
+  };
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -137,16 +138,20 @@ export default function InfoTeachList() {
     setPage(0);
   };
 
+  // Filtered rows based on search input and selected classroom
+  const filteredRows = initialRows.filter(row =>
+    row.classroom.toLowerCase().includes(searchInput.toLowerCase()) &&
+    (classroom === '' || row.timeend === classroom)
+  );
+
   return (
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
-
-        <Typography component="div" style={{ color: 'black', }} className='pt-6 '>
+        <Typography component="div" style={{ color: 'black' }} className='pt-6'>
           氏名
         </Typography>
-
         <Grid item xs={8} sm={4} md={2} lg={2}>
-          <TextField id="outlined-search" label="" type="search" size="small" className='' />
+          <TextField id="outlined-search" label="氏名" type="search" sx={{bgcolor: 'white'}} size="small" onChange={handleSearchInputChange} />
         </Grid>
         <Grid item xs={4} sm={4} md={2} style={{ textAlign: 'center' }}>
           <FormControl sx={{ minWidth: 100 }} size="small" fullWidth>
@@ -156,29 +161,30 @@ export default function InfoTeachList() {
               id="demo-select-small"
               value={classroom}
               label="クラス名"
-              onChange={handleChange}
+              onChange={handleClassroomChange}
+              sx={{bgcolor: 'white'}}
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>履歴書 (正規職員用)</MenuItem>
-              <MenuItem value={20}>履歴書 (賃金職員用)</MenuItem>
+              <MenuItem value="履歴書 (正規職員用)">履歴書 (正規職員用)</MenuItem>
+              <MenuItem value="履歴書 (賃金職員用)">履歴書 (賃金職員用)</MenuItem>
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={6} sm={6} md={2} >
-          <Button variant="contained" href="#contained-buttons" className='scale-90' >
+        <Grid item xs={6} sm={6} md={2}>
+          <Button variant="contained" href="#contained-buttons" className='scale-90'>
             <SearchIcon />
-            <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }} >
+            <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }}>
               Search
             </Typography>
           </Button>
         </Grid>
       </Grid>
-      <Grid container direction="row" justifyContent="end" alignItems="end" style={{ paddingTop: '20px', }} className='mt-3'>
-        <Button variant="contained" href="/infoteach/add" className='scale-90' size="small" >
+      <Grid container direction="row" justifyContent="end" alignItems="end" style={{ paddingTop: '20px' }} className='mt-3'>
+        <Button variant="contained" href="/infoteach/add" className='scale-90' size="small">
           <AddIcon />
-          <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }}  >
+          <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }}>
             Add
           </Typography>
         </Button>
@@ -201,18 +207,16 @@ export default function InfoTeachList() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
+                {filteredRows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
-                      <TableRow hover role="checkbox" tabIndex={-1} key={row.classroom}>
+                      <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
                             <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === 'number'
-                                ? column.format(value)
-                                : value}
+                              {column.format && typeof value === 'number' ? column.format(value) : value}
                             </TableCell>
                           );
                         })}
@@ -225,7 +229,7 @@ export default function InfoTeachList() {
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={rows.length}
+            count={filteredRows.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

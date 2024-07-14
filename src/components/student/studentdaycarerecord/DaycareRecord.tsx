@@ -4,6 +4,8 @@ import EraForm from "../../componentsform/EraForm";
 import YearForm from "../../componentsform/YearForm";
 import MonthForm from "../../componentsform/MonthForm";
 import DayForm from "../../componentsform/DayForm";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
 
 export default function DaycareRecord() {
 
@@ -366,7 +368,8 @@ export default function DaycareRecord() {
                               ね　ら　い（発達を捉える視点）
                         </Typography>
                   </Grid>
-                  <Grid container spacing={3} className='pt-4'>
+                  <Grid container spacing={3} className='pt-4' sx={{ '& .MuiTypography-root': { fontSize: '14px' },
+  '& .MuiFormControlLabel-root': { marginBottom: '-10px' } }} >
                         <Grid item xs={12}>
                               <Typography className=" text-start ">
                                     健康
@@ -374,8 +377,8 @@ export default function DaycareRecord() {
                         </Grid>
                         <Grid container spacing={2} >
                               <Grid item xs={0.5} sm={1} md={0.5}></Grid>
-                              <Grid item xs={11} sm={11} md={10}>
-                                    <FormGroup className="text-start">
+                              <Grid item xs={11} sm={11} md={11}>
+                                    <FormGroup className="text-start" >
                                           <FormControlLabel control={<Checkbox />} label="明るく伸び伸びと行動し、充実感を味わう。" />
                                           <FormControlLabel control={<Checkbox />} label="自分の体を十分に動かし、進んで運動しようとする。" />
                                           <FormControlLabel control={<Checkbox />} label="健康、安全な生活に必要な習慣や態度を身に付け、見通しをもって行動する。" />
@@ -390,8 +393,8 @@ export default function DaycareRecord() {
                         </Grid>
                         <Grid container spacing={2} >
                               <Grid item xs={0.5} sm={1} md={0.5}></Grid>
-                              <Grid item xs={11} sm={11} md={10}>
-                                    <FormGroup className="text-start">
+                              <Grid item xs={11} sm={11} md={11}>
+                                    <FormGroup className="text-start" >
                                           <FormControlLabel control={<Checkbox />} label="保育所生活を楽しみ、自分の力で行動することの充実感を味わう。" />
                                           <FormControlLabel control={<Checkbox />} label="身近な人と親しみ、関わりを深め、工夫したり、協力したりして一緒に活動する楽しさを味わい、愛情や信頼感をもつ。" />
                                           <FormControlLabel control={<Checkbox />} label="社会生活における望ましい習慣や態度を身に付ける" />
@@ -406,8 +409,8 @@ export default function DaycareRecord() {
                         </Grid>
                         <Grid container spacing={2} >
                               <Grid item xs={0.5} sm={1} md={0.5}></Grid>
-                              <Grid item xs={11} sm={11} md={10}>
-                                    <FormGroup className="text-start">
+                              <Grid item xs={11} sm={11} md={11}>
+                                    <FormGroup className="text-start" >
                                           <FormControlLabel control={<Checkbox />} label="身近な環境に親しみ、自然と触れ合う中で様々な事象に興味や関心を持つ。" />
                                           <FormControlLabel control={<Checkbox />} label="身近な環境に自分から関わり、発見を楽しんだり、考えたりし、それを生活に取り入れようとする。" />
                                           <FormControlLabel control={<Checkbox />} label="身近な事象を見たり、考えたり、扱ったりする中で、物の性質や数量、文字などに対する感覚を豊かにする。" />
@@ -422,7 +425,7 @@ export default function DaycareRecord() {
                         </Grid>
                         <Grid container spacing={2} >
                               <Grid item xs={0.5} sm={1} md={0.5}></Grid>
-                              <Grid item xs={11} sm={11} md={10}>
+                              <Grid item xs={11} sm={11} md={11}>
                                     <FormGroup className="text-start">
                                           <FormControlLabel control={<Checkbox />} label="自分の気持ちを言葉で表現する楽しさを味わう。" />
                                           <FormControlLabel control={<Checkbox />} label="人の言葉や話などをよく聞き、自分の経験したことや考えたことを話し、伝え合う喜びを味わう。" />
@@ -437,7 +440,7 @@ export default function DaycareRecord() {
                         </Grid>
                         <Grid container spacing={2} >
                               <Grid item xs={0.5} sm={1} md={0.5}></Grid>
-                              <Grid item xs={11} sm={11} md={10}>
+                              <Grid item xs={11} sm={11} md={11}>
                                     <FormGroup className="text-start">
                                           <FormControlLabel control={<Checkbox />} label="いろいろな物の美しさなどに対する豊かな感性をもつ。" />
                                           <FormControlLabel control={<Checkbox />} label="感じたことや考えたことを自分なりに表現して楽しむ。" />
@@ -498,7 +501,7 @@ export default function DaycareRecord() {
                   </Grid>
                   <Grid container spacing={2} className='pt-6' justifyContent="left">
                         <Grid item xs={6} sm={6} md={2} lg={1.5} sx={{ ml: { xs: -4, sm: -3, md: 0, lg: 0 } }}>
-                              <Typography style={{ fontSize: '16px' }} className='pt-2'>
+                              <Typography style={{ fontSize: '14px' }} className='pt-3'>
                                     担当保育士名 :
                               </Typography>
                         </Grid>
@@ -506,7 +509,7 @@ export default function DaycareRecord() {
                               <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
                         </Grid>
                         <Grid item xs={6} sm={6} md={2} lg={1.5} sx={{ ml: { xs: -2, sm: -1.5, md: 0, lg: 0 } }}>
-                              <Typography style={{ fontSize: '16px' }} className='pt-2'>
+                              <Typography style={{ fontSize: '14px' }} className='pt-3'>
                                     施設長名 :
                               </Typography>
                         </Grid>
@@ -518,19 +521,19 @@ export default function DaycareRecord() {
 
                   {/* Buttons at the bottom */}
                   <div className="mt-auto">
-                        <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+                        <Grid container justifyContent="center" spacing={2} className='pt-12' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
                               <Grid item>
-                                    <Button variant="contained" href="#" size='small' className='text-center'>
-                                          <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
-                                                戻る
-                                          </Typography>
+                                    <Button variant="contained" href="/student" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
+                                    <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                                    戻る
+                                    </Typography>
                                     </Button>
                               </Grid>
                               <Grid item>
-                                    <Button variant="contained" href="#" size='small' className='text-center'>
-                                          <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
-                                                修正
-                                          </Typography>
+                                    <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success">
+                                    <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                                    修正
+                                    </Typography>
                                     </Button>
                               </Grid>
                         </Grid>
