@@ -73,7 +73,7 @@ function createData(
 
 // Example data (you can replace this with your actual data)
 const initialRows = [
-  createData('1', 'John Doe', 'Math', 20230619, 830, 1030,
+  createData('1', '佐藤 春', 'うさぎ', 20230619, 830, 1030,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
         <EditIcon fontSize="small" color="primary" />
@@ -83,7 +83,7 @@ const initialRows = [
       </IconButton>
     </>
   ),
-  createData('2', 'Jane Smith', 'Science', 20230619, 900, 1100,
+  createData('2', '田中 美月', 'くま', 20230619, 900, 1100,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
         <EditIcon fontSize="small" color="primary" />
@@ -93,7 +93,7 @@ const initialRows = [
       </IconButton>
     </>
   ),
-  createData('3', 'Alice Johnson', 'History', 20230619, 945, 1145,
+  createData('3', '松村 夢', 'ぱんだ', 20230619, 945, 1145,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
         <EditIcon fontSize="small" color="primary" />
@@ -103,7 +103,7 @@ const initialRows = [
       </IconButton>
     </>
   ),
-  createData('4', 'Bob Brown', 'Art', 20230619, 1015, 1215,
+  createData('4', '山田 レイ', '美術', 20230619, 1015, 1215,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
         <EditIcon fontSize="small" color="primary" />
@@ -165,9 +165,10 @@ export default function ListLeave() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value="Math">Math (うさぎ)</MenuItem>
-              <MenuItem value="Science">Science (くま)</MenuItem>
-              <MenuItem value="History">History (ぱんだ)</MenuItem>
+              <MenuItem value="うさぎ">うさぎ</MenuItem>
+              <MenuItem value="くま">くま</MenuItem>
+              <MenuItem value="ぱんだ">ぱんだ</MenuItem>
+              <MenuItem value="美術">美術</MenuItem>
             </Select>
           </FormControl>
         </Grid>

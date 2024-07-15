@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 import ContentMain from '../../content/Content';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -14,7 +14,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddIcon from '@mui/icons-material/Add';
 
 interface Column {
-  id: 'schoolnumber' |'schoolname' | 'date' | 'totalprojects' | 'totalamount' | 'detail';
+  id: 'schoolnumber' | 'schoolname' | 'date' | 'totalprojects' | 'totalamount' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -72,8 +72,8 @@ function createData(
 }
 
 // Example data (you can replace this with your actual data)
-const rows = [
-  createData('1', '566', '渡部　圭子', 20230619, 3, 600000	,
+const initialRows = [
+  createData('1', '566', '渡部　圭子', 20230619, 3, 600000,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
         <EditIcon fontSize="small" color="primary" />
@@ -83,7 +83,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2', '999', '渡部　圭子', 20230619, 4, 700000	,
+  createData('2', '999', '渡部　圭子', 20230619, 4, 700000,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
         <EditIcon fontSize="small" color="primary" />
@@ -93,7 +93,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('3', '000', '渡部　圭子', 20230619, 4, 800000	,
+  createData('3', '000', '渡部　圭子', 20230619, 4, 800000,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
         <EditIcon fontSize="small" color="primary" />
@@ -103,7 +103,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('4', ' 787', '渡部　圭子', 20230619, 2, 500000	,
+  createData('4', ' 787', '渡部　圭子', 20230619, 2, 500000,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
         <EditIcon fontSize="small" color="primary" />
@@ -116,11 +116,6 @@ const rows = [
 ];
 
 export default function ActivityList() {
-  const [classroom, setClass] = React.useState('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setClass(event.target.value as string);
-  };
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -134,30 +129,28 @@ export default function ActivityList() {
     setPage(0);
   };
 
+  const [searchInput, setSearchInput] = React.useState('');
+  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
+  };
+
+  // Filtered rows based on search input and selected classroom
+  const filteredRows = initialRows.filter(row =>
+    row.schoolnumber.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   return (
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
         <Grid item xs={3} sm={4} md={2} lg={2}>
-          <TextField id="outlined-search" label="氏名" type="search" size="small" />
-        </Grid>
-        <Grid item xs={3} sm={4} md={2} lg={2} style={{ textAlign: 'center' }}>
-          <FormControl sx={{ minWidth: 125 }} size="small" fullWidth>
-            <InputLabel id="demo-select-small-label">クラス名</InputLabel>
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={classroom}
-              label="クラス名"
-              onChange={handleChange}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>うさぎ</MenuItem>
-              <MenuItem value={20}>くま</MenuItem>
-              <MenuItem value={30}>ぱんだ</MenuItem>
-            </Select>
-          </FormControl>
+          <TextField
+            id="outlined-search"
+            label="保育所番号"
+            type="search"
+            size="small"
+            onChange={handleSearchInputChange}
+            sx={{ bgcolor: 'white' }}
+          />
         </Grid>
         <Grid item xs={6} sm={4} md={3} lg={1.5}>
           <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
@@ -172,7 +165,7 @@ export default function ActivityList() {
           <Button variant="contained" href="/accounting/activity/add" size='small' startIcon={<AddIcon />}>
             <Typography style={{ color: 'white' }}>
               ADD
-            </Typography>       
+            </Typography>
           </Button>
         </Grid>
       </Grid>
@@ -194,7 +187,7 @@ export default function ActivityList() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
+                {filteredRows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
@@ -218,7 +211,7 @@ export default function ActivityList() {
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={rows.length}
+            count={filteredRows.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

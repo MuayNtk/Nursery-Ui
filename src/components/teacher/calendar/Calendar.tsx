@@ -243,7 +243,7 @@ const Calendar: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventClickArg | null>(null);
   const [open, setOpen] = useState(false);
   const [events, setEvents] = useState<EventInput[]>([
-    // Sample event data can be placed here
+      // sample data.
   ]);
   const [newEventDialogOpen, setNewEventDialogOpen] = useState(false);
   const [newEventTitle, setNewEventTitle] = useState('');
@@ -252,7 +252,7 @@ const Calendar: React.FC = () => {
   const [newEventStartTime, setNewEventStartTime] = useState('');
   const [newEventEndTime, setNewEventEndTime] = useState('');
 
-  const handleEventClick = (clickInfo: EventClickArg) => {
+  const handleEventClick = (clickInfo: any) => {
     setSelectedEvent(clickInfo);
     setOpen(true);
   };
@@ -360,8 +360,8 @@ const Calendar: React.FC = () => {
           }
           eventBackgroundColor="#1976d2"
           eventBorderColor="#1976d2"
-          dayMaxEventRows={true}
-          dayMaxEvents={true}
+          dayMaxEventRows={2}
+          dayMaxEvents={2}
           height="auto"
         />
       </Grid>
