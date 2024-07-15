@@ -1,4 +1,8 @@
-import { Grid, TextField, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Typography, FormControl, InputAdornment, MenuItem, Select } from "@mui/material";
+import { Grid, TextField, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Typography, FormControl, InputAdornment, MenuItem, Select, InputLabel } from "@mui/material";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 export default function TreatAppReq() {
 
@@ -36,48 +40,36 @@ export default function TreatAppReq() {
         </Typography>
       </Grid>
 
-      <Grid container spacing={2} className='pt-7'>
-        <Grid item xs={4.5} sm={4} md={4} lg={3}>
+      <Grid container spacing={2} className='pt-3' justifyContent="start" sx={{ ml: { xs: -2, sm: 8, md: 5.5, lg:-2 }, }}>
+        <Grid item xs={4.5} sm={2} md={3} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
             作成日 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={6} md={4} lg={2}>
-          <TextField
-            id="addition-rate"
-            name="addition-rate"
-            type="text" size="small"
-            fullWidth
-            label="令和"
-            sx={{ backgroundColor: 'white' }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">年</InputAdornment>,
-            }}
-          />
+        <Grid item xs={3.2} sm={2.3} md={1.5} lg={1}>
+          <FormControl size="small" fullWidth>
+            <InputLabel id="date-label">平成</InputLabel>
+            <Select
+              labelId="date-label"
+              id="date-select"
+              label="平成"
+              sx={{ backgroundColor: "white" }}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={1}>昭和</MenuItem>
+              <MenuItem value={2}>平成</MenuItem>
+              <MenuItem value={3}>令和</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={2}>
-          <TextField
-            id="addition-rate"
-            name="addition-rate"
-            type="text" size="small"
-            fullWidth
-            sx={{ backgroundColor: 'white' }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">月</InputAdornment>,
-            }}
-          />
-        </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={2} sx={{ marginLeft: { sx: 15, md: 29, lg: 1 } }}>
-          <TextField
-            id="addition-rate"
-            name="addition-rate"
-            type="text" size="small"
-            fullWidth
-            sx={{ backgroundColor: 'white' }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">日</InputAdornment>,
-            }}
-          />
+        <Grid item xs={8} sm={6} md={4} lg={5} sx={{ ml: { xs: 13, sm: -4, md: -4, lg:-3 },mt: { xs: -3, sm: -2, md: -2, lg:-2 } }}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} className="scale-75"/>
+              </DemoContainer>
+            </LocalizationProvider>
         </Grid>
       </Grid>
 

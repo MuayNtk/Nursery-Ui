@@ -1,4 +1,8 @@
 import { Checkbox, Divider, FormControl, Grid, InputAdornment, InputLabel, MenuItem, Paper, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from "@mui/material";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -34,49 +38,36 @@ export default function RateCertification() {
       {/* End 園番号 Grid */}
 
       {/* Start 作成日 Grid */}
-      <Grid container spacing={2} className='pt-3' justifyContent="start">
+      <Grid container spacing={2} className='pt-3' justifyContent="start" sx={{ ml: { xs: -2, sm: 8, md: 5.5, lg:-2 }, }}>
         <Grid item xs={4.5} sm={2} md={3} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
             作成日 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={3} md={2.5} lg={2}>
-          <TextField
-            id="year-created-date"
-            name="year-created-date"
-            label="令和"
-            variant="outlined"
-            type="text" size="small"
-            fullWidth
-            sx={{ backgroundColor: 'white' }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">年</InputAdornment>,
-            }}
-          />
+        <Grid item xs={3.2} sm={2.3} md={1.5} lg={1}>
+          <FormControl size="small" fullWidth>
+            <InputLabel id="date-label">平成</InputLabel>
+            <Select
+              labelId="date-label"
+              id="date-select"
+              label="平成"
+              sx={{ backgroundColor: "white" }}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={1}>昭和</MenuItem>
+              <MenuItem value={2}>平成</MenuItem>
+              <MenuItem value={3}>令和</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
-        <Grid item xs={6} sm={3} md={2.5} lg={2}>
-          <TextField
-            id="month-created-date"
-            name="month-created-date"
-            type="text" size="small"
-            fullWidth
-            sx={{ backgroundColor: 'white' }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">月</InputAdornment>,
-            }}
-          />
-        </Grid>
-        <Grid item xs={6} sm={3} md={2.5} lg={2}>
-          <TextField
-            id="day-created-date"
-            name="day-created-date"
-            type="text" size="small"
-            fullWidth
-            sx={{ backgroundColor: 'white' }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">日</InputAdornment>,
-            }}
-          />
+        <Grid item xs={8} sm={6} md={6} lg={5} sx={{ ml: { xs: 13, sm: -1.5, md: -4, lg:-3 },mt: { xs: -3, sm: -2, md: -2, lg:-2 } }}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} className="scale-75"/>
+              </DemoContainer>
+            </LocalizationProvider>
         </Grid>
       </Grid>
       {/* End 作成日 Grid */}
@@ -424,7 +415,7 @@ export default function RateCertification() {
             }}
           />
         </Grid>
-        <Grid item xs={12} sm={5} md={3.5} lg={2}>
+        <Grid item xs={12} sm={5} md={2} lg={2}>
           <FormControl size="small">
             <InputLabel id="training-field-label">昭和</InputLabel>
             <Select
@@ -441,41 +432,15 @@ export default function RateCertification() {
               <MenuItem value={3}>昭和</MenuItem>
             </Select>
           </FormControl>
-          <TextField
-            id="year-number"
-            name="year-number"
-            type="text"
-            size="small"
-            sx={{ width: { xs: 150, sm: 80, md: 90, lg: 100 }, backgroundColor: 'white' }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">年</InputAdornment>,
-            }}
-          />
         </Grid>
-        <Grid item xs={6} sm={3} md={4} lg={2}>
-          <TextField
-            id="year-created-date"
-            name="year-created-date"
-            type="text" size="small"
-            fullWidth
-            sx={{ backgroundColor: 'white' }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">月</InputAdornment>,
-            }}
-          />
+        <Grid item xs={8} sm={6} md={3.5} lg={5} sx={{ ml: { xs: 13, sm: -10, md: -5, lg:-10 },mt: { xs: -1.5, sm: -2, md: -2, lg:-2 } }}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} className="scale-75"/>
+              </DemoContainer>
+            </LocalizationProvider>
         </Grid>
-        <Grid item xs={6} sm={3} md={4} lg={2}>
-          <TextField
-            id="year-created-date"
-            name="year-created-date"
-            type="text" size="small"
-            fullWidth
-            sx={{ backgroundColor: 'white' }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">日</InputAdornment>,
-            }}
-          />
-        </Grid>
+        
       </Grid>
       {/* End 利用定員 Grid */}
 

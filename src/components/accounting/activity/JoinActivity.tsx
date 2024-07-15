@@ -4,6 +4,10 @@ import YearForm from "../../componentsform/YearForm";
 import MonthForm from "../../componentsform/MonthForm";
 import DayForm from "../../componentsform/DayForm";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 const columns: readonly GridColDef[] = [
   {
@@ -95,15 +99,14 @@ export default function JoinActivity() {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={3.5} sm={2.5} md={2} lg={1.2} sx={{ ml: { xs: -1, sm: -1.5, md: -1, lg: -1 } }}>
-          <YearForm />
+        <Grid item xs={6} sm={6} md={5} lg={5} sx={{ ml: { xs: 9.5, sm: -1.5, md: -3, lg:-3 },mt: { xs: -3, sm: -2, md: -2, lg:-2 } }}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} className="scale-75"/>
+              </DemoContainer>
+            </LocalizationProvider>
         </Grid>
-        <Grid item xs={3} sm={2} md={2} lg={1} sx={{ ml: { xs: 11, sm: -1.5, md: -2, lg: -1 } }}>
-          <MonthForm />
-        </Grid>
-        <Grid item xs={4} sm={1} md={2} lg={1} sx={{ ml: { xs: 0, sm: 2.5, md: -3, lg: 0 } }}>
-          <DayForm />
-        </Grid>
+        
       </Grid>
       {/* End 日時 Grid */}
 
