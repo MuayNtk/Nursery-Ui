@@ -2,7 +2,8 @@ import { Button, Card, Grid, MenuItem, Select, TextField, TextareaAutosize, Typo
 import ContentMain from "../content/Content";
 // import SaveIcon from '@mui/icons-material/Save';
 import { SetStateAction, useState } from "react";
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
 
 export default function OverallPlanAdd() {
   const [selectedOption, setSelectedOption] = useState('');
@@ -15,45 +16,11 @@ export default function OverallPlanAdd() {
 
     <>
       <ContentMain className="flex flex-col min-h-screen">
-        {/* start grid  全体的な計画*/}
-        <Grid item xs={12} sm={12} md={12} lg={12} className='pt-5' >
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold' }} className='flex justify-start h-10 pt-2 pl-5' >
-            全体的な計画
-          </Typography>
-        </Grid>
-        {/* End grid  全体的な計画*/}
-
-        {/* Start 全体的な計画 and 家庭・地域との連携  */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} className=''>
-            保育の目標
-          </Typography>
-          {/* grid 1-1 */}
-          <Grid item xs={8} sm={8} md={3} lg={3} >
-              <TextareaAutosize
-              className="w-full"
-                  id="goalsofchildcare"
-                  name="goalsofchildcare"
-                  minRows={3.5} maxRows={100} 
-                  style={{ border: '1px solid gray', borderRadius: '4px' }}
-                />
-          </Grid>
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} className='lg:pl-16'>
-            家庭・地域との連携
-          </Typography>
-          {/* grid 1-2 */}
-          <Grid item xs={7} sm={3} md={3} lg={3} sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
-            <TextareaAutosize className="w-full" id="familiesandcommunities" name="familiesandcommunities" minRows={3.5} maxRows={100} 
-                  style={{ border: '1px solid gray', borderRadius: '4px' }} />
-          </Grid>
-        </Grid>
-        {/* End 全体的な計画 and 家庭・地域との連携 */}
-
-
-        {/* start grid  dropdown */}
-        <Grid item xs={12} sm={12} md={12} lg={11.6} className="pt-3">
+          {/* start grid  dropdown */}
+          <Grid item xs={12} sm={12} md={12} lg={11.6} className="pt-3">
           <div className="flex justify-start w-9 h-9" >
-            <Select value={selectedOption} onChange={handleDropdownChange} sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
+            <Select value={selectedOption} onChange={handleDropdownChange} sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
+              <MenuItem value="0">0歳</MenuItem>
               <MenuItem value="1">1歳</MenuItem>
               <MenuItem value="2">2歳</MenuItem>
               <MenuItem value="3">3歳</MenuItem>
@@ -66,16 +33,24 @@ export default function OverallPlanAdd() {
             {selectedOption === '' && (
               <Typography
                 component="div"
-                sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold',}}
+                sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold',}}
                 className='flex justify-start h-11 pt-3 pl-5'
                 bgcolor={"#CCF0FD"}>
                 選んでください歳
               </Typography>
             )}
-            {selectedOption === '1' && (
+            {selectedOption === '0' && (
               <Typography
                 component="div"
-                sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
+                sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
+                className='flex justify-start h-10 pt-2 pl-5'
+                bgcolor={"#CCF0FD"}>
+                0歳
+              </Typography>
+            )}{selectedOption === '1' && (
+              <Typography
+                component="div"
+                sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
                 className='flex justify-start h-10 pt-2 pl-5'
                 bgcolor={"#CCF0FD"}>
                 1歳
@@ -84,7 +59,7 @@ export default function OverallPlanAdd() {
             {selectedOption === '2' && (
               <Typography
                 component="div"
-                sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
+                sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
                 className='flex justify-start h-10 pt-2 pl-5'
                 bgcolor={"#CCF0FD"}>
                 2歳
@@ -93,7 +68,7 @@ export default function OverallPlanAdd() {
             {selectedOption === '3' && (
               <Typography
                 component="div"
-                sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
+                sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
                 className='flex justify-start h-10 pt-2 pl-5'
                 bgcolor={"#CCF0FD"}>
                 3歳
@@ -102,7 +77,7 @@ export default function OverallPlanAdd() {
             {selectedOption === '4' && (
               <Typography
                 component="div"
-                sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
+                sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
                 className='flex justify-start h-10 pt-2 pl-5'
                 bgcolor={"#CCF0FD"}>
                 4歳
@@ -111,7 +86,7 @@ export default function OverallPlanAdd() {
             {selectedOption === '5' && (
               <Typography
                 component="div"
-                sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
+                sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
                 className='flex justify-start h-10 pt-2 pl-5'
                 bgcolor={"#CCF0FD"}>
                 5歳
@@ -120,6 +95,42 @@ export default function OverallPlanAdd() {
           </div>
         </Grid>
         {/* End grid  dropdown */}
+        {/* start grid  全体的な計画*/}
+        <Grid item xs={12} sm={12} md={12} lg={12} className='pt-5' >
+          <Typography component="div" sx={{  fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold' }} className='flex justify-start h-10 pt-2 pl-5' >
+            全体的な計画
+          </Typography>
+        </Grid>
+        {/* End grid  全体的な計画*/}
+
+        {/* Start 全体的な計画 and 家庭・地域との連携  */}
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5 pl-10">
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, }} className=''>
+            保育の目標
+          </Typography>
+          {/* grid 1-1 */}
+          <Grid item xs={8} sm={8} md={3} lg={3} >
+              <TextareaAutosize
+              className="w-full"
+                  id="goalsofchildcare"
+                  name="goalsofchildcare"
+                  minRows={3.5} maxRows={100} 
+                  style={{ border: '1px solid gray', borderRadius: '4px' }}
+                />
+          </Grid>
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, }} className='lg:pl-16'>
+            家庭・地域との連携
+          </Typography>
+          {/* grid 1-2 */}
+          <Grid item xs={7} sm={3} md={3} lg={3} sx={{ marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }}>
+            <TextareaAutosize className="w-full" id="familiesandcommunities" name="familiesandcommunities" minRows={3.5} maxRows={100} 
+                  style={{ border: '1px solid gray', borderRadius: '4px' }} />
+          </Grid>
+        </Grid>
+        {/* End 全体的な計画 and 家庭・地域との連携 */}
+
+
+      
 
         {/* Start Card */}
         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-4' >
@@ -133,10 +144,10 @@ export default function OverallPlanAdd() {
 
 
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4 pl-24">
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }} >
             養護
           </Typography>
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },  marginLeft: { xs: 12, sm: 18, md: 25, lg: 45, }}} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, },  marginLeft: { xs: 12, sm: 18, md: 25, lg: 45, }}} >
             教育
           </Typography>
         </Grid>
@@ -164,7 +175,7 @@ export default function OverallPlanAdd() {
         {/* Start Card */}
         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-4' >
           <Card sx={{ bgcolor: "pink", width: 100, height: 30, }}>
-            <Typography component='div' className="pt-1" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold' }}>
+            <Typography component='div' className="pt-1" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, fontWeight: 'bold' }}>
               内容
             </Typography>
           </Card>
@@ -173,22 +184,22 @@ export default function OverallPlanAdd() {
 
 
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-8 pl-14">
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, }} >
             教育
           </Typography>
         </Grid>
 
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-8 pl-16">
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 8, sm: 11, md: 11, lg: 16, }, }} >
+          <Typography component="div" sx={{ fontSize: { xs: 8, sm: 11, md: 11, lg: 14, }, }} >
             身体的発達に関する視点「社会的発達に関する視点 精神的発達に関する視点
           </Typography>
         </Grid>
 
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-10 pl-24">
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, }} >
             健康
           </Typography>
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },marginLeft: { xs: 1, sm: 15, md: 33, lg: 48, } }} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, },marginLeft: { xs: 1, sm: 15, md: 33, lg: 48, } }} >
             人間関係
           </Typography>
         </Grid>
@@ -202,11 +213,11 @@ export default function OverallPlanAdd() {
           </Grid>
         </Grid>
         
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-10 pl-24">
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7 pl-24">
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, }} >
           環境
           </Typography>
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },marginLeft: { xs: 1, sm: 15, md: 33, lg: 48, } }} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, },marginLeft: { xs: 1, sm: 15, md: 33, lg: 48, } }} >
           言葉
           </Typography>
         </Grid>
@@ -221,11 +232,11 @@ export default function OverallPlanAdd() {
         </Grid>
         {/* End grid  健康*/}
 
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-10 pl-24">
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7 pl-24">
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, }} >
           表現
           </Typography>
-          <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },marginLeft: { xs: 1, sm: 15, md: 33, lg: 48, } }} >
+          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, },marginLeft: { xs: 1, sm: 15, md: 33, lg: 48, } }} >
           食育
           </Typography>
         </Grid>
@@ -247,17 +258,17 @@ export default function OverallPlanAdd() {
 
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-8 ">
           <Grid item xs={4} sm={3} md={3} lg={3} className="" sx={{ marginLeft: { xs: 1.5, sm: 4, md: 2, lg: -4.5, } }}>
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, }} >
+            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, }} >
               安全 健康及び
             </Typography>
           </Grid>
           <Grid item xs={4} sm={3} md={3} lg={3} className="" sx={{ marginLeft: { xs: -3, sm: -1, md: 2, lg: -2, } }}>
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }} >
+            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }} >
               子育て支援
             </Typography>
           </Grid>
           <Grid item xs={4} sm={3} md={3} lg={3} className="" sx={{ marginLeft: { xs: -1, sm: 1, md: 2, lg: 1.5, } }}>
-            <Typography component="div" sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }} >
+            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, marginLeft: { xs: 1, sm: 1, md: 2, lg: 1, } }} >
               速携小学校との
             </Typography>
           </Grid>
@@ -276,21 +287,21 @@ export default function OverallPlanAdd() {
           </Grid>
         </Grid>
         <div className="mt-auto">
-          <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
-                <Grid item>
-                      <Button variant="contained" href="/report/overallplan" size='small' className='text-center'>
-                      <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
-                      戻る
-                      </Typography>
-                      </Button>
-                </Grid>
-                <Grid item>
-                      <Button variant="contained" href="#" size='small' className='text-center'>
-                      <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
-                      修正
-                      </Typography>
-                      </Button>
-                </Grid>
+          <Grid container justifyContent="center" spacing={2} className='pt-12' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+            <Grid item>
+                  <Button variant="contained" href="/report/overallplan" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
+                  <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                  戻る
+                  </Typography>
+                  </Button>
+            </Grid>
+            <Grid item>
+                  <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success">
+                  <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                  修正
+                  </Typography>
+                  </Button>
+            </Grid>
           </Grid>
         </div>
 

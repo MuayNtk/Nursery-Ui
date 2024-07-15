@@ -1,5 +1,6 @@
 import { Button, Card, Grid, TextareaAutosize, Typography } from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function MonthlyOneTwo() {
 
@@ -422,16 +423,24 @@ export default function MonthlyOneTwo() {
 
       
 
-      <Grid container className='pt-7' justifyContent="start">
-        <Grid>
-          <Button variant="contained" href="/report/annualplan/add" size='small' startIcon={<SaveIcon />} sx={{ backgroundColor: "green" }}>
-            <Typography style={{ color: 'white' }}>
-              Save
-            </Typography>
-          </Button>
-        </Grid>
-      </Grid>
-
+        <div className="mt-auto">
+          <Grid container justifyContent="center" spacing={2} className='pt-12' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+            <Grid item>
+                  <Button variant="contained" href="/report/overallplan" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
+                  <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                  戻る
+                  </Typography>
+                  </Button>
+            </Grid>
+            <Grid item>
+                  <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success">
+                  <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                  修正
+                  </Typography>
+                  </Button>
+            </Grid>
+          </Grid>
+        </div>
 
 
     </>
