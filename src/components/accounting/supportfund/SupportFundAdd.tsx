@@ -1,4 +1,4 @@
-import { Card, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { Button,Card, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import Infotable from "../supportfund/componentTable/Infotable"
 import YearForm from "../../componentsform/YearForm";
 import MonthForm from "../../componentsform/MonthForm";
@@ -10,6 +10,8 @@ import Gastable from "../supportfund/componentTable/Gastable"
 import Typetable from "../supportfund/componentTable/Typetable"
 import Type2table from "../supportfund/componentTable/Type2table"
 import Type3table from "../supportfund/componentTable/Type3table"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save'
 
 
 export default function SupportFundAdd() {
@@ -197,13 +199,24 @@ export default function SupportFundAdd() {
           <Type3table />
         </Grid>
         {/* end table excretion */}
-
-
-
-
-
-
-
+      </div>
+      <div className="mt-auto">
+        <Grid container justifyContent="center" spacing={2} className='pt-10' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+          <Grid item>
+                <Button variant="contained" href="/accounting/supportfund" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
+                  <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                  戻る
+                  </Typography>
+                </Button>
+          </Grid>
+          <Grid item>
+                <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success">
+                  <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                  修正
+                  </Typography>
+                </Button>
+          </Grid>
+        </Grid>
       </div>
     </>
   );

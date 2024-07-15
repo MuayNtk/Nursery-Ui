@@ -71,7 +71,7 @@ import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabP
 
 const Router = createBrowserRouter([
   {
-    path: "",
+    path: "/",
     element: <Navigate to="/welcome" replace />
   },
   {
@@ -87,7 +87,7 @@ const Router = createBrowserRouter([
     element: <Register />
   },
   {
-    path: "/",
+    path: "",
     element: <LayoutPage />,
     children: [
       {
