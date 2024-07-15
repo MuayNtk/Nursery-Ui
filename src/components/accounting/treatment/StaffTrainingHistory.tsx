@@ -8,6 +8,10 @@ import StaffTrainingHistoryTable3 from "./componentstable/StaffTrainingHistoryTa
 import StaffTrainingHistoryTable4 from "./componentstable/StaffTrainingHistoryTable4";
 import StaffTrainingHistoryTable5 from "./componentstable/StaffTrainingHistoryTable5";
 import StaffTrainingHistoryTable6 from "./componentstable/StaffTrainingHistoryTable6";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 
 export default function StaffTrainingHistory() {
@@ -52,13 +56,13 @@ export default function StaffTrainingHistory() {
                   </FormControl>
                 </TableCell>
                 <TableCell align="left" style={{ width: 150 }}>
-                  <YearForm />
-                </TableCell>
-                <TableCell align="left" style={{ width: 50 }}>
-                  <MonthForm />
-                </TableCell>
-                <TableCell align="left" style={{ width: 50 }}>
-                  <DayForm />
+                  <Grid item xs={12} sm={12} md={12} lg={12} sx={{ ml: { xs: -5, sm: -1.5, md: -3, lg: -3 }, mt: { xs: -1, sm: -1, md: -1, lg: -1 } }}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs} >
+                      <DemoContainer components={['DatePicker']}>
+                        <DatePicker label="Select date" sx={{ backgroundColor: "white" }} className="scale-75" />
+                      </DemoContainer>
+                    </LocalizationProvider>
+                  </Grid>
                 </TableCell>
               </TableRow>
               {/* End Rows1 */}
