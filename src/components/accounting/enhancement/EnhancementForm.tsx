@@ -1,7 +1,9 @@
 import { FormControl, Grid, MenuItem, Paper, Select, Table, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, InputAdornment, InputLabel, TableBody, Divider } from "@mui/material";
-import YearForm from "../../componentsform/YearForm";
-import MonthForm from "../../componentsform/MonthForm";
-import DayForm from "../../componentsform/DayForm";
+
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 
 export default function EnhancementForm() {
@@ -67,25 +69,13 @@ export default function EnhancementForm() {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={3.5} sm={2.5} md={1.5} lg={1} sx={{ ml: { xs: 0.5, sm: 0.5, md: 1, lg: 2 } }}>
-          <YearForm />
-        </Grid>
-        <Grid item xs={4.5} sm={2.5} md={1.5} lg={1} sx={{ ml: { xs: 5, sm: 0.5, md: 1, lg: 2 }, mt: { xs: 1, sm: 0, md: 0, lg: 0 } }}>
-          <MonthForm />
-        </Grid>
-        <Grid item xs={3.5} sm={2} md={1} lg={1} sx={{ ml: { xs: -2, sm: 0.5, md: 1, lg: 2 }, mt: { xs: 1, sm: 0, md: 0, lg: 0 } }}>
-          <DayForm />
-        </Grid>
-        {/* <Grid item xs={9} sm={2} md={1} lg={1} sx={{ ml: { xs: -20, sm: 0.5, md: 10, lg: 15 } }}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-3 text-end'>
-            あて先 :
-          </Typography>
-        </Grid>
-        <Grid item xs={3} sm={3} md={1} lg={1} sx={{ ml: { xs: 0.5, sm: 1, md: 1, lg: 1 } }}>
-          <Typography fontWeight="bold" sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-3 text-start'>
-            福岡市長
-          </Typography>
-        </Grid> */}
+        <Grid item xs={7} sm={6} md={5} lg={5} sx={{ ml: { xs: 4, sm: -1.5, md: -3, lg:-3 },mt: { xs: -1, sm: -2, md: -2, lg:-2 } }}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} className="scale-75"/>
+              </DemoContainer>
+            </LocalizationProvider>
+        </Grid>                
       </Grid>
     
       {/* <Grid container className='pt-5' justifyContent="start">

@@ -1,6 +1,6 @@
 import ContentMain from "../content/Content";
 import React from 'react';
-import { Button,  FormControl,  Grid, IconButton,  InputLabel,  MenuItem,  Select,  SelectChangeEvent,  TextField, Typography } from '@mui/material';
+import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -17,7 +17,7 @@ import MonthForm from "../componentsform/MonthForm";
 
 
 interface Column {
-  id: 'year' | 'age'  | 'name' | 'detail';
+  id: 'year' | 'age' | 'name' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center' | 'left';
@@ -39,17 +39,17 @@ interface Data {
 }
 
 function createData(
-      year: string,
-      age: string,
-      name: string,
-      detail: JSX.Element
+  year: string,
+  age: string,
+  name: string,
+  detail: JSX.Element
 ): Data {
-  return { year, age, name, detail  };
+  return { year, age, name, detail };
 }
 
 // Example data (you can replace this with your actual data)
-const rows = [
-  createData('2024','０ 歳児', '週 案 と 保 育 日 誌（未満児）１・２歳用',
+const initialRows = [
+  createData('2024', '０ 歳児', '週 案 と 保 育 日 誌（未満児）１・２歳用',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -62,7 +62,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2024','3 歳児', '週 案 と 保 育 日 誌（未満児）１・２歳用',
+  createData('2024', '3 歳児', '週 案 と 保 育 日 誌（未満児）１・２歳用',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -75,7 +75,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2024','4 歳児', '週 案 と 保 育 日 誌（未満児）０・１歳用',
+  createData('2024', '4 歳児', '週 案 と 保 育 日 誌（未満児）０・１歳用',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -88,7 +88,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2023','5 歳児', '週 案 と 保 育 日 誌（未満児）０・１歳用',
+  createData('2023', '5 歳児', '週 案 と 保 育 日 誌（未満児）０・１歳用',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -101,7 +101,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2023','2 歳児', '週 案 と 保 育 日 誌（未満児）０・１歳用',
+  createData('2023', '2 歳児', '週 案 と 保 育 日 誌（未満児）０・１歳用',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -114,7 +114,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2023','2 歳児', '週 案 と 保 育 日 誌（未満児）０・１歳用',
+  createData('2023', '2 歳児', '週 案 と 保 育 日 誌（未満児）０・１歳用',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -148,62 +148,79 @@ export default function CareDiary() {
   const [week, setWeek] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
-      setWeek(event.target.value as string);
+    setWeek(event.target.value as string);
   };
+
+  const [searchInput, setSearchInput] = React.useState('');
+  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
+  };
+
+  // Filtered rows based on search input and selected classroom
+  const filteredRows = initialRows.filter(row =>
+    row.year.toLowerCase().includes(searchInput.toLowerCase())
+  );
 
 
   return (
 
     <>
       <ContentMain>
-        
-      <Grid container spacing={2} className='pt-7' justifyContent="center">
-        <Grid item xs={3} sm={4} md={2}>
-          <TextField id="outlined-search" label="全" type="search" size="small" sx={{ backgroundColor: 'white' }}/>
-        </Grid>
-        <Grid item xs={3} sm={4} md={2}>
-          <TextField id="outlined-search" label="年" type="search" size="small" sx={{ backgroundColor: 'white' }}/>
-        </Grid>
-        <Grid item xs={3} sm={4} md={2} >
+
+        <Grid container spacing={2} className='pt-7' justifyContent="center">
+          <Grid item xs={3} sm={4} md={2}>
+            <TextField
+              id="outlined-search"
+              label="全"
+              type="search"
+              size="small"
+              onChange={handleSearchInputChange}
+              sx={{ bgcolor: 'white' }}
+            />
+          </Grid>
+          <Grid item xs={3} sm={4} md={2}>
+            <TextField id="outlined-search" label="年" type="search" size="small" sx={{ backgroundColor: 'white' }} />
+          </Grid>
+          <Grid item xs={3} sm={4} md={2} >
             <MonthForm />
-        </Grid>
-        <Grid item xs={3} sm={4} md={1}>
+          </Grid>
+          <Grid item xs={3} sm={4} md={1}>
             <FormControl sx={{ minWidth: 90 }} size="small">
-                  <InputLabel id="demo-simple-select-label">週</InputLabel>
-                        <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={week}
-                        label="週"
-                        onChange={handleChange}
-                        sx={{ backgroundColor: 'white' }}
-                        >
-                        <MenuItem value={1}>1</MenuItem>
-                        <MenuItem value={2}>2</MenuItem>
-                        <MenuItem value={3}>3</MenuItem>
-                        <MenuItem value={4}>4</MenuItem>
-                        <MenuItem value={5}>5</MenuItem>
-                        <MenuItem value={6}>6</MenuItem>
-                  </Select>
+              <InputLabel id="demo-simple-select-label">週</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={week}
+                label="週"
+                onChange={handleChange}
+                sx={{ backgroundColor: 'white' }}
+              >
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+                <MenuItem value={6}>6</MenuItem>
+              </Select>
             </FormControl>
+          </Grid>
+          <Grid item xs={6} sm={4} md={3} lg={2}>
+            <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
+              <Typography component="div" style={{ color: 'white' }}>
+                検索する
+              </Typography>
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={2}>
-          <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
-            <Typography component="div" style={{ color: 'white' }}>
-              検索する
-            </Typography>
-          </Button>
+        <Grid container className='pt-7' justifyContent="right">
+          <Grid>
+            <Button variant="contained" href="/report/carediary/add" size='small' startIcon={<AddIcon />}>
+              <Typography style={{ color: 'white' }}>
+                ADD
+              </Typography>
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container className='pt-7' justifyContent="right">
-        <Grid> 
-          <Button variant="contained" href="/report/carediary/add" size='small' startIcon={<AddIcon />}>
-            <Typography style={{ color: 'white' }}>
-              ADD
-            </Typography>
-          </Button>
-        </Grid>
-      </Grid>
         <Grid container spacing={2} className='pt-10' justifyContent="center">
           <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 440 }}>
@@ -222,28 +239,28 @@ export default function CareDiary() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows
-                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map((row, index) => {
-                              return (
-                              <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                    {columns.map((column) => {
-                                    const value = row[column.id];
-                                    return (
-                                          <TableCell key={column.id} align={column.align}>
-                                                {column.id === 'detail' ? (
-                                                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                                      {value}
-                                                </div>
-                                          ) : (
-                                                value
-                                          )}
-                                          </TableCell>
-                                          );
-                                    })}
-                              </TableRow>
-                        );
-                  })}
+                  {filteredRows
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => {
+                      return (
+                        <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                          {columns.map((column) => {
+                            const value = row[column.id];
+                            return (
+                              <TableCell key={column.id} align={column.align}>
+                                {column.id === 'detail' ? (
+                                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                    {value}
+                                  </div>
+                                ) : (
+                                  value
+                                )}
+                              </TableCell>
+                            );
+                          })}
+                        </TableRow>
+                      );
+                    })}
 
                 </TableBody>
               </Table>
@@ -251,7 +268,7 @@ export default function CareDiary() {
             <TablePagination
               rowsPerPageOptions={[10, 25, 100]}
               component="div"
-              count={rows.length}
+              count={filteredRows.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}

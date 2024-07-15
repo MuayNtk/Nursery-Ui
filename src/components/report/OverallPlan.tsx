@@ -1,6 +1,6 @@
 import ContentMain from "../content/Content";
 import React from 'react';
-import { Button,  Grid, IconButton,  TextField, Typography } from '@mui/material';
+import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -16,7 +16,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 interface Column {
-  id: 'year' | 'age'  | 'name' | 'detail';
+  id: 'year' | 'age' | 'name' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center' | 'left';
@@ -38,17 +38,17 @@ interface Data {
 }
 
 function createData(
-      year: string,
-      age: string,
-      name: string,
-      detail: JSX.Element
+  year: string,
+  age: string,
+  name: string,
+  detail: JSX.Element
 ): Data {
-  return { year, age, name, detail  };
+  return { year, age, name, detail };
 }
 
 // Example data (you can replace this with your actual data)
-const rows = [
-  createData('2024','０ 歳', '(全体的な計画)',
+const initialRows = [
+  createData('2024', '０ 歳', '(全体的な計画)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -61,7 +61,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2024','3 歳', '(全体的な計画)',
+  createData('2024', '3 歳', '(全体的な計画)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -74,7 +74,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2024','4 歳', '(全体的な計画)',
+  createData('2024', '4 歳', '(全体的な計画)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -87,7 +87,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2023','5  歳', '(全体的な計画)',
+  createData('2023', '5  歳', '(全体的な計画)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -100,7 +100,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2023','2 歳', '(全体的な計画)',
+  createData('2023', '2 歳', '(全体的な計画)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -113,7 +113,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2023','2 歳', '(全体的な計画)',
+  createData('2023', '2 歳', '(全体的な計画)',
     <>
       <IconButton aria-label="delete" size="small" >
         <EditIcon fontSize="small" className='text-sky-600' />
@@ -144,32 +144,49 @@ export default function Annualplan() {
     setPage(0);
   };
 
+  const [searchInput, setSearchInput] = React.useState('');
+  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
+  };
+
+  // Filtered rows based on search input and selected classroom
+  const filteredRows = initialRows.filter(row =>
+    row.year.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   return (
 
     <>
       <ContentMain>
-        
-      <Grid container spacing={2} className='pt-7' justifyContent="center">
-        <Grid item xs={3} sm={4} md={2} lg={2}>
-          <TextField id="outlined-search" label="全" type="search" size="small" sx={{ backgroundColor: 'white' }}/>
+
+        <Grid container spacing={2} className='pt-7' justifyContent="center">
+          <Grid item xs={3} sm={4} md={2} lg={2}>
+            <TextField
+              id="outlined-search"
+              label="全"
+              type="search"
+              size="small"
+              onChange={handleSearchInputChange}
+              sx={{ bgcolor: 'white' }}
+            />
+          </Grid>
+          <Grid item xs={6} sm={4} md={3} lg={2}>
+            <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
+              <Typography component="div" style={{ color: 'white' }}>
+                検索する
+              </Typography>
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item xs={6} sm={4} md={3} lg={2}>
-          <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
-            <Typography component="div" style={{ color: 'white' }}>
-              検索する
-            </Typography>
-          </Button>
+        <Grid container className='pt-7' justifyContent="right">
+          <Grid>
+            <Button variant="contained" href="/report/overallplan/add" size='small' startIcon={<AddIcon />}>
+              <Typography style={{ color: 'white' }}>
+                ADD
+              </Typography>
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container className='pt-7' justifyContent="right">
-        <Grid> 
-          <Button variant="contained" href="/report/overallplan/add" size='small' startIcon={<AddIcon />}>
-            <Typography style={{ color: 'white' }}>
-              ADD
-            </Typography>
-          </Button>
-        </Grid>
-      </Grid>
         <Grid container spacing={2} className='pt-10' justifyContent="center">
           <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 440 }}>
@@ -188,28 +205,28 @@ export default function Annualplan() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows
-                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map((row, index) => {
-                              return (
-                              <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                    {columns.map((column) => {
-                                    const value = row[column.id];
-                                    return (
-                                          <TableCell key={column.id} align={column.align}>
-                                                {column.id === 'detail' ? (
-                                                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                                      {value}
-                                                </div>
-                                          ) : (
-                                                value
-                                          )}
-                                          </TableCell>
-                                          );
-                                    })}
-                              </TableRow>
-                        );
-                  })}
+                  {filteredRows
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => {
+                      return (
+                        <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                          {columns.map((column) => {
+                            const value = row[column.id];
+                            return (
+                              <TableCell key={column.id} align={column.align}>
+                                {column.id === 'detail' ? (
+                                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                    {value}
+                                  </div>
+                                ) : (
+                                  value
+                                )}
+                              </TableCell>
+                            );
+                          })}
+                        </TableRow>
+                      );
+                    })}
 
                 </TableBody>
               </Table>
@@ -217,7 +234,7 @@ export default function Annualplan() {
             <TablePagination
               rowsPerPageOptions={[10, 25, 100]}
               component="div"
-              count={rows.length}
+              count={filteredRows.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}

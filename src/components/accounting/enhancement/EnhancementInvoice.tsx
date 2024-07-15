@@ -1,6 +1,10 @@
 import { Grid, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, TableBody, Divider, Checkbox, TextareaAutosize, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import YearForm from "../../componentsform/YearForm";
 import MonthForm from "../../componentsform/MonthForm";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -265,11 +269,12 @@ export default function InvoiceEnhancement() {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={3.5} sm={2.5} md={1.5} lg={1} sx={{ ml: { xs: 0.5, sm: 0.5, md: 1, lg: 2 } }}>
-          <YearForm />
-        </Grid>
-        <Grid item xs={4.5} sm={2.5} md={1.5} lg={1} sx={{ ml: { xs: 5, sm: 0.5, md: 1, lg: 2 }, mt: { xs: 1, sm: 0, md: 0, lg: 0 } }}>
-          <MonthForm />
+        <Grid item xs={7} sm={6} md={5} lg={5} sx={{ ml: { xs: 15, sm: -1.5, md: -3, lg:-3 },mt: { xs: -1, sm: -2, md: -2, lg:-2 } }}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} className="scale-75"/>
+              </DemoContainer>
+            </LocalizationProvider>
         </Grid>
       </Grid>
       {/* End 日時 Grid */}
