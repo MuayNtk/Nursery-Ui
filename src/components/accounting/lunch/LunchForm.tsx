@@ -1,7 +1,4 @@
 import { Card, FormControl, Grid, MenuItem, Paper, Select, Table, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, InputAdornment, InputLabel, TableBody } from "@mui/material";
-import YearForm from "../../componentsform/YearForm";
-import MonthForm from "../../componentsform/MonthForm";
-import DayForm from "../../componentsform/DayForm";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";

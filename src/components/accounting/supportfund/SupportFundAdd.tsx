@@ -1,8 +1,5 @@
 import { Button,Card, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import Infotable from "../supportfund/componentTable/Infotable"
-import YearForm from "../../componentsform/YearForm";
-import MonthForm from "../../componentsform/MonthForm";
-import DayForm from "../../componentsform/DayForm";
 import Applicationtable from "../supportfund/componentTable/Applicationtable"
 import Bankacctable from "../supportfund/componentTable/Bankacctable"
 import Highpressure from "../supportfund/componentTable/Highpressure"
