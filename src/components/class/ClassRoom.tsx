@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { IconButton, Button, Grid, TextField, Typography } from '@mui/material';
 import ContentMain from '../content/Content';
 import Paper from '@mui/material/Paper';
@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import React from 'react';
 
 interface Column {
   id: 'name' | 'classroom' | 'classroom2' | 'header_classroom' | 'total_amount' | 'detail';
@@ -73,7 +74,7 @@ function createData(
   return { name, classroom, header_classroom, classroom2, total_amount, detail };
 }
 
-const rows = [
+const initialRows = [
   createData('1', '0 歳児', '', 'うさぎ', 11,
     <>
       <IconButton aria-label="delete" size="small" color="primary">
@@ -121,8 +122,6 @@ const rows = [
 export default function ClassRoom() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [searchText, setSearchText] = useState('');
-  const [filteredRows, setFilteredRows] = useState(rows);
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -133,20 +132,15 @@ export default function ClassRoom() {
     setPage(0);
   };
 
-  const handleSearchTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchText(event.target.value);
+  const [searchInput, setSearchInput] = React.useState('');
+  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
   };
 
-  useEffect(() => {
-    const lowercasedSearchText = searchText.toLowerCase();
-    setFilteredRows(
-      rows.filter(row =>
-        Object.keys(row).some(key =>
-          String(row[key as keyof Data]).toLowerCase().includes(lowercasedSearchText)
-        )
-      )
-    );
-  }, [searchText]);
+  // Filtered rows based on search input and selected classroom
+  const filteredRows = initialRows.filter(row =>
+    row.classroom.toLowerCase().includes(searchInput.toLowerCase()) 
+  );
 
   return (
     <>
@@ -161,8 +155,7 @@ export default function ClassRoom() {
               label="Input Search"
               type="search"
               size="small"
-              value={searchText}
-              onChange={handleSearchTextChange}
+              onChange={handleSearchInputChange}
               sx={{bgcolor: 'white'}}
             />
           </Grid>
