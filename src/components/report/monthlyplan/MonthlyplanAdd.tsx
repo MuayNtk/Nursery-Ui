@@ -6,7 +6,7 @@ import MonthlyOneTwo from "./MonthlyOneTwo";
 import MonthlyThreeYearsAbove from "./MonthlyThreeYearsAbove";
 
 export default function MonthlyplanAdd() {
-      const [selectedOption, setSelectedOption] = useState('');
+      const [selectedOption, setSelectedOption] = useState('1');
       const handleDropdownChange = (event: SelectChangeEvent) => {
         setSelectedOption(event.target.value);
       };
