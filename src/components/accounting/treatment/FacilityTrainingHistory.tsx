@@ -1,9 +1,10 @@
 import { Grid, Paper, Table, TableCell, TableContainer, TableRow, Typography, TableBody, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
-import YearForm from "../../componentsform/YearForm";
-import MonthForm from "../../componentsform/MonthForm";
-import DayForm from "../../componentsform/DayForm";
 import FacilityTrainingHistoryTableA from "./componentstable/FacilityTrainingHistoryTableA";
 import FacilityTrainingHistoryTableB from "./componentstable/FacilityTrainingHistoryTableB";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 export default function FacilityTrainingHistory() {
 
@@ -47,13 +48,13 @@ export default function FacilityTrainingHistory() {
                   </FormControl>
                 </TableCell>
                 <TableCell align="left" style={{ width: 150 }}>
-                  <YearForm />
-                </TableCell>
-                <TableCell align="left" style={{ width: 50 }}>
-                  <MonthForm />
-                </TableCell>
-                <TableCell align="left" style={{ width: 50 }}>
-                  <DayForm />
+                  <Grid item xs={12} sm={12} md={12} lg={12} sx={{ ml: { xs: -5, sm: -1.5, md: -3, lg: -3 }, mt: { xs: -1, sm: -1, md: -1, lg: -1 } }}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs} >
+                      <DemoContainer components={['DatePicker']}>
+                        <DatePicker label="Select date" sx={{ backgroundColor: "white" }} className="scale-75" />
+                      </DemoContainer>
+                    </LocalizationProvider>
+                  </Grid>
                 </TableCell>
               </TableRow>
               {/* End Rows1 */}

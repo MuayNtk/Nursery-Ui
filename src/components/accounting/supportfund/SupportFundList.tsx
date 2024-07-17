@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 import ContentMain from '../../content/Content';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -15,7 +15,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 interface Column {
-  id: 'schoolnumber' |'businesstype' | 'businessname' | 'namerepresentative' | 'phonenumber' | 'detail';
+  id: 'schoolnumber' | 'businesstype' | 'businessname' | 'namerepresentative' | 'phonenumber' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -73,8 +73,8 @@ function createData(
 }
 
 // Example data (you can replace this with your actual data)
-const rows = [
-  createData('1', '566', '地域型保育事業所', 'いちざきみんなの家', '渡部圭子', '092-406-8215'	,
+const initialRows = [
+  createData('1', '566', '地域型保育事業所', 'いちざきみんなの家', '渡部圭子', '092-406-8215',
     <>
       <IconButton aria-label="edit" size="small" color="primary">
         <EditIcon fontSize="small" color="primary" />
@@ -87,7 +87,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('2', '999', '私立保育所', 'いちざきみんなの家', '渡部圭子', '092-406-8215'	,
+  createData('2', '999', '私立保育所', 'いちざきみんなの家', '渡部圭子', '092-406-8215',
     <>
       <IconButton aria-label="delete" size="small" color="primary">
         <EditIcon fontSize="small" color="primary" />
@@ -100,7 +100,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('3', '000', 'その他施設', 'いちざきみんなの家', '渡部圭子', '092-406-8215'	,
+  createData('3', '000', 'その他施設', 'いちざきみんなの家', '渡部圭子', '092-406-8215',
     <>
       <IconButton aria-label="delete" size="small" color="primary">
         <EditIcon fontSize="small" color="primary" />
@@ -113,7 +113,7 @@ const rows = [
       </IconButton>
     </>
   ),
-  createData('4', ' 787', '認可外保育施設', 'いちざきみんなの家', '渡部圭子', '092-406-8215'	,
+  createData('4', ' 787', '認可外保育施設', 'いちざきみんなの家', '渡部圭子', '092-406-8215',
     <>
       <IconButton aria-label="delete" size="small" color="primary">
         <EditIcon fontSize="small" color="primary" />
@@ -129,11 +129,6 @@ const rows = [
 ];
 
 export default function SupportFundList() {
-  const [classroom, setClass] = React.useState('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setClass(event.target.value as string);
-  };
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -147,30 +142,28 @@ export default function SupportFundList() {
     setPage(0);
   };
 
+  const [searchInput, setSearchInput] = React.useState('');
+  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
+  };
+
+  // Filtered rows based on search input and selected classroom
+  const filteredRows = initialRows.filter(row =>
+    row.schoolnumber.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   return (
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
         <Grid item xs={3} sm={4} md={2} lg={2}>
-          <TextField id="outlined-search" label="氏名" type="search" size="small" />
-        </Grid>
-        <Grid item xs={3} sm={4} md={2} lg={2} style={{ textAlign: 'center' }}>
-          <FormControl sx={{ minWidth: 125 }} size="small" fullWidth>
-            <InputLabel id="demo-select-small-label">クラス名</InputLabel>
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={classroom}
-              label="クラス名"
-              onChange={handleChange}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>うさぎ</MenuItem>
-              <MenuItem value={20}>くま</MenuItem>
-              <MenuItem value={30}>ぱんだ</MenuItem>
-            </Select>
-          </FormControl>
+          <TextField
+            id="outlined-search"
+            label="園番号"
+            type="search"
+            size="small"
+            onChange={handleSearchInputChange}
+            sx={{ bgcolor: 'white' }}
+          />
         </Grid>
         <Grid item xs={6} sm={4} md={3} lg={1.5}>
           <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
@@ -185,7 +178,7 @@ export default function SupportFundList() {
           <Button variant="contained" href="/accounting/supportfund/add" size='small' startIcon={<AddIcon />}>
             <Typography style={{ color: 'white' }}>
               ADD
-            </Typography>       
+            </Typography>
           </Button>
         </Grid>
       </Grid>
@@ -207,7 +200,7 @@ export default function SupportFundList() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
+                {filteredRows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => {
                     return (
@@ -231,7 +224,7 @@ export default function SupportFundList() {
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={rows.length}
+            count={filteredRows.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

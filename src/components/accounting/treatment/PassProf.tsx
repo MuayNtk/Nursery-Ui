@@ -1,4 +1,8 @@
-import { Divider, FormControl, Grid, InputAdornment, InputLabel, MenuItem, Select, TextareaAutosize, TextField, Typography } from "@mui/material";
+import { Divider, FormControl, Grid, InputLabel, MenuItem, Select, TextareaAutosize, TextField, Typography } from "@mui/material";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 
 export default function PassProf() {
@@ -42,50 +46,36 @@ export default function PassProf() {
       {/* End 福岡市長 殿 Grid */}
 
       {/* Start 作成日 Grid */}
-      <Grid container spacing={2} className='pt-3' justifyContent="start">
+      <Grid container spacing={2} className='pt-3' justifyContent="start" sx={{ ml: { xs: -2, sm: 8, md: 5.5, lg:-2 }, }}>
         <Grid item xs={4.5} sm={2} md={3} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
             作成日 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={3} md={2.5} lg={2}>
-          <TextField
-            id="year-created-date"
-            name="year-created-date"
-            label="令和"
-            variant="outlined"
-            type="text" size="small"
-            fullWidth
-            sx={{ backgroundColor: '#F5F5F5' }}
-            InputProps={{
-              readOnly: true,
-              endAdornment: <InputAdornment position="end">年</InputAdornment>,
-            }}
-          />
+        <Grid item xs={3.2} sm={2.3} md={2} lg={1}>
+          <FormControl size="small" fullWidth>
+            <InputLabel id="date-label">平成</InputLabel>
+            <Select
+              labelId="date-label"
+              id="date-select"
+              label="平成"
+              sx={{ backgroundColor: "white" }}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={1}>昭和</MenuItem>
+              <MenuItem value={2}>平成</MenuItem>
+              <MenuItem value={3}>令和</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
-        <Grid item xs={6} sm={3} md={2.5} lg={2}>
-          <TextField
-            id="month-created-date"
-            name="month-created-date"
-            type="text" size="small"
-            fullWidth
-            sx={{ backgroundColor: 'white' }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">月</InputAdornment>,
-            }}
-          />
-        </Grid>
-        <Grid item xs={6} sm={3} md={2.5} lg={2}>
-          <TextField
-            id="day-created-date"
-            name="day-created-date"
-            type="text" size="small"
-            fullWidth
-            sx={{ backgroundColor: 'white' }}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">日</InputAdornment>,
-            }}
-          />
+        <Grid item xs={8} sm={6} md={6} lg={5} sx={{ ml: { xs: 13, sm: -3, md: -6, lg:-3 },mt: { xs: -3, sm: -2, md: -2, lg:-2 } }}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} className="scale-75"/>
+              </DemoContainer>
+            </LocalizationProvider>
         </Grid>
       </Grid>
       {/* End 作成日 Grid */}

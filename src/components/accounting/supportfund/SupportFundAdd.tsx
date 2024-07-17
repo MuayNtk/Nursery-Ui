@@ -1,8 +1,5 @@
 import { Button,Card, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import Infotable from "../supportfund/componentTable/Infotable"
-import YearForm from "../../componentsform/YearForm";
-import MonthForm from "../../componentsform/MonthForm";
-import DayForm from "../../componentsform/DayForm";
 import Applicationtable from "../supportfund/componentTable/Applicationtable"
 import Bankacctable from "../supportfund/componentTable/Bankacctable"
 import Highpressure from "../supportfund/componentTable/Highpressure"
@@ -12,6 +9,10 @@ import Type2table from "../supportfund/componentTable/Type2table"
 import Type3table from "../supportfund/componentTable/Type3table"
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 
 export default function SupportFundAdd() {
@@ -49,8 +50,8 @@ export default function SupportFundAdd() {
         </Grid>
         {/* End grid  履歷*/}
         {/* Start 日時 Grid */}
-        <Grid container spacing={2} className='pt-5'>
-          <Grid item xs={4} sm={3} md={3} lg={3} sx={{ ml: { xs: 0, sm: 0, md: -1, lg: 52 } }}>
+        <Grid container spacing={2} className='pt-5 justify-end'>
+          <Grid item xs={4} sm={3} md={3} lg={3} >
             <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
               日時 :
             </Typography>
@@ -73,15 +74,13 @@ export default function SupportFundAdd() {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={3.5} sm={2.5} md={2} lg={1.2} sx={{ ml: { xs: -1, sm: -1.5, md: -1, lg: -1 } }}>
-            <YearForm />
-          </Grid>
-          <Grid item xs={3} sm={2} md={2} lg={1} sx={{ ml: { xs: 11, sm: -1.5, md: -2, lg: -1 } }}>
-            <MonthForm />
-          </Grid>
-          <Grid item xs={4} sm={1} md={2} lg={1} sx={{ ml: { xs: 0, sm: 2.5, md: -3, lg: 0 } }}>
-            <DayForm />
-          </Grid>
+          <Grid item xs={9} sm={6} md={5} lg={4} sx={{ ml: { xs: 1, sm: -1.5, md: -3, lg:-3 },mt: { xs: -3, sm: -2, md: -2, lg:-2 } }}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} className="scale-75 "/>
+              </DemoContainer>
+            </LocalizationProvider>
+        </Grid>
         </Grid>
         {/* End 日時 Grid */}
 
