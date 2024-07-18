@@ -16,9 +16,6 @@ export default function WelcomeComponent() {
               <Link to="/login">
                 <Button variant="contained" size="large">ログイン</Button>
               </Link>
-              <Link to="/register">
-                <Button variant="contained" size="large">メンバー登録</Button>
-              </Link>
             </div>
           </div>
         </div>

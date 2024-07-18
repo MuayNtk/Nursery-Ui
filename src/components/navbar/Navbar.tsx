@@ -43,7 +43,7 @@ const PrimarySearchAppBar: React.FC = () => {
     localStorage.removeItem('username');
     localStorage.removeItem('role');
     // Redirect to login page
-    navigate('/login');
+    navigate('/welcome');
   };
 
   const menuId = 'primary-search-account-menu';
@@ -66,10 +66,6 @@ const PrimarySearchAppBar: React.FC = () => {
       <MenuItem onClick={handleMenuClose}>
         <AccountCircle />
         <p className='pl-2'>Profile</p>
-      </MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-        <AccountCircle />
-        <p className='pl-2'>My account</p>
       </MenuItem>
       <MenuItem onClick={handleLogout}>
         <LogoutIcon />
@@ -123,7 +119,7 @@ const PrimarySearchAppBar: React.FC = () => {
   );
 
   // Retrieve role from localStorage
-  const role = localStorage.getItem('role');
+  const username = localStorage.getItem('username');
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -136,7 +132,7 @@ const PrimarySearchAppBar: React.FC = () => {
       >
         <Toolbar className='bg-white'>
           <Box sx={{ flexGrow: 1 }} />
-          {role &&  <Chip label={role}  color="info"  size='small'/> }
+          {username &&  <Chip label={username}  color="info"  size='small'/> }
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton
               size="large"
