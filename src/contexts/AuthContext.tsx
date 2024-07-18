@@ -1,111 +1,55 @@
-import { useState, useEffect, createContext, ReactNode } from "react";
-import axios from "../configs/axios";
-import {
-  addAccessToken,
-  getAccessToken,
-  removeAccessToken,
-} from "../utils/local-storage";
+import React, { createContext, useContext, useState } from 'react';
 
-interface User {
-  id: string;
+type User = {
   username: string;
-}
+  role: string;
+};
 
-interface AuthContextType {
-  login: (credential: LoginCredentials) => Promise<void>;
+type AuthContextType = {
   authUser: User | null;
-  register: (registerInputObj: RegisterInput) => Promise<void>;
+  login: (username: string, password: string) => User | null;
   logout: () => void;
-  initialLoading: boolean;
-  getUser: () => Promise<void>;
-}
+  isLoggedIn: boolean; // Add this if you're managing isLoggedIn in your AuthContext
+};
 
-interface LoginCredentials {
-  username: string;
-  password: string;
-}
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-interface RegisterInput {
-  username: string;
-  password: string;
-  email: string;
-}
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
 
-export const AuthContext = createContext<AuthContextType | null>(null);
-
-interface AuthContextProviderProps {
-  children: ReactNode;
-}
-
-export default function AuthContextProvider({
-  children,
-}: AuthContextProviderProps) {
-  const [initialLoading, setInitialLoading] = useState(true);
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [authUser, setAuthUser] = useState<User | null>(null);
 
-  const getUser = async () => {
-    try {
-      const response = await axios.get("/auth/me");
-      if (response.status !== 200) {
-        throw new Error("Network response was not 200");
-      }
-      setAuthUser(response.data.user);
-    } catch (error) {
-      console.error("Error fetching user:", error);
-    }
-  };
-
-  useEffect(() => {
-    const accessToken = getAccessToken();
-    if (accessToken) {
-      getUser().finally(() => {
-        setInitialLoading(false);
-      });
+  const login = (username: string, password: string): User | null => {
+    let user: User | null = null;
+    if (username === 'admin' && password === '1234') {
+      user = { username: 'admin', role: 'admin' };
+    } else if (username === 'teacher' && password === '1234') {
+      user = { username: 'teacher', role: 'teacher' };
+    } else if (username === 'accounting' && password === '1234') {
+      user = { username: 'accounting', role: 'acc' };
     } else {
-      setInitialLoading(false);
+      throw new Error('Invalid username or password');
     }
-  }, []);
 
-  const login = async (credential: LoginCredentials) => {
-    try {
-      const res = await axios.post("/auth/login", credential);
-      addAccessToken(res.data.accessToken);
-      setAuthUser(res.data.user);
-    } catch (error) {
-      console.error("Error logging in:", error);
-      throw error;
-    }
-  };
-
-  const register = async (registerInputObj: RegisterInput) => {
-    try {
-      const res = await axios.post("/auth/register", registerInputObj);
-      addAccessToken(res.data.accessToken);
-      setAuthUser(res.data.user);
-    } catch (error) {
-      console.error("Error registering:", error);
-      throw error;
-    }
+    setAuthUser(user);
+    return user;
   };
 
   const logout = () => {
-    removeAccessToken();
     setAuthUser(null);
-    window.location.replace("/welcome");
   };
 
-  const authContextValue: AuthContextType = {
-    login,
-    authUser,
-    register,
-    logout,
-    initialLoading,
-    getUser,
-  };
+  const isLoggedIn = !!authUser; // Example: Check if authUser is truthy
 
   return (
-    <AuthContext.Provider value={authContextValue}>
+    <AuthContext.Provider value={{ authUser, login, logout, isLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
