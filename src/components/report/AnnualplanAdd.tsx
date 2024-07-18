@@ -1,4 +1,4 @@
-import { Grid, Typography, TextField, Box, Button, Card, TextareaAutosize, SelectChangeEvent, MenuItem, Select, InputLabel, FormControl } from "@mui/material";
+import { Grid, Typography, TextField, Button, Card, TextareaAutosize, SelectChangeEvent, MenuItem, Select, InputLabel, FormControl, Divider } from "@mui/material";
 import ContentMain from "../content/Content";
 import MonthForm from "../componentsform/MonthForm"
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -18,7 +18,7 @@ export default function AnnualplanAdd() {
     <>
       <ContentMain className="flex flex-col min-h-screen">
 
-        {/* Start Grid */}
+       
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-10 lg:pt-0">
           <Grid item xs={9} sm={7} md={5} lg={2.5} sx={{ ml: { xs: 0, sm: 0, md: 0, lg: 2 }, mt: { xs: -1, sm: -2, md: 5, lg: 4 } }}>
             <div>
@@ -73,790 +73,575 @@ export default function AnnualplanAdd() {
           </Grid>
         </Grid>
 
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7">
-          <Grid item xs={4} sm={3} md={2.5} lg={3} >
-            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
+        <Grid container spacing={1} className='pt-7' justifyContent="start">
+          <Grid item xs={3} sm={3} md={2} lg={1.5}>
+            <Typography style={{ fontSize: '14px' }} className='pt-2 text-end' >
               担任 :
             </Typography>
           </Grid>
-          <Grid item xs={5} sm={4} md={3} lg={3} sx={{ ml: { xs: -5, sm: -4, md: -5, lg: -12 } }}>
-            <TextField
-              className='w-full'
-              id="homeroom-teacher-input"
-              name="homeroom-teacher-input"
-              label=""
-              type="text"
-              size='small'
-              sx={{
-                backgroundColor: "white",
-              }}
-            />
+          <Grid item xs={7} sm={7} md={3} lg={3}>
+            <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
           </Grid>
-        </Grid>
-        {/* End Grid */}
-
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
-          <Grid item xs={3.3} sm={2.5} md={2.5} lg={3} >
-            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-              年間目標 :
+          <Grid item xs={3} sm={3} md={2} lg={1.5}>
+            <Typography style={{ fontSize: '14px' }} className='pt-2 text-end'>
+            年間目標 :
             </Typography>
           </Grid>
-          <Grid item xs={5} sm={4} md={3} lg={3} sx={{ ml: { xs: -2.5, sm: -1.8, md: -5, lg: -12 } }}>
-            <TextField
-              className='w-full'
-              id="annual-goals-input"
-              name="annual-goals-input"
-              label=""
-              type="text"
-              size='small'
-              sx={{
-                backgroundColor: "white",
-              }}
-            />
+          <Grid item xs={7} sm={7} md={3} lg={3}>
+            <TextField id="outlined-search" type="text" size="small" fullWidth  sx={{ backgroundColor: 'white' }} />
           </Grid>
+
+          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' ></Grid>
         </Grid>
-        {/* End Grid */}
+       
+        <Divider sx={{ borderColor: 'darkgrey', borderWidth: '2px'  }} />
 
-        {/* Start Box 1 */}
-        <Box sx={{ border: '2px solid grey', width: { xs: 400, sm: 485, md: 680, lg: 1150 }, mt: 5 }}>
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className='pl-3 pt-5' >
-            <Grid item xs={2} sm={1.5} md={3} lg={3} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1 }} >
-                期 :
-              </Typography>
+        <Grid container spacing={1} className='pt-5' >
+           <Grid  container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className=' pt-5' >
+              <Grid item xs={2} sm={1.5} md={3} lg={1.5} className="text-end">
+                <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1 }} >
+                  期 :
+                </Typography>
+              </Grid>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} >
+                <MonthForm />
+              </Grid>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} >
+                <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1, ml: { xs: 5, sm: 6.5, md: 8, lg: -1 } }} >
+                  ~
+                </Typography>
+              </Grid>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: 2, sm: 3, md: 5, lg: -1 } }}>
+                <MonthForm />
+              </Grid>
             </Grid>
-            <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: -3, sm: -2, md: -9, lg: -14 } }}>
-              <MonthForm />
-            </Grid>
-            <Grid item xs={2} sm={1.5} md={1} lg={1} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1, ml: { xs: 5, sm: 6.5, md: 8, lg: -1 } }} >
-                ~
-              </Typography>
-            </Grid>
-            <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: 2, sm: 3, md: 5, lg: -1 } }}>
-              <MonthForm />
-            </Grid>
-          </Grid>
-          {/* End Grid */}
-
-          {/* Start Card */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
-            <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
-              <Typography component='div' className="pt-2">
-                ねらい
-              </Typography>
-            </Card>
-          </Grid>
-          {/* End Card */}
-
-            {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7">
-          <Grid item xs={4} sm={3} md={2.5} lg={3} >
-            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-            養護 :
-            </Typography>
-          </Grid>
-          <Grid item xs={5} sm={4} md={3} lg={3} sx={{ ml: { xs: -5, sm: -4, md: -5, lg: -12 } }}>
-            <TextField
-              className='w-full'
-              id="homeroom-teacher-input"
-              name="homeroom-teacher-input"
-              label=""
-              type="text"
-              size='small'
-              sx={{
-                backgroundColor: "white",
-              }}
-            />
-          </Grid>
-        </Grid>
-        {/* End Grid */}
-
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
-          <Grid item xs={3.3} sm={2.5} md={2.5} lg={3} >
-            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-            教育 :
-            </Typography>
-          </Grid>
-          <Grid item xs={5} sm={4} md={3} lg={3} sx={{ ml: { xs: -2.5, sm: -1.8, md: -5, lg: -12 } }}>
-            <TextField
-              className='w-full'
-              id="annual-goals-input"
-              name="annual-goals-input"
-              label=""
-              type="text"
-              size='small'
-              sx={{
-                backgroundColor: "white",
-              }}
-            />
-          </Grid>
-        </Grid>
-        {/* End Grid */}
-
         
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
+              <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
+                <Typography component='div' className="pt-2">
+                  ねらい
+                </Typography>
+              </Card>
+            </Grid>
 
-          {/* Start Card */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
-            <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
-              <Typography component='div' className="pt-2">
-                内容
-              </Typography>
-            </Card>
-          </Grid>
-          {/* End Card */}
+            <Grid container spacing={1} className='pt-7' justifyContent="start">
+              <Grid item xs={3} sm={3} md={2} lg={1.5}>
+                <Typography style={{ fontSize: '14px' }} className='pt-2 text-end' >
+                  養護 :
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sm={7} md={3} lg={3}>
+                <TextField id="homeroom-teacher-input"  name="homeroom-teacher-input" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+              </Grid>
+              <Grid item xs={3} sm={3} md={2} lg={1.5}>
+                <Typography style={{ fontSize: '14px' }} className='pt-2 text-end'>
+                  教育 :
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sm={7} md={3} lg={3}>
+                <TextField id="annual-goals-input" name="annual-goals-input" type="text" size="small" fullWidth  sx={{ backgroundColor: 'white' }} />
+              </Grid>
+            </Grid>
 
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4">
-            <Grid item xs={3} sm={4} md={3} lg={3} >
-              <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-                養護
-              </Typography>
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
+              <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
+                <Typography component='div' className="pt-2">
+                  内容
+                </Typography>
+              </Card>
             </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-2 ">
-            <Grid item xs={8} sm={8.3} md={7} lg={7} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },marginLeft: { xs: -4, sm:-3 , md:-10 , lg:-10  } }} >
-                生命の保持・情緒の安定
-              </Typography>
+            <Grid container spacing={2} className="pt-5" justifyContent='start'>
+              <Grid item xs={12} md={6} >
+                <Grid container spacing={1}  alignItems='center' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5 } }}>
+                  <Grid item xs={1} sm={4} md={3} lg={2} className="text-end">
+                    <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
+                      義護
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2'  sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 15 } }}>
+                  <Grid item xs={7.5} sm={3} md={8.5} lg={12} className="text-start">
+                    <Typography  gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
+                    生命の保持・情緒の安定
+                    </Typography>
+                    <TextareaAutosize
+                      id="emotional-input"
+                      name="emotional-input"
+                      minRows={3}
+                      maxRows={100}
+                      className="w-56 sm:w-60 lg:w-96"
+                      style={{ border: '1px solid gray', borderRadius: '4px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
-          </Grid>
-          {/* End Grid */}
+  
+            <Grid container spacing={1} className='pt-5' alignItems='center' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 11 } }}>
+              <Grid item xs={2} sm={4} md={3} lg={2} className="text-start">
+                <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
+                 教育
+                </Typography>
+              </Grid>
+            </Grid>
 
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: {  xs: 1, sm:1 , md:1 , lg:1 } }}>
-            <Grid item xs={4} sm={3} md={8.5} lg={1.5} sx={{ ml: { xs: 3, sm: 8, md: 3, lg: 22 } }}>
-              <TextareaAutosize
-                id="emotional-input"
-                name="emotional-input"
-                minRows={3}
-                maxRows={100}
-                className="w-56 sm:w-60 lg:w-96"
-                style={{ border: '1px solid gray', borderRadius: '4px' }}
-              />
+            <Grid container spacing={2} className="pt-3" justifyContent='center'>
+              <Grid item xs={12} md={6} >
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2'  sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 15 } }}>
+                  <Grid item xs={7.5} sm={3} md={8.5} lg={12} className="text-start">
+                    <Typography  gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 12 } }}>
+                    関する視点身体的発達に,関する視点社会的発達に,関する視点精神的発達に
+                    </Typography>
+                    <TextareaAutosize
+                      id="perspectives-input"
+                      name="perspectives-input"
+                      minRows={3}
+                      maxRows={100}
+                      className="w-56 sm:w-60 lg:w-96"
+                      style={{ border: '1px solid gray', borderRadius: '4px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 '  sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5} }}>
+                  <Grid item xs={7.5} sm={7} md={8.5} lg={12} className="text-start">
+                    <Typography  gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 12 } }}>
+                    食育
+                    </Typography>
+                    <TextareaAutosize
+                      id="food-education-input"
+                      name="food-education-input"
+                      minRows={3}
+                      maxRows={100}
+                      className="w-56 sm:w-60 lg:w-96"
+                      style={{ border: '1px solid gray', borderRadius: '4px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3">
-            <Grid item xs={3} sm={4} md={3} lg={3} >
-              <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-                教育
-              </Typography>
-            </Grid>
-          </Grid>
-          {/* End Grid */}
-
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-2">
-            <Grid item xs={6} sm={6} md={6} lg={6} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },marginLeft: { xs: 7, sm:12 , md:12 , lg:25  } }} className="text-justify">
-                関する視点身体的発達に,関する視点社会的発達に,関する視点精神的発達に
-              </Typography>
-            </Grid>
-            <Grid item xs={6} sm={6} md={6} lg={3} sx={{ ml: { xs: -6, sm: -10, md: -13, lg: -10 } }} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-                食育
-              </Typography>
-            </Grid>
-          </Grid>
-          {/* End Grid */}
-
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' >
-            <Grid item xs={4} sm={3} md={5} lg={4} sx={{  ml: { xs: 6, sm: 11, md: 12, lg: 25 } }}>
-              <TextareaAutosize
-                id="perspectives-input"
-                name="perspectives-input"
-                minRows={3}
-                maxRows={100}
-                className="w-full"
-                style={{ border: '1px solid gray', borderRadius: '4px' }}
-              />
-            </Grid>
-            <Grid item xs={4} sm={3} md={5} lg={4} sx={{ ml: { xs: 4, sm: 6, md: 1, lg: 4 } }}>
-              <TextareaAutosize
-                id="food-education-input"
-                name="food-education-input"
-                minRows={3}
-                maxRows={100}
-                className="w-full"
-                style={{ border: '1px solid gray', borderRadius: '4px' }}
-              />
-            </Grid>
-          </Grid>
-          {/* End Grid */}
-
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' >
-           
-          </Grid>
-          {/* End Grid */}
-        </Box>
-        {/* End Box 1*/}
-
-        {/* Start Box 2*/}
-        <Box sx={{ border: '2px solid grey', width: { xs: 400, sm: 485, md: 680, lg: 1150 }, mt: 1 }}>
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className='pl-3 pt-5' >
-            <Grid item xs={2} sm={1.5} md={3} lg={3} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1 }} >
-                期 :
-              </Typography>
-            </Grid>
-            <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: -3, sm: -2, md: -9, lg: -14 } }}>
-              <MonthForm />
-            </Grid>
-            <Grid item xs={2} sm={1.5} md={1} lg={1} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1, ml: { xs: 5, sm: 6.5, md: 8, lg: -1 } }} >
-                ~
-              </Typography>
-            </Grid>
-            <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: 2, sm: 3, md: 5, lg: -1 } }}>
-              <MonthForm />
-            </Grid>
-          </Grid>
-          {/* End Grid */}
-
-          {/* Start Card */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
-            <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
-              <Typography component='div' className="pt-2">
-                ねらい
-              </Typography>
-            </Card>
-          </Grid>
-          {/* End Card */}
-
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7">
-          <Grid item xs={4} sm={3} md={2.5} lg={3} >
-            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-            養護 :
-            </Typography>
-          </Grid>
-          <Grid item xs={5} sm={4} md={3} lg={3} sx={{ ml: { xs: -5, sm: -4, md: -5, lg: -12 } }}>
-            <TextField
-              className='w-full'
-              id="homeroom-teacher-input"
-              name="homeroom-teacher-input"
-              label=""
-              type="text"
-              size='small'
-              sx={{
-                backgroundColor: "white",
-              }}
-            />
-          </Grid>
+      
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' ></Grid>
+         
         </Grid>
-        {/* End Grid */}
 
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
-          <Grid item xs={3.3} sm={2.5} md={2.5} lg={3} >
-            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-            教育 :
-            </Typography>
-          </Grid>
-          <Grid item xs={5} sm={4} md={3} lg={3} sx={{ ml: { xs: -2.5, sm: -1.8, md: -5, lg: -12 } }}>
-            <TextField
-              className='w-full'
-              id="annual-goals-input"
-              name="annual-goals-input"
-              label=""
-              type="text"
-              size='small'
-              sx={{
-                backgroundColor: "white",
-              }}
-            />
-          </Grid>
-        </Grid>
-        {/* End Grid */}
+        <Divider sx={{ borderColor: 'darkgrey', borderWidth: '2px'  }} />
 
+        {/* End Box 1 */}
+
+        {/* Start Box 2 */}
+        <Grid container spacing={1} className='pt-5' >
+           <Grid  container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className=' pt-5' >
+              <Grid item xs={2} sm={1.5} md={3} lg={1.5} className="text-end">
+                <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1 }} >
+                  期 :
+                </Typography>
+              </Grid>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} >
+                <MonthForm />
+              </Grid>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} >
+                <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1, ml: { xs: 5, sm: 6.5, md: 8, lg: -1 } }} >
+                  ~
+                </Typography>
+              </Grid>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: 2, sm: 3, md: 5, lg: -1 } }}>
+                <MonthForm />
+              </Grid>
+            </Grid>
         
-
-          {/* Start Card */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
-            <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
-              <Typography component='div' className="pt-2">
-                内容
-              </Typography>
-            </Card>
-          </Grid>
-          {/* End Card */}
-
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4">
-            <Grid item xs={3} sm={4} md={3} lg={3} >
-              <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-                養護
-              </Typography>
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
+              <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
+                <Typography component='div' className="pt-2">
+                  ねらい
+                </Typography>
+              </Card>
             </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-2 ">
-            <Grid item xs={8} sm={8.3} md={7} lg={7} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },marginLeft: { xs: -4, sm:-3 , md:-10 , lg:-10  } }} >
-                生命の保持・情緒の安定
-              </Typography>
+            <Grid container spacing={1} className='pt-7' justifyContent="start">
+              <Grid item xs={3} sm={3} md={2} lg={1.5}>
+                <Typography style={{ fontSize: '14px' }} className='pt-2 text-end' >
+                  養護 :
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sm={7} md={3} lg={3}>
+                <TextField id="homeroom-teacher-input"  name="homeroom-teacher-input" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+              </Grid>
+              <Grid item xs={3} sm={3} md={2} lg={1.5}>
+                <Typography style={{ fontSize: '14px' }} className='pt-2 text-end'>
+                  教育 :
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sm={7} md={3} lg={3}>
+                <TextField id="annual-goals-input" name="annual-goals-input" type="text" size="small" fullWidth  sx={{ backgroundColor: 'white' }} />
+              </Grid>
             </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: {  xs: 1, sm:1 , md:1 , lg:1 } }}>
-            <Grid item xs={4} sm={3} md={8.5} lg={1.5} sx={{ ml: { xs: 3, sm: 8, md: 3, lg: 22 } }}>
-              <TextareaAutosize
-                id="emotional-input"
-                name="emotional-input"
-                minRows={3}
-                maxRows={100}
-                className="w-56 sm:w-60 lg:w-96"
-                style={{ border: '1px solid gray', borderRadius: '4px' }}
-              />
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
+              <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
+                <Typography component='div' className="pt-2">
+                  内容
+                </Typography>
+              </Card>
             </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3">
-            <Grid item xs={3} sm={4} md={3} lg={3} >
-              <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-                教育
-              </Typography>
+            <Grid container spacing={2} className="pt-5" justifyContent='start'>
+              <Grid item xs={12} md={6} >
+                <Grid container spacing={1}  alignItems='center' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5 } }}>
+                  <Grid item xs={1} sm={4} md={3} lg={2} className="text-end">
+                    <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
+                      義護
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2'  sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 15 } }}>
+                  <Grid item xs={7.5} sm={3} md={8.5} lg={12} className="text-start">
+                    <Typography  gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
+                    生命の保持・情緒の安定
+                    </Typography>
+                    <TextareaAutosize
+                      id="emotional-input"
+                      name="emotional-input"
+                      minRows={3}
+                      maxRows={100}
+                      className="w-56 sm:w-60 lg:w-96"
+                      style={{ border: '1px solid gray', borderRadius: '4px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
-          </Grid>
-          {/* End Grid */}
+  
+            <Grid container spacing={1} className='pt-5' alignItems='center' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 11 } }}>
+              <Grid item xs={2} sm={4} md={3} lg={2} className="text-start">
+                <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
+                 教育
+                </Typography>
+              </Grid>
+            </Grid>
 
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-2">
-            <Grid item xs={6} sm={6} md={6} lg={6} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },marginLeft: { xs: 7, sm:12 , md:12 , lg:25  } }} className="text-justify">
-                関する視点身体的発達に,関する視点社会的発達に,関する視点精神的発達に
-              </Typography>
+            <Grid container spacing={2} className="pt-3" justifyContent='center'>
+              <Grid item xs={12} md={6} >
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2'  sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 15 } }}>
+                  <Grid item xs={7.5} sm={3} md={8.5} lg={12} className="text-start">
+                    <Typography  gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 12 } }}>
+                    関する視点身体的発達に,関する視点社会的発達に,関する視点精神的発達に
+                    </Typography>
+                    <TextareaAutosize
+                      id="perspectives-input"
+                      name="perspectives-input"
+                      minRows={3}
+                      maxRows={100}
+                      className="w-56 sm:w-60 lg:w-96"
+                      style={{ border: '1px solid gray', borderRadius: '4px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 '  sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5} }}>
+                  <Grid item xs={7.5} sm={7} md={8.5} lg={12} className="text-start">
+                    <Typography  gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 12 } }}>
+                    食育
+                    </Typography>
+                    <TextareaAutosize
+                      id="food-education-input"
+                      name="food-education-input"
+                      minRows={3}
+                      maxRows={100}
+                      className="w-56 sm:w-60 lg:w-96"
+                      style={{ border: '1px solid gray', borderRadius: '4px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid item xs={6} sm={6} md={6} lg={3} sx={{ ml: { xs: -6, sm: -10, md: -13, lg: -10 } }} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-                食育
-              </Typography>
-            </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' >
-            <Grid item xs={4} sm={3} md={5} lg={4} sx={{  ml: { xs: 6, sm: 11, md: 12, lg: 25 } }}>
-              <TextareaAutosize
-                id="perspectives-input"
-                name="perspectives-input"
-                minRows={3}
-                maxRows={100}
-                className="w-full"
-                style={{ border: '1px solid gray', borderRadius: '4px' }}
-              />
-            </Grid>
-            <Grid item xs={4} sm={3} md={5} lg={4} sx={{ ml: { xs: 4, sm: 6, md: 1, lg: 4 } }}>
-              <TextareaAutosize
-                id="food-education-input"
-                name="food-education-input"
-                minRows={3}
-                maxRows={100}
-                className="w-full"
-                style={{ border: '1px solid gray', borderRadius: '4px' }}
-              />
-            </Grid>
-          </Grid>
-          {/* End Grid */}
+      
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' ></Grid>
+         
+        </Grid>
 
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' >
-           
-          </Grid>
-          {/* End Grid */}
-        </Box>
+        <Divider sx={{ borderColor: 'darkgrey', borderWidth: '2px'  }} />
         {/* End Box 2 */}
 
         {/* Start Box 3*/}
-        <Box sx={{ border: '2px solid grey', width: { xs: 400, sm: 485, md: 680, lg: 1150 }, mt: 1 }}>
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className='pl-3 pt-5' >
-            <Grid item xs={2} sm={1.5} md={3} lg={3} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1 }} >
-                期 :
-              </Typography>
+        <Grid container spacing={1} className='pt-5' >
+           <Grid  container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className=' pt-5' >
+              <Grid item xs={2} sm={1.5} md={3} lg={1.5} className="text-end">
+                <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1 }} >
+                  期 :
+                </Typography>
+              </Grid>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} >
+                <MonthForm />
+              </Grid>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} >
+                <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1, ml: { xs: 5, sm: 6.5, md: 8, lg: -1 } }} >
+                  ~
+                </Typography>
+              </Grid>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: 2, sm: 3, md: 5, lg: -1 } }}>
+                <MonthForm />
+              </Grid>
             </Grid>
-            <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: -3, sm: -2, md: -9, lg: -14 } }}>
-              <MonthForm />
-            </Grid>
-            <Grid item xs={2} sm={1.5} md={1} lg={1} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1, ml: { xs: 5, sm: 6.5, md: 8, lg: -1 } }} >
-                ~
-              </Typography>
-            </Grid>
-            <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: 2, sm: 3, md: 5, lg: -1 } }}>
-              <MonthForm />
-            </Grid>
-          </Grid>
-          {/* End Grid */}
-
-          {/* Start Card */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-8' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
-            <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
-              <Typography component='div' className="pt-2">
-                ねらい
-              </Typography>
-            </Card>
-          </Grid>
-          {/* End Card */}
-
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7">
-          <Grid item xs={4} sm={3} md={2.5} lg={3} >
-            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-            養護 :
-            </Typography>
-          </Grid>
-          <Grid item xs={5} sm={4} md={3} lg={3} sx={{ ml: { xs: -5, sm: -4, md: -5, lg: -12 } }}>
-            <TextField
-              className='w-full'
-              id="homeroom-teacher-input"
-              name="homeroom-teacher-input"
-              label=""
-              type="text"
-              size='small'
-              sx={{
-                backgroundColor: "white",
-              }}
-            />
-          </Grid>
-        </Grid>
-        {/* End Grid */}
-
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
-          <Grid item xs={3.3} sm={2.5} md={2.5} lg={3} >
-            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-            教育 :
-            </Typography>
-          </Grid>
-          <Grid item xs={5} sm={4} md={3} lg={3} sx={{ ml: { xs: -2.5, sm: -1.8, md: -5, lg: -12 } }}>
-            <TextField
-              className='w-full'
-              id="annual-goals-input"
-              name="annual-goals-input"
-              label=""
-              type="text"
-              size='small'
-              sx={{
-                backgroundColor: "white",
-              }}
-            />
-          </Grid>
-        </Grid>
-        {/* End Grid */}
-
         
-
-          {/* Start Card */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
-            <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
-              <Typography component='div' className="pt-2">
-                内容
-              </Typography>
-            </Card>
-          </Grid>
-          {/* End Card */}
-
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4">
-            <Grid item xs={3} sm={4} md={3} lg={3} >
-              <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-                養護
-              </Typography>
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
+              <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
+                <Typography component='div' className="pt-2">
+                  ねらい
+                </Typography>
+              </Card>
             </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-2 ">
-            <Grid item xs={8} sm={8.3} md={7} lg={7} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },marginLeft: { xs: -4, sm:-3 , md:-10 , lg:-10  } }} >
-                生命の保持・情緒の安定
-              </Typography>
+            <Grid container spacing={1} className='pt-7' justifyContent="start">
+              <Grid item xs={3} sm={3} md={2} lg={1.5}>
+                <Typography style={{ fontSize: '14px' }} className='pt-2 text-end' >
+                  養護 :
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sm={7} md={3} lg={3}>
+                <TextField id="homeroom-teacher-input"  name="homeroom-teacher-input" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+              </Grid>
+              <Grid item xs={3} sm={3} md={2} lg={1.5}>
+                <Typography style={{ fontSize: '14px' }} className='pt-2 text-end'>
+                  教育 :
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sm={7} md={3} lg={3}>
+                <TextField id="annual-goals-input" name="annual-goals-input" type="text" size="small" fullWidth  sx={{ backgroundColor: 'white' }} />
+              </Grid>
             </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: {  xs: 1, sm:1 , md:1 , lg:1 } }}>
-            <Grid item xs={4} sm={3} md={8.5} lg={1.5} sx={{ ml: { xs: 3, sm: 8, md: 3, lg: 22 } }}>
-              <TextareaAutosize
-                id="emotional-input"
-                name="emotional-input"
-                minRows={3}
-                maxRows={100}
-                className="w-56 sm:w-60 lg:w-96"
-                style={{ border: '1px solid gray', borderRadius: '4px' }}
-              />
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
+              <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
+                <Typography component='div' className="pt-2">
+                  内容
+                </Typography>
+              </Card>
             </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3">
-            <Grid item xs={3} sm={4} md={3} lg={3} >
-              <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-                教育
-              </Typography>
+            <Grid container spacing={2} className="pt-5" justifyContent='start'>
+              <Grid item xs={12} md={6} >
+                <Grid container spacing={1}  alignItems='center' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5 } }}>
+                  <Grid item xs={1} sm={4} md={3} lg={2} className="text-end">
+                    <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
+                      義護
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2'  sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 15 } }}>
+                  <Grid item xs={7.5} sm={3} md={8.5} lg={12} className="text-start">
+                    <Typography  gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
+                    生命の保持・情緒の安定
+                    </Typography>
+                    <TextareaAutosize
+                      id="emotional-input"
+                      name="emotional-input"
+                      minRows={3}
+                      maxRows={100}
+                      className="w-56 sm:w-60 lg:w-96"
+                      style={{ border: '1px solid gray', borderRadius: '4px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
-          </Grid>
-          {/* End Grid */}
+  
+            <Grid container spacing={1} className='pt-5' alignItems='center' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 11 } }}>
+              <Grid item xs={2} sm={4} md={3} lg={2} className="text-start">
+                <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
+                 教育
+                </Typography>
+              </Grid>
+            </Grid>
 
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-2">
-            <Grid item xs={6} sm={6} md={6} lg={6} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },marginLeft: { xs: 7, sm:12 , md:12 , lg:25  } }} className="text-justify">
-                関する視点身体的発達に,関する視点社会的発達に,関する視点精神的発達に
-              </Typography>
+            <Grid container spacing={2} className="pt-3" justifyContent='center'>
+              <Grid item xs={12} md={6} >
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2'  sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 15 } }}>
+                  <Grid item xs={7.5} sm={3} md={8.5} lg={12} className="text-start">
+                    <Typography  gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 12 } }}>
+                    関する視点身体的発達に,関する視点社会的発達に,関する視点精神的発達に
+                    </Typography>
+                    <TextareaAutosize
+                      id="perspectives-input"
+                      name="perspectives-input"
+                      minRows={3}
+                      maxRows={100}
+                      className="w-56 sm:w-60 lg:w-96"
+                      style={{ border: '1px solid gray', borderRadius: '4px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 '  sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5} }}>
+                  <Grid item xs={7.5} sm={7} md={8.5} lg={12} className="text-start">
+                    <Typography  gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 12 } }}>
+                    食育
+                    </Typography>
+                    <TextareaAutosize
+                      id="food-education-input"
+                      name="food-education-input"
+                      minRows={3}
+                      maxRows={100}
+                      className="w-56 sm:w-60 lg:w-96"
+                      style={{ border: '1px solid gray', borderRadius: '4px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid item xs={6} sm={6} md={6} lg={3} sx={{ ml: { xs: -6, sm: -10, md: -13, lg: -10 } }} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-                食育
-              </Typography>
-            </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' >
-            <Grid item xs={4} sm={3} md={5} lg={4} sx={{  ml: { xs: 6, sm: 11, md: 12, lg: 25 } }}>
-              <TextareaAutosize
-                id="perspectives-input"
-                name="perspectives-input"
-                minRows={3}
-                maxRows={100}
-                className="w-full"
-                style={{ border: '1px solid gray', borderRadius: '4px' }}
-              />
-            </Grid>
-            <Grid item xs={4} sm={3} md={5} lg={4} sx={{ ml: { xs: 4, sm: 6, md: 1, lg: 4 } }}>
-              <TextareaAutosize
-                id="food-education-input"
-                name="food-education-input"
-                minRows={3}
-                maxRows={100}
-                className="w-full"
-                style={{ border: '1px solid gray', borderRadius: '4px' }}
-              />
-            </Grid>
-          </Grid>
-          {/* End Grid */}
+      
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' ></Grid>
+         
+        </Grid>
 
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' >
-           
-          </Grid>
-          {/* End Grid */}
-        </Box>
+        <Divider sx={{ borderColor: 'darkgrey', borderWidth: '2px'  }} />
         {/* End Box 3 */}
 
         {/* Start Box 4 */}
-        <Box sx={{ border: '2px solid grey', width: { xs: 400, sm: 485, md: 680, lg: 1150 }, mt: 1 }}>
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className='pl-3 pt-5' >
-            <Grid item xs={2} sm={1.5} md={3} lg={3} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1 }} >
-                期 :
-              </Typography>
+        <Grid container spacing={1} className='pt-5' >
+           <Grid  container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className=' pt-5' >
+              <Grid item xs={2} sm={1.5} md={3} lg={1.5} className="text-end">
+                <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1 }} >
+                  期 :
+                </Typography>
+              </Grid>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} >
+                <MonthForm />
+              </Grid>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} >
+                <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1, ml: { xs: 5, sm: 6.5, md: 8, lg: -1 } }} >
+                  ~
+                </Typography>
+              </Grid>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: 2, sm: 3, md: 5, lg: -1 } }}>
+                <MonthForm />
+              </Grid>
             </Grid>
-            <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: -3, sm: -2, md: -9, lg: -14 } }}>
-              <MonthForm />
-            </Grid>
-            <Grid item xs={2} sm={1.5} md={1} lg={1} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, mt: 1, ml: { xs: 5, sm: 6.5, md: 8, lg: -1 } }} >
-                ~
-              </Typography>
-            </Grid>
-            <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: 2, sm: 3, md: 5, lg: -1 } }}>
-              <MonthForm />
-            </Grid>
-          </Grid>
-          {/* End Grid */}
-
-          {/* Start Card */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
-            <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
-              <Typography component='div' className="pt-2">
-                ねらい
-              </Typography>
-            </Card>
-          </Grid>
-          {/* End Card */}
-
-         {/* Start Grid */}
-         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-7">
-          <Grid item xs={4} sm={3} md={2.5} lg={3} >
-            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-            養護 :
-            </Typography>
-          </Grid>
-          <Grid item xs={5} sm={4} md={3} lg={3} sx={{ ml: { xs: -5, sm: -4, md: -5, lg: -12 } }}>
-            <TextField
-              className='w-full'
-              id="homeroom-teacher-input"
-              name="homeroom-teacher-input"
-              label=""
-              type="text"
-              size='small'
-              sx={{
-                backgroundColor: "white",
-              }}
-            />
-          </Grid>
-        </Grid>
-        {/* End Grid */}
-
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
-          <Grid item xs={3.3} sm={2.5} md={2.5} lg={3} >
-            <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-            教育 :
-            </Typography>
-          </Grid>
-          <Grid item xs={5} sm={4} md={3} lg={3} sx={{ ml: { xs: -2.5, sm: -1.8, md: -5, lg: -12 } }}>
-            <TextField
-              className='w-full'
-              id="annual-goals-input"
-              name="annual-goals-input"
-              label=""
-              type="text"
-              size='small'
-              sx={{
-                backgroundColor: "white",
-              }}
-            />
-          </Grid>
-        </Grid>
-        {/* End Grid */}
-
         
-
-          {/* Start Card */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-7' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
-            <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
-              <Typography component='div' className="pt-2">
-                内容
-              </Typography>
-            </Card>
-          </Grid>
-          {/* End Card */}
-
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-4">
-            <Grid item xs={3} sm={4} md={3} lg={3} >
-              <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-                養護
-              </Typography>
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
+              <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
+                <Typography component='div' className="pt-2">
+                  ねらい
+                </Typography>
+              </Card>
             </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-2 ">
-            <Grid item xs={8} sm={8.3} md={7} lg={7} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },marginLeft: { xs: -4, sm:-3 , md:-10 , lg:-10  } }} >
-                生命の保持・情緒の安定
-              </Typography>
+            <Grid container spacing={1} className='pt-7' justifyContent="start">
+              <Grid item xs={3} sm={3} md={2} lg={1.5}>
+                <Typography style={{ fontSize: '14px' }} className='pt-2 text-end' >
+                  養護 :
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sm={7} md={3} lg={3}>
+                <TextField id="homeroom-teacher-input"  name="homeroom-teacher-input" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+              </Grid>
+              <Grid item xs={3} sm={3} md={2} lg={1.5}>
+                <Typography style={{ fontSize: '14px' }} className='pt-2 text-end'>
+                  教育 :
+                </Typography>
+              </Grid>
+              <Grid item xs={7} sm={7} md={3} lg={3}>
+                <TextField id="annual-goals-input" name="annual-goals-input" type="text" size="small" fullWidth  sx={{ backgroundColor: 'white' }} />
+              </Grid>
             </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: {  xs: 1, sm:1 , md:1 , lg:1 } }}>
-            <Grid item xs={4} sm={3} md={8.5} lg={1.5} sx={{ ml: { xs: 3, sm: 8, md: 3, lg: 22 } }}>
-              <TextareaAutosize
-                id="emotional-input"
-                name="emotional-input"
-                minRows={3}
-                maxRows={100}
-                className="w-56 sm:w-60 lg:w-96"
-                style={{ border: '1px solid gray', borderRadius: '4px' }}
-              />
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10' sx={{ ml: { xs: 3, sm: 3, md: 2, lg: 8 } }}>
+              <Card sx={{ bgcolor: "pink", width: 120, height: 40 }}>
+                <Typography component='div' className="pt-2">
+                  内容
+                </Typography>
+              </Card>
             </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-3">
-            <Grid item xs={3} sm={4} md={3} lg={3} >
-              <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-                教育
-              </Typography>
+            <Grid container spacing={2} className="pt-5" justifyContent='start'>
+              <Grid item xs={12} md={6} >
+                <Grid container spacing={1}  alignItems='center' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5 } }}>
+                  <Grid item xs={1} sm={4} md={3} lg={2} className="text-end">
+                    <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
+                      義護
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2'  sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 15 } }}>
+                  <Grid item xs={7.5} sm={3} md={8.5} lg={12} className="text-start">
+                    <Typography  gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
+                    生命の保持・情緒の安定
+                    </Typography>
+                    <TextareaAutosize
+                      id="emotional-input"
+                      name="emotional-input"
+                      minRows={3}
+                      maxRows={100}
+                      className="w-56 sm:w-60 lg:w-96"
+                      style={{ border: '1px solid gray', borderRadius: '4px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
-          </Grid>
-          {/* End Grid */}
+  
+            <Grid container spacing={1} className='pt-5' alignItems='center' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 11 } }}>
+              <Grid item xs={2} sm={4} md={3} lg={2} className="text-start">
+                <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
+                 教育
+                </Typography>
+              </Grid>
+            </Grid>
 
-          {/* Start Grid */}
-          <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-2">
-            <Grid item xs={6} sm={6} md={6} lg={6} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, },marginLeft: { xs: 7, sm:12 , md:12 , lg:25  } }} className="text-justify">
-                関する視点身体的発達に,関する視点社会的発達に,関する視点精神的発達に
-              </Typography>
+            <Grid container spacing={2} className="pt-3" justifyContent='center'>
+              <Grid item xs={12} md={6} >
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2'  sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 15 } }}>
+                  <Grid item xs={7.5} sm={3} md={8.5} lg={12} className="text-start">
+                    <Typography  gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 12 } }}>
+                    関する視点身体的発達に,関する視点社会的発達に,関する視点精神的発達に
+                    </Typography>
+                    <TextareaAutosize
+                      id="perspectives-input"
+                      name="perspectives-input"
+                      minRows={3}
+                      maxRows={100}
+                      className="w-56 sm:w-60 lg:w-96"
+                      style={{ border: '1px solid gray', borderRadius: '4px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 '  sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5} }}>
+                  <Grid item xs={7.5} sm={7} md={8.5} lg={12} className="text-start">
+                    <Typography  gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 12 } }}>
+                    食育
+                    </Typography>
+                    <TextareaAutosize
+                      id="food-education-input"
+                      name="food-education-input"
+                      minRows={3}
+                      maxRows={100}
+                      className="w-56 sm:w-60 lg:w-96"
+                      style={{ border: '1px solid gray', borderRadius: '4px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid item xs={6} sm={6} md={6} lg={3} sx={{ ml: { xs: -6, sm: -10, md: -13, lg: -10 } }} >
-              <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
-                食育
-              </Typography>
-            </Grid>
-          </Grid>
-          {/* End Grid */}
 
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' >
-            <Grid item xs={4} sm={3} md={5} lg={4} sx={{  ml: { xs: 6, sm: 11, md: 12, lg: 25 } }}>
-              <TextareaAutosize
-                id="perspectives-input"
-                name="perspectives-input"
-                minRows={3}
-                maxRows={100}
-                className="w-full"
-                style={{ border: '1px solid gray', borderRadius: '4px' }}
-              />
-            </Grid>
-            <Grid item xs={4} sm={3} md={5} lg={4} sx={{ ml: { xs: 4, sm: 6, md: 1, lg: 4 } }}>
-              <TextareaAutosize
-                id="food-education-input"
-                name="food-education-input"
-                minRows={3}
-                maxRows={100}
-                className="w-full"
-                style={{ border: '1px solid gray', borderRadius: '4px' }}
-              />
-            </Grid>
-          </Grid>
-          {/* End Grid */}
+      
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' ></Grid>
+         
+        </Grid>
 
-          {/* Start Grid */}
-          <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' >
-           
-          </Grid>
-          {/* End Grid */}
-        </Box>
+        <Divider sx={{ borderColor: 'darkgrey', borderWidth: '2px'  }} />
         {/* End Box 4 */}
 
-        {/* Start Grid */}
-        <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
+       
+        {/* <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-5">
           <Grid item xs={3} sm={4} md={3} lg={3} sx={{ ml: { xs: 7, sm: 0, md: 0, lg: 3 } }}>
             <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
               【家庭・地域との連携】:
@@ -887,8 +672,8 @@ export default function AnnualplanAdd() {
               style={{ border: '1px solid gray', borderRadius: '4px' }}
             />
           </Grid>
-        </Grid>
-        {/* End Grid */}
+        </Grid> */}
+     
 
         <div className="mt-auto">
           <Grid container justifyContent="center" spacing={2} className='pt-12' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
