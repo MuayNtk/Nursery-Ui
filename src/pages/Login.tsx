@@ -65,11 +65,6 @@ const Login: React.FC = () => {
         >
           ログイン
         </Button>
-        <div className="mt-4">
-          <p className="text-center text-sky-950">
-            アカウントを登録する？<span className="underline">こちらに</span>
-          </p>
-        </div>
       </div>
     </div>
   );

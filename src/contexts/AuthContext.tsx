@@ -30,7 +30,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (username === 'admin' && password === '1234') {
       user = { username: 'admin', role: 'admin' };
     } else if (username === 'teacher' && password === '1234') {
-      user = { username: 'teacher', role: 'teacher' };
+      user = { username: '佐藤 春', role: 'teacher' };
     } else if (username === 'accounting' && password === '1234') {
       user = { username: 'accounting', role: 'acc' };
     } else {
