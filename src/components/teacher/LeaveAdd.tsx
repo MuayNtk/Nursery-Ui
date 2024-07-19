@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import ContentMain from '../content/Content';
 import Typography from '@mui/material/Typography';
-import { Button, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField } from '@mui/material';
+import { Button, FormControl, FormControlLabel,  InputLabel, MenuItem, Radio, RadioGroup, Select, TextField } from '@mui/material';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -17,7 +17,7 @@ export default function LeaveAdd() {
   const handleEraChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     setEra(event.target.value);
   };
-  
+  const username = localStorage.getItem('username');
 
   return (
     <ContentMain>
@@ -89,7 +89,7 @@ export default function LeaveAdd() {
             </Typography>
           </Grid>
           <Grid item xs={7} sm={7} md={3} lg={2.5}>
-            <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }}/>
+            <TextField id="outlined-search" type="text" size="small" value={username} fullWidth sx={{ backgroundColor: 'white' }}/>
           </Grid>
           <Grid item xs={3} sm={3} md={2} lg={1}></Grid>
           <Grid item xs={7} sm={7} md={3} lg={2}></Grid>
@@ -196,18 +196,9 @@ export default function LeaveAdd() {
                 className="block p-2.5 w-full text-sm min-h-28 border border-gray-300"
                 placeholder="備考">
             </textarea>
+        
           </Grid>
         </Grid>
-
-        {/* Checkbox */}
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={10} sm={10} md={8}>
-            <FormGroup>
-              <FormControlLabel control={<Checkbox defaultChecked />} label="承認" />
-            </FormGroup>
-          </Grid>
-        </Grid>
-    
       </Grid>
 
       <div className="mt-auto">
