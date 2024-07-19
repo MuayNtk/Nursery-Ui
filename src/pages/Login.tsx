@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
 import { Button, TextField } from '@mui/material';
+import { useAuth } from '../contexts/AuthContext';
 
 const Login: React.FC = () => {
+  const { login } = useAuth();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string | undefined>('');
 
   const handleLogin = () => {
-    if (username === 'admin' && password === '1234') {
-      // alert('Login successful!');
-      window.location.href = '/dashboard';
-    } else {
-      setError('Invalid username or password');
+    try {
+      const user = login(username, password);
+      if (user) {
+        localStorage.setItem('username', user.username);
+        localStorage.setItem('role', user.role); // Store role in localStorage
+        window.location.href = '/dashboard'; // Redirect to dashboard or handle success
+      }
+    } catch (error: any) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An error occurred');
+      }
     }
   };
 
@@ -55,11 +65,6 @@ const Login: React.FC = () => {
         >
           ログイン
         </Button>
-        <div className="mt-4">
-          <p className="text-center text-sky-950">
-            アカウントを登録する？<span className="underline">こちらに</span>
-          </p>
-        </div>
       </div>
     </div>
   );

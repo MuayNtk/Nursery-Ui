@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import { Button,  Grid, IconButton, TextField, Typography } from '@mui/material';
 import ContentMain from '../content/Content';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -12,18 +12,19 @@ import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddIcon from '@mui/icons-material/Add';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 
 interface Column {
-  id: 'name' | 'classroom' | 'date' | 'timestart' | 'timeend' | 'detail';
+  id: 'name' | 'date' | 'timestart' | 'timeend' | 'detail';
   label: string;
   minWidth?: number;
-  align?: 'right';
+  align?: 'right'| 'center';
   format?: (value: number) => string;
 }
 
 const columns: readonly Column[] = [
   { id: 'name', label: '氏名', minWidth: 150 },
-  { id: 'classroom', label: 'クラス名', minWidth: 100 },
   {
     id: 'date',
     label: '日付',
@@ -46,81 +47,134 @@ const columns: readonly Column[] = [
     id: 'detail',
     label: '',
     minWidth: 100,
+    align: 'center',
   },
 ];
 
 interface Data {
   id: string;  // Ensure each data row has a unique identifier
   name: string;
-  classroom: string;
-  date: number;
-  timestart: number;
-  timeend: number;
+  date: string;
+  timestart: string;
+  timeend: string;
   detail: JSX.Element;
 }
 
 function createData(
   id: string,  // Include id in the createData function
   name: string,
-  classroom: string,
-  date: number,
-  timestart: number,
-  timeend: number,
+  date: string,
+  timestart: string,
+  timeend: string,
   detail: JSX.Element
 ): Data {
-  return { id, name, classroom, date, timestart, timeend, detail };
+  return { id, name, date, timestart, timeend, detail };
 }
+const role = localStorage.getItem('role');
+const username = localStorage.getItem('username');
 
 // Example data (you can replace this with your actual data)
 const initialRows = [
-  createData('1', '佐藤 春', 'うさぎ', 20230619, 830, 1030,
+  createData('1', '佐藤 春', '令和 20230619', '12.00', '17.00',
     <>
-      <IconButton aria-label="delete" size="small" color="primary">
-        <EditIcon fontSize="small" color="primary" />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" color="error">
-        <DeleteForeverIcon fontSize="small" color="error" />
-      </IconButton>
+      {role === 'admin' && (
+        <>
+          <IconButton aria-label="check" size="small" color="primary">
+            <CheckIcon fontSize="small" color="primary" />
+          </IconButton>
+          <IconButton aria-label="cancel" size="small" color="error">
+            <ClearIcon fontSize="small" color="error" />
+          </IconButton>
+        </>
+      )}
+      {role === 'teacher' && (
+        <>
+          <IconButton aria-label="edit" size="small" color="primary">
+            <EditIcon fontSize="small" color="primary" />
+          </IconButton>
+          <IconButton aria-label="delete" size="small" color="error">
+            <DeleteForeverIcon fontSize="small" color="error" />
+          </IconButton>
+        </>
+      )}
     </>
   ),
-  createData('2', '田中 美月', 'くま', 20230619, 900, 1100,
+  createData('2', '田中 美月', '令和 20230619', '10.00', '17.00',
     <>
-      <IconButton aria-label="delete" size="small" color="primary">
-        <EditIcon fontSize="small" color="primary" />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" color="error">
-        <DeleteForeverIcon fontSize="small" color="error" />
-      </IconButton>
+      {role === 'admin' && (
+        <>
+          <IconButton aria-label="check" size="small" color="primary">
+            <CheckIcon fontSize="small" color="primary" />
+          </IconButton>
+          <IconButton aria-label="cancel" size="small" color="error">
+            <ClearIcon fontSize="small" color="error" />
+          </IconButton>
+        </>
+      )}
+      {role === 'teacher' && (
+        <>
+          <IconButton aria-label="edit" size="small" color="primary">
+            <EditIcon fontSize="small" color="primary" />
+          </IconButton>
+          <IconButton aria-label="delete" size="small" color="error">
+            <DeleteForeverIcon fontSize="small" color="error" />
+          </IconButton>
+        </>
+      )}
     </>
   ),
-  createData('3', '松村 夢', 'ぱんだ', 20230619, 945, 1145,
+  createData('3', '松村 夢', '令和 20230619', '9.00', '12.00',
     <>
-      <IconButton aria-label="delete" size="small" color="primary">
-        <EditIcon fontSize="small" color="primary" />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" color="error">
-        <DeleteForeverIcon fontSize="small" color="error" />
-      </IconButton>
+      {role === 'admin' && (
+        <>
+          <IconButton aria-label="check" size="small" color="primary">
+            <CheckIcon fontSize="small" color="primary" />
+          </IconButton>
+          <IconButton aria-label="cancel" size="small" color="error">
+            <ClearIcon fontSize="small" color="error" />
+          </IconButton>
+        </>
+      )}
+      {role === 'teacher' && (
+        <>
+          <IconButton aria-label="edit" size="small" color="primary">
+            <EditIcon fontSize="small" color="primary" />
+          </IconButton>
+          <IconButton aria-label="delete" size="small" color="error">
+            <DeleteForeverIcon fontSize="small" color="error" />
+          </IconButton>
+        </>
+      )}
     </>
   ),
-  createData('4', '山田 レイ', '美術', 20230619, 1015, 1215,
+  createData('4', '山田 レイ', '令和  20230619', '12.00', '17.00',
     <>
-      <IconButton aria-label="delete" size="small" color="primary">
-        <EditIcon fontSize="small" color="primary" />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" color="error">
-        <DeleteForeverIcon fontSize="small" color="error" />
-      </IconButton>
+      {role === 'admin' && (
+        <>
+          <IconButton aria-label="check" size="small" color="primary">
+            <CheckIcon fontSize="small" color="primary" />
+          </IconButton>
+          <IconButton aria-label="cancel" size="small" color="error">
+            <ClearIcon fontSize="small" color="error" />
+          </IconButton>
+        </>
+      )}
+      {role === 'teacher' && (
+        <>
+          <IconButton aria-label="edit" size="small" color="primary">
+            <EditIcon fontSize="small" color="primary" />
+          </IconButton>
+          <IconButton aria-label="delete" size="small" color="error">
+            <DeleteForeverIcon fontSize="small" color="error" />
+          </IconButton>
+        </>
+      )}
     </>
   ),
 ];
 
 export default function ListLeave() {
-  const [classroom, setClass] = React.useState('');
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setClass(event.target.value as string);
-  };
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -139,38 +193,19 @@ export default function ListLeave() {
     setSearchInput(event.target.value);
   };
 
-  // Filtered rows based on search input and selected classroom
+
   const filteredRows = initialRows.filter(row =>
-    row.name.toLowerCase().includes(searchInput.toLowerCase()) &&
-    (classroom === '' || row.classroom === classroom)
+    role === 'admin' || row.name === username
+  ).filter(row =>
+    row.name.toLowerCase().includes(searchInput.toLowerCase())
   );
+
 
   return (
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
         <Grid item xs={3} sm={4} md={2} lg={2}>
           <TextField id="outlined-search" label="氏名" type="search" sx={{bgcolor: 'white'}} size="small" onChange={handleSearchInputChange} />
-        </Grid>
-        <Grid item xs={3} sm={4} md={2} lg={2} style={{ textAlign: 'center' }}>
-          <FormControl sx={{ minWidth: 125 }} size="small" fullWidth>
-            <InputLabel id="demo-select-small-label">クラス名</InputLabel>
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={classroom}
-              label="クラス名"
-              onChange={handleChange}
-              sx={{bgcolor: 'white'}}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value="うさぎ">うさぎ</MenuItem>
-              <MenuItem value="くま">くま</MenuItem>
-              <MenuItem value="ぱんだ">ぱんだ</MenuItem>
-              <MenuItem value="美術">美術</MenuItem>
-            </Select>
-          </FormControl>
         </Grid>
         <Grid item xs={6} sm={4} md={3} lg={1.5}>
           <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
