@@ -1,11 +1,7 @@
 import Grid from '@mui/material/Grid';
-import DayForm from '../componentsform/DayForm';
 import ContentMain from '../content/Content';
 import Typography from '@mui/material/Typography';
-import EraForm from '../componentsform/EraForm';
-import YearForm from '../componentsform/YearForm';
-import MonthForm from '../componentsform/MonthForm';
-import { Button, Checkbox, FormControlLabel, FormGroup, Radio, RadioGroup, TextField } from '@mui/material';
+import { Button, FormControl, FormControlLabel,  InputLabel, MenuItem, Radio, RadioGroup, Select, TextField } from '@mui/material';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -13,8 +9,16 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import InputAdornment from '@mui/material/InputAdornment';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save'
+import { SetStateAction, useState } from 'react';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 export default function LeaveAdd() {
+  const [era, setEra] = useState('');
+  const handleEraChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+    setEra(event.target.value);
+  };
+  const username = localStorage.getItem('username');
+
   return (
     <ContentMain>
       <Grid container spacing={3}>
@@ -26,26 +30,36 @@ export default function LeaveAdd() {
         </Grid>
         
         {/* Era, Year, Month, Day Form */}
-        <Grid item xs={12}>
-          <Grid container justifyContent="end" spacing={1}>
-            <Grid item xs={12} sm={3} md={2} lg={2}>
-              <EraForm />
-            </Grid>
-            <Grid item xs={12} sm={3} md={3} lg={2}>
-              <YearForm />
-            </Grid>
-            <Grid item xs={12} sm={4.5} md={3} lg={2}>
-              <Grid container spacing={4}>
-                <Grid item xs={6}>
-                  <MonthForm />
-                </Grid>
-                <Grid item xs={6}>
-                  <DayForm />
-                </Grid>
-              </Grid>
-            </Grid>
+        <Grid container item xs={12} justifyContent="flex-end" spacing={1}>
+          <Grid item xs={12} sm={3} md={2} lg={1} >
+            <FormControl size="small" fullWidth >
+              <InputLabel id="era-select-label">平成</InputLabel>
+              <Select
+                id="era-select"
+                labelId="era-select-label"
+                label="平成"
+                value={era}
+                onChange={handleEraChange}
+                sx={{ backgroundColor: "white" }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={1}>昭和</MenuItem>
+                <MenuItem value={2}>平成</MenuItem>
+                <MenuItem value={3}>令和</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={3} md={3} lg={3} className='scale-75' sx={{ ml: { xs: 9.5, sm: -1.5, md: -3, lg:-3 },mt: { xs: -3, sm: -2, md: -2, lg:-2 } }}>
+            <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DemoContainer components={['DatePicker']}>
+                <DatePicker label="開始日" sx={{ backgroundColor: 'white' }}/>
+              </DemoContainer>
+            </LocalizationProvider>
           </Grid>
         </Grid>
+
         
         {/* 所属, 役職 Fields */}
         <Grid container spacing={2} className='pt-7' justifyContent="left">
@@ -75,7 +89,7 @@ export default function LeaveAdd() {
             </Typography>
           </Grid>
           <Grid item xs={7} sm={7} md={3} lg={2.5}>
-            <TextField id="outlined-search" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }}/>
+            <TextField id="outlined-search" type="text" size="small" value={username} fullWidth sx={{ backgroundColor: 'white' }}/>
           </Grid>
           <Grid item xs={3} sm={3} md={2} lg={1}></Grid>
           <Grid item xs={7} sm={7} md={3} lg={2}></Grid>
@@ -106,7 +120,7 @@ export default function LeaveAdd() {
         </Grid>
 
         {/* Date Pickers */}
-        <Grid container spacing={2} className='pt-7' justifyContent="left">
+        <Grid container spacing={2} className='pt-2' justifyContent="left">
           
           <Grid item xs={3} sm={3} md={2} lg={3}>
             <Typography style={{ fontSize: '14px' }} className='pt-5 text-end'>
@@ -120,7 +134,7 @@ export default function LeaveAdd() {
               </DemoContainer>
             </LocalizationProvider>
           </Grid>
-          <Grid item xs={3} sm={3} md={1} lg={1.2}  sx={{  ml:{lg:-8}}}>
+          <Grid item xs={3} sm={3} md={1} lg={1.2}  sx={{  ml:{lg:-6}}}>
             <Typography style={{ fontSize: '14px' }} className='pt-5 text-center'>
                 ～
             </Typography>
@@ -133,9 +147,32 @@ export default function LeaveAdd() {
             </LocalizationProvider>
           </Grid>
         </Grid>
+
+        <Grid container spacing={2} className='pt-1' justifyContent="left">
+          <Grid item xs={3} sm={3} md={2} lg={3}></Grid>
+          <Grid item xs={7} sm={7} md={3} lg={2.5} className='scale-75'>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={['TimePicker']}>
+                <TimePicker label="Basic time picker" sx={{ backgroundColor: 'white' }} />
+              </DemoContainer>
+            </LocalizationProvider>
+          </Grid>
+          <Grid item xs={3} sm={3} md={1} lg={1.2}  sx={{  ml:{lg:-6}}}>
+            <Typography style={{ fontSize: '14px' }} className='pt-5 text-center'>
+                ～
+            </Typography>
+          </Grid>
+          <Grid item xs={7} sm={7} md={3} lg={2.5} className='scale-75'sx={{  ml:{lg:-5}}}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={['TimePicker']}>
+                <TimePicker label="Basic time picker"  sx={{ backgroundColor: 'white' }}/>
+              </DemoContainer>
+            </LocalizationProvider>
+          </Grid>
+        </Grid>
         
         {/* 日間 Field */}
-        <Grid container spacing={2} className='pt-7 ' justifyContent="left">
+        <Grid container spacing={2} className='pt-2 ' justifyContent="left">
           <Grid item xs={3.8} sm={3} md={2} lg={3.3}></Grid>
           <Grid item xs={3} sm={3} md={3} lg={1.5}>
             <TextField 
@@ -159,18 +196,9 @@ export default function LeaveAdd() {
                 className="block p-2.5 w-full text-sm min-h-28 border border-gray-300"
                 placeholder="備考">
             </textarea>
+        
           </Grid>
         </Grid>
-
-        {/* Checkbox */}
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={10} sm={10} md={8}>
-            <FormGroup>
-              <FormControlLabel control={<Checkbox defaultChecked />} label="承認" />
-            </FormGroup>
-          </Grid>
-        </Grid>
-    
       </Grid>
 
       <div className="mt-auto">

@@ -550,7 +550,7 @@ export default function MonthlyZero() {
           <TableCell sx={{ border: '1px solid #ccc', width: '13%' }}>施設長</TableCell>
           <TableCell sx={{ border: '1px solid #ccc', width: '13%' }} align="right">主任</TableCell>
           <TableCell sx={{ border: '1px solid #ccc', width: '30%' }} align="right">子どもの生活する姿</TableCell>
-          <TableCell sx={{ border: '1px solid #ccc', width: '30%' }} align="right">養護・教育&nbsp;(g)</TableCell>
+          <TableCell sx={{ border: '1px solid #ccc', width: '30%' }} align="right">養護・教育</TableCell>
           <TableCell sx={{ border: '1px solid #ccc', width: '10%' }} align="right"></TableCell>
         </TableRow>
       </TableHead>
@@ -617,6 +617,7 @@ export default function MonthlyZero() {
           Add New Entry
         </Typography>
         <TextField
+          id="FacilityDirector"
           name="FacilityDirector"
           label="施設長"
           value={newEntry.FacilityDirector}
@@ -627,6 +628,7 @@ export default function MonthlyZero() {
           required
         />
         <TextField
+          id="Chief"
           name="Chief"
           label="主任"
           value={newEntry.Chief}
@@ -646,10 +648,10 @@ export default function MonthlyZero() {
           onChange={handleChange}
           rows={3}  // Set the number of rows here
           className="w-72 sm:w-72 lg:w-80"
-          style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none' }}
+          style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none' , padding:'3px'}}
         />
           <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
-          子どもとの関わり方保育士等の育みたい内容
+          子どもとの関わり方保育士等の育みたい内容<br/> (養護・教育)
         </Typography>
         <textarea
           id="education"
@@ -658,7 +660,7 @@ export default function MonthlyZero() {
           onChange={handleChange}
           rows={3}  // Set the number of rows here
           className="w-72 sm:w-72 lg:w-80"
-          style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none' }}
+          style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding:'3px'}}
         />
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
             <Button onClick={handleClose} sx={{ mr: 2 }}>Cancel</Button>
