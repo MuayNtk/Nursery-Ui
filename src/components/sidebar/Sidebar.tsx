@@ -192,9 +192,15 @@ export default function Sidebar(props: Props) {
                             <Typography  component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
                                 保育士
                             </Typography>
-                            <List sx={{ pl: 8.9 }}>
+                            <div 
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    marginLeft: 'auto',
+                                }}
+                            >
                                 {open ? <ExpandLess /> : <ExpandMore />}
-                            </List>
+                            </div>
                         </ListItemButton>
                     </ListItem>
                     <Collapse in={open} unmountOnExit>
@@ -239,9 +245,15 @@ export default function Sidebar(props: Props) {
                             <Typography  component="div" className='text-white pl-3 py-2 pt-3 'sx={{ fontSize: '14px' }}>
                             学生管理
                             </Typography>
-                            <List sx={{ pl: 7.2 }}>
+                            <div 
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    marginLeft: 'auto',
+                                }}
+                            >
                                 {open3 ? <ExpandLess /> : <ExpandMore />}
-                            </List>
+                            </div>
                         </ListItemButton>
                     </ListItem>
                     <Collapse in={open3} unmountOnExit>
@@ -286,13 +298,19 @@ export default function Sidebar(props: Props) {
                             <Typography  component="div" className='text-white pl-3 py-2 pt-4' sx={{ fontSize: '14px' }}>
                             経理管理
                             </Typography>
-                            <List sx={{ pl: 7.2 }}>
+                            <div 
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    marginLeft: 'auto',
+                                }}
+                            >
                                 {open4 ? <ExpandLess /> : <ExpandMore />}
-                            </List>
+                            </div>
                         </ListItemButton>
                     </ListItem>
                     <Collapse in={open4} unmountOnExit>
-                    <Link to={'/accounting'}>
+                        <Link to={'/accounting'}>
                             <ListItem
                                 disablePadding
                                 className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/accounting' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
@@ -348,9 +366,15 @@ export default function Sidebar(props: Props) {
                             <Typography  component="div" className='text-white pl-3 py-2 ' sx={{ fontSize: '14px' }}>
                                 マスタ設定
                             </Typography>
-                            <List sx={{ pl: 5.5 }}>
+                            <div 
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    marginLeft: 'auto',
+                                }}
+                            >
                                 {open2 ? <ExpandLess /> : <ExpandMore />}
-                            </List>
+                            </div>
                         </ListItemButton>
                     </ListItem>
                     <Collapse in={open2} unmountOnExit>
@@ -400,9 +424,15 @@ export default function Sidebar(props: Props) {
                                 <Typography  component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
                                     保育士
                                 </Typography>
-                                <List sx={{ pl: 8.9 }}>
+                                <div 
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        marginLeft: 'auto',
+                                    }}
+                                >
                                     {open ? <ExpandLess /> : <ExpandMore />}
-                                </List>
+                                </div>
                             </ListItemButton>
                         </ListItem>
                         <Collapse in={open} unmountOnExit>
@@ -446,9 +476,15 @@ export default function Sidebar(props: Props) {
                                 <Typography component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
                                     学生管理
                                 </Typography>
-                                <List sx={{ pl: 7.2 }}>
+                                <div 
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        marginLeft: 'auto',
+                                    }}
+                                >
                                     {open3 ? <ExpandLess /> : <ExpandMore />}
-                                </List>
+                                </div>
                             </ListItemButton>
                         </ListItem>
                         <Collapse in={open3} unmountOnExit>
@@ -497,9 +533,15 @@ export default function Sidebar(props: Props) {
                                 <Typography  component="div" className='text-white pl-3 py-2 pt-4' sx={{ fontSize: '14px' }}>
                                 経理管理
                                 </Typography>
-                                <List sx={{ pl: 7.2 }}>
+                                <div 
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        marginLeft: 'auto',
+                                    }}
+                                >
                                     {open4 ? <ExpandLess /> : <ExpandMore />}
-                                </List>
+                                </div>
                             </ListItemButton>
                         </ListItem>
                         <Collapse  in={open4} unmountOnExit>
