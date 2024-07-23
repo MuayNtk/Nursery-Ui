@@ -20,7 +20,7 @@ export default function LeaveAdd() {
   const username = localStorage.getItem('username');
 
   return (
-    <ContentMain>
+    <ContentMain className="flex flex-col min-h-screen">
       <Grid container spacing={3}>
         {/* Header */}
         <Grid item xs={12}>
@@ -195,29 +195,28 @@ export default function LeaveAdd() {
                 id="message" 
                 className="block p-2.5 w-full text-sm min-h-28 border border-gray-300"
                 placeholder="備考">
-            </textarea>
-        
+            </textarea>      
           </Grid>
         </Grid>
       </Grid>
 
       <div className="mt-auto">
-          <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
-                <Grid item>
-                      <Button variant="contained" href="/teacher/listleave" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
-                      <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
-                      戻る
-                      </Typography>
-                      </Button>
-                </Grid>
-                <Grid item>
-                      <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success">
-                      <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
-                      修正
-                      </Typography>
-                      </Button>
-                </Grid>
+        <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+          <Grid item>
+            <Button variant="contained" href="/setting/info" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
+              <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+              戻る
+              </Typography>
+            </Button>
           </Grid>
+          <Grid item>
+            <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success">
+              <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+              修正
+              </Typography>
+            </Button>
+          </Grid>
+        </Grid>
       </div>
     </ContentMain>
   );
