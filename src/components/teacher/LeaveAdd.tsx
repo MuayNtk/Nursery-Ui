@@ -203,7 +203,7 @@ export default function LeaveAdd() {
       <div className="mt-auto">
         <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
           <Grid item>
-            <Button variant="contained" href="/setting/info" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
+            <Button variant="contained" href="/teacher/listleave" size='medium' className='text-center' startIcon={<ArrowBackIcon />}  color="warning">
               <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
               戻る
               </Typography>
