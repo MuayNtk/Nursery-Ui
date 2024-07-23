@@ -46,6 +46,22 @@ const InformationList: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const navigate = useNavigate();
 
+  // Add sample data to sessionStorage if it doesn't already exist
+  useEffect(() => {
+    const initializeSampleData = () => {
+      const existingData = JSON.parse(sessionStorage.getItem('data') || '[]');
+      if (existingData.length === 0) {
+        const sampleData = [
+          { city: 'Tokyo', schoolNumber: '566', facilityName: 'Tokyo Nursery', detail: '' },
+          { city: 'Osaka', schoolNumber: '999', facilityName: 'Osaka Nursery', detail: '' },
+          { city: 'Saitama', schoolNumber: '123', facilityName: 'Saitama Nursery', detail: '' },
+        ];
+        sessionStorage.setItem('data', JSON.stringify(sampleData));
+      }
+    };
+    initializeSampleData();
+  }, []);
+
   useEffect(() => {
     // Fetch data from sessionStorage
     const fetchData = () => {
@@ -139,6 +155,7 @@ const InformationList: React.FC = () => {
               </MenuItem>
               <MenuItem value={'566'}>566</MenuItem>
               <MenuItem value={'999'}>999</MenuItem>
+              <MenuItem value={'123'}>123</MenuItem>
             </Select>
           </FormControl>
         </Grid>
