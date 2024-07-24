@@ -75,14 +75,14 @@ const InformationList: React.FC = () => {
             <IconButton 
               aria-label="edit" 
               size="small" 
-              onClick={() => navigate(`/edit/${item.schoolNumber}`)} 
+              onClick={() => navigate(`/setting/info/edit/${item.schoolNumber}`)} 
             >
               <EditIcon fontSize="small" className='text-sky-600' />
             </IconButton>
             <IconButton 
               aria-label="view" 
               size="small" 
-              onClick={() => navigate(`/view/${item.schoolNumber}`)} 
+              onClick={() => navigate(`/setting/info/view/${item.schoolNumber}`)} 
             >
               <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
             </IconButton>
