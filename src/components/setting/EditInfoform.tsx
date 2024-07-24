@@ -61,6 +61,9 @@ const EditForm: React.FC = () => {
                         onChange={handleChange}
                         fullWidth
                         style={{ backgroundColor: "white" }}
+                        InputLabelProps={{
+                            shrink: true, // Keep label in place
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={4} md={3}>
@@ -75,6 +78,9 @@ const EditForm: React.FC = () => {
                         fullWidth
                         style={{ backgroundColor: "white" }}
                         disabled
+                        InputLabelProps={{
+                            shrink: true, // Keep label in place
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={4} md={6}>
@@ -88,6 +94,9 @@ const EditForm: React.FC = () => {
                         onChange={handleChange}
                         fullWidth
                         style={{ backgroundColor: "white" }}
+                        InputLabelProps={{
+                            shrink: true, // Keep label in place
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} md={12}>
@@ -106,6 +115,9 @@ const EditForm: React.FC = () => {
                         onChange={handleChange}
                         fullWidth
                         style={{ backgroundColor: "white" }}
+                        InputLabelProps={{
+                            shrink: true, // Keep label in place
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} md={12}>
@@ -124,6 +136,9 @@ const EditForm: React.FC = () => {
                         onChange={handleChange}
                         fullWidth
                         style={{ backgroundColor: "white" }}
+                        InputLabelProps={{
+                            shrink: true, // Keep label in place
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={4} md={3}>
@@ -137,6 +152,9 @@ const EditForm: React.FC = () => {
                         onChange={handleChange}
                         fullWidth
                         style={{ backgroundColor: "white" }}
+                        InputLabelProps={{
+                            shrink: true, // Keep label in place
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={4} md={6}>
@@ -150,6 +168,9 @@ const EditForm: React.FC = () => {
                         onChange={handleChange}
                         fullWidth
                         style={{ backgroundColor: "white" }}
+                        InputLabelProps={{
+                            shrink: true, // Keep label in place
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} md={12}>
@@ -168,6 +189,9 @@ const EditForm: React.FC = () => {
                         onChange={handleChange}
                         fullWidth
                         style={{ backgroundColor: "white" }}
+                        InputLabelProps={{
+                            shrink: true, // Keep label in place
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={4} md={3}>
@@ -181,6 +205,9 @@ const EditForm: React.FC = () => {
                         onChange={handleChange}
                         fullWidth
                         style={{ backgroundColor: "white" }}
+                        InputLabelProps={{
+                            shrink: true, // Keep label in place
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={4} md={6}>
@@ -194,6 +221,9 @@ const EditForm: React.FC = () => {
                         onChange={handleChange}
                         fullWidth
                         style={{ backgroundColor: "white" }}
+                        InputLabelProps={{
+                            shrink: true, // Keep label in place
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} md={12}>
@@ -212,6 +242,9 @@ const EditForm: React.FC = () => {
                         onChange={handleChange}
                         fullWidth
                         style={{ backgroundColor: "white" }}
+                        InputLabelProps={{
+                            shrink: true, // Keep label in place
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} md={6}>
@@ -225,10 +258,13 @@ const EditForm: React.FC = () => {
                         onChange={handleChange}
                         fullWidth
                         style={{ backgroundColor: "white" }}
+                        InputLabelProps={{
+                            shrink: true, // Keep label in place
+                        }}
                     />
                 </Grid>
             </Grid>
-            <Button variant="contained" onClick={handleSave} size='medium' className='text-center' startIcon={<SaveIcon />} color="success" sx={{mt: 3}}>
+            <Button variant="contained" onClick={handleSave} size='medium' className='text-center' startIcon={<SaveIcon />} color="success" sx={{ mt: 3 }}>
                 <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
                     修正
                 </Typography>
