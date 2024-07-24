@@ -68,6 +68,8 @@ import EligiblePersonsAddPages from "../pages/accounting/treatment/EligiblePerso
 import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 import EditInfoform from "../components/setting/EditInfoform"
 import ViewInfoform from "../components/setting/ViewInfoform"
+import EditInfoStaffForm from "../components/setting/EditInfoStaffForm"
+import ViewInfoStaffForm from "../components/setting/ViewInfoStaffForm"
 
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
@@ -337,12 +339,20 @@ const Router = createBrowserRouter([
         element: <InfoStaffFormPages />
       },
       {
-        path: "/edit/:schoolNumber",
+        path: "/setting/info/edit/:schoolNumber",
         element: <EditInfoform />
       },
       {
-        path: "/view/:schoolNumber",
+        path: "/setting/info/view/:schoolNumber",
         element: <ViewInfoform />
+      },
+      {
+        path: "/infostaff/edit/:fullname",
+        element: <EditInfoStaffForm />
+      },
+      {
+        path: "/infostaff/view/:fullname",
+        element: <ViewInfoStaffForm />
       },
     ]
   },
