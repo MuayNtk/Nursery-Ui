@@ -70,6 +70,10 @@ import EditInfoform from "../components/setting/EditInfoform"
 import ViewInfoform from "../components/setting/ViewInfoform"
 import EditInfoStaffForm from "../components/setting/EditInfoStaffForm"
 import ViewInfoStaffForm from "../components/setting/ViewInfoStaffForm"
+import EditOverallPlan from "../components/report/EditOverallPlan";
+import ViewOverallPlan from "../components/report/ViewOverallPlan"
+
+
 
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
@@ -339,20 +343,28 @@ const Router = createBrowserRouter([
         element: <InfoStaffFormPages />
       },
       {
-        path: "/setting/info/edit/:schoolNumber",
+        path: "/setting/info/edit/:pid",
         element: <EditInfoform />
       },
       {
-        path: "/setting/info/view/:schoolNumber",
+        path: "/setting/info/view/:pid",
         element: <ViewInfoform />
       },
       {
-        path: "/infostaff/edit/:fullname",
+        path: "/infostaff/edit/:pid",
         element: <EditInfoStaffForm />
       },
       {
-        path: "/infostaff/view/:fullname",
+        path: "/infostaff/view/:pid",
         element: <ViewInfoStaffForm />
+      },
+      {
+        path: "/report/overallplan/edit/:pid",
+        element: <EditOverallPlan />
+      },
+      {
+        path: "/report/overallplan/view/:pid",
+        element: <ViewOverallPlan />
       },
     ]
   },
