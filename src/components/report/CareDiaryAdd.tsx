@@ -28,7 +28,7 @@ function createData(
   other: string,
   detail: JSX.Element,
 ): Data {
-  return { day,month, meal, excretion, sleep, health, other, detail };
+  return { day, month, meal, excretion, sleep, health, other, detail };
 }
 
 const initialRows: Data[] = [
@@ -70,7 +70,7 @@ const modalStyle = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: { xs: '90%', sm: '80%', md: '3 0%', lg: '30%' }, // Adjust width based on screen size
+  width: { xs: '90%', sm: '80%', md: '3 0%', lg: '45%' }, // Adjust width based on screen size
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
@@ -336,8 +336,8 @@ export default function CareDiaryAdd() {
               <Table sx={{ minWidth: { xs: '250%', sm: '170%', md: '150%', lg: '100%' } }} size="small" aria-label="a dense table">
                 <TableHead>
                   <TableRow>
-                    <TableCell sx={{ border: '1px solid #ccc', width: '5%' }}align="center">日</TableCell>
-                    <TableCell sx={{ border: '1px solid #ccc', width: '5%' }}align="center">月</TableCell>
+                    <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="center">日</TableCell>
+                    <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="center">月</TableCell>
                     <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="right">食事</TableCell>
                     <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="right">排泄</TableCell>
                     <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="right">睡眠</TableCell>
@@ -418,7 +418,7 @@ export default function CareDiaryAdd() {
               Add New Entry
             </Typography>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className='pl-3 pt-5' >
-              <Grid item xs={3} sm={1.5} md={1} lg={5} sx={{ ml: { xs: 4, sm: -1, md: -1, lg: -1 } }}>
+              <Grid item xs={3} sm={1.5} md={1} lg={5} sx={{ ml: { xs: -1, sm: -1, md: -1, lg: -1 } }}>
                 <FormControl sx={{ minWidth: 90 }} size="small">
                   <InputLabel id="day-select-label">日</InputLabel>
                   <Select
@@ -439,10 +439,10 @@ export default function CareDiaryAdd() {
                         {i + 1} 日
                       </MenuItem>
                     ))}
-                  </Select>  
+                  </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: 2, sm: 3, md: 5, lg: -6 } }}>
+              <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: 5, sm: 6, md: 7, lg: -18 } }}>
                 <FormControl sx={{ minWidth: 90 }} size="small">
                   <InputLabel id="month-select-label">月</InputLabel>
                   <Select
@@ -467,30 +467,51 @@ export default function CareDiaryAdd() {
                 </FormControl>
               </Grid>
             </Grid>
-            <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
-              食事
-            </Typography>
-            <textarea
-              id="meal"
-              name="meal"
-              value={newEntry.meal}
-              onChange={handleChange}
-              rows={3}  // Set the number of rows here
-              className="w-72 sm:w-72 lg:w-80"
-              style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding: '3px' }}
-            />
-            <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
-              排泄
-            </Typography>
-            <textarea
-              id="excretion"
-              name="excretion"
-              value={newEntry.excretion}
-              onChange={handleChange}
-              rows={3}  // Set the number of rows here
-              className="w-72 sm:w-72 lg:w-80"
-              style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding: '3px' }}
-            />
+
+            <Grid container spacing={1} className="" justifyContent='center'>
+              <Grid item xs={12} sm={3} md={6} >
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: { xs: "-15px", sm: -21, md: "-18px", lg: -1.9 } }}>
+                  <Grid item xs={7.5} sm={4} md={8.5} lg={12} className="text-start">
+                    <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
+                      食事
+                    </Typography>
+                    <textarea
+                      id="meal"
+                      name="meal"
+                      value={newEntry.meal}
+                      onChange={handleChange}
+                      rows={2}  // Set the number of rows here
+                      className="w-72 sm:w-64 lg:w-64"
+                      style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding: '3px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} sm={3} md={6}>
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 ' sx={{ marginLeft: { xs: "-15px", sm: "-18px", md:-15, lg: -5 } }}>
+                  <Grid item xs={7.5} sm={4} md={8.5} lg={12} className="text-start">
+                    <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
+                      排泄
+                    </Typography>
+                    <textarea
+                      id="excretion"
+                      name="excretion"
+                      value={newEntry.excretion}
+                      onChange={handleChange}
+                      rows={2}  // Set the number of rows here
+                      className="w-72 sm:w-64 lg:w-64"
+                      style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding: '3px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+
+
+
+
+
+
             <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
               睡眠
             </Typography>
@@ -499,26 +520,26 @@ export default function CareDiaryAdd() {
               name="sleep"
               value={newEntry.sleep}
               onChange={handleChange}
-              rows={3}  // Set the number of rows here
-              className="w-72 sm:w-72 lg:w-80"
+              rows={2}  // Set the number of rows here
+              className="w-72 sm:w-72 lg:w-64"
               style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding: '3px' }}
             />
             <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
-            健康
+              健康
             </Typography>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className=' pl-3' >
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="paidleave"
-              name="radio-buttons-group"
-              row
-            >
-              <Grid item xs={4.5} sm={12} md={12} lg={12} sx={{ ml: { xs: -7, sm: 1, md: 1, lg: 1 } }}>
-                <FormControlLabel value="良好" control={<Radio />} label="良好" />
-                <FormControlLabel value="鼻水・咳" control={<Radio />} label="鼻水・咳" />
-              </Grid>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="paidleave"
+                name="radio-buttons-group"
+                row
+              >
+                <Grid item xs={12} sm={12} md={12} lg={12} sx={{ ml: { xs: 1, sm: 1, md: 1, lg: 1 } }} className="pt-2">
+                  <FormControlLabel value="良好" control={<Radio />} label="良好" />
+                  <FormControlLabel value="鼻水・咳" control={<Radio />} label="鼻水・咳" />
+                </Grid>
               </RadioGroup>
-              <Grid item xs={9} sm={3} md={4} lg={8} sx={{ ml: { xs: 4, sm: 2, md: 1, lg: -1.5 } }}>
+              <Grid item xs={9} sm={3} md={4} lg={5} sx={{ ml: { xs: -1.5, sm: 2, md: 1, lg: -1.5 } }}>
                 <TextField
                   className='w-full'
                   id="furigana-input"
@@ -541,7 +562,7 @@ export default function CareDiaryAdd() {
               name="other"
               value={newEntry.other}
               onChange={handleChange}
-              rows={3}  // Set the number of rows here
+              rows={2.5}  // Set the number of rows here
               className="w-72 sm:w-72 lg:w-80"
               style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding: '3px' }}
             />
