@@ -5,9 +5,10 @@ import ContentMain from '../content/Content';
 import SaveIcon from '@mui/icons-material/Save';
 
 const EditForm: React.FC = () => {
-    const { schoolNumber } = useParams<{ schoolNumber: string }>();
+    const { pid } = useParams<{ pid: string }>();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
+        pid: '',
         city: '',
         schoolNumber: '',
         facilityName: '',
@@ -24,24 +25,29 @@ const EditForm: React.FC = () => {
 
     useEffect(() => {
         const storedData = JSON.parse(sessionStorage.getItem('data') || '[]');
-        const item = storedData.find((item: any) => item.schoolNumber === schoolNumber);
+        const item = storedData.find((item: any) => item.pid === pid);
         if (item) {
             setFormData(item);
+        } else {
+            // Optionally, you could handle the case where the item is not found
+            // For example, setting formData to default values or showing a message
         }
-    }, [schoolNumber]);
+    }, [pid]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { id, value } = e.target;
+        console.log('Changing field:', id, 'to', value);
+        setFormData((prevData) => ({
+            ...prevData,
+            [id]: value
         }));
     };
 
     const handleSave = () => {
+        console.log('Saving data:', formData);
         const storedData = JSON.parse(sessionStorage.getItem('data') || '[]');
         const updatedData = storedData.map((item: any) =>
-            item.schoolNumber === schoolNumber ? formData : item
+            item.pid === pid ? formData : item
         );
         sessionStorage.setItem('data', JSON.stringify(updatedData));
         navigate('/setting/info');
@@ -77,7 +83,6 @@ const EditForm: React.FC = () => {
                         onChange={handleChange}
                         fullWidth
                         style={{ backgroundColor: "white" }}
-                        disabled
                         InputLabelProps={{
                             shrink: true, // Keep label in place
                         }}

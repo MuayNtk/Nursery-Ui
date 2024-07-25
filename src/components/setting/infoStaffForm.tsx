@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import ContentMain from '../content/Content';
@@ -9,6 +9,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import { SelectChangeEvent } from '@mui/material';
 
 interface FormData {
+  pid: string;
   dep: string;
   furigana: string;
   fullname: string;
@@ -21,6 +22,7 @@ interface FormData {
 
 const InfoStaffForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
+    pid: '',
     dep: '',
     furigana: '',
     fullname: '',
@@ -30,7 +32,19 @@ const InfoStaffForm: React.FC = () => {
     month: '',
     day: '',
   });
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Set initial pid from sessionStorage or 1 if not present
+    const lastPid = JSON.parse(sessionStorage.getItem('lastPid') || '0');
+    const newPid = lastPid + 1;
+    setFormData((prevData) => ({
+      ...prevData,
+      pid: newPid.toString() // Ensure pid is a string
+    }));
+    sessionStorage.setItem('lastPid', JSON.stringify(newPid));
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -55,14 +69,17 @@ const InfoStaffForm: React.FC = () => {
       [id]: value
     }));
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Save data to sessionStorage
     const currentData = JSON.parse(sessionStorage.getItem('staffData') || '[]');
     sessionStorage.setItem('staffData', JSON.stringify([...currentData, formData]));
+    // Remove old pid and set new pid
+    sessionStorage.setItem('lastPid', JSON.stringify(parseInt(formData.pid, 10) + 1));
     navigate('/infostaff');
   };
+
 
   return (
     <ContentMain className="flex flex-col min-h-screen">
