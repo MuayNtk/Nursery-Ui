@@ -1,7 +1,14 @@
-import { Grid, InputAdornment, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TextField, TextareaAutosize, Typography } from "@mui/material";
+import { FormControl, Grid, InputAdornment, OutlinedInput, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TextField, TextareaAutosize, Typography } from "@mui/material";
+interface JoinActivityFormProps {
+  era: string;
+  year: string;
+  month: number;
+  day: number;
+  activityData: string;
+}
 
+const JoinActivityForm: React.FC<JoinActivityFormProps> = ({ era, year, month, day, activityData }) => {
 
-export default function JoinActivityForm() {
 
   return (
     <>
@@ -133,7 +140,7 @@ export default function JoinActivityForm() {
           </Typography>
         </Grid>
         <Grid item xs={6} sm={5} md={4} lg={3}>
-          <TextField id="extension" name="extension" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+          <TextField id="extension" name="extension" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }}/>
         </Grid>
       </Grid>
       {/* End 延回数 Grid */}
@@ -146,23 +153,72 @@ export default function JoinActivityForm() {
           </Typography>
         </Grid>
         <Grid item xs={6} sm={5} md={4} lg={3}>
-          <TextField id="place" name="place" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+          <TextField id="day" name="day" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
         </Grid>
       </Grid>
       {/* End 場所 Grid */}
 
-      {/* Start 日時 Grid */}
-      <Grid container spacing={2} className='pt-5'>
-        <Grid item xs={4} sm={3} md={4} lg={3}>
+  {/* Start 日時 Grid */}
+  <Grid container spacing={2} className='pt-5'>
+        <Grid item xs={2} sm={2.5} md={3} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
             日時 :
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={5} md={4} lg={3}>
-          <TextField id="date-and-time" name="date-and-time" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+        <Grid item xs={2.4} sm={3} md={2} lg={1}>
+          <TextField
+            id="era-textfield"
+            label=""
+            value={era}
+            size='small'
+            sx={{ backgroundColor: "white" }}
+          />
+        </Grid>
+        <Grid item xs={2.5} sm={3} md={3} lg={1}>
+          <FormControl variant="outlined" size="small">
+            <OutlinedInput
+              id="year"
+              value={year}
+              endAdornment={<InputAdornment position="end">年</InputAdornment>}
+              aria-describedby="outlined-year-helper-text"
+              sx={{ backgroundColor: "white" }}
+              inputProps={{
+                'aria-label': 'year',
+              }}
+            />
+          </FormControl>
+        </Grid>
+        <Grid item xs={2.5} sm={3} md={3} lg={1}>
+          <FormControl variant="outlined" size="small">
+            <OutlinedInput
+              id="month"
+              value={month}
+              endAdornment={<InputAdornment position="end">月</InputAdornment>}
+              aria-describedby="outlined-month-helper-text"
+              sx={{ backgroundColor: "white" }}
+              inputProps={{
+                'aria-label': 'month',
+              }}
+            />
+          </FormControl>
+        </Grid>
+        <Grid item xs={2.5} sm={3} md={3} lg={1}>
+          <FormControl variant="outlined" size="small">
+            <OutlinedInput
+              id="day"
+              value={day}
+              endAdornment={<InputAdornment position="end">日</InputAdornment>}
+              aria-describedby="outlined-day-helper-text"
+              sx={{ backgroundColor: "white" }}
+              inputProps={{
+                'aria-label': 'day',
+              }}
+            />
+          </FormControl>
         </Grid>
       </Grid>
       {/* End 日時 Grid */}
+
 
       {/* Start 参加者 Grid */}
       <Grid container spacing={2} className='pt-5'>
@@ -172,7 +228,7 @@ export default function JoinActivityForm() {
           </Typography>
         </Grid>
         <Grid item xs={6} sm={5} md={4} lg={3}>
-          <TextField id="participant" name="participant" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} />
+          <TextField id="day" name="day" type="text" size="small" fullWidth sx={{ backgroundColor: 'white' }} value={activityData}/>
         </Grid>
       </Grid>
       {/* End 参加者 Grid */}
@@ -200,46 +256,66 @@ export default function JoinActivityForm() {
       {/* Start Table */}
       <Grid container className='pt-3' justifyContent="center">
         <TableContainer component={Paper} className="mt-5" sx={{ width: { xs: 'auto', sm: 'auto', md: 'auto', lg: 800 } }}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table sx={{ minWidth: 650 }} aria-label="simple table" size="small">
             <TableHead>
               <TableRow>
-                <TableCell style={{ width: 200 }}>賃 金</TableCell>
-                <TableCell align="right">0</TableCell>
+                <TableCell >賃 金</TableCell>
+                <TableCell align="center">
+                  <TextField id="rent" name="rent"  variant="standard" size="small" sx={{ backgroundColor: '#fcf6c7' }}/>
+                </TableCell>
                 <TableCell align="left">円</TableCell>
-                <TableCell style={{ width: 250 }}>備品購入費</TableCell>
-                <TableCell align="right">0</TableCell>
+                <TableCell >備品購入費</TableCell>
+                <TableCell align="center">
+                  <TextField id="equipment" name="equipment"  variant="standard" size="small" sx={{ backgroundColor: '#fcf6c7' }}/>
+                </TableCell>
                 <TableCell align="left">円</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>謝 金</TableCell>
-                <TableCell align="right">0</TableCell>
+                <TableCell align="center">
+                   <TextField id="honoraria" name="honoraria"  variant="standard" size="small" sx={{ backgroundColor: '#fcf6c7' }}/>
+                </TableCell>
                 <TableCell align="left">円</TableCell>
                 <TableCell>使用料及び賃借料</TableCell>
-                <TableCell align="right">0</TableCell>
+                <TableCell align="center">
+                   <TextField id="usagefees" name="usagefees"  variant="standard" size="small" sx={{ backgroundColor: '#fcf6c7' }}/>
+                </TableCell>
                 <TableCell align="left">円</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>旅 費</TableCell>
-                <TableCell align="right">0</TableCell>
+                <TableCell align="center">
+                   <TextField id="travelexpenses" name="travelexpenses"  variant="standard" size="small" sx={{ backgroundColor: '#fcf6c7' }}/>
+                </TableCell>
                 <TableCell align="left">円</TableCell>
                 <TableCell>委託料</TableCell>
-                <TableCell align="right">0</TableCell>
+                <TableCell align="center">
+                   <TextField id="commissionfees" name="commissionfees"  variant="standard" size="small" sx={{ backgroundColor: '#fcf6c7' }}/>
+                </TableCell>
                 <TableCell align="left">円</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>役務費</TableCell>
-                <TableCell align="right">0</TableCell>
+                <TableCell align="center">
+                   <TextField id="servicecosts" name="servicecosts"  variant="standard" size="small" sx={{ backgroundColor: '#fcf6c7' }}/>
+                </TableCell>
                 <TableCell align="left">円</TableCell>
                 <TableCell>需用費</TableCell>
-                <TableCell align="right">0</TableCell>
+                <TableCell align="center">
+                   <TextField id="supplycosts" name="supplycosts"  variant="standard" size="small" sx={{ backgroundColor: '#fcf6c7' }}/>
+                </TableCell>
                 <TableCell align="left">円</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>原材料費</TableCell>
-                <TableCell align="right">0</TableCell>
+                <TableCell style={{ width: 150 }}align="center">
+                   <TextField id="rawmaterialcosts" name="rawmaterialcosts"  variant="standard" size="small" sx={{ backgroundColor: '#fcf6c7' }}/>
+                </TableCell>
                 <TableCell align="left">円</TableCell>
                 <TableCell>執行予定額の合計</TableCell>
-                <TableCell align="right">0</TableCell>
+                <TableCell style={{ width: 150 }}align="center">
+                   <TextField id="total" name="total"  variant="standard" size="small" sx={{ backgroundColor: '#fcf6c7' }}/>
+                </TableCell>
                 <TableCell align="left">円</TableCell>
               </TableRow>
             </TableHead>
@@ -247,8 +323,7 @@ export default function JoinActivityForm() {
         </TableContainer>
       </Grid>
       {/* End Table */}
-
-
     </>
   );
 }
+export default JoinActivityForm;

@@ -1,57 +1,112 @@
-import { SetStateAction, useState } from "react";
-import { FormControl, Grid, InputLabel, MenuItem, Select, Typography, Box } from "@mui/material";
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { useEffect, useState } from "react";
+import { FormControl, Grid, Typography, Box, OutlinedInput, InputAdornment, TextField, TableContainer, Table, TableRow, TableHead, Paper, TableCell, TableBody, Checkbox} from "@mui/material";
+import React from "react";
 
-const columns: readonly GridColDef[] = [
-  {
-    field: 'Applicable',
-    headerName: '該当に',
-    width: 600,
-    editable: false,
-  },
-  {
-    field: 'expense1',
-    headerName: '',
-    width: 150,
-    editable: false,
-  },
-  {
-    field: 'expenseHead',
-    headerName: '事業費',
-    width: 120,
-    editable: false,
-  },
-  {
-    field: 'expense2',
-    headerName: '',
-    width: 150,
-    editable: false,
-  },
-];
+interface JoinActivityProps {
+  onActivityDataChange: (data: string, era: string, year: string, month: number, day: number) => void;
+}
+
+
 
 const rows = [
-  { id: 1, Applicable: '世代間交流等事業', expense1: '250千円以內', expense2: "100千円以內" },
-  { id: 2, Applicable: '異年齡児交流等事業', expense1: '250千円以內', expense2: "100千円以內" },
-  { id: 3, Applicable: '育児講座・育児と仕事両立支援', expense1: '250千円以內', expense2: "100千円以內" },
-  { id: 4, Applicable: '地域の特性に応じた保育需要への対応', expense1: '250千円以內', expense2: "100千円以內" },
+  { id: 1, name: '世代間交流等事業', limit1: '250千円以内', limit2: '100千円以内' },
+  { id: 2, name: '異年齢児交流等事業', limit1: '250千円以内', limit2: '100千円以内' },
+  { id: 3, name: '育児講座・育児と仕事両立支援', limit1: '250千円以内', limit2: '100千円以内' },
+  { id: 4, name: '地域の特性に応じた保育需要への対応', limit1: '250千円以内', limit2: '100千円以内' },
 ];
 
-export default function JoinActivity() {
-  const [era, setEra] = useState('');
+const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => {
+  const [selectedRows, setSelectedRows] = useState<number[]>([]); 
+  const [selectAll, setSelectAll] = useState(false);
+  const [formState, setFormState] = useState({
+    era: '',
+    year: '',
+    month: 0,
+    day: 0,
+    inputValue: ''
+  });
+  
 
-  const handleEraChange = (event: { target: { value: SetStateAction<string>; }; }) => {
-    setEra(event.target.value);
+  useEffect(() => {
+    // Update `selectAll` based on `selectedRows` and `rows`
+    setSelectAll(selectedRows.length === rows.length);
+  }, [selectedRows]);
+
+  const handleCheckboxChange = (id: number) => {
+    setSelectedRows((prevSelectedRows) =>
+      prevSelectedRows.includes(id)
+        ? prevSelectedRows.filter((rowId) => rowId !== id)
+        : [...prevSelectedRows, id]
+    );
+  };
+
+  const handleSelectAllChange = () => {
+    if (selectAll) {
+      setSelectedRows([]);
+    } else {
+      setSelectedRows(rows.map((row) => row.id));
+    }
+  };
+
+
+  useEffect(() => {
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth() + 1;
+    const currentDay = today.getDate();
+
+    let era = '';
+    let year = '';
+
+    if (currentYear >= 2019) {
+      era = '令和';
+      year = (currentYear - 2018).toString();
+    } else if (currentYear >= 1989) {
+      era = '平成';
+      year = (currentYear - 1988).toString();
+    } else if (currentYear >= 1926) {
+      era = '昭和';
+      year = (currentYear - 1925).toString();
+    } else {
+      era = '';
+      year = currentYear.toString();
+    }
+
+    setFormState(prevState => {
+      if (prevState.era !== era || prevState.year !== year || prevState.month !== currentMonth || prevState.day !== currentDay) {
+        const updatedState = {
+          era,
+          year,
+          month: currentMonth,
+          day: currentDay,
+          inputValue: prevState.inputValue
+        };
+        onActivityDataChange(prevState.inputValue, era, year, currentMonth, currentDay);
+        return updatedState;
+      }
+      return prevState;
+    });
+  }, [onActivityDataChange]);
+
+
+
+  const handleDateChange = (field: 'year' | 'month' | 'day' | 'era') => (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setFormState(prevState => {
+      const updatedValue = field === 'month' || field === 'day' ? Number(value) : value;
+      if (prevState[field] !== updatedValue) {
+        onActivityDataChange(prevState.inputValue, prevState.era, prevState.year, prevState.month, prevState.day);
+        return { ...prevState, [field]: updatedValue };
+      }
+      return prevState;
+    });
   };
 
   return (
     <>
-      {/* Start あて先 Grid */}
+  
       <Grid container spacing={2} className='pt-5'>
-        <Grid item xs={3} sm={2.5} md={3} lg={3}>
+        <Grid item xs={2} sm={2.5} md={3} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
             あて先 :
           </Typography>
@@ -62,7 +117,7 @@ export default function JoinActivity() {
           </Typography>
         </Grid>
         <Grid item xs={6} sm={1} md={3} lg={1} sx={{ ml: { xs: 0, sm: 0, md: 0, lg: -9 } }}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-start'>
+          <Typography fontWeight="bold" sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-start'>
             長
           </Typography>
         </Grid>
@@ -71,39 +126,66 @@ export default function JoinActivity() {
 
       {/* Start 日時 Grid */}
       <Grid container spacing={2} className='pt-5'>
-        <Grid item xs={3} sm={2.5} md={3} lg={3}>
+        <Grid item xs={2} sm={2.5} md={3} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
             日時 :
           </Typography>
         </Grid>
-        <Grid item xs={3.5} sm={2.5} md={2} lg={1.3}>
-          <FormControl size="small" fullWidth>
-            <InputLabel id="era-select-label">平成</InputLabel>
-            <Select
-              id="era-select"
-              labelId="era-select-label"
-              label="平成"
-              value={era}
-              onChange={handleEraChange}
+        <Grid item xs={2.4} sm={3} md={2} lg={1}>
+          <TextField
+            id="era-textfield"
+            label=""
+            value={formState.era}
+            onChange={handleDateChange('era')}
+            size='small'
+            sx={{ backgroundColor: "white" }}
+          />
+        </Grid>
+        <Grid item xs={2.5} sm={3} md={3} lg={1}>
+          <FormControl variant="outlined" size="small">
+            <OutlinedInput
+              id="year"
+              value={formState.year}
+              onChange={handleDateChange('year')}
+              endAdornment={<InputAdornment position="end">年</InputAdornment>}
+              aria-describedby="outlined-year-helper-text"
               sx={{ backgroundColor: "white" }}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={1}>昭和</MenuItem>
-              <MenuItem value={2}>平成</MenuItem>
-              <MenuItem value={3}>令和</MenuItem>
-            </Select>
+              inputProps={{
+                'aria-label': 'year',
+              }}
+            />
           </FormControl>
         </Grid>
-        <Grid item xs={6} sm={6} md={5} lg={5} sx={{ ml: { xs: 9.5, sm: -1.5, md: -3, lg:-3 },mt: { xs: -3, sm: -2, md: -2, lg:-2 } }}>
-        <LocalizationProvider dateAdapter={AdapterDayjs} >
-              <DemoContainer components={['DatePicker']}>
-                <DatePicker label="Select date" sx={{ backgroundColor: "white" }} className="scale-75"/>
-              </DemoContainer>
-            </LocalizationProvider>
+        <Grid item xs={2.5} sm={3} md={3} lg={1}>
+          <FormControl variant="outlined" size="small">
+            <OutlinedInput
+              id="month"
+              value={formState.month.toString()}
+              onChange={handleDateChange('month')}
+              endAdornment={<InputAdornment position="end">月</InputAdornment>}
+              aria-describedby="outlined-month-helper-text"
+              sx={{ backgroundColor: "white" }}
+              inputProps={{
+                'aria-label': 'month',
+              }}
+            />
+          </FormControl>
         </Grid>
-        
+        <Grid item xs={2.5} sm={3} md={3} lg={1}>
+          <FormControl variant="outlined" size="small">
+            <OutlinedInput
+              id="day"
+              value={formState.day.toString()}
+              onChange={handleDateChange('day')}
+              endAdornment={<InputAdornment position="end">日</InputAdornment>}
+              aria-describedby="outlined-day-helper-text"
+              sx={{ backgroundColor: "white" }}
+              inputProps={{
+                'aria-label': 'day',
+              }}
+            />
+          </FormControl>
+        </Grid>
       </Grid>
       {/* End 日時 Grid */}
 
@@ -149,22 +231,47 @@ export default function JoinActivity() {
 
       {/* Start Data Table */}
       <Box sx={{ height: 400, width: '100%', pt: 5 }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
-              },
-            },
-          }}
-          pageSizeOptions={[5]}
-          checkboxSelection
-          disableRowSelectionOnClick
-        />
+        <TableContainer component={Paper}>
+          <Table  aria-label="simple table" size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <Checkbox
+                    checked={selectAll}
+                    onChange={handleSelectAllChange}
+                    indeterminate={selectedRows.length > 0 && selectedRows.length < rows.length}
+                    size="small"
+                  />
+                </TableCell>
+                <TableCell>事業名</TableCell>
+                <TableCell>費用上限1</TableCell>
+                <TableCell>費用上限2</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell>
+                    <Checkbox
+                      checked={selectedRows.includes(row.id)}
+                      onChange={() => handleCheckboxChange(row.id)}
+                      size="small"
+                    />
+                  </TableCell>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.limit1}</TableCell>
+                  <TableCell>{row.limit2}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Box>
       {/* End Data Table */}
+
+    
     </>
   );
 }
+
+export default JoinActivity;
