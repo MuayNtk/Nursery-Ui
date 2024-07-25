@@ -66,6 +66,14 @@ import RateApplicationAddPages from "../pages/accounting/treatment/RateApplicati
 import RequestBenefitsAddPages from "../pages/accounting/treatment/RequestBenefitsAddPages";
 import EligiblePersonsAddPages from "../pages/accounting/treatment/EligiblePersonsAddPases";
 import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
+import EditInfoform from "../components/setting/EditInfoform"
+import ViewInfoform from "../components/setting/ViewInfoform"
+import EditInfoStaffForm from "../components/setting/EditInfoStaffForm"
+import ViewInfoStaffForm from "../components/setting/ViewInfoStaffForm"
+import EditOverallPlan from "../components/report/EditOverallPlan";
+import ViewOverallPlan from "../components/report/ViewOverallPlan"
+
+
 
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
@@ -333,7 +341,31 @@ const Router = createBrowserRouter([
       {
         path: "/infostaff/infostaffadd",
         element: <InfoStaffFormPages />
-      }
+      },
+      {
+        path: "/setting/info/edit/:pid",
+        element: <EditInfoform />
+      },
+      {
+        path: "/setting/info/view/:pid",
+        element: <ViewInfoform />
+      },
+      {
+        path: "/infostaff/edit/:pid",
+        element: <EditInfoStaffForm />
+      },
+      {
+        path: "/infostaff/view/:pid",
+        element: <ViewInfoStaffForm />
+      },
+      {
+        path: "/report/overallplan/edit/:pid",
+        element: <EditOverallPlan />
+      },
+      {
+        path: "/report/overallplan/view/:pid",
+        element: <ViewOverallPlan />
+      },
     ]
   },
 ]);

@@ -1,6 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import ContentMain from "../content/Content";
-import React from 'react';
-import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
+import { Button, Grid, IconButton, Typography, TextField } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,10 +13,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from 'react-router-dom';
 
 
 interface Column {
-  id: 'year' | 'age' | 'name' | 'detail';
+  id: 'pid' | 'year' | 'age' | 'name' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center' | 'left';
@@ -31,109 +32,112 @@ const columns: readonly Column[] = [
 ];
 
 interface Data {
+  pid: string;
   year: string;
   age: string;
   name: string;
   detail: JSX.Element;
 }
 
-function createData(
-  year: string,
-  age: string,
-  name: string,
-  detail: JSX.Element
-): Data {
-  return { year, age, name, detail };
-}
 
-// Example data (you can replace this with your actual data)
-const initialRows = [
-  createData('2024', '０ 歳', '(全体的な計画)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2024', '3 歳', '(全体的な計画)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2024', '4 歳', '(全体的な計画)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2023', '5  歳', '(全体的な計画)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2023', '2 歳', '(全体的な計画)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2023', '2 歳', '(全体的な計画)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
+const Overallplan: React.FC = () => {
+  const [data, setData] = useState<Data[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredRows, setFilteredRows] = useState<Data[]>([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const navigate = useNavigate();
 
-];
+  // Add sample data to sessionStorage if it doesn't already exist
+  useEffect(() => {
+    const initializeSampleData = () => {
+      const existingData = JSON.parse(sessionStorage.getItem('overallplanData') || '[]');
+      if (existingData.length === 0) {
+        const sampleData = [
+          { pid: '111' , year: '2024', age: '0 歳', name: '(全体的な計画)' },
+          { pid: '222' , year: '2024', age: '3 歳', name: '(全体的な計画)' },
+          { pid: '333' , year: '2024', age: '4 歳', name: '(全体的な計画)' },
+          { pid: '444' , year: '2023', age: '5 歳', name: '(全体的な計画)' },
+          { pid: '555' , year: '2023', age: '2 歳', name: '(全体的な計画)' },
+          { pid: '666' , year: '2023', age: '1 歳', name: '(全体的な計画)' },
+        ];
+        sessionStorage.setItem('overallplanData', JSON.stringify(sampleData));
+      }
+    };
+    initializeSampleData();
+  }, []);
 
-export default function Annualplan() {
+  useEffect(() => {
+    // Fetch data from sessionStorage
+    const fetchData = () => {
+      const storedData = JSON.parse(sessionStorage.getItem('overallplanData') || '[]');
+      const transformedData = storedData.map((item: any) => ({
+        pid: item.pid,
+        year: item.year,
+        age: item.age,
+        name: item.name,
+        goalsOfChildcare: item.goalsOfChildcare,
+        familiesAndCommunities: item.familiesAndCommunities,
+        maintenance: item.maintenance,
+        educate: item.educate,
+        healthy: item.healthy,
+        relationships: item.relationships,
+        healthy2: item.healthy2,
+        relationships2: item.relationships2,
+        healthy3: item.healthy3,
+        relationships3: item.relationships3,
+        safetyandhealth: item.safetyandhealth,
+        childcaresupport: item.childcaresupport,
+        hayakawaelementaryschool: item.hayakawaelementaryschool,
+        detail: (
+          <>
+            <IconButton
+              aria-label="edit"
+              size="small"
+              onClick={() => navigate(`/report/overallplan/edit/${item.pid}`)}
+            >
+              <EditIcon fontSize="small" className='text-sky-600' />
+            </IconButton>
+            <IconButton
+              aria-label="view"
+              size="small"
+              onClick={() => navigate(`/report/overallplan/view/${item.pid}`)}
+            >
+              <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              size="small"
+              onClick={() => {
+                const confirmDelete = window.confirm('Are you sure you want to delete this item?');
+                if (confirmDelete) {
+                  // Handle delete action
+                  setData(prevData => prevData.filter(data => data.pid !== item.pid));
+                  const updatedData = storedData.filter((data: any) => data.pid !== item.pid);
+                  sessionStorage.setItem('overallplanData', JSON.stringify(updatedData));
+                }
+              }}
+            >
+              <DeleteIcon fontSize="small" className='text-red-600' />
+            </IconButton>
+          </>
+        )
+      }));
+      setData(transformedData);
+    };
+    fetchData();
+  }, []);
 
-
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  useEffect(() => {
+    // Filtering rows based on search term
+    if (searchTerm === '') {
+      setFilteredRows(data);
+    } else {
+      setFilteredRows(data.filter(row =>
+        row.age.toLowerCase().includes(searchTerm.toLowerCase())
+      ));
+    }
+  }, [searchTerm, data]);
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -144,31 +148,13 @@ export default function Annualplan() {
     setPage(0);
   };
 
-  const [searchInput, setSearchInput] = React.useState('');
-  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
-  };
-
-  // Filtered rows based on search input and selected classroom
-  const filteredRows = initialRows.filter(row =>
-    row.year.toLowerCase().includes(searchInput.toLowerCase())
-  );
-
   return (
 
     <>
       <ContentMain>
-
         <Grid container spacing={2} className='pt-7' justifyContent="center">
           <Grid item xs={3} sm={4} md={2} lg={2}>
-            <TextField
-              id="outlined-search"
-              label="全"
-              type="search"
-              size="small"
-              onChange={handleSearchInputChange}
-              sx={{ bgcolor: 'white' }}
-            />
+          <TextField id="outlined-search" label="歳" type="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} sx={{ bgcolor: 'white' }} size="small" />
           </Grid>
           <Grid item xs={6} sm={4} md={3} lg={2}>
             <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
@@ -245,4 +231,6 @@ export default function Annualplan() {
       </ContentMain>
     </>
   );
+
 };
+export default Overallplan;
