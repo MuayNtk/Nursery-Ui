@@ -1,11 +1,21 @@
 import { Grid, Typography, TextField, Box, Button, TextareaAutosize, SelectChangeEvent, MenuItem, Select, InputLabel, FormControl, FormControlLabel, RadioGroup, Radio, IconButton, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import ContentMain from "../content/Content";
-import MonthForm from "../componentsform/MonthForm"
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import React from "react";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
+import { useNavigate } from "react-router-dom";
 
+interface FormData {
+  pid: string;
+  age: string;
+  month2: string;
+  children: string;
+  considerations: string;
+  evaluation_and_reflection: string;
+}
 
 interface Data {
   day: string;
@@ -79,7 +89,6 @@ const modalStyle = {
 
 
 export default function CareDiaryAdd() {
-
   const [rows, setRows] = useState<Data[]>(initialRows);
   const [open, setOpen] = useState(false);
   const [newEntry, setNewEntry] = useState<Omit<Data, 'detail'>>({
@@ -177,12 +186,6 @@ export default function CareDiaryAdd() {
     handleClose();
   };
 
-
-  const [selectedOption, setSelectedOption] = useState('');
-  const handleDropdownChange = (event: SelectChangeEvent) => {
-    setSelectedOption(event.target.value);
-  };
-
   const [day, setDay] = React.useState('');
 
   const handleDayChange = (event: SelectChangeEvent) => {
@@ -195,11 +198,57 @@ export default function CareDiaryAdd() {
     setMonth(event.target.value as string);
   };
 
-  return (
+  const [formData, setFormData] = useState<FormData>({
+    pid: '',
+    age: '',
+    children: '',
+    month2: '',
+    considerations: '',
+    evaluation_and_reflection: '',
+  });
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Set initial pid from sessionStorage or 1 if not present
+    const lastPid = JSON.parse(sessionStorage.getItem('lastPid') || '0');
+    const newPid = lastPid + 1;
+    setFormData((prevData) => ({
+      ...prevData,
+      pid: newPid.toString() // Ensure pid is a string
+    }));
+    sessionStorage.setItem('lastPid', JSON.stringify(newPid));
+  }, []);
+
+  const handleChange2 = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value
+    }));
+  };
+
+  const handleSelectChange2 = (e: SelectChangeEvent<string>, id: string) => {
+    const value = e.target.value;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit2 = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Save data to sessionStorage
+    const currentData = JSON.parse(sessionStorage.getItem('carediaryData') || '[]');
+    sessionStorage.setItem('carediaryData', JSON.stringify([...currentData, formData]));
+    // Remove old pid and set new pid
+    sessionStorage.setItem('lastPid', JSON.stringify(parseInt(formData.pid, 10) + 1));
+    navigate('/report/carediary');
+  };
+
+  return (
     <>
       <ContentMain className="flex flex-col min-h-screen">
-
         {/* Start Grid */}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-10 lg:pt-0">
           <Grid item xs={9} sm={7} md={5} lg={4} sx={{ ml: { xs: 0, sm: 0, md: 0, lg: 2 }, mt: { xs: -1, sm: -2, md: 5, lg: 4 } }}>
@@ -208,11 +257,12 @@ export default function CareDiaryAdd() {
                 <InputLabel id="demo-select-small-label">週ごとのプランを選択する</InputLabel>
                 <Select
                   labelId="demo-select-small-label"
-                  id="demo-select-small"
+                  id="age"
+                  name="age"
                   size="small"
                   label="週ごとのプランを選択する"
-                  value={selectedOption}
-                  onChange={handleDropdownChange}
+                  value={formData.age}
+                  onChange={(e) => handleSelectChange2(e, 'age')}
                   className="mb-5"
                   sx={{
                     backgroundColor: "white",
@@ -221,25 +271,20 @@ export default function CareDiaryAdd() {
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value="1">週案と保育日誌(未満児)0・1歳用</MenuItem>
-                  <MenuItem value="2">週案と保育日誌(未満児)1・2歳用</MenuItem>
+                  <MenuItem value="週案と保育日誌 (未満児) 0・1 歳用">週案と保育日誌 (未満児) 0・1 歳用</MenuItem>
+                  <MenuItem value="週案と保育日誌 (未満児) 1・2 歳用">週案と保育日誌 (未満児) 1・2 歳用</MenuItem>
                 </Select>
               </FormControl>
               <div>
-                {selectedOption === '1' &&
+                {formData.age && (
                   <Typography
                     component="div"
-                    sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}>
-                    週案と保育日誌(未満児)0・1歳用
+                    sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
+                    className='flex justify-start h-10 pt-2 pl-5'
+                  >
+                    {`${formData.age}`}
                   </Typography>
-                }
-                {selectedOption === '2' &&
-                  <Typography
-                    component="div"
-                    sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}>
-                    週案と保育日誌(未)1・2歲用
-                  </Typography>
-                }
+                )}
               </div>
             </div>
           </Grid>
@@ -249,7 +294,28 @@ export default function CareDiaryAdd() {
         {/* Start Grid */}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-10 lg:pt-10">
           <Grid item xs={2} sm={2} md={2} lg={1} sx={{ ml: { xs: 4, sm: 5, md: -1, lg: 10 } }}>
-            <MonthForm />
+            <FormControl sx={{ minWidth: 90 }} size="small">
+              <InputLabel id="month-select-label">月</InputLabel>
+              <Select
+                labelId="month-select-label"
+                id="month2"
+                value={formData.month2}
+                label="月"
+                onChange={(e) => handleSelectChange2(e, 'month2')}
+                sx={{
+                  backgroundColor: "white",
+                }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {Array.from({ length: 12 }, (_, i) => (
+                  <MenuItem key={i + 1} value={i + 1}>
+                    {i + 1} 月
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={7} sm={6.5} md={4} lg={4} >
             <Typography component="div" sx={{ fontSize: { xs: 12, sm: 12, md: 14, lg: 16, }, ml: { xs: 5, sm: -4, md: -9, lg: -10 } }} >
@@ -288,10 +354,11 @@ export default function CareDiaryAdd() {
           </Grid>
           <Grid item xs={4} sm={1} md={1} lg={1} sx={{ ml: { xs: 5, sm: -8, md: -3, lg: -5 } }}>
             <TextareaAutosize
-              id="emotional-input"
-              name="emotional-input"
+              id="children"
+              name="children"
               minRows={3}
               maxRows={100}
+              onChange={handleChange2}
               className="w-56 sm:w-60 lg:w-96 border border-gray-300"
             />
           </Grid>
@@ -307,10 +374,11 @@ export default function CareDiaryAdd() {
           </Grid>
           <Grid item xs={4} sm={1} md={1} lg={1} sx={{ ml: { xs: 5, sm: -8, md: -3, lg: -5 } }}>
             <TextareaAutosize
-              id="emotional-input"
-              name="emotional-input"
+              id="considerations"
+              name="considerations"
               minRows={3}
               maxRows={100}
+              onChange={handleChange2}
               className="w-56 sm:w-60 lg:w-96 border border-gray-300"
             />
           </Grid>
@@ -321,7 +389,6 @@ export default function CareDiaryAdd() {
             <Button
               variant="contained"
               onClick={handleOpen}
-
             >
               Add
             </Button>
@@ -488,7 +555,7 @@ export default function CareDiaryAdd() {
                 </Grid>
               </Grid>
               <Grid item xs={12} sm={3} md={6}>
-                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 ' sx={{ marginLeft: { xs: "-15px", sm: "-18px", md:-15, lg: -5 } }}>
+                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 ' sx={{ marginLeft: { xs: "-15px", sm: "-18px", md: -15, lg: -5 } }}>
                   <Grid item xs={7.5} sm={4} md={8.5} lg={12} className="text-start">
                     <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
                       排泄
@@ -506,11 +573,6 @@ export default function CareDiaryAdd() {
                 </Grid>
               </Grid>
             </Grid>
-
-
-
-
-
 
             <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
               睡眠
@@ -573,10 +635,6 @@ export default function CareDiaryAdd() {
           </Box>
         </Modal>
 
-
-
-
-
         {/* Start Grid */}
         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10' sx={{ ml: { xs: 1, sm: 0, md: -2, lg: -2 } }}>
           <Grid item xs={4} sm={3} md={3} lg={3}>
@@ -586,10 +644,11 @@ export default function CareDiaryAdd() {
           </Grid>
           <Grid item xs={12} sm={5} md={1} lg={1} sx={{ ml: { xs: -5, sm: -1, md: -3, lg: -5 }, pb: 3 }}>
             <TextareaAutosize
-              id="emotional-input"
-              name="emotional-input"
+              id="evaluation_and_reflection"
+              name="evaluation_and_reflection"
               minRows={3}
               maxRows={100}
+              onChange={handleChange2}
               className="w-56 sm:w-60 lg:w-96 border border-gray-300"
             />
           </Grid>
@@ -636,7 +695,6 @@ export default function CareDiaryAdd() {
         </Grid>
         {/* End Grid */}
 
-
         {/* Start Grid */}
         <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 lg:pt-3">
           <Grid item xs={5} sm={3} md={3} lg={3} >
@@ -655,17 +713,17 @@ export default function CareDiaryAdd() {
             </Typography>
           </Grid>
         </Grid>
-        <div className="mt-auto ">
-          <Grid container justifyContent="center" spacing={2} className='pt-9' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+        <div className="mt-auto">
+          <Grid container justifyContent="center" spacing={2} className='pt-12' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
             <Grid item>
-              <Button variant="contained" href="/report/overallplan" size='small' className='text-center'>
+              <Button variant="contained" href="/report/carediary" size='medium' className='text-center' startIcon={<ArrowBackIcon />} color="warning">
                 <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
                   戻る
                 </Typography>
               </Button>
             </Grid>
             <Grid item>
-              <Button variant="contained" href="#" size='small' className='text-center'>
+              <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success" onClick={handleSubmit2} >
                 <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
                   修正
                 </Typography>
@@ -673,8 +731,6 @@ export default function CareDiaryAdd() {
             </Grid>
           </Grid>
         </div>
-
-
       </ContentMain>
     </>
   );
