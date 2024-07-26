@@ -1,12 +1,25 @@
-import { useEffect, useState } from "react";
-import { FormControl, Grid, Typography, Box, OutlinedInput, InputAdornment, TextField, TableContainer, Table, TableRow, TableHead, Paper, TableCell, TableBody, Checkbox} from "@mui/material";
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import {
+  FormControl,
+  Grid,
+  Typography,
+  Box,
+  OutlinedInput,
+  InputAdornment,
+  TextField,
+  TableContainer,
+  Table,
+  TableRow,
+  TableHead,
+  Paper,
+  TableCell,
+  TableBody,
+  Checkbox
+} from "@mui/material";
 
 interface JoinActivityProps {
-  onActivityDataChange: (data: string, era: string, year: string, month: number, day: number) => void;
+  onActivityDataChange: (data: { id: number; name: string; limit1: string; limit2: string }[], era: string, year: string, month: number, day: number) => void;
 }
-
-
 
 const rows = [
   { id: 1, name: '世代間交流等事業', limit1: '250千円以内', limit2: '100千円以内' },
@@ -16,7 +29,7 @@ const rows = [
 ];
 
 const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => {
-  const [selectedRows, setSelectedRows] = useState<number[]>([]); 
+  const [selectedRows, setSelectedRows] = useState<{ id: number; name: string; limit1: string; limit2: string }[]>([]);
   const [selectAll, setSelectAll] = useState(false);
   const [formState, setFormState] = useState({
     era: '',
@@ -25,29 +38,35 @@ const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => 
     day: 0,
     inputValue: ''
   });
-  
 
-  useEffect(() => {
-    // Update `selectAll` based on `selectedRows` and `rows`
-    setSelectAll(selectedRows.length === rows.length);
-  }, [selectedRows]);
+  const handleCheckboxChange = useCallback((id: number) => {
+    setSelectedRows(prevSelected => {
+      const row = rows.find(row => row.id === id);
+      if (!row) return prevSelected;
+      if (prevSelected.find(selected => selected.id === id)) {
+        return prevSelected.filter(selected => selected.id !== id);
+      } else {
+        return [...prevSelected, row];
+      }
+    });
+  }, []);
 
-  const handleCheckboxChange = (id: number) => {
-    setSelectedRows((prevSelectedRows) =>
-      prevSelectedRows.includes(id)
-        ? prevSelectedRows.filter((rowId) => rowId !== id)
-        : [...prevSelectedRows, id]
-    );
-  };
-
-  const handleSelectAllChange = () => {
+  const handleSelectAllChange = useCallback(() => {
     if (selectAll) {
       setSelectedRows([]);
     } else {
-      setSelectedRows(rows.map((row) => row.id));
+      setSelectedRows(rows);
     }
-  };
+    setSelectAll(!selectAll);
+  }, [selectAll]);
 
+  const handleDateChange = useCallback((field: 'era' | 'year' | 'month' | 'day') => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const value = field === 'month' || field === 'day' ? Number(event.target.value) : event.target.value;
+    setFormState(prevState => ({
+      ...prevState,
+      [field]: value
+    }));
+  }, []);
 
   useEffect(() => {
     const today = new Date();
@@ -72,39 +91,21 @@ const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => 
       year = currentYear.toString();
     }
 
-    setFormState(prevState => {
-      if (prevState.era !== era || prevState.year !== year || prevState.month !== currentMonth || prevState.day !== currentDay) {
-        const updatedState = {
-          era,
-          year,
-          month: currentMonth,
-          day: currentDay,
-          inputValue: prevState.inputValue
-        };
-        onActivityDataChange(prevState.inputValue, era, year, currentMonth, currentDay);
-        return updatedState;
-      }
-      return prevState;
-    });
-  }, [onActivityDataChange]);
+    setFormState(prevState => ({
+      ...prevState,
+      era,
+      year,
+      month: currentMonth,
+      day: currentDay,
+    }));
 
+    setSelectAll(selectedRows.length === rows.length);
+    onActivityDataChange(selectedRows, era, year, currentMonth, currentDay);
 
-
-  const handleDateChange = (field: 'year' | 'month' | 'day' | 'era') => (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setFormState(prevState => {
-      const updatedValue = field === 'month' || field === 'day' ? Number(value) : value;
-      if (prevState[field] !== updatedValue) {
-        onActivityDataChange(prevState.inputValue, prevState.era, prevState.year, prevState.month, prevState.day);
-        return { ...prevState, [field]: updatedValue };
-      }
-      return prevState;
-    });
-  };
+  }, [selectedRows]);
 
   return (
     <>
-  
       <Grid container spacing={2} className='pt-5'>
         <Grid item xs={2} sm={2.5} md={3} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
@@ -122,9 +123,7 @@ const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => 
           </Typography>
         </Grid>
       </Grid>
-      {/* End あて先 Grid */}
-
-      {/* Start 日時 Grid */}
+      
       <Grid container spacing={2} className='pt-5'>
         <Grid item xs={2} sm={2.5} md={3} lg={3}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
@@ -187,9 +186,7 @@ const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => 
           </FormControl>
         </Grid>
       </Grid>
-      {/* End 日時 Grid */}
 
-      {/* Start 保育所(園)名 Grid */}
       <Grid container spacing={2} className='pt-4'>
         <Grid item xs={3.2} sm={3} md={3} lg={3} sx={{ ml: { xs: -0.5, sm: -2.5, md: 0, lg: 0 } }}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
@@ -207,9 +204,7 @@ const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => 
           </Typography>
         </Grid>
       </Grid>
-      {/* End 保育所(園)名 Grid */}
 
-      {/* Start 法人名代表者氏名名 Grid */}
       <Grid container spacing={2} className='pt-4'>
         <Grid item xs={3.2} sm={3} md={3} lg={3} sx={{ ml: { xs: -0.5, sm: -2.5, md: 0, lg: 0 } }}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-end'>
@@ -227,12 +222,10 @@ const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => 
           </Typography>
         </Grid>
       </Grid>
-      {/* End 法人名代表者氏名名 Grid */}
 
-      {/* Start Data Table */}
       <Box sx={{ height: 400, width: '100%', pt: 5 }}>
         <TableContainer component={Paper}>
-          <Table  aria-label="simple table" size="small">
+          <Table aria-label="simple table" size="small">
             <TableHead>
               <TableRow>
                 <TableCell>
@@ -253,7 +246,7 @@ const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => 
                 <TableRow key={row.id}>
                   <TableCell>
                     <Checkbox
-                      checked={selectedRows.includes(row.id)}
+                      checked={selectedRows.some(selected => selected.id === row.id)}
                       onChange={() => handleCheckboxChange(row.id)}
                       size="small"
                     />
@@ -267,11 +260,8 @@ const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => 
           </Table>
         </TableContainer>
       </Box>
-      {/* End Data Table */}
-
-    
     </>
   );
-}
+};
 
 export default JoinActivity;
