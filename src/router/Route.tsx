@@ -66,14 +66,14 @@ import RateApplicationAddPages from "../pages/accounting/treatment/RateApplicati
 import RequestBenefitsAddPages from "../pages/accounting/treatment/RequestBenefitsAddPages";
 import EligiblePersonsAddPages from "../pages/accounting/treatment/EligiblePersonsAddPases";
 import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
-import EditInfoform from "../components/setting/EditInfoform"
-import ViewInfoform from "../components/setting/ViewInfoform"
-import EditInfoStaffForm from "../components/setting/EditInfoStaffForm"
-import ViewInfoStaffForm from "../components/setting/ViewInfoStaffForm"
+import EditInfoform from "../components/setting/EditInfoform";
+import ViewInfoform from "../components/setting/ViewInfoform";
+import EditInfoStaffForm from "../components/setting/EditInfoStaffForm";
+import ViewInfoStaffForm from "../components/setting/ViewInfoStaffForm";
 import EditOverallPlan from "../components/report/EditOverallPlan";
-import ViewOverallPlan from "../components/report/ViewOverallPlan"
-
-
+import ViewOverallPlan from "../components/report/ViewOverallPlan";
+import EditAnnualplan from "../components/report/EditAnnualplan";
+import ViewAnnualplan from "../components/report/ViewAnnualplan";
 
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
@@ -365,6 +365,14 @@ const Router = createBrowserRouter([
       {
         path: "/report/overallplan/view/:pid",
         element: <ViewOverallPlan />
+      },
+      {
+        path: "/report/annualplan/edit/:pid",
+        element: <EditAnnualplan />
+      },
+      {
+        path: "/report/annualplan/view/:pid",
+        element: <ViewAnnualplan />
       },
     ]
   },
