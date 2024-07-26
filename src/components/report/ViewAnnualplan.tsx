@@ -29,6 +29,7 @@ const ViewInfoStaff: React.FC = () => {
                                 size="small"
                                 value={item.age}
                                 className="mb-5"
+                                sx={{ backgroundColor: '#F5F5F5' }}
                             >
                                 <MenuItem value="">
                                     <em>None</em>
