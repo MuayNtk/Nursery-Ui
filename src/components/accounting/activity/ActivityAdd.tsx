@@ -39,15 +39,28 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   },
 }));
 
+interface ActivityData {
+  id: number;
+  name: string;
+  limit1: string;
+  limit2: string;
+}
+
 export default function ActivityAdd() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completedSteps, setCompletedSteps] = React.useState<number[]>([]);
-  const [activityData, setActivityData] = React.useState('');
-  const [era, setEra] = React.useState('');
-  const [year, setYear] = React.useState('');
-  const [month, setMonth] = React.useState(0);
-  const [day, setDay] = React.useState(0);
+  const [activityData, setActivityData] = React.useState<ActivityData[]>([]);
+  const [era, setEra] = React.useState<string>('');
+  const [year, setYear] = React.useState<string>('');
+  const [month, setMonth] = React.useState<number>(0);
+  const [day, setDay] = React.useState<number>(0);
   const navigate = useNavigate();
+  const [formData, setFormData] = React.useState<Record<string, number>>({});
+
+  const handleFormDataChange = (newData: Record<string, number>) => {
+    setFormData(newData);
+  };
+
 
   const handleNext = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -55,27 +68,28 @@ export default function ActivityAdd() {
       navigate('/accounting/activity');
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      setCompletedSteps([...completedSteps, activeStep]);
+      setCompletedSteps((prevCompletedSteps) => [...prevCompletedSteps, activeStep]);
     }
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    setCompletedSteps(completedSteps.filter(step => step !== activeStep));
+    setCompletedSteps((prevCompletedSteps) => prevCompletedSteps.filter(step => step !== activeStep));
   };
 
-  const handleActivityDataChange = (data: string, era: string, year: string, month: number, day: number) => {
+  const handleActivityDataChange = (data: ActivityData[], era: string, year: string, month: number, day: number) => {
     console.log('Received era:', era);
     console.log('Received year:', year);
     console.log('Received month:', month);
     console.log('Received day:', day);
+    console.log('Selected Rows:', data);
+  
+    // Updating state
     setEra(era);
     setYear(year);
     setMonth(month);
     setDay(day);
-     setActivityData(data);
-    // Assuming JoinActivity handles era, year, month, day as well
-    // You may need to update these state variables based on data
+    setActivityData(data);
   };
 
   const getStepLabelComponent = (index: number) => {
@@ -85,7 +99,7 @@ export default function ActivityAdd() {
       color: isActive ? '#2196F3' : isCompleted ? '#4CAF50' : 'inherit',
     };
     return (
-      <StepLabel StepIconProps={{ style: stepIconStyle }} />
+      <StepLabel StepIconProps={{ style: stepIconStyle }}></StepLabel>
     );
   };
 
@@ -101,16 +115,17 @@ export default function ActivityAdd() {
             month={month}
             day={day}
             activityData={activityData}
-            
+            onFormDataChange={handleFormDataChange} 
           />
         );
       case 2:
-        return <JoinActivitySum />;
+        return <JoinActivitySum  formData={formData} activityData={activityData}/>;
       default:
         return 'Unknown step';
     }
   };
 
+  
   return (
     <ContentMain className="flex flex-col min-h-screen">
       <Stepper activeStep={activeStep} connector={<ColorlibConnector />} className='mt-7'>
@@ -138,7 +153,7 @@ export default function ActivityAdd() {
                 color="warning"
                 disabled={activeStep === 0}
                 onClick={handleBack}
-                sx={{ mr: 1, color: 'white', }}
+                sx={{ mr: 1, color: 'white' }}
               >
                 戻る
               </Button>
