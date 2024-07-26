@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Grid, Paper, Table, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 
 interface ActivityData {
   id: number;
@@ -9,12 +9,28 @@ interface ActivityData {
 }
 
 interface JoinActivitySumProps {
-  formData: Record<string, number>;
+  formData: Record<string, string | number>;
   activityData: ActivityData[];
 }
 
 const JoinActivitySum: React.FC<JoinActivitySumProps> = ({ formData, activityData }) => {
-  const totalSum = Object.values(formData).reduce((sum, value) => sum + value, 0);
+  // Define fields to sum
+  const fieldsToSum = [
+    'rent', 'equipment', 'honoraria', 'usagefees', 'travelexpenses',
+    'commissionfees', 'servicecosts', 'supplycosts', 'rawmaterialcosts'
+  ];
+
+  // Calculate total for each activity
+  const activityTotals = activityData.reduce((totals, data) => {
+    totals[data.id] = fieldsToSum.reduce((total, field) => {
+      const value = formData[`${field}-${data.id}`];
+      return total + (typeof value === 'number' ? value : Number(value) || 0);
+    }, 0);
+    return totals;
+  }, {} as Record<number, number>);
+
+  // Calculate grand total
+  const totalSum = Object.values(activityTotals).reduce((sum, value) => sum + value, 0);
   const activityCount = activityData.length;
   const activityIds = activityData.map(data => data.id);
   const circledNumbers: { [key: number]: string } = {
@@ -26,40 +42,19 @@ const JoinActivitySum: React.FC<JoinActivitySumProps> = ({ formData, activityDat
 
   const cellCount = 4;
 
-
   return (
     <>
-      {/* Display activity data */}
-      {activityData.map(data => (
+      {/* {activityData.map(data => (
         <div key={data.id} className='mt-7'>
           (ID: {data.id}, {data.name} {data.limit1} - {data.limit2})
         </div>
-
- 
       ))}
 
-      {/* Display formData */}
-      <div className="mt-7">
-        <Typography variant="h6">Form Data:</Typography>
-        <TableContainer component={Paper} className="mt-5">
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Key</TableCell>
-                <TableCell>Value</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {Object.entries(formData).map(([key, value]) => (
-                <TableRow key={key}>
-                  <TableCell>{key}</TableCell>
-                  <TableCell>{value.toLocaleString()}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
+      {Object.entries(formData).map(([key, value]) => (
+        <div key={key} className='mt-7'>
+         {key}: {value}
+        </div>
+      ))} */}
 
       {/* Start Table */}
       <Grid container className='pt-3' justifyContent="center">

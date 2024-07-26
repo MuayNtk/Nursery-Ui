@@ -55,9 +55,9 @@ export default function ActivityAdd() {
   const [month, setMonth] = React.useState<number>(0);
   const [day, setDay] = React.useState<number>(0);
   const navigate = useNavigate();
-  const [formData, setFormData] = React.useState<Record<string, number>>({});
+  const [formData, setFormData] = React.useState<Record<string, string | number>>({});
 
-  const handleFormDataChange = (newData: Record<string, number>) => {
+  const handleFormDataChange = (newData: Record<string, string | number>) => {
     setFormData(newData);
   };
 
