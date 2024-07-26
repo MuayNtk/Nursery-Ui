@@ -42,8 +42,12 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
 export default function ActivityAdd() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completedSteps, setCompletedSteps] = React.useState<number[]>([]);
+  const [activityData, setActivityData] = React.useState('');
+  const [era, setEra] = React.useState('');
+  const [year, setYear] = React.useState('');
+  const [month, setMonth] = React.useState(0);
+  const [day, setDay] = React.useState(0);
   const navigate = useNavigate();
-
 
   const handleNext = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -60,25 +64,46 @@ export default function ActivityAdd() {
     setCompletedSteps(completedSteps.filter(step => step !== activeStep));
   };
 
+  const handleActivityDataChange = (data: string, era: string, year: string, month: number, day: number) => {
+    console.log('Received era:', era);
+    console.log('Received year:', year);
+    console.log('Received month:', month);
+    console.log('Received day:', day);
+    setEra(era);
+    setYear(year);
+    setMonth(month);
+    setDay(day);
+     setActivityData(data);
+    // Assuming JoinActivity handles era, year, month, day as well
+    // You may need to update these state variables based on data
+  };
+
   const getStepLabelComponent = (index: number) => {
     const isActive = index === activeStep;
     const isCompleted = completedSteps.includes(index);
     const stepIconStyle = {
       color: isActive ? '#2196F3' : isCompleted ? '#4CAF50' : 'inherit',
     };
-  return (
-      <StepLabel StepIconProps={{ style: stepIconStyle }}>
-           {/* {steps[index]}  */}
-      </StepLabel>
+    return (
+      <StepLabel StepIconProps={{ style: stepIconStyle }} />
     );
   };
 
   const getStepContent = (step: number) => {
     switch (step) {
       case 0:
-        return <JoinActivity />;
+        return <JoinActivity onActivityDataChange={handleActivityDataChange} />;
       case 1:
-        return <JoinActivityForm />;
+        return (
+          <JoinActivityForm
+            era={era}
+            year={year}
+            month={month}
+            day={day}
+            activityData={activityData}
+            
+          />
+        );
       case 2:
         return <JoinActivitySum />;
       default:
@@ -87,8 +112,7 @@ export default function ActivityAdd() {
   };
 
   return (
-    <>
-     <ContentMain  className="flex flex-col min-h-screen">
+    <ContentMain className="flex flex-col min-h-screen">
       <Stepper activeStep={activeStep} connector={<ColorlibConnector />} className='mt-7'>
         {steps.map((label, index) => (
           <Step key={label}>
@@ -101,21 +125,20 @@ export default function ActivityAdd() {
           All steps completed - you&apos;re finished
         </Typography>
       ) : (
-        
         <React.Fragment>
           <Box sx={{ mt: 2, mb: 1 }}>
             {getStepContent(activeStep)}
           </Box>
-          <div className="mt-auto" >
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, gap: 2 }} justifyContent="center" >
+          <div className="mt-auto">
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, gap: 2 }} justifyContent="center">
               <Button
                 variant="contained"
                 size='medium'
-                startIcon={<ArrowBackIcon />}  
+                startIcon={<ArrowBackIcon />}
                 color="warning"
                 disabled={activeStep === 0}
                 onClick={handleBack}
-                sx={{ mr: 1 ,color: 'white',}}
+                sx={{ mr: 1, color: 'white', }}
               >
                 戻る
               </Button>
@@ -123,7 +146,7 @@ export default function ActivityAdd() {
                 variant="contained"
                 onClick={handleNext}
                 size='medium'
-                startIcon={<SaveIcon />} 
+                startIcon={<SaveIcon />}
                 color="success"
                 sx={{
                   backgroundColor: activeStep === steps.length - 1 ? '#41b146' : '#f7b941',
@@ -139,7 +162,6 @@ export default function ActivityAdd() {
           </div>
         </React.Fragment>
       )}
-      </ContentMain>
-    </>
+    </ContentMain>
   );
 }

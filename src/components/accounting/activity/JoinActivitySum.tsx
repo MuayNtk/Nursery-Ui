@@ -1,7 +1,7 @@
 import { Grid, Paper, Table, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 
 
-export default function JoinActivityForm() {
+export default function JoinActivitySum() {
 
   return (
     <>
