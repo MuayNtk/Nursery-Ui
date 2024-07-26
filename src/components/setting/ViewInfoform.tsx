@@ -5,9 +5,9 @@ import ContentMain from '../content/Content';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const ViewInfo: React.FC = () => {
-    const { schoolNumber } = useParams<{ schoolNumber: string }>();
+    const { pid } = useParams<{ pid: string }>();
     const storedData = JSON.parse(sessionStorage.getItem('data') || '[]');
-    const item = storedData.find((data: any) => data.schoolNumber === schoolNumber);
+    const item = storedData.find((data: any) => data.pid === pid);
 
     if (!item) {
         return <Typography variant="h6">No data found</Typography>;

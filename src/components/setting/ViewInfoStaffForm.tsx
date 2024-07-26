@@ -5,9 +5,9 @@ import ContentMain from '../content/Content';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const ViewInfoStaff: React.FC = () => {
-    const { fullname } = useParams<{ fullname: string }>();
+    const { pid } = useParams<{ pid: string }>();
     const storedData = JSON.parse(sessionStorage.getItem('staffData') || '[]');
-    const item = storedData.find((data: any) => data.fullname === fullname);
+    const item = storedData.find((data: any) => data.pid === pid);
 
     if (!item) {
         return <Typography variant="h6">No data found</Typography>;
@@ -186,15 +186,15 @@ const ViewInfoStaff: React.FC = () => {
                     </Grid>
                 </Grid>
             </Grid>
-                <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
-                    <Grid item>
-                        <Button variant="contained" href="/infostaff" size='medium' className='text-center' startIcon={<ArrowBackIcon />} color="warning">
-                            <Typography component="div" style={{ color: '#F5F5F5', alignItems: 'center' }}>
-                                戻る
-                            </Typography>
-                        </Button>
-                    </Grid>
+            <Grid container justifyContent="center" spacing={2} className='pt-5' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
+                <Grid item>
+                    <Button variant="contained" href="/infostaff" size='medium' className='text-center' startIcon={<ArrowBackIcon />} color="warning">
+                        <Typography component="div" style={{ color: '#F5F5F5', alignItems: 'center' }}>
+                            戻る
+                        </Typography>
+                    </Button>
                 </Grid>
+            </Grid>
         </ContentMain>
     );
 };

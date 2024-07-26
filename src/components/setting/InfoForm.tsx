@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, TextField, Grid, Typography } from '@mui/material';
 import ContentMain from '../content/Content';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
 
 interface FormData {
+      pid: string;
       city: string;
       schoolNumber: string;
       facilityName: string;
@@ -22,6 +23,7 @@ interface FormData {
 
 const InfoForm: React.FC = () => {
       const [formData, setFormData] = useState<FormData>({
+            pid: '',
             city: '',
             schoolNumber: '',
             facilityName: '',
@@ -37,6 +39,17 @@ const InfoForm: React.FC = () => {
       });
       const navigate = useNavigate();
 
+      useEffect(() => {
+            // Set initial pid from sessionStorage or 1 if not present
+            const lastPid = JSON.parse(sessionStorage.getItem('lastPid') || '0');
+            const newPid = lastPid + 1;
+            setFormData((prevData) => ({
+                  ...prevData,
+                  pid: newPid.toString() // Ensure pid is a string
+            }));
+            sessionStorage.setItem('lastPid', JSON.stringify(newPid));
+      }, []);
+
       const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const { id, value } = e.target;
             setFormData((prevData) => ({
@@ -50,6 +63,8 @@ const InfoForm: React.FC = () => {
             // Save data to sessionStorage
             const currentData = JSON.parse(sessionStorage.getItem('data') || '[]');
             sessionStorage.setItem('data', JSON.stringify([...currentData, formData]));
+            // Remove old pid and set new pid
+            sessionStorage.setItem('lastPid', JSON.stringify(parseInt(formData.pid, 10) + 1));
             navigate('/setting/info');
       };
 

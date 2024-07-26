@@ -17,7 +17,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 
 interface Column {
-  id: 'dep' | 'furigana' | 'fullname' | 'gender' | 'era' | 'year' | 'month' | 'day' | 'detail';
+  id: 'pid' | 'dep' | 'furigana' | 'fullname' | 'gender' | 'era' | 'year' | 'month' | 'day' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center';
@@ -36,6 +36,7 @@ const columns: readonly Column[] = [
 ];
 
 interface Data {
+  pid: string;
   dep: string;
   furigana: string;
   fullname: string;
@@ -61,9 +62,9 @@ const InfoStaffList: React.FC = () => {
       const existingData = JSON.parse(sessionStorage.getItem('staffData') || '[]');
       if (existingData.length === 0) {
         const sampleData = [
-          { dep: 'Manager', furigana: 'ふりがな', fullname: '田中 太郎', gender: '男', era: '昭和', year: '10', month: '1', day: '1', detail: '' },
-          { dep: 'Staff', furigana: 'フリガナ', fullname: '山田 花子', gender: '女', era: '平成', year: '10', month: '12', day: '20', detail: '' },
-          { dep: 'Staff', furigana: 'ふじさん', fullname: 'さくら 佐藤 ', gender: '女', era: '平成', year: '10', month: '11', day: '25', detail: '' },
+          { pid: '111' , dep: 'Manager', furigana: 'ふりがな', fullname: '田中 太郎', gender: '男', era: '昭和', year: '10', month: '1', day: '1', detail: '' },
+          { pid: '222' , dep: 'Staff', furigana: 'フリガナ', fullname: '山田 花子', gender: '女', era: '平成', year: '10', month: '12', day: '20', detail: '' },
+          { pid: '333' , dep: 'Staff', furigana: 'ふじさん', fullname: 'さくら 佐藤 ', gender: '女', era: '平成', year: '10', month: '11', day: '25', detail: '' },
         ];
         sessionStorage.setItem('staffData', JSON.stringify(sampleData));
       }
@@ -76,6 +77,7 @@ const InfoStaffList: React.FC = () => {
     const fetchData = () => {
       const storedData = JSON.parse(sessionStorage.getItem('staffData') || '[]');
       const transformedData = storedData.map((item: any) => ({
+        pid: item.pid,
         dep: item.dep,
         furigana: item.furigana,
         fullname: item.fullname,
@@ -89,14 +91,14 @@ const InfoStaffList: React.FC = () => {
             <IconButton
               aria-label="edit"
               size="small"
-              onClick={() => navigate(`/infostaff/edit/${item.fullname}`)}
+              onClick={() => navigate(`/infostaff/edit/${item.pid}`)}
             >
               <EditIcon fontSize="small" className='text-sky-600' />
             </IconButton>
             <IconButton
               aria-label="view"
               size="small"
-              onClick={() => navigate(`/infostaff/view/${item.fullname}`)}
+              onClick={() => navigate(`/infostaff/view/${item.pid}`)}
             >
               <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
             </IconButton>
@@ -107,8 +109,8 @@ const InfoStaffList: React.FC = () => {
                 const confirmDelete = window.confirm('Are you sure you want to delete this item?');
                 if (confirmDelete) {
                   // Handle delete action
-                  setData(prevData => prevData.filter(data => data.fullname !== item.fullname));
-                  const updatedData = storedData.filter((data: any) => data.fullname !== item.fullname);
+                  setData(prevData => prevData.filter(data => data.pid !== item.pid));
+                  const updatedData = storedData.filter((data: any) => data.pid !== item.pid);
                   sessionStorage.setItem('staffData', JSON.stringify(updatedData));
                 }
               }}

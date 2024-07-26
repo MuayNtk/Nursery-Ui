@@ -17,7 +17,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 
 interface Column {
-  id: 'city' | 'schoolNumber' | 'facilityName' | 'detail';
+  id: 'pid' | 'city' | 'schoolNumber' | 'facilityName' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center';
@@ -31,6 +31,7 @@ const columns: readonly Column[] = [
 ];
 
 interface Data {
+  pid: string;
   city: string;
   schoolNumber: string;
   facilityName: string;
@@ -52,9 +53,9 @@ const InformationList: React.FC = () => {
       const existingData = JSON.parse(sessionStorage.getItem('data') || '[]');
       if (existingData.length === 0) {
         const sampleData = [
-          { city: 'Tokyo', schoolNumber: '566', facilityName: 'Tokyo Nursery', detail: '' },
-          { city: 'Osaka', schoolNumber: '999', facilityName: 'Osaka Nursery', detail: '' },
-          { city: 'Saitama', schoolNumber: '123', facilityName: 'Saitama Nursery', detail: '' },
+          { pid: '111' , city: 'Tokyo', schoolNumber: '566', facilityName: 'Tokyo Nursery', detail: '' },
+          { pid: '222' , city: 'Osaka', schoolNumber: '999', facilityName: 'Osaka Nursery', detail: '' },
+          { pid: '333' , city: 'Saitama', schoolNumber: '123', facilityName: 'Saitama Nursery', detail: '' },
         ];
         sessionStorage.setItem('data', JSON.stringify(sampleData));
       }
@@ -67,22 +68,32 @@ const InformationList: React.FC = () => {
     const fetchData = () => {
       const storedData = JSON.parse(sessionStorage.getItem('data') || '[]');
       const transformedData = storedData.map((item: any) => ({
+        pid: item.pid,
         city: item.city,
         schoolNumber: item.schoolNumber,
         facilityName: item.facilityName,
+        corporationName: item.corporationName,
+        corporationAddress1: item.corporationAddress1,
+        corporationAddress2: item.corporationAddress2,
+        corporationAddress3: item.corporationAddress3,
+        nurseryAddress1: item.nurseryAddress1,
+        nurseryAddress2: item.nurseryAddress2,
+        nurseryAddress3: item.nurseryAddress3,
+        contactPhone: item.contactPhone,
+        contactEmail: item.contactEmail,
         detail: (
           <>
             <IconButton 
               aria-label="edit" 
               size="small" 
-              onClick={() => navigate(`/setting/info/edit/${item.schoolNumber}`)} 
+              onClick={() => navigate(`/setting/info/edit/${item.pid}`)} 
             >
               <EditIcon fontSize="small" className='text-sky-600' />
             </IconButton>
             <IconButton 
               aria-label="view" 
               size="small" 
-              onClick={() => navigate(`/setting/info/view/${item.schoolNumber}`)} 
+              onClick={() => navigate(`/setting/info/view/${item.pid}`)} 
             >
               <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
             </IconButton>
@@ -93,8 +104,8 @@ const InformationList: React.FC = () => {
                 const confirmDelete = window.confirm('Are you sure you want to delete this item?');
                 if (confirmDelete) {
                   // Handle delete action
-                  setData(prevData => prevData.filter(data => data.schoolNumber !== item.schoolNumber));
-                  const updatedData = storedData.filter((data: any) => data.schoolNumber !== item.schoolNumber);
+                  setData(prevData => prevData.filter(data => data.pid !== item.pid));
+                  const updatedData = storedData.filter((data: any) => data.pid !== item.pid);
                   sessionStorage.setItem('data', JSON.stringify(updatedData));
                 }
               }} 

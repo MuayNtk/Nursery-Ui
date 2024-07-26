@@ -5,9 +5,10 @@ import ContentMain from '../content/Content';
 import SaveIcon from '@mui/icons-material/Save';
 
 const EditStaffForm: React.FC = () => {
-    const { fullname } = useParams<{ fullname: string }>();
+    const { pid } = useParams<{ pid: string }>();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
+        pid: '',
         dep: '',
         furigana: '',
         fullname: '',
@@ -17,17 +18,21 @@ const EditStaffForm: React.FC = () => {
         month: '',
         day: '',
     });
-
+    
     useEffect(() => {
         const storedData = JSON.parse(sessionStorage.getItem('staffData') || '[]');
-        const item = storedData.find((item: any) => item.fullname === fullname);
+        const item = storedData.find((item: any) => item.pid === pid);
         if (item) {
             setFormData(item);
+        } else {
+            // Optionally, you could handle the case where the item is not found
+            // For example, setting formData to default values or showing a message
         }
-    }, [fullname]);
+    }, [pid]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
+        console.log('Changing field:', id, 'to', value);
         setFormData((prevData) => ({
             ...prevData,
             [id]: value
@@ -44,6 +49,7 @@ const EditStaffForm: React.FC = () => {
 
     const handleSelectChange = (e: SelectChangeEvent<string>, id: string) => {
         const value = e.target.value;
+        console.log('Selecting value:', id, 'to', value);
         setFormData((prevData) => ({
             ...prevData,
             [id]: value
@@ -51,9 +57,10 @@ const EditStaffForm: React.FC = () => {
     };
 
     const handleSave = () => {
+        console.log('Saving data:', formData);
         const storedData = JSON.parse(sessionStorage.getItem('staffData') || '[]');
         const updatedData = storedData.map((item: any) =>
-            item.fullname === fullname ? formData : item
+            item.pid === pid ? formData : item
         );
         sessionStorage.setItem('staffData', JSON.stringify(updatedData));
         navigate('/infostaff');
