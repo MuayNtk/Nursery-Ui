@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ContentMain from "../content/Content";
 import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, Typography, SelectChangeEvent } from '@mui/material';
 import Paper from '@mui/material/Paper';
@@ -14,9 +14,10 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from 'react-router-dom';
 
 interface Column {
-  id: 'city' | 'number' | 'businessname' | 'detail';
+  id: 'pid' | 'city' | 'schoolNumber' | 'facilityName' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center';
@@ -24,69 +25,118 @@ interface Column {
 
 const columns: readonly Column[] = [
   { id: 'city', label: '市町村名', minWidth: 100, align: 'center' },
-  { id: 'number', label: '園番号', minWidth: 100, align: 'center' },
-  { id: 'businessname', label: '施設・事業所名', minWidth: 150 },
+  { id: 'schoolNumber', label: '園番号', minWidth: 100, align: 'center' },
+  { id: 'facilityName', label: '施設・事業所名', minWidth: 150 },
   { id: 'detail', label: '', minWidth: 100 }
 ];
 
 interface Data {
+  pid: string;
   city: string;
-  number: string;
-  businessname: string;
+  schoolNumber: string;
+  facilityName: string;
   detail: JSX.Element;
 }
 
-function createData(
-  city: string,
-  number: string,
-  businessname: string,
-  detail: JSX.Element
-): Data {
-  return { city, number, businessname, detail };
-}
-
-// Example data (you can replace this with your actual data)
-const rows = [
-  createData('福岡市', '566', 'いちざきみんなの家',
-    <>
-      <IconButton aria-label="edit" size="small">
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="view" size="small">
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small">
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('福岡市', '999', 'いちざきみんなの家',
-    <>
-      <IconButton aria-label="edit" size="small">
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="view" size="small">
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small">
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-];
-
 const InformationList: React.FC = () => {
+  const [data, setData] = useState<Data[]>([]);
   const [numbercity, setNumberCity] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredRows, setFilteredRows] = useState<Data[]>(rows);
+  const [filteredRows, setFilteredRows] = useState<Data[]>([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const navigate = useNavigate();
+
+  // Add sample data to sessionStorage if it doesn't already exist
+  useEffect(() => {
+    const initializeSampleData = () => {
+      const existingData = JSON.parse(sessionStorage.getItem('data') || '[]');
+      if (existingData.length === 0) {
+        const sampleData = [
+          { pid: '111' , city: 'Tokyo', schoolNumber: '566', facilityName: 'Tokyo Nursery', detail: '' },
+          { pid: '222' , city: 'Osaka', schoolNumber: '999', facilityName: 'Osaka Nursery', detail: '' },
+          { pid: '333' , city: 'Saitama', schoolNumber: '123', facilityName: 'Saitama Nursery', detail: '' },
+        ];
+        sessionStorage.setItem('data', JSON.stringify(sampleData));
+      }
+    };
+    initializeSampleData();
+  }, []);
+
+  useEffect(() => {
+    // Fetch data from sessionStorage
+    const fetchData = () => {
+      const storedData = JSON.parse(sessionStorage.getItem('data') || '[]');
+      const transformedData = storedData.map((item: any) => ({
+        pid: item.pid,
+        city: item.city,
+        schoolNumber: item.schoolNumber,
+        facilityName: item.facilityName,
+        corporationName: item.corporationName,
+        corporationAddress1: item.corporationAddress1,
+        corporationAddress2: item.corporationAddress2,
+        corporationAddress3: item.corporationAddress3,
+        nurseryAddress1: item.nurseryAddress1,
+        nurseryAddress2: item.nurseryAddress2,
+        nurseryAddress3: item.nurseryAddress3,
+        contactPhone: item.contactPhone,
+        contactEmail: item.contactEmail,
+        detail: (
+          <>
+            <IconButton 
+              aria-label="edit" 
+              size="small" 
+              onClick={() => navigate(`/setting/info/edit/${item.pid}`)} 
+            >
+              <EditIcon fontSize="small" className='text-sky-600' />
+            </IconButton>
+            <IconButton 
+              aria-label="view" 
+              size="small" 
+              onClick={() => navigate(`/setting/info/view/${item.pid}`)} 
+            >
+              <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+            </IconButton>
+            <IconButton 
+              aria-label="delete" 
+              size="small" 
+              onClick={() => {
+                const confirmDelete = window.confirm('Are you sure you want to delete this item?');
+                if (confirmDelete) {
+                  // Handle delete action
+                  setData(prevData => prevData.filter(data => data.pid !== item.pid));
+                  const updatedData = storedData.filter((data: any) => data.pid !== item.pid);
+                  sessionStorage.setItem('data', JSON.stringify(updatedData));
+                }
+              }} 
+            >
+              <DeleteIcon fontSize="small" className='text-red-600' />
+            </IconButton>
+          </>
+        )
+      }));
+      setData(transformedData);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    // Filtering rows based on selected numbercity or search term
+    if (numbercity === '' && searchTerm === '') {
+      setFilteredRows(data);
+    } else if (numbercity !== '') {
+      setFilteredRows(data.filter(row => row.schoolNumber === numbercity));
+    } else {
+      setFilteredRows(data.filter(row =>
+        row.schoolNumber.toLowerCase().includes(searchTerm.toLowerCase())
+      ));
+    }
+  }, [numbercity, searchTerm, data]);
 
   const handleChangeSelect = (event: SelectChangeEvent<string>) => {
     setNumberCity(event.target.value as string);
     setSearchTerm('');
   };
-
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -96,20 +146,6 @@ const InformationList: React.FC = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
-  // Filtering rows based on selected numbercity or search term
-  React.useEffect(() => {
-    if (numbercity === '' && searchTerm === '') {
-      setFilteredRows(rows);
-    } else if (numbercity !== '') {
-      setFilteredRows(rows.filter(row => row.number === numbercity));
-    } else {
-      setFilteredRows(rows.filter(row =>
-        row.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        row.businessname.toLowerCase().includes(searchTerm.toLowerCase())
-      ));
-    }
-  }, [numbercity, searchTerm]);
 
   return (
     <ContentMain>
@@ -123,18 +159,24 @@ const InformationList: React.FC = () => {
               value={numbercity}
               label="園番号"
               onChange={handleChangeSelect}
-              sx={{bgcolor: 'white'}}
+              sx={{ bgcolor: 'white' }}
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
               <MenuItem value={'566'}>566</MenuItem>
               <MenuItem value={'999'}>999</MenuItem>
+              <MenuItem value={'123'}>123</MenuItem>
             </Select>
           </FormControl>
         </Grid>
         <Grid item xs={6} sm={6} md={2}>
-          <Button variant="contained" href="#contained-buttons" className='scale-90'>
+          <Button 
+            variant="contained" 
+            onClick={() => setSearchTerm('')} 
+            className='scale-90' 
+            size="small"
+          >
             <SearchIcon />
             <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }}>
               Search
@@ -143,7 +185,12 @@ const InformationList: React.FC = () => {
         </Grid>
       </Grid>
       <Grid container direction="row" justifyContent="end" alignItems="end" style={{ paddingTop: '20px' }} className='mt-3'>
-        <Button variant="contained" href="/setting/info/add" className='scale-90' size="small">
+        <Button 
+          variant="contained" 
+          href="/setting/info/add" 
+          className='scale-90' 
+          size="small"
+        >
           <AddIcon />
           <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }}>
             Add
@@ -170,12 +217,15 @@ const InformationList: React.FC = () => {
               <TableBody>
                 {filteredRows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.number}>
+                  .map((row, index) => (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                       {columns.map((column) => (
                         <TableCell key={column.id} align={column.align}>
-                          {column.id === 'detail' ? row[column.id] :
-                            typeof row[column.id] === 'string' || typeof row[column.id] === 'number' ? row[column.id] : ''}
+                          {column.id === 'detail' ? (
+                            row.detail
+                          ) : (
+                            row[column.id as keyof Data]
+                          )}
                         </TableCell>
                       ))}
                     </TableRow>

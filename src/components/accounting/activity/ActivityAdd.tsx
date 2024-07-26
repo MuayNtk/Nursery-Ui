@@ -39,10 +39,27 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   },
 }));
 
+interface ActivityData {
+  id: number;
+  name: string;
+  limit1: string;
+  limit2: string;
+}
+
 export default function ActivityAdd() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completedSteps, setCompletedSteps] = React.useState<number[]>([]);
+  const [activityData, setActivityData] = React.useState<ActivityData[]>([]);
+  const [era, setEra] = React.useState<string>('');
+  const [year, setYear] = React.useState<string>('');
+  const [month, setMonth] = React.useState<number>(0);
+  const [day, setDay] = React.useState<number>(0);
   const navigate = useNavigate();
+  const [formData, setFormData] = React.useState<Record<string, number>>({});
+
+  const handleFormDataChange = (newData: Record<string, number>) => {
+    setFormData(newData);
+  };
 
 
   const handleNext = () => {
@@ -51,13 +68,28 @@ export default function ActivityAdd() {
       navigate('/accounting/activity');
     } else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      setCompletedSteps([...completedSteps, activeStep]);
+      setCompletedSteps((prevCompletedSteps) => [...prevCompletedSteps, activeStep]);
     }
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    setCompletedSteps(completedSteps.filter(step => step !== activeStep));
+    setCompletedSteps((prevCompletedSteps) => prevCompletedSteps.filter(step => step !== activeStep));
+  };
+
+  const handleActivityDataChange = (data: ActivityData[], era: string, year: string, month: number, day: number) => {
+    console.log('Received era:', era);
+    console.log('Received year:', year);
+    console.log('Received month:', month);
+    console.log('Received day:', day);
+    console.log('Selected Rows:', data);
+  
+    // Updating state
+    setEra(era);
+    setYear(year);
+    setMonth(month);
+    setDay(day);
+    setActivityData(data);
   };
 
   const getStepLabelComponent = (index: number) => {
@@ -66,29 +98,36 @@ export default function ActivityAdd() {
     const stepIconStyle = {
       color: isActive ? '#2196F3' : isCompleted ? '#4CAF50' : 'inherit',
     };
-  return (
-      <StepLabel StepIconProps={{ style: stepIconStyle }}>
-           {/* {steps[index]}  */}
-      </StepLabel>
+    return (
+      <StepLabel StepIconProps={{ style: stepIconStyle }}></StepLabel>
     );
   };
 
   const getStepContent = (step: number) => {
     switch (step) {
       case 0:
-        return <JoinActivity />;
+        return <JoinActivity onActivityDataChange={handleActivityDataChange} />;
       case 1:
-        return <JoinActivityForm />;
+        return (
+          <JoinActivityForm
+            era={era}
+            year={year}
+            month={month}
+            day={day}
+            activityData={activityData}
+            onFormDataChange={handleFormDataChange} 
+          />
+        );
       case 2:
-        return <JoinActivitySum />;
+        return <JoinActivitySum  formData={formData} activityData={activityData}/>;
       default:
         return 'Unknown step';
     }
   };
 
+  
   return (
-    <>
-     <ContentMain  className="flex flex-col min-h-screen">
+    <ContentMain className="flex flex-col min-h-screen">
       <Stepper activeStep={activeStep} connector={<ColorlibConnector />} className='mt-7'>
         {steps.map((label, index) => (
           <Step key={label}>
@@ -101,21 +140,20 @@ export default function ActivityAdd() {
           All steps completed - you&apos;re finished
         </Typography>
       ) : (
-        
         <React.Fragment>
           <Box sx={{ mt: 2, mb: 1 }}>
             {getStepContent(activeStep)}
           </Box>
-          <div className="mt-auto" >
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, gap: 2 }} justifyContent="center" >
+          <div className="mt-auto">
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, gap: 2 }} justifyContent="center">
               <Button
                 variant="contained"
                 size='medium'
-                startIcon={<ArrowBackIcon />}  
+                startIcon={<ArrowBackIcon />}
                 color="warning"
                 disabled={activeStep === 0}
                 onClick={handleBack}
-                sx={{ mr: 1 ,color: 'white',}}
+                sx={{ mr: 1, color: 'white' }}
               >
                 戻る
               </Button>
@@ -123,7 +161,7 @@ export default function ActivityAdd() {
                 variant="contained"
                 onClick={handleNext}
                 size='medium'
-                startIcon={<SaveIcon />} 
+                startIcon={<SaveIcon />}
                 color="success"
                 sx={{
                   backgroundColor: activeStep === steps.length - 1 ? '#41b146' : '#f7b941',
@@ -139,7 +177,6 @@ export default function ActivityAdd() {
           </div>
         </React.Fragment>
       )}
-      </ContentMain>
-    </>
+    </ContentMain>
   );
 }

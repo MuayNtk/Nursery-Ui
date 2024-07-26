@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ContentMain from "../content/Content";
-import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
+import { Button, Grid, IconButton, Typography, TextField } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -14,13 +14,13 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from 'react-router-dom';
 
 interface Column {
-  id: 'dep' | 'furigana' | 'fullname' | 'gender' | 'era' | 'year' | 'month' | 'day' | 'detail';
+  id: 'pid' | 'dep' | 'furigana' | 'fullname' | 'gender' | 'era' | 'year' | 'month' | 'day' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center';
-    format?: (value: number) => string;
 }
 
 const columns: readonly Column[] = [
@@ -36,6 +36,7 @@ const columns: readonly Column[] = [
 ];
 
 interface Data {
+  pid: string;
   dep: string;
   furigana: string;
   fullname: string;
@@ -47,67 +48,93 @@ interface Data {
   detail: JSX.Element;
 }
 
-function createData(
-  dep: string,
-  furigana: string,
-  fullname: string,
-  gender: string,
-  era: string,
-  year: string,
-  month: string,
-  day: string,
-  detail: JSX.Element
-): Data {
-  return { dep, furigana, fullname, gender, era, year, month, day, detail };
-}
+const InfoStaffList: React.FC = () => {
+  const [data, setData] = useState<Data[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredRows, setFilteredRows] = useState<Data[]>([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const navigate = useNavigate();
 
-// Example data (you can replace this with your actual data)
-const initialRows = [
-  createData('理事長', 'ワタナベ　ケイコ', '渡部　圭子', '男', '昭和', '11', '2', '21',
-    <>
-      <IconButton aria-label="edit" size="small">
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="view" size="small">
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small">
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('常務理事', 'ワタナベ　シロウ', '渡部　史朗', '男', '昭和', '43', '5', '22',
-    <>
-      <IconButton aria-label="edit" size="small">
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="view" size="small">
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small">
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('理　　事', 'ナカガワ　ヤスヨシ', '中川　康嘉', '男', '昭和', '33', '11', '1',
-    <>
-      <IconButton aria-label="edit" size="small">
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="view" size="small">
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small">
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  )
-];
+  // Add sample data to sessionStorage if it doesn't already exist
+  useEffect(() => {
+    const initializeSampleData = () => {
+      const existingData = JSON.parse(sessionStorage.getItem('staffData') || '[]');
+      if (existingData.length === 0) {
+        const sampleData = [
+          { pid: '111' , dep: 'Manager', furigana: 'ふりがな', fullname: '田中 太郎', gender: '男', era: '昭和', year: '10', month: '1', day: '1', detail: '' },
+          { pid: '222' , dep: 'Staff', furigana: 'フリガナ', fullname: '山田 花子', gender: '女', era: '平成', year: '10', month: '12', day: '20', detail: '' },
+          { pid: '333' , dep: 'Staff', furigana: 'ふじさん', fullname: 'さくら 佐藤 ', gender: '女', era: '平成', year: '10', month: '11', day: '25', detail: '' },
+        ];
+        sessionStorage.setItem('staffData', JSON.stringify(sampleData));
+      }
+    };
+    initializeSampleData();
+  }, []);
 
-export default function InfoStaffList() {
+  useEffect(() => {
+    // Fetch data from sessionStorage
+    const fetchData = () => {
+      const storedData = JSON.parse(sessionStorage.getItem('staffData') || '[]');
+      const transformedData = storedData.map((item: any) => ({
+        pid: item.pid,
+        dep: item.dep,
+        furigana: item.furigana,
+        fullname: item.fullname,
+        gender: item.gender,
+        era: item.era,
+        year: item.year,
+        month: item.month,
+        day: item.day,
+        detail: (
+          <>
+            <IconButton
+              aria-label="edit"
+              size="small"
+              onClick={() => navigate(`/infostaff/edit/${item.pid}`)}
+            >
+              <EditIcon fontSize="small" className='text-sky-600' />
+            </IconButton>
+            <IconButton
+              aria-label="view"
+              size="small"
+              onClick={() => navigate(`/infostaff/view/${item.pid}`)}
+            >
+              <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              size="small"
+              onClick={() => {
+                const confirmDelete = window.confirm('Are you sure you want to delete this item?');
+                if (confirmDelete) {
+                  // Handle delete action
+                  setData(prevData => prevData.filter(data => data.pid !== item.pid));
+                  const updatedData = storedData.filter((data: any) => data.pid !== item.pid);
+                  sessionStorage.setItem('staffData', JSON.stringify(updatedData));
+                }
+              }}
+            >
+              <DeleteIcon fontSize="small" className='text-red-600' />
+            </IconButton>
+          </>
+        )
+      }));
+      setData(transformedData);
+    };
+    fetchData();
+  }, []);
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  useEffect(() => {
+    // Filtering rows based on search term
+    if (searchTerm === '') {
+      setFilteredRows(data);
+    } else {
+      setFilteredRows(data.filter(row =>
+        row.fullname.toLowerCase().includes(searchTerm.toLowerCase())
+      ));
+    }
+  }, [searchTerm, data]);
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -118,16 +145,6 @@ export default function InfoStaffList() {
     setPage(0);
   };
 
-  const [searchInput, setSearchInput] = React.useState('');
-  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
-  };
-
-  // Filtered rows based on search input and selected classroom
-  const filteredRows = initialRows.filter(row =>
-    row.fullname.toLowerCase().includes(searchInput.toLowerCase())
-  );
-
   return (
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
@@ -135,10 +152,10 @@ export default function InfoStaffList() {
           氏名
         </Typography>
         <Grid item xs={8} sm={4} md={2} lg={2}>
-          <TextField id="outlined-search" label="氏名" type="search" sx={{bgcolor: 'white'}} size="small" onChange={handleSearchInputChange} />
+          <TextField id="outlined-search" label="氏名" type="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} sx={{ bgcolor: 'white' }} size="small" />
         </Grid>
         <Grid item xs={6} sm={6} md={2}>
-          <Button variant="contained" href="#contained-buttons" className='scale-90'>
+          <Button variant="contained" className='scale-90'>
             <SearchIcon />
             <Typography component="div" style={{ color: 'white', paddingLeft: '10px' }}>
               Search
@@ -174,22 +191,18 @@ export default function InfoStaffList() {
               <TableBody>
                 {filteredRows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
-                    return (
-                      <TableRow hover role="checkbox" tabIndex={-1} key={row.fullname}>
-                        {columns.map((column) => {
-                          const value = row[column.id];
-                          return (
-                            <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === 'number'
-                                ? column.format(value)
-                                : value}
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    );
-                  })}
+                  .map((row, index) => (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -206,4 +219,6 @@ export default function InfoStaffList() {
       </Grid>
     </ContentMain>
   );
-};
+}
+
+export default InfoStaffList;
