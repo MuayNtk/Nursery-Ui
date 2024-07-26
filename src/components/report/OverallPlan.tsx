@@ -54,12 +54,12 @@ const Overallplan: React.FC = () => {
       const existingData = JSON.parse(sessionStorage.getItem('overallplanData') || '[]');
       if (existingData.length === 0) {
         const sampleData = [
-          { pid: '111' , year: '2024', age: '0 歳', name: '(全体的な計画)' },
-          { pid: '222' , year: '2024', age: '3 歳', name: '(全体的な計画)' },
-          { pid: '333' , year: '2024', age: '4 歳', name: '(全体的な計画)' },
-          { pid: '444' , year: '2023', age: '5 歳', name: '(全体的な計画)' },
-          { pid: '555' , year: '2023', age: '2 歳', name: '(全体的な計画)' },
-          { pid: '666' , year: '2023', age: '1 歳', name: '(全体的な計画)' },
+          { pid: '111', year: '2024', age: '0 歳', name: '(全体的な計画)' },
+          { pid: '222', year: '2024', age: '3 歳', name: '(全体的な計画)' },
+          { pid: '333', year: '2024', age: '4 歳', name: '(全体的な計画)' },
+          { pid: '444', year: '2023', age: '5 歳', name: '(全体的な計画)' },
+          { pid: '555', year: '2023', age: '2 歳', name: '(全体的な計画)' },
+          { pid: '666', year: '2023', age: '1 歳', name: '(全体的な計画)' },
         ];
         sessionStorage.setItem('overallplanData', JSON.stringify(sampleData));
       }
@@ -154,7 +154,7 @@ const Overallplan: React.FC = () => {
       <ContentMain>
         <Grid container spacing={2} className='pt-7' justifyContent="center">
           <Grid item xs={3} sm={4} md={2} lg={2}>
-          <TextField id="outlined-search" label="歳" type="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} sx={{ bgcolor: 'white' }} size="small" />
+            <TextField id="outlined-search" label="歳" type="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} sx={{ bgcolor: 'white' }} size="small" />
           </Grid>
           <Grid item xs={6} sm={4} md={3} lg={2}>
             <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
