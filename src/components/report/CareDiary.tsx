@@ -1,6 +1,6 @@
 import ContentMain from "../content/Content";
-import React from 'react';
-import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -14,10 +14,11 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MonthForm from "../componentsform/MonthForm";
+import { useNavigate } from 'react-router-dom';
 
 
 interface Column {
-  id: 'year' | 'age' | 'name' | 'detail';
+  id: 'pid' | 'year' | 'age' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center' | 'left';
@@ -27,114 +28,98 @@ interface Column {
 const columns: readonly Column[] = [
   { id: 'year', label: '全', minWidth: 50, align: 'center', },
   { id: 'age', label: '歳児', minWidth: 70, align: 'center', },
-  { id: 'name', label: ' ', minWidth: 100, align: 'left', },
   { id: 'detail', label: '', minWidth: 50, align: 'right', },
 ];
 
 interface Data {
+  pid: string;
   year: string;
   age: string;
-  name: string;
   detail: JSX.Element;
 }
 
-function createData(
-  year: string,
-  age: string,
-  name: string,
-  detail: JSX.Element
-): Data {
-  return { year, age, name, detail };
-}
 
-// Example data (you can replace this with your actual data)
-const initialRows = [
-  createData('2024', '０ 歳児', '週 案 と 保 育 日 誌（未満児）１・２歳用',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2024', '3 歳児', '週 案 と 保 育 日 誌（未満児）１・２歳用',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2024', '4 歳児', '週 案 と 保 育 日 誌（未満児）０・１歳用',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2023', '5 歳児', '週 案 と 保 育 日 誌（未満児）０・１歳用',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2023', '2 歳児', '週 案 と 保 育 日 誌（未満児）０・１歳用',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2023', '2 歳児', '週 案 と 保 育 日 誌（未満児）０・１歳用',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
+const CareDiary: React.FC = () => {
+  const [data, setData] = useState<Data[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredRows, setFilteredRows] = useState<Data[]>([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const navigate = useNavigate();
 
-];
+  // Add sample data to sessionStorage if it doesn't already exist
+  useEffect(() => {
+    const initializeSampleData = () => {
+      const existingData = JSON.parse(sessionStorage.getItem('carediaryData') || '[]');
+      if (existingData.length === 0) {
+        const sampleData = [
+          { pid: '111', year: '2024', age: '週案と保育日誌 (未満児) 1・2 歳用' },
+          { pid: '222', year: '2023', age: '週案と保育日誌 (未満児) 0・1 歳用' },
+          { pid: '333', year: '2022', age: '週案と保育日誌 (未満児) 1・2 歳用' },
+        ];
+        sessionStorage.setItem('carediaryData', JSON.stringify(sampleData));
+      }
+    };
+    initializeSampleData();
+  }, []);
 
-export default function CareDiary() {
+  useEffect(() => {
+    // Fetch data from sessionStorage
+    const fetchData = () => {
+      const storedData = JSON.parse(sessionStorage.getItem('carediaryData') || '[]');
+      const transformedData = storedData.map((item: any) => ({
+        pid: item.pid,
+        year: item.year,
+        age: item.age,
+        detail: (
+          <>
+            <IconButton
+              aria-label="edit"
+              size="small"
+              onClick={() => navigate(`/report/carediary/edit/${item.pid}`)}
+            >
+              <EditIcon fontSize="small" className='text-sky-600' />
+            </IconButton>
+            <IconButton
+              aria-label="view"
+              size="small"
+              onClick={() => navigate(`/report/carediary/view/${item.pid}`)}
+            >
+              <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              size="small"
+              onClick={() => {
+                const confirmDelete = window.confirm('Are you sure you want to delete this item?');
+                if (confirmDelete) {
+                  // Handle delete action
+                  setData(prevData => prevData.filter(data => data.pid !== item.pid));
+                  const updatedData = storedData.filter((data: any) => data.pid !== item.pid);
+                  sessionStorage.setItem('carediaryData', JSON.stringify(updatedData));
+                }
+              }}
+            >
+              <DeleteIcon fontSize="small" className='text-red-600' />
+            </IconButton>
+          </>
+        )
+      }));
+      setData(transformedData);
+    };
+    fetchData();
+  }, []);
 
-
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  useEffect(() => {
+    // Filtering rows based on search term
+    if (searchTerm === '') {
+      setFilteredRows(data);
+    } else {
+      setFilteredRows(data.filter(row =>
+        row.year.toLowerCase().includes(searchTerm.toLowerCase())
+      ));
+    }
+  }, [searchTerm, data]);
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -145,28 +130,9 @@ export default function CareDiary() {
     setPage(0);
   };
 
-  const [week, setWeek] = React.useState('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setWeek(event.target.value as string);
-  };
-
-  const [searchInput, setSearchInput] = React.useState('');
-  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
-  };
-
-  // Filtered rows based on search input and selected classroom
-  const filteredRows = initialRows.filter(row =>
-    row.year.toLowerCase().includes(searchInput.toLowerCase())
-  );
-
-
   return (
-
     <>
       <ContentMain>
-
         <Grid container spacing={2} className='pt-7' justifyContent="center">
           <Grid item xs={3} sm={4} md={2}>
             <TextField
@@ -174,7 +140,7 @@ export default function CareDiary() {
               label="全"
               type="search"
               size="small"
-              onChange={handleSearchInputChange}
+              value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
               sx={{ bgcolor: 'white' }}
             />
           </Grid>
@@ -190,17 +156,16 @@ export default function CareDiary() {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={week}
+                value={''}
                 label="週"
-                onChange={handleChange}
                 sx={{ backgroundColor: 'white' }}
               >
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-                <MenuItem value={5}>5</MenuItem>
-                <MenuItem value={6}>6</MenuItem>
+                <MenuItem value={'1'}>1</MenuItem>
+                <MenuItem value={'2'}>2</MenuItem>
+                <MenuItem value={'3'}>3</MenuItem>
+                <MenuItem value={'4'}>4</MenuItem>
+                <MenuItem value={'5'}>5</MenuItem>
+                <MenuItem value={'6'}>6</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -279,4 +244,8 @@ export default function CareDiary() {
       </ContentMain>
     </>
   );
+
 };
+
+export default CareDiary;
+

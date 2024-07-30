@@ -14,31 +14,65 @@ interface JoinActivityFormProps {
   month: number;
   day: number;
   activityData: ActivityData[];
-  onFormDataChange: (data: Record<string, number>) => void;
-  
-
-  
+  onFormDataChange: (data: Record<string, string | number>) => void;
 }
 
+
 const JoinActivityForm: React.FC<JoinActivityFormProps> = ({ era, year, month, day, activityData , onFormDataChange }) => {
-  const [formData, setFormData] = useState<Record<string, number>>({});
+  const [formData, setFormData] = useState<Record<string, string | number>>({});
+  
 
   useEffect(() => {
     onFormDataChange(formData);
   }, [formData, onFormDataChange]);
 
-  const handleInputChange = (id: number, field: string, value: string | number) => {
-    setFormData(prev => ({
-      ...prev,
-      [`${field}-${id}`]: typeof value === 'number' ? value : parseFloat(value) || 0
-    }));
+  const handleInputChange = (id: number, field: string, value: string) => {
+    const stringFields = [
+      'everyday', 'everyweek', 'monthly', 'annual', 'other', 
+      'era-textfield', 'year', 'month', 'day', 'place', 
+      'participants', 'content'
+    ];
+  
+    const numericFields = [
+      'rent', 'equipment', 'honoraria', 'usagefees', 'travelexpenses',
+      'commissionfees', 'servicecosts', 'supplycosts', 'rawmaterialcosts'
+    ];
+  
+    const isStringField = stringFields.some(strField => field.startsWith(strField));
+    const isNumericField = numericFields.some(numField => field.startsWith(numField));
+  
+    setFormData(prev => {
+      const updatedData: Record<string, string | number> = {
+        ...prev,
+        [`${field}-${id}`]: isStringField ? value : parseFloat(value) || 0
+      };
+  
+      if (isNumericField) {
+        const total = numericFields.reduce((sum, numField) => {
+          const numValue = updatedData[`${numField}-${id}`];
+          return sum + (typeof numValue === 'number' ? numValue : 0);
+        }, 0);
+  
+        updatedData[`total-${id}`] = total;
+      }
+  
+      return updatedData;
+    });
   };
+  
+// Correctly handle the numeric value conversion
+const calculateTotal = (id: number): number => {
+  const fields = [
+    'rent', 'equipment', 'honoraria', 'usagefees', 'travelexpenses',
+    'commissionfees', 'servicecosts', 'supplycosts', 'rawmaterialcosts'
+  ];
+  return fields.reduce((total, field) => {
+    const value = formData[`${field}-${id}`];
+    return total + (typeof value === 'number' ? value : 0);
+  }, 0);
+};
 
-  const calculateTotal = (id: number) => {
-    const fields = ['rent', 'equipment', 'honoraria', 'usagefees', 'travelexpenses', 'commissionfees', 'servicecosts', 'supplycosts', 'rawmaterialcosts'];
-    return fields.reduce((total, field) => total + (formData[`${field}-${id}`] as number || 0), 0);
-  };
-
+  
   return (
     <>
       {activityData.map(data => (
