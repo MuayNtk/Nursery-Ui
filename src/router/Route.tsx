@@ -66,15 +66,20 @@ import RateApplicationAddPages from "../pages/accounting/treatment/RateApplicati
 import RequestBenefitsAddPages from "../pages/accounting/treatment/RequestBenefitsAddPages";
 import EligiblePersonsAddPages from "../pages/accounting/treatment/EligiblePersonsAddPases";
 import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
-import EditInfoform from "../components/setting/EditInfoform"
-import ViewInfoform from "../components/setting/ViewInfoform"
-import EditInfoStaffForm from "../components/setting/EditInfoStaffForm"
-import ViewInfoStaffForm from "../components/setting/ViewInfoStaffForm"
+import EditInfoform from "../components/setting/EditInfoform";
+import ViewInfoform from "../components/setting/ViewInfoform";
+import EditInfoStaffForm from "../components/setting/EditInfoStaffForm";
+import ViewInfoStaffForm from "../components/setting/ViewInfoStaffForm";
 import EditOverallPlan from "../components/report/EditOverallPlan";
-import ViewOverallPlan from "../components/report/ViewOverallPlan"
-
-
-
+import ViewOverallPlan from "../components/report/ViewOverallPlan";
+import EditAnnualplan from "../components/report/EditAnnualplan";
+import ViewAnnualplan from "../components/report/ViewAnnualplan";
+import EditCareDiary from "../components/report/EditCareDiary";
+import ViewCareDiary from "../components/report/ViewCareDiary";
+import EditMonthly from "../components/report/monthlyplan/EditMonthly"
+import ViewMonthly from "../components/report/monthlyplan/ViewMonthly"
+import EditWeekly from "../components/report/weeklyplan/EditWeekly"
+import ViewWeekly from "../components/report/weeklyplan/ViewWeekly"
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
 const Router = createBrowserRouter([
@@ -281,7 +286,7 @@ const Router = createBrowserRouter([
       {
         path: "/student",
         element: <StudentPages />
-      }, 
+      },
       {
         path: "/student/History",
         element: <StudentHistoryPages />
@@ -365,6 +370,38 @@ const Router = createBrowserRouter([
       {
         path: "/report/overallplan/view/:pid",
         element: <ViewOverallPlan />
+      },
+      {
+        path: "/report/annualplan/edit/:pid",
+        element: <EditAnnualplan />
+      },
+      {
+        path: "/report/annualplan/view/:pid",
+        element: <ViewAnnualplan />
+      },
+      {
+        path: "/report/carediary/edit/:pid",
+        element: <EditCareDiary />
+      },
+      {
+        path: "/report/carediary/view/:pid",
+        element: <ViewCareDiary />
+      },
+      {
+        path: "/report/monthlyplan/edit/:selectedOption/:pid",
+        element: <EditMonthly />
+      },
+      {
+        path: "/report/monthlyplan/view/:selectedOption/:pid",
+        element: <ViewMonthly />
+      },
+      {
+        path: "/report/weeklyplan/edit/:selectedOption/:pid",
+        element: <EditWeekly />
+      },
+      {
+        path: "/report/weeklyplan/view/:selectedOption/:pid",
+        element: <ViewWeekly />
       },
     ]
   },

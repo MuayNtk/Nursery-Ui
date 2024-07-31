@@ -1,6 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import ContentMain from "../content/Content";
-import React from 'react';
-import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
+import { Button, Grid, IconButton, Typography, TextField } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,10 +13,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from 'react-router-dom';
 
 
 interface Column {
-  id: 'year' | 'age' | 'name' | 'detail';
+  id: 'pid' | 'year' | 'age' | 'name' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center' | 'left';
@@ -31,109 +32,95 @@ const columns: readonly Column[] = [
 ];
 
 interface Data {
+  pid: string;
   year: string;
   age: string;
   name: string;
   detail: JSX.Element;
 }
 
-function createData(
-  year: string,
-  age: string,
-  name: string,
-  detail: JSX.Element
-): Data {
-  return { year, age, name, detail };
-}
+const Annualplan: React.FC = () => {
+  const [data, setData] = useState<Data[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredRows, setFilteredRows] = useState<Data[]>([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const navigate = useNavigate();
 
-// Example data (you can replace this with your actual data)
-const initialRows = [
-  createData('2024', '０ 歳児', '(全体的な計画)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2024', '3 歳児', '(全体的な計画)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2024', '4 歳児', '(全体的な計画)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2023', '5 歳児', '(全体的な計画)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2023', '2 歳児', '(全体的な計画)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2023', '2 歳児', '(全体的な計画)',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
+  // Add sample data to sessionStorage if it doesn't already exist
+  useEffect(() => {
+    const initializeSampleData = () => {
+      const existingData = JSON.parse(sessionStorage.getItem('annualplanData') || '[]');
+      if (existingData.length === 0) {
+        const sampleData = [
+          { pid: '111', year: '2024', age: '年間指導計画 0 歲児', name: '(全体的な計画)' },
+          { pid: '222', year: '2024', age: '年間指導計画 1·2 歲児', name: '(全体的な計画)' },
+          { pid: '333', year: '2024', age: '年間指導計画 3·4·5 歲児', name: '(全体的な計画)' },
+        ];
+        sessionStorage.setItem('annualplanData', JSON.stringify(sampleData));
+      }
+    };
+    initializeSampleData();
+  }, []);
 
-];
+  useEffect(() => {
+    // Fetch data from sessionStorage
+    const fetchData = () => {
+      const storedData = JSON.parse(sessionStorage.getItem('annualplanData') || '[]');
+      const transformedData = storedData.map((item: any) => ({
+        pid: item.pid,
+        year: item.year,
+        age: item.age,
+        name: item.name,
+        detail: (
+          <>
+            <IconButton
+              aria-label="edit"
+              size="small"
+              onClick={() => navigate(`/report/annualplan/edit/${item.pid}`)}
+            >
+              <EditIcon fontSize="small" className='text-sky-600' />
+            </IconButton>
+            <IconButton
+              aria-label="view"
+              size="small"
+              onClick={() => navigate(`/report/annualplan/view/${item.pid}`)}
+            >
+              <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              size="small"
+              onClick={() => {
+                const confirmDelete = window.confirm('Are you sure you want to delete this item?');
+                if (confirmDelete) {
+                  // Handle delete action
+                  setData(prevData => prevData.filter(data => data.pid !== item.pid));
+                  const updatedData = storedData.filter((data: any) => data.pid !== item.pid);
+                  sessionStorage.setItem('annualplanData', JSON.stringify(updatedData));
+                }
+              }}
+            >
+              <DeleteIcon fontSize="small" className='text-red-600' />
+            </IconButton>
+          </>
+        )
+      }));
+      setData(transformedData);
+    };
+    fetchData();
+  }, []);
 
-export default function Annualplan() {
-
-
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  useEffect(() => {
+    // Filtering rows based on search term
+    if (searchTerm === '') {
+      setFilteredRows(data);
+    } else {
+      setFilteredRows(data.filter(row =>
+        row.age.toLowerCase().includes(searchTerm.toLowerCase())
+      ));
+    }
+  }, [searchTerm, data]);
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -144,53 +131,36 @@ export default function Annualplan() {
     setPage(0);
   };
 
-  const [searchInput, setSearchInput] = React.useState('');
-  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
-  };
+return (
 
-  // Filtered rows based on search input and selected classroom
-  const filteredRows = initialRows.filter(row =>
-    row.year.toLowerCase().includes(searchInput.toLowerCase())
-  );
+  <>
+    <ContentMain>
 
-  return (
-
-    <>
-      <ContentMain>
-
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={3} sm={4} md={2} lg={2}>
-            <TextField
-              id="outlined-search"
-              label="全"
-              type="search"
-              size="small"
-              onChange={handleSearchInputChange}
-              sx={{ bgcolor: 'white' }}
-            />
-          </Grid>
-          <Grid item xs={3} sm={4} md={2} lg={2}>
-            <TextField id="outlined-search" label="年" type="search" size="small" sx={{ backgroundColor: 'white' }} />
-          </Grid>
-          <Grid item xs={6} sm={4} md={3} lg={2}>
-            <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
-              <Typography component="div" style={{ color: 'white' }}>
-                検索する
-              </Typography>
-            </Button>
-          </Grid>
+      <Grid container spacing={2} className='pt-7' justifyContent="center">
+        <Grid item xs={3} sm={4} md={2} lg={2}>
+          <TextField id="outlined-search" label="歳児" type="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} sx={{ bgcolor: 'white' }} size="small" />
         </Grid>
-        <Grid container className='pt-7' justifyContent="right">
-          <Grid>
-            <Button variant="contained" href="/report/annualplan/add" size='small' startIcon={<AddIcon />}>
-              <Typography style={{ color: 'white' }}>
-                ADD
-              </Typography>
-            </Button>
-          </Grid>
+        <Grid item xs={3} sm={4} md={2} lg={2}>
+          <TextField id="outlined-search" label="年" type="search" size="small" sx={{ backgroundColor: 'white' }} />
         </Grid>
-        <Grid container spacing={2} className='pt-10' justifyContent="center">
+        <Grid item xs={6} sm={4} md={3} lg={2}>
+          <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
+            <Typography component="div" style={{ color: 'white' }}>
+              検索する
+            </Typography>
+          </Button>
+        </Grid>
+      </Grid>
+      <Grid container className='pt-7' justifyContent="right">
+        <Grid>
+          <Button variant="contained" href="/report/annualplan/add" size='small' startIcon={<AddIcon />}>
+            <Typography style={{ color: 'white' }}>
+              ADD
+            </Typography>
+          </Button>
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} className='pt-10' justifyContent="center">
           <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 440 }}>
               <Table stickyHeader aria-label="sticky table">
@@ -245,7 +215,9 @@ export default function Annualplan() {
             />
           </Paper>
         </Grid>
-      </ContentMain>
-    </>
-  );
+    </ContentMain>
+  </>
+);
+
 };
+export default Annualplan;
