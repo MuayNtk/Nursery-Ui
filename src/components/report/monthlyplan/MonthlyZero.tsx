@@ -1,4 +1,4 @@
-import { Box, Button, Card, Grid, TextField, TextareaAutosize, Typography, IconButton, FormControl, MenuItem, Select, SelectChangeEvent, InputLabel } from "@mui/material";
+import { Box, Button, Card, Grid, TextField, TextareaAutosize, Typography, IconButton } from "@mui/material";
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import SaveIcon from '@mui/icons-material/Save';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -16,15 +16,18 @@ import { useNavigate } from "react-router-dom";
 
 interface FormData {
   pid: string;
-  age: string;
+  selectedOption: string;
   emotional_stability1: string;
   perspectives_on_physical1: string;
+  emotional_stability2: string;
+  perspectives_on_physical2: string;
   health_safety1: string;
   cooperation: string;
   event1: string;
   individual_response: string;
   evaluation_and_reflection1: string;
   nursingcare: string;
+  education: string;
   cooperation2: string;
   event2: string;
   environment: string;
@@ -40,6 +43,10 @@ interface Data {
   daily: string;
   education: string;
   detail: JSX.Element;
+}
+
+interface MonthlyZeroProps {
+  selectedOption: string;
 }
 
 function createData(
@@ -97,7 +104,7 @@ const modalStyle = {
   borderRadius: 1,
 };
 
-export default function MonthlyZero() {
+const MonthlyZero: React.FC<MonthlyZeroProps> = ({ selectedOption }) => {
   const [rows, setRows] = useState<Data[]>(initialRows);
   const [open, setOpen] = useState(false);
   const [newEntry, setNewEntry] = useState<Omit<Data, 'detail'>>({
@@ -180,15 +187,18 @@ export default function MonthlyZero() {
 
   const [formData, setFormData] = useState<FormData>({
     pid: '',
-    age: '',
+    selectedOption: selectedOption,
     emotional_stability1: '',
     perspectives_on_physical1: '',
+    emotional_stability2: '',
+    perspectives_on_physical2: '',
     health_safety1: '',
     cooperation: '',
     event1: '',
     individual_response: '',
     evaluation_and_reflection1: '',
     nursingcare: '',
+    education: '',
     cooperation2: '',
     event2: '',
     environment: '',
@@ -206,10 +216,11 @@ export default function MonthlyZero() {
     const newPid = lastPid + 1;
     setFormData((prevData) => ({
       ...prevData,
-      pid: newPid.toString() // Ensure pid is a string
+      pid: newPid.toString(), // Ensure pid is a string
+      selectedOption: selectedOption
     }));
     sessionStorage.setItem('lastPid', JSON.stringify(newPid));
-  }, []);
+  }, [selectedOption]);
 
   const handleChange2 = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
@@ -219,69 +230,21 @@ export default function MonthlyZero() {
     }));
   };
 
-  const handleSelectChange2 = (e: SelectChangeEvent<string>, id: string) => {
-    const value = e.target.value;
-    setFormData((prevData) => ({
-      ...prevData,
-      [id]: value
-    }));
-  };
-
   const handleSubmit2 = (e: React.FormEvent) => {
     e.preventDefault();
     // Save data to sessionStorage
-    const currentData = JSON.parse(sessionStorage.getItem('monthlyData') || '[]');
-    sessionStorage.setItem('monthlyData', JSON.stringify([...currentData, formData]));
+    const currentData = JSON.parse(sessionStorage.getItem('monthlyData0') || '[]');
+    sessionStorage.setItem('monthlyData0', JSON.stringify([...currentData, formData]));
     // Remove old pid and set new pid
     sessionStorage.setItem('lastPid', JSON.stringify(parseInt(formData.pid, 10) + 1));
     navigate('/report/monthlyplan');
   };
 
-
   return (
     <>
-
-      {/* Start Grid */}
-      <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-10 lg:pt-0">
-        <Grid item xs={9} sm={7} md={5} lg={4} sx={{ ml: { xs: 0, sm: 0, md: 0, lg: 2 }, mt: { xs: -1, sm: -2, md: 5, lg: 4 } }}>
-          <div>
-            <FormControl sx={{ minWidth: 100 }} size="small" fullWidth>
-              <InputLabel id="demo-select-small-label">週ごとのプランを選択する</InputLabel>
-              <Select
-                labelId="demo-select-small-label"
-                id="age"
-                name="age"
-                size="small"
-                label="週ごとのプランを選択する"
-                value={formData.age}
-                onChange={(e) => handleSelectChange2(e, 'age')}
-                className="mb-5"
-                sx={{
-                  backgroundColor: "white",
-                }}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value="週案と保育日誌 (未満児) 0・1 歳用">週案と保育日誌 (未満児) 0・1 歳用</MenuItem>
-                <MenuItem value="週案と保育日誌 (未満児) 1・2 歳用">週案と保育日誌 (未満児) 1・2 歳用</MenuItem>
-              </Select>
-            </FormControl>
-            <div>
-              {formData.age && (
-                <Typography
-                  component="div"
-                  sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
-                  className='flex justify-start h-10 pt-2 pl-5'
-                >
-                  {`${formData.age}`}
-                </Typography>
-              )}
-            </div>
-          </div>
-        </Grid>
-      </Grid>
-      {/* End Grid */}
+      <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, } }} className="text-start hidden">
+        {selectedOption}
+      </Typography>
 
       <Grid container spacing={1} justifyContent='start' className="pt-4">
         <Grid item xs={3} sm={2} md={2} lg={2}>
@@ -322,6 +285,7 @@ export default function MonthlyZero() {
         </Grid>
       </Grid >
 
+      {/* Start Grid 指導計画は食育の内容を含むこと。*/}
       <Grid className="mt-5 lg:mt-7" sx={{ ml: { xs: 0, sm: 0, md: 0, lg: -2 } }}>
         <Typography
           component="div"
@@ -330,6 +294,7 @@ export default function MonthlyZero() {
           指導計画は食育の内容を含むこと。
         </Typography>
       </Grid>
+      {/* End Grid 指導計画は食育の内容を含むこと。*/}
 
       <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-14 pl-10 flex '  >
         <Card sx={{ bgcolor: "pink", width: 100, height: 35, }} >
@@ -359,6 +324,7 @@ export default function MonthlyZero() {
                 minRows={3}
                 maxRows={100}
                 onChange={handleChange2}
+                value={formData.emotional_stability1}
                 className="w-56 sm:w-60 lg:w-96"
                 style={{ border: '1px solid gray', borderRadius: '4px' }}
               />
@@ -379,11 +345,12 @@ export default function MonthlyZero() {
                 関する視点 身体的発達に , 関する視点 社会的発達に , 関する視点 精神的発達に
               </Typography>
               <TextareaAutosize
-                id="perspectives_on_ physical1"
+                id="perspectives_on_physical1"
                 name="perspectives_on_physical1"
                 minRows={3}
                 maxRows={100}
                 onChange={handleChange2}
+                value={formData.perspectives_on_physical1}
                 className="w-56 sm:w-60 lg:w-96"
                 style={{ border: '1px solid gray', borderRadius: '4px' }}
               />
@@ -421,6 +388,7 @@ export default function MonthlyZero() {
                 minRows={3}
                 maxRows={100}
                 onChange={handleChange2}
+                value={formData.emotional_stability2}
                 className="w-56 sm:w-60 lg:w-96"
                 style={{ border: '1px solid gray', borderRadius: '4px' }}
               />
@@ -662,7 +630,6 @@ export default function MonthlyZero() {
           <Button
             variant="contained"
             onClick={handleOpen}
-
           >
             Add
           </Button>
@@ -909,7 +876,7 @@ export default function MonthlyZero() {
             </Button>
           </Grid>
           <Grid item>
-            <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success" onClick={handleSubmit2}>
+            <Button variant="contained" type="submit" size='medium' className='text-center' startIcon={<SaveIcon />} color="success" onClick={handleSubmit2}>
               <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
                 修正
               </Typography>
@@ -920,3 +887,5 @@ export default function MonthlyZero() {
     </>
   );
 };
+
+export default MonthlyZero;
