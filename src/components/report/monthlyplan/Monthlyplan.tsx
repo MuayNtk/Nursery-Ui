@@ -16,9 +16,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MonthForm from "../../componentsform/MonthForm";
 import { useNavigate } from 'react-router-dom';
 
-
 interface Column {
-  id: 'pid' | 'year' | 'age' | 'name' | 'detail';
+  id: 'pid' | 'year' | 'selectedOption' | 'name' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center' | 'left';
@@ -26,16 +25,16 @@ interface Column {
 }
 
 const columns: readonly Column[] = [
-  { id: 'year', label: '全', minWidth: 50, align: 'center', },
-  { id: 'age', label: '歳児', minWidth: 70, align: 'center', },
-  { id: 'name', label: ' ', minWidth: 100, align: 'left', },
-  { id: 'detail', label: '', minWidth: 50, align: 'right', },
+  { id: 'year', label: '全', minWidth: 50, align: 'center' },
+  { id: 'selectedOption', label: '歳児', minWidth: 70, align: 'center' },
+  { id: 'name', label: ' ', minWidth: 100, align: 'left' },
+  { id: 'detail', label: '', minWidth: 50, align: 'right' },
 ];
 
 interface Data {
   pid: string;
   year: string;
-  age: string;
+  selectedOption: string;
   name: string;
   detail: JSX.Element;
 }
@@ -48,52 +47,64 @@ const Monthlyplan: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const navigate = useNavigate();
 
-  // Add sample data to sessionStorage if it doesn't already exist
+  // Initialize sample data for all three types
   useEffect(() => {
     const initializeSampleData = () => {
-      const existingData = JSON.parse(sessionStorage.getItem('monthlyData') || '[]');
-      if (existingData.length === 0) {
-        const sampleData = [
-          { pid: '111', year: '2024', age: '0 歳児', name: '(全体的な計画)' },
-          { pid: '222', year: '2023', age: '3 歳児', name: '(全体的な計画)' },
-          { pid: '333', year: '2022', age: '5 歳児', name: '(全体的な計画)' },
+      const existingData0 = JSON.parse(sessionStorage.getItem('monthlyData0') || '[]');
+      const existingData1_2 = JSON.parse(sessionStorage.getItem('monthlyData1_2') || '[]');
+      const existingData3_4_5 = JSON.parse(sessionStorage.getItem('monthlyData3_4_5') || '[]');
+
+      if (existingData0.length === 0) {
+        const sampleData0 = [
+          { pid: '111', year: '2024', selectedOption: '月指導計画 0 歳児', name: '(全体的な計画)' },
         ];
-        sessionStorage.setItem('monthlyData', JSON.stringify(sampleData));
+        sessionStorage.setItem('monthlyData0', JSON.stringify(sampleData0));
+      }
+
+      if (existingData1_2.length === 0) {
+        const sampleData1_2 = [
+          { pid: '222', year: '2023', selectedOption: '月指導計画 1・2 歳児', name: '(全体的な計画)' },
+        ];
+        sessionStorage.setItem('monthlyData1_2', JSON.stringify(sampleData1_2));
+      }
+
+      if (existingData3_4_5.length === 0) {
+        const sampleData3_4_5 = [
+          { pid: '333', year: '2022', selectedOption: '月指導計画 3・4・5 歳児', name: '(全体的な計画)' },
+        ];
+        sessionStorage.setItem('monthlyData3_4_5', JSON.stringify(sampleData3_4_5));
       }
     };
     initializeSampleData();
   }, []);
 
   useEffect(() => {
-    // Fetch data from sessionStorage
     const fetchData = () => {
-      const storedData = JSON.parse(sessionStorage.getItem('monthlyData') || '[]');
-      const transformedData = storedData.map((item: any) => ({
+      const storedData0 = JSON.parse(sessionStorage.getItem('monthlyData0') || '[]');
+      const storedData1_2 = JSON.parse(sessionStorage.getItem('monthlyData1_2') || '[]');
+      const storedData3_4_5 = JSON.parse(sessionStorage.getItem('monthlyData3_4_5') || '[]');
+  
+      const allData = [...storedData0, ...storedData1_2, ...storedData3_4_5];
+      console.log('All Data:', allData); // ตรวจสอบข้อมูลทั้งหมด
+  
+      const transformedData = allData.map((item: any) => ({
         pid: item.pid,
         year: item.year,
-        age: item.age,
+        selectedOption: item.selectedOption,
         name: item.name,
         detail: (
           <>
             <IconButton
               aria-label="edit"
               size="small"
-              onClick={() => navigate(`/report/monthlyplan/edit/${item.pid}`)}
+              onClick={() => navigate(`/report/monthlyplan/edit/${item.selectedOption}/${item.pid}`)}
             >
               <EditIcon fontSize="small" className='text-sky-600' />
             </IconButton>
             <IconButton
               aria-label="view"
               size="small"
-              onClick={() => {
-                // Navigate based on `age`
-                const viewPath = item.age === '0 歳児'
-                  ? `/report/monthlyplan/viewmonthlyzero/${item.pid}`
-                  : item.age === '1 歳児'
-                  ? `/report/monthlyplan/viewmonthlyone/${item.pid}`
-                  : `/report/monthlyplan/viewmonthlythree/${item.pid}`; // Modify or add more cases as needed
-                navigate(viewPath);
-              }}
+              onClick={() => navigate(`/report/monthlyplan/view/${item.selectedOption}/${item.pid}`)}
             >
               <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
             </IconButton>
@@ -103,10 +114,11 @@ const Monthlyplan: React.FC = () => {
               onClick={() => {
                 const confirmDelete = window.confirm('Are you sure you want to delete this item?');
                 if (confirmDelete) {
-                  // Handle delete action
                   setData(prevData => prevData.filter(data => data.pid !== item.pid));
-                  const updatedData = storedData.filter((data: any) => data.pid !== item.pid);
-                  sessionStorage.setItem('monthlyData', JSON.stringify(updatedData));
+                  const updatedData = allData.filter((data: any) => data.pid !== item.pid);
+                  sessionStorage.setItem('monthlyData0', JSON.stringify(updatedData.filter(d => d.selectedOption === '月指導計画 ０ 歳児')));
+                  sessionStorage.setItem('monthlyData1_2', JSON.stringify(updatedData.filter(d => d.selectedOption === '月指導計画 １・２ 歳児')));
+                  sessionStorage.setItem('monthlyData3_4_5', JSON.stringify(updatedData.filter(d => d.selectedOption === '月指導計画 ３・４・５歳児')));
                 }
               }}
             >
@@ -119,9 +131,9 @@ const Monthlyplan: React.FC = () => {
     };
     fetchData();
   }, []);
+  
 
   useEffect(() => {
-    // Filtering rows based on search term
     if (searchTerm === '') {
       setFilteredRows(data);
     } else {
@@ -141,7 +153,6 @@ const Monthlyplan: React.FC = () => {
   };
 
   return (
-
     <>
       <ContentMain>
         <Grid container spacing={2} className='pt-7' justifyContent="center">
@@ -162,7 +173,7 @@ const Monthlyplan: React.FC = () => {
             <MonthForm />
           </Grid>
           <Grid item xs={6} sm={4} md={3} lg={2}>
-            <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
+            <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1 } }}>
               <Typography component="div" style={{ color: 'white' }}>
                 検索する
               </Typography>
@@ -218,7 +229,6 @@ const Monthlyplan: React.FC = () => {
                         </TableRow>
                       );
                     })}
-
                 </TableBody>
               </Table>
             </TableContainer>
@@ -236,9 +246,6 @@ const Monthlyplan: React.FC = () => {
       </ContentMain>
     </>
   );
-
 };
 
 export default Monthlyplan;
-
-
