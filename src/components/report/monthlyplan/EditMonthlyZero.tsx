@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Grid, Typography, Button, TextareaAutosize, TableCell, TableRow, TableHead, TableBody, Paper, TableContainer, Table, Card, FormControl, Select, InputLabel, MenuItem } from '@mui/material';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Grid, Typography, Button, TextareaAutosize, TableCell, TableRow, TableHead, TableBody, Paper, TableContainer, Table, Card, FormControl, Select, InputLabel, MenuItem, TextField, IconButton, Modal, Box } from '@mui/material';
 import ContentMain from '../../content/Content';
+import SaveIcon from '@mui/icons-material/Save';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+interface EditMonthlyZeroProps {
+    pid: string;
+    selectedOption: string;
+}
 
 interface Data {
     FacilityDirector: string;
     Chief: string;
     daily: string;
     education: string;
+    detail: JSX.Element;
 }
 
 function createData(
@@ -16,34 +25,189 @@ function createData(
     Chief: string,
     daily: string,
     education: string,
+    detail: JSX.Element
 ): Data {
-    return { FacilityDirector, Chief, daily, education };
+    return { FacilityDirector, Chief, daily, education, detail };
 }
 
 const initialRows: Data[] = [
     createData('濃部　圭子', '渡部　史朗', '6.0', '24',
+        <>
+            <IconButton aria-label="delete" size="small" >
+                <EditIcon fontSize="small" className='text-sky-600' />
+            </IconButton>
+            <IconButton aria-label="delete" size="small" >
+                <DeleteIcon fontSize="small" className='text-red-600' />
+            </IconButton>
+        </>
     ),
     createData('Ice cream sandwich', '237', '9.0', '37',
+        <>
+            <IconButton aria-label="edit" size="small" >
+                <EditIcon fontSize="small" className='text-sky-600' />
+            </IconButton>
+            <IconButton aria-label="delete" size="small" >
+                <DeleteIcon fontSize="small" className='text-red-600' />
+            </IconButton>
+        </>
     ),
     createData('Eclair', '262', '16.0', '24',
+        <>
+            <IconButton aria-label="edit" size="small" >
+                <EditIcon fontSize="small" className='text-sky-600' />
+            </IconButton>
+            <IconButton aria-label="delete" size="small" >
+                <DeleteIcon fontSize="small" className='text-red-600' />
+            </IconButton>
+        </>
     ),
 ];
 
-interface ViewMonthlyZeroProps {
-    pid: string;
-    selectedOption: string;
-  }
+const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: { xs: '90%', sm: '80%', md: '3 0%', lg: '30%' }, // Adjust width based on screen size
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+    borderRadius: 1,
+};
 
+const EditMonthlyZero: React.FC<EditMonthlyZeroProps> = ({ pid, selectedOption }) => {
+    const [rows, setRows] = useState<Data[]>(initialRows);
+    const [open, setOpen] = useState(false);
+    const [newEntry, setNewEntry] = useState<Omit<Data, 'detail'>>({
+        FacilityDirector: '',
+        Chief: '',
+        daily: '',
+        education: '',
+    });
+    const [indexToEdit, setIndexToEdit] = useState<number | null>(null);
 
-const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
-    const [rows] = useState<Data[]>(initialRows);
-    const { pid, selectedOption } = useParams<{ pid: string; selectedOption: string }>();
-    const storedData = JSON.parse(sessionStorage.getItem('monthlyData0') || '[]');
-    const item = storedData.find((data: any) => data.pid === pid && data.selectedOption === selectedOption);
-
-    if (!item) {
-        return <Typography variant="h6">No data found</Typography>;
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => {
+        setOpen(false);
+        setIndexToEdit(null); // Reset indexToEdit when closing modal
     }
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setNewEntry((prev) => ({ ...prev, [name]: name === 'protein' ? parseFloat(value) : value }));
+    };
+
+    const handleEdit = (index: number) => {
+        const rowData = rows[index];
+        setNewEntry({
+            FacilityDirector: rowData.FacilityDirector,
+            Chief: rowData.Chief,
+            daily: rowData.daily,
+            education: rowData.education,
+        });
+        setIndexToEdit(index); // Set indexToEdit to the index of the row being edited
+        setOpen(true);
+    };
+
+    const handleDelete = (index: number) => {
+        const updatedRows = rows.filter((_, rowIndex) => rowIndex !== index);
+        setRows(updatedRows);
+    };
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const newData: Data = {
+            FacilityDirector: newEntry.FacilityDirector,
+            Chief: newEntry.Chief,
+            daily: newEntry.daily,
+            education: newEntry.education,
+            detail: (
+                <>
+                    <IconButton aria-label="edit" size="small">
+                        <EditIcon fontSize="small" className="text-sky-600" />
+                    </IconButton>
+                    <IconButton aria-label="delete" size="small">
+                        <DeleteIcon fontSize="small" className="text-red-600" />
+                    </IconButton>
+                </>
+            ),
+        };
+
+        if (indexToEdit !== null) {
+            // Editing existing row
+            const updatedRows = rows.map((row, index) =>
+                index === indexToEdit ? { ...newData } : row
+            );
+            setRows(updatedRows);
+        } else {
+            // Adding new row
+            setRows(prevRows => [...prevRows, newData]);
+        }
+
+        // Reset newEntry and close modal
+        setNewEntry({
+            FacilityDirector: '',
+            Chief: '',
+            daily: '',
+            education: '',
+        });
+        handleClose();
+    };
+
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        pid: '',
+        selectedOption: '',
+        emotional_stability1: '',
+        perspectives_on_physical1: '',
+        emotional_stability2: '',
+        perspectives_on_physical2: '',
+        health_safety1: '',
+        cooperation: '',
+        event1: '',
+        individual_response: '',
+        evaluation_and_reflection1: '',
+        nursingcare: '',
+        education: '',
+        cooperation2: '',
+        event2: '',
+        environment: '',
+        life_and_play: '',
+        health_safety2: '',
+        sounkan: '',
+        evaluation_and_reflection2: '',
+    });
+
+    useEffect(() => {
+        const storedData = JSON.parse(sessionStorage.getItem('monthlyData0') || '[]');
+        const item = storedData.find((item: any) => item.pid === pid && item.selectedOption === selectedOption);
+        if (item) {
+            setFormData(item);
+        } else {
+            // Optionally, you could handle the case where the item is not found
+            // For example, setting formData to default values or showing a message
+        }
+    }, [pid, selectedOption]);
+
+    const handleChange2 = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { id, value } = e.target;
+        console.log('Changing field:', id, 'to', value);
+        setFormData((prevData) => ({
+            ...prevData,
+            [id]: value
+        }));
+    };
+
+    const handleSave = () => {
+        console.log('Saving data:', formData);
+        const storedData = JSON.parse(sessionStorage.getItem('monthlyData0') || '[]');
+        const updatedData = storedData.map((item: any) =>
+            item.pid === pid ? formData : item
+        );
+        sessionStorage.setItem('monthlyData0', JSON.stringify(updatedData));
+        navigate('/report/monthlyplan');
+    };
 
     const options = [
         '月指導計画 0 歳児',
@@ -112,6 +276,7 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                     </Grid>
                 </Grid >
 
+                {/* Start Grid 指導計画は食育の内容を含むこと。*/}
                 <Grid className="mt-5 lg:mt-7">
                     <Typography
                         component="div"
@@ -120,6 +285,7 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                         指導計画は食育の内容を含むこと。
                     </Typography>
                 </Grid>
+                {/* End Grid 指導計画は食育の内容を含むこと。*/}
 
                 <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-14 pl-10 flex '  >
                     <Card sx={{ bgcolor: "pink", width: 100, height: 35, }} >
@@ -148,10 +314,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="emotional_stability1"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.emotional_stability1}
+                                    onChange={handleChange2}
+                                    value={formData.emotional_stability1}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -174,10 +340,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="perspectives_on_physical1"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.perspectives_on_physical1}
+                                    onChange={handleChange2}
+                                    value={formData.perspectives_on_physical1}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -212,10 +378,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="emotional_stability2"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.emotional_stability2}
+                                    onChange={handleChange2}
+                                    value={formData.emotional_stability2}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -238,10 +404,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="perspectives_on_physical2"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.perspectives_on_physical2}
+                                    onChange={handleChange2}
+                                    value={formData.perspectives_on_physical2}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -268,10 +434,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="health_safety1"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.health_safety1}
+                                    onChange={handleChange2}
+                                    value={formData.health_safety1}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -287,10 +453,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="cooperation"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.cooperation}
+                                    onChange={handleChange2}
+                                    value={formData.cooperation}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -309,10 +475,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="event1"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.event1}
+                                    onChange={handleChange2}
+                                    value={formData.event1}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -328,10 +494,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="individual_response"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.individual_response}
+                                    onChange={handleChange2}
+                                    value={formData.individual_response}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -350,10 +516,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="evaluation_and_reflection1"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.evaluation_and_reflection1}
+                                    onChange={handleChange2}
+                                    value={formData.evaluation_and_reflection1}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -390,10 +556,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="nursingcare"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.nursingcare}
+                                    onChange={handleChange2}
+                                    value={formData.nursingcare}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -409,10 +575,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="education"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.education}
+                                    onChange={handleChange2}
+                                    value={formData.education}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -431,10 +597,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="cooperation2"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.cooperation2}
+                                    onChange={handleChange2}
+                                    value={formData.cooperation2}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -450,13 +616,24 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="event2"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.event2}
+                                    onChange={handleChange2}
+                                    value={formData.event2}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid container spacing={2} className="pt-10 text-right" >
+                    <Grid item xs={12} sm={12} md={12} lg={11.2} >
+                        <Button
+                            variant="contained"
+                            onClick={handleOpen}
+                        >
+                            Add
+                        </Button>
                     </Grid>
                 </Grid>
 
@@ -473,6 +650,7 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                         <TableCell sx={{ border: '1px solid #ccc', width: '13%' }} align="right">主任</TableCell>
                                         <TableCell sx={{ border: '1px solid #ccc', width: '30%' }} align="right">子どもの生活する姿</TableCell>
                                         <TableCell sx={{ border: '1px solid #ccc', width: '30%' }} align="right">養護・教育</TableCell>
+                                        <TableCell sx={{ border: '1px solid #ccc', width: '10%' }} align="right"></TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -503,6 +681,22 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                                 <TableCell align="right" sx={{ border: '1px solid #ccc' }}>
                                                     {row.education}
                                                 </TableCell>
+                                                <TableCell align="center" sx={{ border: '1px solid #ccc' }}>
+                                                    <IconButton
+                                                        aria-label="edit"
+                                                        size="small"
+                                                        onClick={() => handleEdit(index)}
+                                                    >
+                                                        <EditIcon fontSize="small" className="text-sky-600" />
+                                                    </IconButton>
+                                                    <IconButton
+                                                        aria-label="delete"
+                                                        size="small"
+                                                        onClick={() => handleDelete(index)}
+                                                    >
+                                                        <DeleteIcon fontSize="small" className="text-red-600" />
+                                                    </IconButton>
+                                                </TableCell>
                                             </TableRow>
                                         ))
                                     )}
@@ -511,6 +705,68 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                         </TableContainer>
                     </Grid>
                 </Grid>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={modalStyle} component="form" onSubmit={handleSubmit}>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Add New Entry
+                        </Typography>
+                        <TextField
+                            id="FacilityDirector"
+                            name="FacilityDirector"
+                            label="施設長"
+                            value={newEntry.FacilityDirector}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                            margin="normal"
+                            required
+                        />
+                        <TextField
+                            id="Chief"
+                            name="Chief"
+                            label="主任"
+                            value={newEntry.Chief}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                            margin="normal"
+                            required
+                        />
+                        <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
+                            子どもの生活する姿
+                        </Typography>
+                        <textarea
+                            id="daily"
+                            name="daily"
+                            value={newEntry.daily}
+                            onChange={handleChange}
+                            rows={3}  // Set the number of rows here
+                            className="w-72 sm:w-72 lg:w-80"
+                            style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding: '3px' }}
+                        />
+                        <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
+                            子どもとの関わり方保育士等の育みたい内容<br /> (養護・教育)
+                        </Typography>
+                        <textarea
+                            id="education"
+                            name="education"
+                            value={newEntry.education}
+                            onChange={handleChange}
+                            rows={3}  // Set the number of rows here
+                            className="w-72 sm:w-72 lg:w-80"
+                            style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding: '3px' }}
+                        />
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+                            <Button onClick={handleClose} sx={{ mr: 2 }}>Cancel</Button>
+                            <Button type="submit" variant="contained">Save</Button>
+                        </Box>
+                    </Box>
+                </Modal>
 
                 <Grid container spacing={2} className="pt-7">
                     <Grid item xs={12} md={6} >
@@ -524,10 +780,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="environment"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.environment}
+                                    onChange={handleChange2}
+                                    value={formData.environment}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -543,10 +799,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="life_and_play"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.life_and_play}
+                                    onChange={handleChange2}
+                                    value={formData.life_and_play}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -565,10 +821,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="health_safety2"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.health_safety2}
+                                    onChange={handleChange2}
+                                    value={formData.health_safety2}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -584,10 +840,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="sounkan"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.sounkan}
+                                    onChange={handleChange2}
+                                    value={formData.sounkan}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -606,10 +862,10 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                                     name="evaluation_and_reflection2"
                                     minRows={3}
                                     maxRows={100}
-                                    readOnly
-                                    value={item.evaluation_and_reflection2}
+                                    onChange={handleChange2}
+                                    value={formData.evaluation_and_reflection2}
                                     className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
+                                    style={{ border: '1px solid gray', borderRadius: '4px' }}
                                 />
                             </Grid>
                         </Grid>
@@ -626,11 +882,18 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
                             </Typography>
                         </Button>
                     </Grid>
+                    <Grid item>
+                        <Button variant="contained" type="submit" size='medium' className='text-center' startIcon={<SaveIcon />} color="success" onClick={handleSave}>
+                            <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
+                                修正
+                            </Typography>
+                        </Button>
+                    </Grid>
                 </Grid>
             </div>
+
         </ContentMain>
     );
-
 };
 
-export default ViewMonthlyZero;
+export default EditMonthlyZero;

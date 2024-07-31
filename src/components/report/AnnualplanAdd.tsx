@@ -291,6 +291,7 @@ const AnnualplanAdd: React.FC = () => {
                 type="text"
                 size="small"
                 fullWidth
+                value={formData.nursing_care1}
                 onChange={handleChange}
                 sx={{ backgroundColor: 'white' }}
               />
@@ -307,6 +308,7 @@ const AnnualplanAdd: React.FC = () => {
                 type="text"
                 size="small"
                 fullWidth
+                value={formData.education1}
                 onChange={handleChange}
                 sx={{ backgroundColor: 'white' }}
               />
@@ -340,6 +342,7 @@ const AnnualplanAdd: React.FC = () => {
                     name="emotional_stability1"
                     minRows={3}
                     maxRows={100}
+                    value={formData.emotional_stability1}
                     className="w-56 sm:w-60 lg:w-96"
                     onChange={handleChange}
                     style={{ border: '1px solid gray', borderRadius: '4px' }}
@@ -369,6 +372,7 @@ const AnnualplanAdd: React.FC = () => {
                     name="perspectives_on_physical1"
                     minRows={3}
                     maxRows={100}
+                    value={formData.perspectives_on_physical1}
                     className="w-56 sm:w-60 lg:w-96"
                     onChange={handleChange}
                     style={{ border: '1px solid gray', borderRadius: '4px' }}
@@ -387,6 +391,7 @@ const AnnualplanAdd: React.FC = () => {
                     name="food_education1"
                     minRows={3}
                     maxRows={100}
+                    value={formData.food_education1}
                     className="w-56 sm:w-60 lg:w-96"
                     onChange={handleChange}
                     style={{ border: '1px solid gray', borderRadius: '4px' }}
@@ -395,8 +400,7 @@ const AnnualplanAdd: React.FC = () => {
               </Grid>
             </Grid>
           </Grid>
-
-
+          
           <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' ></Grid>
 
         </Grid>
@@ -489,6 +493,7 @@ const AnnualplanAdd: React.FC = () => {
                 type="text"
                 size="small"
                 fullWidth
+                value={formData.nursing_care2}
                 onChange={handleChange}
                 sx={{ backgroundColor: 'white' }}
               />
@@ -505,6 +510,7 @@ const AnnualplanAdd: React.FC = () => {
                 type="text"
                 size="small"
                 fullWidth
+                value={formData.education2}
                 onChange={handleChange}
                 sx={{ backgroundColor: 'white' }}
               />
@@ -538,6 +544,7 @@ const AnnualplanAdd: React.FC = () => {
                     name="emotional_stability2"
                     minRows={3}
                     maxRows={100}
+                    value={formData.emotional_stability2}
                     className="w-56 sm:w-60 lg:w-96"
                     onChange={handleChange}
                     style={{ border: '1px solid gray', borderRadius: '4px' }}
@@ -567,6 +574,7 @@ const AnnualplanAdd: React.FC = () => {
                     name="perspectives_on_physical2"
                     minRows={3}
                     maxRows={100}
+                    value={formData.perspectives_on_physical2}
                     className="w-56 sm:w-60 lg:w-96"
                     onChange={handleChange}
                     style={{ border: '1px solid gray', borderRadius: '4px' }}
@@ -585,6 +593,7 @@ const AnnualplanAdd: React.FC = () => {
                     name="food_education2"
                     minRows={3}
                     maxRows={100}
+                    value={formData.food_education2}
                     className="w-56 sm:w-60 lg:w-96"
                     onChange={handleChange}
                     style={{ border: '1px solid gray', borderRadius: '4px' }}
@@ -593,7 +602,6 @@ const AnnualplanAdd: React.FC = () => {
               </Grid>
             </Grid>
           </Grid>
-
 
           <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' ></Grid>
 
@@ -686,6 +694,7 @@ const AnnualplanAdd: React.FC = () => {
                 type="text"
                 size="small"
                 fullWidth
+                value={formData.nursing_care3}
                 onChange={handleChange}
                 sx={{ backgroundColor: 'white' }}
               />
@@ -702,6 +711,7 @@ const AnnualplanAdd: React.FC = () => {
                 type="text"
                 size="small"
                 fullWidth
+                value={formData.education3}
                 onChange={handleChange}
                 sx={{ backgroundColor: 'white' }}
               />
@@ -735,6 +745,7 @@ const AnnualplanAdd: React.FC = () => {
                     name="emotional_stability3"
                     minRows={3}
                     maxRows={100}
+                    value={formData.emotional_stability3}
                     className="w-56 sm:w-60 lg:w-96"
                     onChange={handleChange}
                     style={{ border: '1px solid gray', borderRadius: '4px' }}
@@ -764,6 +775,7 @@ const AnnualplanAdd: React.FC = () => {
                     name="perspectives_on_physical3"
                     minRows={3}
                     maxRows={100}
+                    value={formData.perspectives_on_physical3}
                     className="w-56 sm:w-60 lg:w-96"
                     onChange={handleChange}
                     style={{ border: '1px solid gray', borderRadius: '4px' }}
@@ -782,6 +794,7 @@ const AnnualplanAdd: React.FC = () => {
                     name="food_education3"
                     minRows={3}
                     maxRows={100}
+                    value={formData.food_education3}
                     className="w-56 sm:w-60 lg:w-96"
                     onChange={handleChange}
                     style={{ border: '1px solid gray', borderRadius: '4px' }}
@@ -790,7 +803,6 @@ const AnnualplanAdd: React.FC = () => {
               </Grid>
             </Grid>
           </Grid>
-
 
           <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' ></Grid>
 
@@ -883,6 +895,7 @@ const AnnualplanAdd: React.FC = () => {
                 type="text"
                 size="small"
                 fullWidth
+                value={formData.nursing_care4}
                 onChange={handleChange}
                 sx={{ backgroundColor: 'white' }}
               />
@@ -899,6 +912,7 @@ const AnnualplanAdd: React.FC = () => {
                 type="text"
                 size="small"
                 fullWidth
+                value={formData.education4}
                 onChange={handleChange}
                 sx={{ backgroundColor: 'white' }}
               />
@@ -932,6 +946,7 @@ const AnnualplanAdd: React.FC = () => {
                     name="emotional_stability4"
                     minRows={3}
                     maxRows={100}
+                    value={formData.emotional_stability4}
                     className="w-56 sm:w-60 lg:w-96"
                     onChange={handleChange}
                     style={{ border: '1px solid gray', borderRadius: '4px' }}
@@ -961,6 +976,7 @@ const AnnualplanAdd: React.FC = () => {
                     name="perspectives_on_physical4"
                     minRows={3}
                     maxRows={100}
+                    value={formData.perspectives_on_physical4}
                     className="w-56 sm:w-60 lg:w-96"
                     onChange={handleChange}
                     style={{ border: '1px solid gray', borderRadius: '4px' }}
@@ -979,6 +995,7 @@ const AnnualplanAdd: React.FC = () => {
                     name="food_education4"
                     minRows={3}
                     maxRows={100}
+                    value={formData.food_education4}
                     className="w-56 sm:w-60 lg:w-96"
                     onChange={handleChange}
                     style={{ border: '1px solid gray', borderRadius: '4px' }}

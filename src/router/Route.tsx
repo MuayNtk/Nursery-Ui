@@ -76,9 +76,8 @@ import EditAnnualplan from "../components/report/EditAnnualplan";
 import ViewAnnualplan from "../components/report/ViewAnnualplan";
 import EditCareDiary from "../components/report/EditCareDiary";
 import ViewCareDiary from "../components/report/ViewCareDiary";
-
-import ViewMonthlyZero from "../components/report/monthlyplan/ViewMonthlyZero";
-
+import EditMonthly from "../components/report/monthlyplan/EditMonthly"
+import ViewMonthly from "../components/report/monthlyplan/ViewMonthly"
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
 const Router = createBrowserRouter([
@@ -285,7 +284,7 @@ const Router = createBrowserRouter([
       {
         path: "/student",
         element: <StudentPages />
-      }, 
+      },
       {
         path: "/student/History",
         element: <StudentHistoryPages />
@@ -386,10 +385,13 @@ const Router = createBrowserRouter([
         path: "/report/carediary/view/:pid",
         element: <ViewCareDiary />
       },
-
       {
-        path: "/report/monthlyplan/view/:pid/:age",
-        element: <ViewMonthlyZero />
+        path: "/report/monthlyplan/edit/:selectedOption/:pid",
+        element: <EditMonthly />
+      },
+      {
+        path: "/report/monthlyplan/view/:selectedOption/:pid",
+        element: <ViewMonthly />
       },
     ]
   },
