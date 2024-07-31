@@ -78,6 +78,8 @@ import EditCareDiary from "../components/report/EditCareDiary";
 import ViewCareDiary from "../components/report/ViewCareDiary";
 import EditMonthly from "../components/report/monthlyplan/EditMonthly"
 import ViewMonthly from "../components/report/monthlyplan/ViewMonthly"
+import EditWeekly from "../components/report/weeklyplan/EditWeekly"
+import ViewWeekly from "../components/report/weeklyplan/ViewWeekly"
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
 const Router = createBrowserRouter([
@@ -392,6 +394,14 @@ const Router = createBrowserRouter([
       {
         path: "/report/monthlyplan/view/:selectedOption/:pid",
         element: <ViewMonthly />
+      },
+      {
+        path: "/report/weeklyplan/edit/:selectedOption/:pid",
+        element: <EditWeekly />
+      },
+      {
+        path: "/report/weeklyplan/view/:selectedOption/:pid",
+        element: <ViewWeekly />
       },
     ]
   },
