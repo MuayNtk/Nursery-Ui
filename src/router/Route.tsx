@@ -80,6 +80,9 @@ import EditMonthly from "../components/report/monthlyplan/EditMonthly"
 import ViewMonthly from "../components/report/monthlyplan/ViewMonthly"
 import EditWeekly from "../components/report/weeklyplan/EditWeekly"
 import ViewWeekly from "../components/report/weeklyplan/ViewWeekly"
+
+import ViewActivity from "../components/accounting/activity/ViewActivity"
+
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
 const Router = createBrowserRouter([
@@ -403,6 +406,12 @@ const Router = createBrowserRouter([
         path: "/report/weeklyplan/view/:selectedOption/:pid",
         element: <ViewWeekly />
       },
+
+      {
+        path: "/accounting/activity/view/:id",
+        element: <ViewActivity />
+      },
+
     ]
   },
 ]);

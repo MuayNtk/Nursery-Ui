@@ -43,14 +43,19 @@ const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => 
     setSelectedRows(prevSelected => {
       const row = rows.find(row => row.id === id);
       if (!row) return prevSelected;
-      if (prevSelected.find(selected => selected.id === id)) {
-        return prevSelected.filter(selected => selected.id !== id);
-      } else {
-        return [...prevSelected, row];
-      }
+      const updatedSelected = prevSelected.find(selected => selected.id === id)
+        ? prevSelected.filter(selected => selected.id !== id)
+        : [...prevSelected, row];
+      
+      // บันทึก selected rows ลงใน sessionStorage
+      sessionStorage.setItem('selectedRows', JSON.stringify(updatedSelected));
+      
+      console.log('Selected Rows:', updatedSelected); // Debugging
+      return updatedSelected;
     });
-  }, []);
-
+  }, [rows]);
+  
+  
   const handleSelectAllChange = useCallback(() => {
     if (selectAll) {
       setSelectedRows([]);
@@ -132,7 +137,7 @@ const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => 
         </Grid>
         <Grid item xs={2.4} sm={3} md={2} lg={1}>
           <TextField
-            id="era-textfield"
+            id="era_textfield"
             label=""
             value={formState.era}
             onChange={handleDateChange('era')}
@@ -243,7 +248,7 @@ const JoinActivity: React.FC<JoinActivityProps> = ({ onActivityDataChange }) => 
             </TableHead>
             <TableBody>
               {rows.map((row) => (
-                <TableRow key={row.id}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                   <TableCell>
                     <Checkbox
                       checked={selectedRows.some(selected => selected.id === row.id)}
