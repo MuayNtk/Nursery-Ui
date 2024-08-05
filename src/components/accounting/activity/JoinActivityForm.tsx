@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FormControl, Grid, InputAdornment, OutlinedInput, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TextField, TextareaAutosize, Typography } from "@mui/material";
 
 interface ActivityData {
@@ -20,23 +20,14 @@ interface JoinActivityFormProps {
 
 const JoinActivityForm: React.FC<JoinActivityFormProps> = ({ era, year, month, day, activityData , onFormDataChange }) => {
   const [formData, setFormData] = useState<Record<string, string | number>>({});
-  
 
   useEffect(() => {
     onFormDataChange(formData);
   }, [formData, onFormDataChange]);
 
   const handleInputChange = (id: number, field: string, value: string) => {
-    const stringFields = [
-      'everyday', 'everyweek', 'monthly', 'annual', 'other', 
-      'era-textfield', 'year', 'month', 'day', 'place', 
-      'participants', 'content'
-    ];
-  
-    const numericFields = [
-      'rent', 'equipment', 'honoraria', 'usagefees', 'travelexpenses',
-      'commissionfees', 'servicecosts', 'supplycosts', 'rawmaterialcosts'
-    ];
+    const stringFields = ['everyday', 'everyweek', 'monthly', 'annual', 'other', 'era-textfield', 'year', 'month', 'day', 'place', 'participants', 'content'];
+    const numericFields = ['rent', 'equipment', 'honoraria', 'usagefees', 'travelexpenses', 'commissionfees', 'servicecosts', 'supplycosts', 'rawmaterialcosts'];
   
     const isStringField = stringFields.some(strField => field.startsWith(strField));
     const isNumericField = numericFields.some(numField => field.startsWith(numField));
@@ -47,6 +38,7 @@ const JoinActivityForm: React.FC<JoinActivityFormProps> = ({ era, year, month, d
         [`${field}-${id}`]: isStringField ? value : parseFloat(value) || 0
       };
   
+      // คำนวณยอดรวมสำหรับฟิลด์ที่เป็นตัวเลข
       if (isNumericField) {
         const total = numericFields.reduce((sum, numField) => {
           const numValue = updatedData[`${numField}-${id}`];
@@ -60,19 +52,16 @@ const JoinActivityForm: React.FC<JoinActivityFormProps> = ({ era, year, month, d
     });
   };
   
-// Correctly handle the numeric value conversion
-const calculateTotal = (id: number): number => {
-  const fields = [
-    'rent', 'equipment', 'honoraria', 'usagefees', 'travelexpenses',
-    'commissionfees', 'servicecosts', 'supplycosts', 'rawmaterialcosts'
-  ];
-  return fields.reduce((total, field) => {
-    const value = formData[`${field}-${id}`];
-    return total + (typeof value === 'number' ? value : 0);
-  }, 0);
-};
 
-  
+  const calculateTotal = useCallback((id: number): number => {
+    const fields = ['rent', 'equipment', 'honoraria', 'usagefees', 'travelexpenses', 'commissionfees', 'servicecosts', 'supplycosts', 'rawmaterialcosts'];
+    return fields.reduce((total, field) => {
+      const value = formData[`${field}-${id}`];
+      return total + (typeof value === 'number' ? value : 0);
+    }, 0);
+  }, [formData]);
+
+
   return (
     <>
       {activityData.map(data => (
@@ -200,7 +189,6 @@ const calculateTotal = (id: number): number => {
           </Grid>
           {/* End 毎日 Grid */}
 
-
           {/* Start 日時 Grid */}
           <Grid container spacing={2} className='pt-10'>
             <Grid item xs={2} sm={2.5} md={3} lg={3}>
@@ -283,8 +271,6 @@ const calculateTotal = (id: number): number => {
             </Grid>
           </Grid>
           {/* End 場所 Grid */}
-
-          
 
           {/* Start 参加者 Grid */}
           <Grid container spacing={2} className='pt-5'>
