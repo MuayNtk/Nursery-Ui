@@ -14,9 +14,7 @@ export default function InvoiceEnhancement() {
       {/* Start 請求書 Grid */}
       <Grid container className='pt-3' justifyContent="center">
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-center'>
-            <Divider>請求書</Divider>
-          </Typography>
+          <Divider>請求書</Divider>
         </Grid>
       </Grid>
       {/* End 請求書 Grid */}
@@ -39,7 +37,6 @@ export default function InvoiceEnhancement() {
       </Grid>
       {/* End 金額 Grid */}
 
-      {/* Start ※(金額の記載は、アラピア数字を用いその頭部に「」を記入してください。) Grid */}
       <Grid container className='pt-2' justifyContent="center">
         <Grid item xs={12} sm={12} md={9} lg={7}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' }, color: '#FF9900' }} className='pt-2 text-start'>
@@ -47,12 +44,12 @@ export default function InvoiceEnhancement() {
           </Typography>
         </Grid>
       </Grid>
-      {/* End ※(金額の記載は、アラピア数字を用いその頭部に「」を記入してください。) Grid */}
+  
 
       {/* Start 件名 Grid */}
       <Grid container spacing={1} justifyContent='start' className="pt-7">
         <Grid item xs={7} sm={7} md={6} lg={6} >
-          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
+          <Typography component="div" sx={{ fontSize: { xs: 12, sm: 12, md: 12, lg: 14, } }} >
             件名 :
           </Typography>
         </Grid>
@@ -94,8 +91,7 @@ export default function InvoiceEnhancement() {
         </Grid>
       </Grid>
       {/* End 口座振込を希望します Grid */}
-
-      {/* Start ※(本市に2つ以上口座を登録されている方等は、以下に振込を希望する口座をご記入ください。) Grid */}
+     
       <Grid container className='pt-2' justifyContent="center">
         <Grid item xs={12} sm={12} md={10} lg={7}>
           <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' }, color: '#3366FF' }} className='pt-2 text-start'>
@@ -103,7 +99,6 @@ export default function InvoiceEnhancement() {
           </Typography>
         </Grid>
       </Grid>
-      {/* End ※(本市に2つ以上口座を登録されている方等は、以下に振込を希望する口座をご記入ください。) Grid */}
 
       {/* Start Table 1 */}
       <Grid container className='pt-3' justifyContent="center">
@@ -280,7 +275,7 @@ export default function InvoiceEnhancement() {
       {/* Start 住所 Grid */}
       <Grid container spacing={1} justifyContent='start' className="pt-7">
         <Grid item xs={7} sm={7} md={6} lg={6} >
-          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
+          <Typography component="div" sx={{ fontSize: { xs: 14, sm: 14, md: 14, lg: 14, } }} >
             住所 :
           </Typography>
         </Grid>
@@ -305,7 +300,7 @@ export default function InvoiceEnhancement() {
       {/* Start 氏名 Grid */}
       <Grid container spacing={1} justifyContent='start' className="pt-7">
         <Grid item xs={7} sm={7} md={6} lg={6} >
-          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
+          <Typography component="div" sx={{ fontSize: { xs: 14, sm: 14, md: 14, lg: 14, } }} >
             氏名 :
           </Typography>
         </Grid>
@@ -314,7 +309,8 @@ export default function InvoiceEnhancement() {
 
       {/* Start Textarea-full-name */}
       <Grid container rowSpacing={2} justifyContent='center' alignItems='center' className='pt-2'>
-        <Grid item xs={7} sm={7} md={7} lg={7}>
+        <Grid item xs={7} sm={7} md={7} lg={7}
+        >
           <TextareaAutosize
             id="full-name"
             name="full-name"
@@ -330,12 +326,12 @@ export default function InvoiceEnhancement() {
       {/* Start (あて先)福岡市(区)長 Grid */}
       <Grid container spacing={1} justifyContent='start' className="pt-3">
         <Grid item xs={9} sm={8} md={7} lg={7} >
-          <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, } }} >
+          <Typography component="div" sx={{ fontSize: { xs: 12, sm: 12, md: 12, lg: 14, } }} >
             (あて先)福岡市(区)長
           </Typography>
         </Grid>
       </Grid>
-      {/* End (あて先)福岡市(区)長 Grid */}
+      {/* End (あて先)福岡市(区)長 Grid */} 
 
       {/* Start ※ご注意 Grid */}
       <Grid container className='pt-2' justifyContent="center">
@@ -350,7 +346,7 @@ export default function InvoiceEnhancement() {
       {/* Start 金額と口座番号は、右づめで記入してください。 Grid */}
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={12} md={9} lg={7}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' }, color: '#FF9900' }} className='pt-2 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '12px', md: '12px', lg: '14px' }, color: '#FF9900' }} className='pt-2 text-start'>
             1 金額と口座番号は、右づめで記入してください。
             なお、ゆうちょ銀行への振込を希望される場合は、振込用の口座番号を記入してください
           </Typography>
@@ -361,7 +357,7 @@ export default function InvoiceEnhancement() {
       {/* Start 2請求書の金額は、訂正できません。。 Grid */}
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={12} md={9} lg={7}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' }, color: '#FF9900' }} className='pt-2 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '12px', md: '12px', lg: '12px' }, color: '#FF9900' }} className='pt-2 text-start'>
             2 請求書の金額は、訂正できません。
           </Typography>
         </Grid>
@@ -371,7 +367,7 @@ export default function InvoiceEnhancement() {
       {/* Start ※法人等の場合 Grid */}
       <Grid container className='pt-2' justifyContent="center">
         <Grid item xs={12} sm={12} md={9} lg={7}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '12px', md: '12px', lg: '14px' } }} className='pt-2 text-start'>
             ※法人等の場合
           </Typography>
         </Grid>
@@ -381,7 +377,7 @@ export default function InvoiceEnhancement() {
       {/* Start 担当者部署・名:事務宅 Grid */}
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={12} md={9} lg={7}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '12px', md: '12px', lg: '14px' } }} className='pt-2 text-start'>
             担当者部署・名:事務宅
           </Typography>
         </Grid>
@@ -391,7 +387,7 @@ export default function InvoiceEnhancement() {
       {/* Start 連絡先電話番号:092-406-8215 Grid */}
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={12} md={9} lg={7}>
-          <Typography sx={{ fontSize: { xs: '12px', sm: '14px', md: '14px', lg: '15px' } }} className='pt-2 text-start'>
+          <Typography sx={{ fontSize: { xs: '12px', sm: '12px', md: '12px', lg: '14px' } }} className='pt-2 text-start'>
             連絡先電話番号 : 092-406-8215
           </Typography>
         </Grid>

@@ -1,9 +1,11 @@
-import { Grid, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, TableBody, Button, Divider, Checkbox, TextareaAutosize } from "@mui/material";
-
-
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+import { Grid, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, TableBody, Button, Divider,  TextareaAutosize, FormControl, Select, MenuItem, SelectChangeEvent } from "@mui/material";
+import { useState } from "react";
 
 export default function ImplementationPlan1() {
+  const [selectedOption, setSelectedOption] = useState('');
+  const handleDropdownChange = (event: SelectChangeEvent) => {
+    setSelectedOption(event.target.value);
+  };
 
   return (
     <>
@@ -82,7 +84,22 @@ export default function ImplementationPlan1() {
             <TableBody>
               <TableRow hover role="checkbox" tabIndex={-1}>
                 <TableCell align="center">
-                  <Checkbox {...label} />
+                  <FormControl  size="small" >
+                    <Select
+                      id="selectoffSite"
+                      name="selectoffSite"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "white",
+                        minWidth: 70,
+                      }}
+                      onChange={handleDropdownChange}
+                      value={selectedOption}
+                    >
+                      <MenuItem value="1">〇</MenuItem>
+                      <MenuItem value="2">✕</MenuItem>
+                    </Select>
+                  </FormControl>
                 </TableCell>
                 <TableCell align="left">園外活動における見守り等</TableCell>
                 <TableCell align="center">
@@ -94,8 +111,8 @@ export default function ImplementationPlan1() {
                     </Grid>
                     <Grid item lg={2.5} >
                       <TextField
-                        id="revenue-section"
-                        name="revenue-section"
+                        id="amountoffSite"
+                        name="amountoffSite"
                         type="text"
                         variant="standard"
                         size="small"
@@ -111,7 +128,22 @@ export default function ImplementationPlan1() {
               </TableRow>
               <TableRow hover role="checkbox" tabIndex={-1}>
                 <TableCell align="center">
-                  <Checkbox {...label} />
+                  <FormControl  size="small" >
+                    <Select
+                      labelId="subsidy"
+                      id="subsidy"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "white",
+                        minWidth: 70
+                      }}
+                      onChange={handleDropdownChange}
+                      value={selectedOption}
+                    >
+                       <MenuItem value="1">〇</MenuItem>
+                      <MenuItem value="2"> ✕</MenuItem>
+                    </Select>
+                  </FormControl>
                 </TableCell>
                 <TableCell align="left">保育施設,遊ぶ場所,遊具等の消毒又は清掃</TableCell>
                 <TableCell align="center">
@@ -140,7 +172,22 @@ export default function ImplementationPlan1() {
               </TableRow>
               <TableRow hover role="checkbox" tabIndex={-1}>
                 <TableCell align="center">
-                  <Checkbox {...label} />
+                  <FormControl  size="small" >
+                    <Select
+                      labelId="subsidy"
+                      id="subsidy"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "white",
+                        minWidth: 70
+                      }}
+                      onChange={handleDropdownChange}
+                      value={selectedOption}
+                    >
+                       <MenuItem value="1">〇</MenuItem>
+                      <MenuItem value="2">✕</MenuItem>
+                    </Select>
+                  </FormControl>
                 </TableCell>
                 <TableCell align="left">給食の配膳又は片付け</TableCell>
                 <TableCell align="center">
@@ -169,7 +216,22 @@ export default function ImplementationPlan1() {
               </TableRow>
               <TableRow hover role="checkbox" tabIndex={-1}>
                 <TableCell align="center">
-                  <Checkbox {...label} />
+                  <FormControl  size="small" >
+                    <Select
+                      labelId="subsidy"
+                      id="subsidy"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "white",
+                        minWidth: 70
+                      }}
+                      onChange={handleDropdownChange}
+                      value={selectedOption}
+                    >
+                       <MenuItem value="1">〇</MenuItem>
+                      <MenuItem value="2">✕</MenuItem>
+                    </Select>
+                  </FormControl>
                 </TableCell>
                 <TableCell align="left">寝具の用意又は片付け</TableCell>
                 <TableCell align="center">
@@ -198,7 +260,22 @@ export default function ImplementationPlan1() {
               </TableRow>
               <TableRow hover role="checkbox" tabIndex={-1}>
                 <TableCell align="center">
-                  <Checkbox {...label} />
+                  <FormControl  size="small" >
+                    <Select
+                      labelId="subsidy"
+                      id="subsidy"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "white",
+                        minWidth: 70
+                      }}
+                      onChange={handleDropdownChange}
+                      value={selectedOption}
+                    >
+                       <MenuItem value="1">〇</MenuItem>
+                      <MenuItem value="2">✕</MenuItem>
+                    </Select>
+                  </FormControl>
                 </TableCell>
                 <TableCell align="left">
                   外国人の児童の保護者等との意思疎通に係る通訳又は翻訳
@@ -229,7 +306,22 @@ export default function ImplementationPlan1() {
               </TableRow>
               <TableRow hover role="checkbox" tabIndex={-1}>
                 <TableCell align="center">
-                  <Checkbox {...label} />
+                  <FormControl  size="small" >
+                    <Select
+                      labelId="subsidy1"
+                      id="subsidy1"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "white",
+                        minWidth: 70
+                      }}
+                      onChange={handleDropdownChange}
+                      value={selectedOption}
+                    >
+                       <MenuItem value="1">〇</MenuItem>
+                      <MenuItem value="2">✕</MenuItem>
+                    </Select>
+                  </FormControl>
                 </TableCell>
                 <TableCell align="left">
                   その他,保育士の負担軽減に資する業務(休憩・事務時間の確保等)
