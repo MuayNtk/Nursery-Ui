@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
+import React, { useState, useEffect } from 'react';
 import ContentMain from '../../content/Content';
+import { Button, Grid, IconButton, Typography, TextField } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,115 +10,132 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from 'react-router-dom';
 
 interface Column {
-  id: 'schoolnumber' | 'schoolname' | 'date' | 'totalprojects' | 'totalamount' | 'detail';
+  id: 'schoolnumber' | 'date' | 'totalprojects' | 'totalamount' | 'detail';
   label: string;
   minWidth?: number;
-  align?: 'right';
+  align?: 'right' | 'center' | 'left';
   format?: (value: number) => string;
 }
 
 const columns: readonly Column[] = [
-  { id: 'schoolnumber', label: '保育所番号', minWidth: 150 },
-  { id: 'schoolname', label: '保育所（園）名', minWidth: 100 },
-  {
-    id: 'date',
-    label: '日付',
-    minWidth: 150,
-    align: 'right',
-  },
-  {
-    id: 'totalprojects',
-    label: '実施事業番号及び合計事業数',
-    minWidth: 150,
-    align: 'right',
-  },
-  {
-    id: 'totalamount',
-    label: ' 各事業の執行予定額の合計',
-    minWidth: 150,
-    align: 'right',
-  },
-  {
-    id: 'detail',
-    label: '',
-    minWidth: 100,
-  },
+  { id: 'schoolnumber', label: '保育所番号', minWidth: 150, align: 'center' },
+  { id: 'date', label: '日付', minWidth: 150, align: 'center' },
+  { id: 'totalprojects', label: '実施事業番号及び合計事業数', minWidth: 150, align: 'center' },
+  { id: 'totalamount', label: '各事業の執行予定額の合計', minWidth: 150, align: 'center' },
+  { id: 'detail', label: '', minWidth: 100, align: 'center' },
 ];
 
 interface Data {
-  id: string;  // Ensure each data row has a unique identifier
+  id: number;
   schoolnumber: string;
-  schoolname: string;
   date: number;
   totalprojects: number;
   totalamount: number;
   detail: JSX.Element;
 }
 
-function createData(
-  id: string,  // Include id in the createData function
-  schoolnumber: string,
-  schoolname: string,
-  date: number,
-  totalprojects: number,
-  totalamount: number,
-  detail: JSX.Element
-): Data {
-  return { id, schoolnumber, schoolname, date, totalprojects, totalamount, detail };
-}
+const ActivityList: React.FC = () => {
+  const [data, setData] = useState<Data[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredRows, setFilteredRows] = useState<Data[]>([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const navigate = useNavigate();
 
-// Example data (you can replace this with your actual data)
-const initialRows = [
-  createData('1', '566', '渡部　圭子', 20230619, 3, 600000,
-    <>
-      <IconButton aria-label="delete" size="small" color="primary">
-        <EditIcon fontSize="small" color="primary" />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" color="error">
-        <DeleteForeverIcon fontSize="small" color="error" />
-      </IconButton>
-    </>
-  ),
-  createData('2', '999', '渡部　圭子', 20230619, 4, 700000,
-    <>
-      <IconButton aria-label="delete" size="small" color="primary">
-        <EditIcon fontSize="small" color="primary" />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" color="error">
-        <DeleteForeverIcon fontSize="small" color="error" />
-      </IconButton>
-    </>
-  ),
-  createData('3', '000', '渡部　圭子', 20230619, 4, 800000,
-    <>
-      <IconButton aria-label="delete" size="small" color="primary">
-        <EditIcon fontSize="small" color="primary" />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" color="error">
-        <DeleteForeverIcon fontSize="small" color="error" />
-      </IconButton>
-    </>
-  ),
-  createData('4', ' 787', '渡部　圭子', 20230619, 2, 500000,
-    <>
-      <IconButton aria-label="delete" size="small" color="primary">
-        <EditIcon fontSize="small" color="primary" />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" color="error">
-        <DeleteForeverIcon fontSize="small" color="error" />
-      </IconButton>
-    </>
-  ),
-];
+  const formatDate = (date: number): string => {
+    const year = Math.floor(date / 10000);
+    const month = Math.floor((date % 10000) / 100);
+    const day = date % 100;
 
-export default function ActivityList() {
+    const reiwaStartYear = 2019;
+    let reiwaYear;
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    if (year < reiwaStartYear) {
+      return `令${year}年${month}月${day}日`;
+    } else {
+      reiwaYear = year - reiwaStartYear + 1;
+      return `令${reiwaYear}年${month}月${day}日`;
+    }
+  };
+
+  useEffect(() => {
+    const initializeSampleData = () => {
+      const existingData = JSON.parse(sessionStorage.getItem('activityData') || '[]');
+      if (existingData.length === 0) {
+        const sampleData = [
+          { id: 111, schoolnumber: '123', date: 20220801, totalprojects: 2, totalamount: 400000 },
+          { id: 222, schoolnumber: '456', date: 20230802, totalprojects: 4, totalamount: 850000 },
+          { id: 333, schoolnumber: '789', date: 20240803, totalprojects: 3, totalamount: 600000 },
+        ];
+        sessionStorage.setItem('activityData', JSON.stringify(sampleData));
+      }
+    };
+    initializeSampleData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = () => {
+      const storedData = JSON.parse(sessionStorage.getItem('activityData') || '[]');
+      const transformedData = storedData.map((item: any) => ({
+        id: item.id,
+        schoolnumber: item.schoolnumber,
+        date: item.date,
+        totalprojects: item.totalprojects,
+        totalamount: item.totalamount,
+        selectedActivities: item.selectedActivities || [],
+        detail: (
+          <>
+            <IconButton
+              aria-label="edit"
+              size="small"
+              onClick={() => navigate(`/accounting/activity/edit/${item.pid}`)}
+            >
+              <EditIcon fontSize="small" className='text-sky-600' />
+            </IconButton>
+            <IconButton
+              aria-label="view"
+              size="small"
+              onClick={() => navigate(`/accounting/activity/view/${item.id}`)}
+            >
+              <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              size="small"
+              onClick={() => {
+                const confirmDelete = window.confirm('Are you sure you want to delete this item?');
+                if (confirmDelete) {
+                  setData(prevData => prevData.filter(data => data.id !== item.id));
+                  const updatedData = storedData.filter((data: any) => data.id !== item.id);
+                  sessionStorage.setItem('activityData', JSON.stringify(updatedData));
+                }
+              }}
+            >
+              <DeleteIcon fontSize="small" className='text-red-600' />
+            </IconButton>
+          </>
+        )
+      }));
+      setData(transformedData);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (searchTerm === '') {
+      setFilteredRows(data);
+    } else {
+      setFilteredRows(data.filter(row =>
+        row.schoolnumber.toLowerCase().includes(searchTerm.toLowerCase())
+      ));
+    }
+  }, [searchTerm, data]);
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -129,16 +146,6 @@ export default function ActivityList() {
     setPage(0);
   };
 
-  const [searchInput, setSearchInput] = React.useState('');
-  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
-  };
-
-  // Filtered rows based on search input and selected classroom
-  const filteredRows = initialRows.filter(row =>
-    row.schoolnumber.toLowerCase().includes(searchInput.toLowerCase())
-  );
-
   return (
     <ContentMain>
       <Grid container spacing={2} className='pt-7' justifyContent="center">
@@ -147,9 +154,10 @@ export default function ActivityList() {
             id="outlined-search"
             label="保育所番号"
             type="search"
-            size="small"
-            onChange={handleSearchInputChange}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             sx={{ bgcolor: 'white' }}
+            size="small"
           />
         </Grid>
         <Grid item xs={6} sm={4} md={3} lg={1.5}>
@@ -189,22 +197,24 @@ export default function ActivityList() {
               <TableBody>
                 {filteredRows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
-                    return (
-                      <TableRow key={row.id}>
-                        {columns.map((column) => {
-                          const value = row[column.id];
-                          return (
-                            <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === 'number'
-                                ? column.format(value)
-                                : value}
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    );
-                  })}
+                  .map((row, index) => (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                      {columns.map((column) => {
+                        const value = column.id === 'date' ? formatDate(row[column.id]) : row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.id === 'detail' ? (
+                              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                {value}
+                              </div>
+                            ) : (
+                              value
+                            )}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -222,3 +232,5 @@ export default function ActivityList() {
     </ContentMain>
   );
 }
+
+export default ActivityList;
