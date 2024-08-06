@@ -82,6 +82,7 @@ import EditWeekly from "../components/report/weeklyplan/EditWeekly"
 import ViewWeekly from "../components/report/weeklyplan/ViewWeekly"
 
 import ViewActivity from "../components/accounting/activity/ViewActivity"
+import ShiftFormPages from "../pages/teacher/shiftmanagement/ShiftFormPages";
 
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
@@ -117,6 +118,10 @@ const Router = createBrowserRouter([
       {
         path: "/teacher/listleave",
         element: <ListLeavePages />
+      },
+      {
+        path: "/teacher/shift",
+        element: <ShiftFormPages />
       },
       {
         path: "/accounting",
