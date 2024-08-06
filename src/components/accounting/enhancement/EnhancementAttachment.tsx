@@ -91,7 +91,7 @@ export default function AttachmentCertification() {
       {/* Start Table 1 */}
       <Grid container  justifyContent="center">
         <TableContainer component={Paper}  sx={{ width: { xs: 'auto', sm: 'auto', md: 'auto', lg: 'auto' } }}>
-          <Table sx={{ minWidth: 500 }} aria-label="simple table" size="small">
+          <Table sx={{ minWidth: 500 }} aria-label="a dense table" size="small">
             <TableHead>
               <TableRow>
                 <TableCell align="left" style={{ width:180 ,fontWeight: "bold" }}>氏名</TableCell>
@@ -102,7 +102,7 @@ export default function AttachmentCertification() {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow hover role="checkbox" tabIndex={-1}>
+              <TableRow  role="checkbox" tabIndex={-1}>
                 <TableCell align="left">
                   <TextField
                     className='w-full'
@@ -136,7 +136,7 @@ export default function AttachmentCertification() {
                 <TableCell align="center" rowSpan={2}>145,000</TableCell>
                 <TableCell align="center" rowSpan={2}>0</TableCell>
               </TableRow>
-              <TableRow hover role="checkbox" tabIndex={-1}>
+              <TableRow  role="checkbox" tabIndex={-1}>
                 <TableCell align="left">
                   <TextField
                     className='w-full'
@@ -239,7 +239,7 @@ export default function AttachmentCertification() {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow hover role="checkbox" tabIndex={-1}>
+              <TableRow  role="checkbox" tabIndex={-1}>
                 <TableCell align="left">
                   <TextField
                     className='w-full'
@@ -273,7 +273,7 @@ export default function AttachmentCertification() {
                 <TableCell align="center" rowSpan={2}>45,000</TableCell>
                 <TableCell align="center" rowSpan={2}>0</TableCell>
               </TableRow>
-              <TableRow hover role="checkbox" tabIndex={-1}>
+              <TableRow  role="checkbox" tabIndex={-1}>
                 <TableCell align="left">
                   <TextField
                     className='w-full'
