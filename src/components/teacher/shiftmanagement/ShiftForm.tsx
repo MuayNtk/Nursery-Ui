@@ -11,7 +11,7 @@ interface Employee {
 }
 
 const daysInMonth = (month: number, year: number) => new Date(year, month, 0).getDate();
-const monthNames = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+const monthNames = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 const dayNames = ["日", "月", "火", "水", "木", "金", "土"];
 
 const ShiftForm: React.FC = () => {
@@ -205,22 +205,55 @@ const ShiftForm: React.FC = () => {
         </Grid>
       </Grid>
 
-      <TableContainer component={Paper} className="mt-7">
+      <Grid item xs={5} sm={3} md={3} lg={1.5} className="text-end" sx={{ marginTop: 1, marginRight: 1 }}>
+        <Button size="small" variant="contained" color="success" >
+        申請シフトを全て確定 
+        </Button>
+      </Grid>
+      <TableContainer component={Paper} className="mt-2">
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell rowSpan={2 }  sx={{ border: '1px solid #ccc' }}>{monthNames[nextMonth]} {nextMonthYear}</TableCell>
+              <TableCell 
+                rowSpan={2 }  align="center"
+                sx={{ border: '1px solid #ccc',
+                      position: 'sticky', left: 0, 
+                      background: '#fff', zIndex: 1 ,  
+                      minWidth: { xs: 150, sm: 150, md: 150 } ,
+                      fontSize: { xs: 12, sm: 12, md: 12, lg: 10 }
+                   }}
+              >
+                 {`${nextMonthYear}年${monthNames[nextMonth]}月01日〜${days}日`}
+              </TableCell>
               {Array.from({ length: days }, (_, i) => (
-                <TableCell key={i + 1}  sx={{ border: '1px solid #ccc' }}>
-                  <div>{i + 1}</div>
+                <TableCell key={i + 1} align="center"  
+                          sx={{ border: '1px solid #ccc' ,
+                                minWidth: { xs: 53, sm: 53, md: 53 } , 
+                                height: '30px', 
+                                padding: '1px',
+                                lineHeight: '12px', 
+                                fontSize: { xs: 12, sm: 12, md: 12, lg: 12 }
+                              }}
+                >
+                  {i + 1}
                 </TableCell>
                 
               ))}
             </TableRow>
             <TableRow>
               {Array.from({ length: days }, (_, i) => (
-                <TableCell key={i + 1}  sx={{ border: '1px solid #ccc' }}>
-                  <div>{dayNames[new Date(nextMonthYear, nextMonth, i + 1).getDay()]}</div>
+                <TableCell 
+                  key={i + 1} 
+                  align="center" 
+                  sx={{ border: '1px solid #ccc' , 
+                        fontSize: { xs: 12, sm: 12, md: 12, lg: 12 },
+                        padding: '1px',
+                        lineHeight: '12px', 
+                        height: '20px' // Optional: Set a specific height
+                     }}
+                  
+                  >
+                  {dayNames[new Date(nextMonthYear, nextMonth, i + 1).getDay()]}
                 </TableCell>
                 
               ))}
@@ -229,17 +262,28 @@ const ShiftForm: React.FC = () => {
           <TableBody>
             {employees.map((employee, index) => (
               <TableRow key={index}>
-                <TableCell  sx={{ border: '1px solid #ccc' }}>{employee.name}</TableCell>
+                <TableCell  
+                    sx={{ border: '1px solid #ccc', 
+                          position: 'sticky', left: 0, 
+                          background: '#fff', zIndex: 1, 
+                        
+                        }}>
+                  {employee.name}
+                </TableCell>
                 {employee.shifts.map((shift, day) => (
                   <TableCell
-                  
                     key={day}
+                    align="center"
                     onClick={() => handleCellClick(index, day)}
                     sx={{
                       backgroundColor: day < daysInMonth(nextMonth + 1, nextMonthYear) ? actionColors[shift] || 'transparent' : '#f0f0f0', // Light gray for invalid days
                       cursor: day < daysInMonth(nextMonth + 1, nextMonthYear) ? 'pointer' : 'not-allowed', // Pointer cursor for valid days
                       opacity: day < daysInMonth(nextMonth + 1, nextMonthYear) ? 1 : 0.5, // Make invalid days appear faded
-                      border: '1px solid #ccc'
+                      border: '1px solid #ccc',
+                      fontSize: { xs: 12, sm: 12, md: 12, lg: 12 },
+                      height: '50px', 
+                      padding: '1px',
+                      lineHeight: '12px', 
                     }}
                   >
                     {shift}
