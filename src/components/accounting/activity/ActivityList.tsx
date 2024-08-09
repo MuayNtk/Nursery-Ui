@@ -13,7 +13,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 interface Column {
   id: 'schoolnumber' | 'date' | 'totalprojects' | 'totalamount' | 'detail';
@@ -46,7 +46,7 @@ const ActivityList: React.FC = () => {
   const [filteredRows, setFilteredRows] = useState<Data[]>([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const formatDate = (date: number): string => {
     const year = Math.floor(date / 10000);
@@ -94,14 +94,14 @@ const ActivityList: React.FC = () => {
             <IconButton
               aria-label="edit"
               size="small"
-              onClick={() => navigate(`/accounting/activity/edit/${item.pid}`)}
+              // onClick={() => navigate(`/accounting/activity/edit/${item.pid}`)}
             >
               <EditIcon fontSize="small" className='text-sky-600' />
             </IconButton>
             <IconButton
               aria-label="view"
               size="small"
-              onClick={() => navigate(`/accounting/activity/view/${item.id}`)}
+              // onClick={() => navigate(`/accounting/activity/view/${item.id}`)}
             >
               <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
             </IconButton>
