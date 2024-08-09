@@ -218,10 +218,11 @@ const ShiftForm: React.FC = () => {
                 rowSpan={2 }  align="center"
                 sx={{ border: '1px solid #ccc',
                       position: 'sticky', left: 0, 
-                      background: '#fff', zIndex: 1 ,  
+                      background: '#ffe2d2', zIndex: 1 ,  
                       minWidth: { xs: 150, sm: 150, md: 150 } ,
                       fontSize: { xs: 12, sm: 12, md: 12, lg: 10 }
                    }}
+              
               >
                  {`${nextMonthYear}年${monthNames[nextMonth]}月01日〜${days}日`}
               </TableCell>
@@ -229,6 +230,7 @@ const ShiftForm: React.FC = () => {
                 <TableCell key={i + 1} align="center"  
                           sx={{ border: '1px solid #ccc' ,
                                 minWidth: { xs: 53, sm: 53, md: 53 } , 
+                                background: '#ffe2d2',  
                                 height: '30px', 
                                 padding: '1px',
                                 lineHeight: '12px', 
@@ -247,6 +249,7 @@ const ShiftForm: React.FC = () => {
                   align="center" 
                   sx={{ border: '1px solid #ccc' , 
                         fontSize: { xs: 12, sm: 12, md: 12, lg: 12 },
+                        background: '#ffe2d2',  
                         padding: '1px',
                         lineHeight: '12px', 
                         height: '20px' // Optional: Set a specific height
@@ -265,7 +268,7 @@ const ShiftForm: React.FC = () => {
                 <TableCell  
                     sx={{ border: '1px solid #ccc', 
                           position: 'sticky', left: 0, 
-                          background: '#fff', zIndex: 1, 
+                          background: '#ffe2d2',   zIndex: 1, 
                         
                         }}>
                   {employee.name}
