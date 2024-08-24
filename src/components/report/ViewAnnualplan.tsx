@@ -27,6 +27,7 @@ const ViewInfoStaff: React.FC = () => {
                                 name='age'
                                 label="年間指導計画を選択する"
                                 size="small"
+                                readOnly
                                 value={item.age}
                                 className="mb-5"
                                 sx={{ backgroundColor: '#F5F5F5' }}
@@ -74,6 +75,7 @@ const ViewInfoStaff: React.FC = () => {
                         fullWidth
                         value={item.homeroom_teacher}
                         sx={{ backgroundColor: '#F5F5F5' }}
+                        InputProps={{ readOnly: true }}
                     />
                 </Grid>
                 <Grid item xs={3} sm={3} md={2} lg={1.5}>
@@ -89,6 +91,7 @@ const ViewInfoStaff: React.FC = () => {
                         fullWidth
                         value={item.annua_goals}
                         sx={{ backgroundColor: '#F5F5F5' }}
+                        InputProps={{ readOnly: true }}
                     />
                 </Grid>
 
@@ -142,6 +145,7 @@ const ViewInfoStaff: React.FC = () => {
                                 name='month2'
                                 value={item.month2}
                                 label="月"
+                                readOnly
                                 sx={{
                                     backgroundColor: "#F5F5F5",
                                 }}
@@ -182,6 +186,7 @@ const ViewInfoStaff: React.FC = () => {
                             fullWidth
                             value={item.nursing_care1}
                             sx={{ backgroundColor: '#F5F5F5' }}
+                            InputProps={{ readOnly: true }}
                         />
                     </Grid>
                     <Grid item xs={3} sm={3} md={2} lg={1.5}>
@@ -198,6 +203,7 @@ const ViewInfoStaff: React.FC = () => {
                             fullWidth
                             value={item.education1}
                             sx={{ backgroundColor: '#F5F5F5' }}
+                            InputProps={{ readOnly: true }}
                         />
                     </Grid>
                 </Grid>
@@ -229,6 +235,7 @@ const ViewInfoStaff: React.FC = () => {
                                     name="emotional_stability1"
                                     minRows={3}
                                     maxRows={100}
+                                    readOnly
                                     className="w-56 sm:w-60 lg:w-96"
                                     value={item.emotional_stability1}
                                     style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
@@ -258,6 +265,7 @@ const ViewInfoStaff: React.FC = () => {
                                     name="perspectives_on_physical1"
                                     minRows={3}
                                     maxRows={100}
+                                    readOnly
                                     className="w-56 sm:w-60 lg:w-96"
                                     value={item.perspectives_on_physical1}
                                     style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
@@ -276,6 +284,7 @@ const ViewInfoStaff: React.FC = () => {
                                     name="food_education1"
                                     minRows={3}
                                     maxRows={100}
+                                    readOnly
                                     className="w-56 sm:w-60 lg:w-96"
                                     value={item.food_education1}
                                     style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
@@ -284,7 +293,6 @@ const ViewInfoStaff: React.FC = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-
 
                 <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 pb-5' ></Grid>
 
@@ -310,6 +318,7 @@ const ViewInfoStaff: React.FC = () => {
                                 id="month3"
                                 value={item.month3}
                                 label="月"
+                                readOnly
                                 sx={{
                                     backgroundColor: "#F5F5F5",
                                 }}
@@ -338,6 +347,7 @@ const ViewInfoStaff: React.FC = () => {
                                 id="month4"
                                 value={item.month4}
                                 label="月"
+                                readOnly
                                 sx={{
                                     backgroundColor: "#F5F5F5",
                                 }}
@@ -378,6 +388,7 @@ const ViewInfoStaff: React.FC = () => {
                             fullWidth
                             value={item.nursing_care2}
                             sx={{ backgroundColor: '#F5F5F5' }}
+                            InputProps={{ readOnly: true }}
                         />
                     </Grid>
                     <Grid item xs={3} sm={3} md={2} lg={1.5}>
@@ -394,6 +405,7 @@ const ViewInfoStaff: React.FC = () => {
                             fullWidth
                             value={item.education2}
                             sx={{ backgroundColor: '#F5F5F5' }}
+                            InputProps={{ readOnly: true }}
                         />
                     </Grid>
                 </Grid>
@@ -425,6 +437,7 @@ const ViewInfoStaff: React.FC = () => {
                                     name="emotional_stability2"
                                     minRows={3}
                                     maxRows={100}
+                                    readOnly
                                     className="w-56 sm:w-60 lg:w-96"
                                     value={item.emotional_stability2}
                                     style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
@@ -454,6 +467,7 @@ const ViewInfoStaff: React.FC = () => {
                                     name="perspectives_on_physical2"
                                     minRows={3}
                                     maxRows={100}
+                                    readOnly
                                     className="w-56 sm:w-60 lg:w-96"
                                     value={item.perspectives_on_physical2}
                                     style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
@@ -472,6 +486,7 @@ const ViewInfoStaff: React.FC = () => {
                                     name="food_education2"
                                     minRows={3}
                                     maxRows={100}
+                                    readOnly
                                     className="w-56 sm:w-60 lg:w-96"
                                     value={item.food_education2}
                                     style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
@@ -505,6 +520,7 @@ const ViewInfoStaff: React.FC = () => {
                                 id="month5"
                                 value={item.month5}
                                 label="月"
+                                readOnly
                                 sx={{
                                     backgroundColor: "#F5F5F5",
                                 }}
@@ -533,6 +549,7 @@ const ViewInfoStaff: React.FC = () => {
                                 id="month6"
                                 value={item.month6}
                                 label="月"
+                                readOnly
                                 sx={{
                                     backgroundColor: "#F5F5F5",
                                 }}
@@ -573,6 +590,7 @@ const ViewInfoStaff: React.FC = () => {
                             fullWidth
                             value={item.nursing_care3}
                             sx={{ backgroundColor: '#F5F5F5' }}
+                            InputProps={{ readOnly: true }}
                         />
                     </Grid>
                     <Grid item xs={3} sm={3} md={2} lg={1.5}>
@@ -589,6 +607,7 @@ const ViewInfoStaff: React.FC = () => {
                             fullWidth
                             value={item.education3}
                             sx={{ backgroundColor: '#F5F5F5' }}
+                            InputProps={{ readOnly: true }}
                         />
                     </Grid>
                 </Grid>
@@ -620,6 +639,7 @@ const ViewInfoStaff: React.FC = () => {
                                     name="emotional_stability3"
                                     minRows={3}
                                     maxRows={100}
+                                    readOnly
                                     className="w-56 sm:w-60 lg:w-96"
                                     value={item.emotional_stability3}
                                     style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
@@ -649,6 +669,7 @@ const ViewInfoStaff: React.FC = () => {
                                     name="perspectives_on_physical3"
                                     minRows={3}
                                     maxRows={100}
+                                    readOnly
                                     className="w-56 sm:w-60 lg:w-96"
                                     value={item.perspectives_on_physical3}
                                     style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
@@ -667,6 +688,7 @@ const ViewInfoStaff: React.FC = () => {
                                     name="food_education3"
                                     minRows={3}
                                     maxRows={100}
+                                    readOnly
                                     className="w-56 sm:w-60 lg:w-96"
                                     value={item.food_education3}
                                     style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
@@ -700,6 +722,7 @@ const ViewInfoStaff: React.FC = () => {
                                 id="month7"
                                 value={item.month7}
                                 label="月"
+                                readOnly
                                 sx={{
                                     backgroundColor: "#F5F5F5",
                                 }}
@@ -728,6 +751,7 @@ const ViewInfoStaff: React.FC = () => {
                                 id="month8"
                                 value={item.month8}
                                 label="月"
+                                readOnly
                                 sx={{
                                     backgroundColor: "#F5F5F5",
                                 }}
@@ -768,6 +792,7 @@ const ViewInfoStaff: React.FC = () => {
                             fullWidth
                             value={item.nursing_care4}
                             sx={{ backgroundColor: '#F5F5F5' }}
+                            InputProps={{ readOnly: true }}
                         />
                     </Grid>
                     <Grid item xs={3} sm={3} md={2} lg={1.5}>
@@ -784,6 +809,7 @@ const ViewInfoStaff: React.FC = () => {
                             fullWidth
                             value={item.education4}
                             sx={{ backgroundColor: '#F5F5F5' }}
+                            InputProps={{ readOnly: true }}
                         />
                     </Grid>
                 </Grid>
@@ -815,6 +841,7 @@ const ViewInfoStaff: React.FC = () => {
                                     name="emotional_stability4"
                                     minRows={3}
                                     maxRows={100}
+                                    readOnly
                                     className="w-56 sm:w-60 lg:w-96"
                                     value={item.emotional_stability4}
                                     style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
@@ -844,6 +871,7 @@ const ViewInfoStaff: React.FC = () => {
                                     name="perspectives_on_physical4"
                                     minRows={3}
                                     maxRows={100}
+                                    readOnly
                                     className="w-56 sm:w-60 lg:w-96"
                                     value={item.perspectives_on_physical4}
                                     style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
@@ -862,6 +890,7 @@ const ViewInfoStaff: React.FC = () => {
                                     name="food_education4"
                                     minRows={3}
                                     maxRows={100}
+                                    readOnly
                                     className="w-56 sm:w-60 lg:w-96"
                                     value={item.food_education4}
                                     style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}

@@ -1,9 +1,11 @@
-import { Grid, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, TableBody, Button, Divider, Checkbox, TextareaAutosize } from "@mui/material";
-
-
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+import { Grid, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, TableBody, Button, Divider,  TextareaAutosize, FormControl, Select, MenuItem, SelectChangeEvent } from "@mui/material";
+import { useState } from "react";
 
 export default function ImplementationPlan1() {
+  const [selectedOption, setSelectedOption] = useState('');
+  const handleDropdownChange = (event: SelectChangeEvent) => {
+    setSelectedOption(event.target.value);
+  };
 
   return (
     <>
@@ -42,14 +44,14 @@ export default function ImplementationPlan1() {
             氏名 :
           </Typography>
         </Grid>
-        <Grid item xs={7} sm={6} md={5} lg={3} className="pl-3">
+        <Grid item xs={7} sm={6} md={5} lg={2} className="pl-3">
           <TextField
             className='w-full'
             id="first-name"
             name="first-name"
-            label="氏名"
             type="text"
             size='small'
+            value='岩﨑　智子'
             sx={{
               backgroundColor: "white",
             }}
@@ -82,104 +84,244 @@ export default function ImplementationPlan1() {
             <TableBody>
               <TableRow hover role="checkbox" tabIndex={-1}>
                 <TableCell align="center">
-                  <Checkbox {...label} />
+                  <FormControl  size="small" >
+                    <Select
+                      id="selectoffSite"
+                      name="selectoffSite"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "white",
+                        minWidth: 70,
+                      }}
+                      onChange={handleDropdownChange}
+                      value={selectedOption}
+                    >
+                      <MenuItem value="1">〇</MenuItem>
+                      <MenuItem value="2">✕</MenuItem>
+                    </Select>
+                  </FormControl>
                 </TableCell>
                 <TableCell align="left">園外活動における見守り等</TableCell>
-                <TableCell align="left">
-                  <TextField
-                    className='w-full'
-                    id="off-site-activities"
-                    name="off-site-activities"
-                    label=""
-                    type="text"
-                    size='small'
-                    sx={{
-                      backgroundColor: "white",
-                    }}
-                  />
+                <TableCell align="center">
+                  <Grid container justifyContent="center" spacing={1}>
+                    <Grid item>
+                      <Typography>
+                        週（
+                      </Typography>
+                    </Grid>
+                    <Grid item lg={2.5} >
+                      <TextField
+                        id="amountoffSite"
+                        name="amountoffSite"
+                        type="text"
+                        variant="standard"
+                        size="small"
+                      />
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                      ）回程度
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </TableCell>
               </TableRow>
               <TableRow hover role="checkbox" tabIndex={-1}>
                 <TableCell align="center">
-                  <Checkbox {...label} />
+                  <FormControl  size="small" >
+                    <Select
+                      labelId="subsidy"
+                      id="subsidy"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "white",
+                        minWidth: 70
+                      }}
+                      onChange={handleDropdownChange}
+                      value={selectedOption}
+                    >
+                       <MenuItem value="1">〇</MenuItem>
+                      <MenuItem value="2"> ✕</MenuItem>
+                    </Select>
+                  </FormControl>
                 </TableCell>
                 <TableCell align="left">保育施設,遊ぶ場所,遊具等の消毒又は清掃</TableCell>
-                <TableCell align="left">
-                  <TextField
-                    className='w-full'
-                    id="disinfection-or-cleaning"
-                    name="disinfection-or-cleaning"
-                    label=""
-                    type="text"
-                    size='small'
-                    sx={{
-                      backgroundColor: "white",
-                    }}
-                  />
+                <TableCell align="center">
+                  <Grid container justifyContent="center" spacing={1}>
+                    <Grid item>
+                      <Typography>
+                        週（
+                      </Typography>
+                    </Grid>
+                    <Grid item lg={2.5}>
+                      <TextField
+                        id="revenue-section"
+                        name="revenue-section"
+                        type="text"
+                        variant="standard"
+                        size="small"
+                      />
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                      ）回程度
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </TableCell>
               </TableRow>
               <TableRow hover role="checkbox" tabIndex={-1}>
                 <TableCell align="center">
-                  <Checkbox {...label} />
+                  <FormControl  size="small" >
+                    <Select
+                      labelId="subsidy"
+                      id="subsidy"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "white",
+                        minWidth: 70
+                      }}
+                      onChange={handleDropdownChange}
+                      value={selectedOption}
+                    >
+                       <MenuItem value="1">〇</MenuItem>
+                      <MenuItem value="2">✕</MenuItem>
+                    </Select>
+                  </FormControl>
                 </TableCell>
                 <TableCell align="left">給食の配膳又は片付け</TableCell>
-                <TableCell align="left">
-                  <TextField
-                    className='w-full'
-                    id="serving-and-cleaning"
-                    name="serving-and-cleaning"
-                    label=""
-                    type="text"
-                    size='small'
-                    sx={{
-                      backgroundColor: "white",
-                    }}
-                  />
+                <TableCell align="center">
+                  <Grid container justifyContent="center" spacing={1}>
+                    <Grid item>
+                      <Typography>
+                        週（
+                      </Typography>
+                    </Grid>
+                    <Grid item lg={2.5}>
+                      <TextField
+                        id="revenue-section"
+                        name="revenue-section"
+                        type="text"
+                        variant="standard"
+                        size="small"
+                      />
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                      ）回程度
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </TableCell>
               </TableRow>
               <TableRow hover role="checkbox" tabIndex={-1}>
                 <TableCell align="center">
-                  <Checkbox {...label} />
+                  <FormControl  size="small" >
+                    <Select
+                      labelId="subsidy"
+                      id="subsidy"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "white",
+                        minWidth: 70
+                      }}
+                      onChange={handleDropdownChange}
+                      value={selectedOption}
+                    >
+                       <MenuItem value="1">〇</MenuItem>
+                      <MenuItem value="2">✕</MenuItem>
+                    </Select>
+                  </FormControl>
                 </TableCell>
                 <TableCell align="left">寝具の用意又は片付け</TableCell>
-                <TableCell align="left">
-                  <TextField
-                    className='w-full'
-                    id="tidying-up-bedding"
-                    name="tidying-up-bedding"
-                    label=""
-                    type="text"
-                    size='small'
-                    sx={{
-                      backgroundColor: "white",
-                    }}
-                  />
+                <TableCell align="center">
+                  <Grid container justifyContent="center" spacing={1}>
+                    <Grid item>
+                      <Typography>
+                        週（
+                      </Typography>
+                    </Grid>
+                    <Grid item lg={2.5}>
+                      <TextField
+                        id="revenue-section"
+                        name="revenue-section"
+                        type="text"
+                        variant="standard"
+                        size="small"
+                      />
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                      ）回程度
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </TableCell>
               </TableRow>
               <TableRow hover role="checkbox" tabIndex={-1}>
                 <TableCell align="center">
-                  <Checkbox {...label} />
+                  <FormControl  size="small" >
+                    <Select
+                      labelId="subsidy"
+                      id="subsidy"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "white",
+                        minWidth: 70
+                      }}
+                      onChange={handleDropdownChange}
+                      value={selectedOption}
+                    >
+                       <MenuItem value="1">〇</MenuItem>
+                      <MenuItem value="2">✕</MenuItem>
+                    </Select>
+                  </FormControl>
                 </TableCell>
                 <TableCell align="left">
                   外国人の児童の保護者等との意思疎通に係る通訳又は翻訳
                 </TableCell>
-                <TableCell align="left">
-                  <TextField
-                    className='w-full'
-                    id="interpretation-or-translatio-"
-                    name="interpretation-or-translatio-"
-                    label=""
-                    type="text"
-                    size='small'
-                    sx={{
-                      backgroundColor: "white",
-                    }}
-                  />
+                <TableCell align="center">
+                  <Grid container justifyContent="center" spacing={1}>
+                    <Grid item>
+                      <Typography>
+                        週（
+                      </Typography>
+                    </Grid>
+                    <Grid item lg={2.5}>
+                      <TextField
+                        id="revenue-section"
+                        name="revenue-section"
+                        type="text"
+                        variant="standard"
+                        size="small"
+                      />
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                      ）回程度
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </TableCell>
               </TableRow>
               <TableRow hover role="checkbox" tabIndex={-1}>
                 <TableCell align="center">
-                  <Checkbox {...label} />
+                  <FormControl  size="small" >
+                    <Select
+                      labelId="subsidy1"
+                      id="subsidy1"
+                      fullWidth
+                      sx={{
+                        backgroundColor: "white",
+                        minWidth: 70
+                      }}
+                      onChange={handleDropdownChange}
+                      value={selectedOption}
+                    >
+                       <MenuItem value="1">〇</MenuItem>
+                      <MenuItem value="2">✕</MenuItem>
+                    </Select>
+                  </FormControl>
                 </TableCell>
                 <TableCell align="left">
                   その他,保育士の負担軽減に資する業務(休憩・事務時間の確保等)
@@ -192,18 +334,28 @@ export default function ImplementationPlan1() {
                     style={{ border: '1px solid gray', borderRadius: '4px' }}
                   />
                 </TableCell>
-                <TableCell align="left">
-                  <TextField
-                    className='w-full'
-                    id="other-task"
-                    name="other-task"
-                    label=""
-                    type="text"
-                    size='small'
-                    sx={{
-                      backgroundColor: "white",
-                    }}
-                  />
+                <TableCell align="center">
+                  <Grid container justifyContent="center" spacing={1}>
+                    <Grid item>
+                      <Typography>
+                        週（
+                      </Typography>
+                    </Grid>
+                    <Grid item lg={2.5}>
+                      <TextField
+                        id="revenue-section"
+                        name="revenue-section"
+                        type="text"
+                        variant="standard"
+                        size="small"
+                      />
+                    </Grid>
+                    <Grid item>
+                      <Typography>
+                      ）回程度
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </TableCell>
               </TableRow>
             </TableBody>

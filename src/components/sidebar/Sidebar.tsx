@@ -25,6 +25,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import { Link, useLocation } from 'react-router-dom';
+import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 
 const drawerWidth = 240;
 
@@ -232,6 +233,23 @@ export default function Sidebar(props: Props) {
                                     </ListItemIcon>
                                     <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
                                         休暇届
+                                    </Typography>
+                                </ListItemButton>
+                            </ListItem>
+                        </Link>
+
+                        <Link to={'/teacher/shift'}>
+                            <ListItem
+                                disablePadding
+                                className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/teacher/shift' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                                    }`}
+                            >
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <QueryBuilderIcon className='ml-5 text-white' fontSize="small"/>
+                                    </ListItemIcon>
+                                    <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
+                                        シフト管理
                                     </Typography>
                                 </ListItemButton>
                             </ListItem>

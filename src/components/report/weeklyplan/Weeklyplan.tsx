@@ -1,6 +1,6 @@
 import ContentMain from "../../content/Content";
-import React from 'react';
-import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Button, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -14,10 +14,11 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MonthForm from "../../componentsform/MonthForm";
+import { useNavigate } from 'react-router-dom';
 
 
 interface Column {
-  id: 'year' | 'age' | 'name' | 'detail';
+  id: 'pid' | 'year' | 'selectedOption' | 'name' | 'detail';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center' | 'left';
@@ -25,116 +26,112 @@ interface Column {
 }
 
 const columns: readonly Column[] = [
-  { id: 'year', label: '全', minWidth: 50, align: 'center', },
-  { id: 'age', label: '歳児', minWidth: 70, align: 'center', },
-  { id: 'name', label: ' ', minWidth: 100, align: 'left', },
-  { id: 'detail', label: '', minWidth: 50, align: 'right', },
+  { id: 'year', label: '全', minWidth: 50, align: 'center' },
+  { id: 'selectedOption', label: '歳児', minWidth: 70, align: 'center' },
+  { id: 'name', label: ' ', minWidth: 100, align: 'left' },
+  { id: 'detail', label: '', minWidth: 50, align: 'right' },
 ];
 
 interface Data {
+  pid: string;
   year: string;
-  age: string;
+  selectedOption: string;
   name: string;
   detail: JSX.Element;
 }
 
-function createData(
-  year: string,
-  age: string,
-  name: string,
-  detail: JSX.Element
-): Data {
-  return { year, age, name, detail };
-}
+const Weeklyplan: React.FC = () => {
+  const [data, setData] = useState<Data[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredRows, setFilteredRows] = useState<Data[]>([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const navigate = useNavigate();
 
-// Example data (you can replace this with your actual data)
-const initialRows = [
-  createData('2024', '０ 歳児', '( 週案と保育日誌(未満児))',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2024', '3 歳児', '( 週案と保育日誌(未満児))',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2024', '4 歳児', '( 週案と保育日誌(未満児))',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2023', '5 歳児', '( 週案と保育日誌(未満児))',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2023', '2 歳児', '( 週案と保育日誌(未満児))',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
-  createData('2023', '2 歳児', '( 週案と保育日誌(未満児))',
-    <>
-      <IconButton aria-label="delete" size="small" >
-        <EditIcon fontSize="small" className='text-sky-600' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
-      </IconButton>
-      <IconButton aria-label="delete" size="small" >
-        <DeleteIcon fontSize="small" className='text-red-600' />
-      </IconButton>
-    </>
-  ),
+  // Initialize sample data for all three types
+  useEffect(() => {
+    const initializeSampleData = () => {
+      const existingDataUnderTen = JSON.parse(sessionStorage.getItem('WeeklyDataUnderTen') || '[]');
+      const existingDataOverOne = JSON.parse(sessionStorage.getItem('WeeklyDataOverOne') || '[]');
 
-];
+      if (existingDataOverOne.length === 0) {
+        const sampleDataOverOne = [
+          { pid: '111', year: '2024', selectedOption: '週 案 と 保 育 日 誌（未満児)', name: '( 週案と保育日誌(未満児))' },
+        ];
+        sessionStorage.setItem('WeeklyDataUnderTen', JSON.stringify(sampleDataOverOne));
+      }
 
-export default function Weeklyplan() {
+      if (existingDataUnderTen.length === 0) {
+        const sampleDataUnderTen = [
+          { pid: '222', year: '2023', selectedOption: '週 案 と 保 育 日 誌（以上児)', name: '( 週案と保育日誌(未満児))' },
+        ];
+        sessionStorage.setItem('WeeklyDataOverOne', JSON.stringify(sampleDataUnderTen));
+      }
+    };
+    initializeSampleData();
+  }, []);
 
+  useEffect(() => {
+    const fetchData = () => {
+      const storedDataUnderTen = JSON.parse(sessionStorage.getItem('WeeklyDataUnderTen') || '[]');
+      const storedDataOverOne = JSON.parse(sessionStorage.getItem('WeeklyDataOverOne') || '[]');
+      
+      const allData = [...storedDataUnderTen, ...storedDataOverOne];
+      console.log('All Data:', allData); // ตรวจสอบข้อมูลทั้งหมด
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+      const transformedData = allData.map((item: any) => ({
+        pid: item.pid,
+        year: item.year,
+        selectedOption: item.selectedOption,
+        name: item.name,
+        detail: (
+          <>
+            <IconButton
+              aria-label="edit"
+              size="small"
+              onClick={() => navigate(`/report/weeklyplan/edit/${item.selectedOption}/${item.pid}`)}
+            >
+              <EditIcon fontSize="small" className='text-sky-600' />
+            </IconButton>
+            <IconButton
+              aria-label="view"
+              size="small"
+              onClick={() => navigate(`/report/weeklyplan/view/${item.selectedOption}/${item.pid}`)}
+            >
+              <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              size="small"
+              onClick={() => {
+                const confirmDelete = window.confirm('Are you sure you want to delete this item?');
+                if (confirmDelete) {
+                  setData(prevData => prevData.filter(data => data.pid !== item.pid));
+                  const updatedData = allData.filter((data: any) => data.pid !== item.pid);
+                  sessionStorage.setItem('WeeklyDataUnderTen', JSON.stringify(updatedData.filter(d => d.selectedOption === '週 案 と 保 育 日 誌（未満児)')));
+                  sessionStorage.setItem('WeeklyDataOverOne', JSON.stringify(updatedData.filter(d => d.selectedOption === '週 案 と 保 育 日 誌（以上児）')));
+                }
+              }}
+            >
+              <DeleteIcon fontSize="small" className='text-red-600' />
+            </IconButton>
+          </>
+        )
+      }));
+      setData(transformedData);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (searchTerm === '') {
+      setFilteredRows(data);
+    } else {
+      setFilteredRows(data.filter(row =>
+        row.year.toLowerCase().includes(searchTerm.toLowerCase())
+      ));
+    }
+  }, [searchTerm, data]);
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -145,138 +142,117 @@ export default function Weeklyplan() {
     setPage(0);
   };
 
-  const [week, setWeek] = React.useState('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setWeek(event.target.value as string);
-  };
-
-  const [searchInput, setSearchInput] = React.useState('');
-  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
-  };
-
-  // Filtered rows based on search input and selected classroom
-  const filteredRows = initialRows.filter(row =>
-    row.year.toLowerCase().includes(searchInput.toLowerCase())
-  );
-
-
   return (
-
-    <>
-      <ContentMain>
-
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
-          <Grid item xs={3} sm={4} md={2}>
-            <TextField
-              id="outlined-search"
-              label="全"
-              type="search"
-              size="small"
-              onChange={handleSearchInputChange}
-              sx={{ bgcolor: 'white' }}
-            />
-          </Grid>
-          <Grid item xs={3} sm={4} md={2}>
-            <TextField id="outlined-search" label="年" type="search" size="small" sx={{ backgroundColor: 'white' }} />
-          </Grid>
-          <Grid item xs={3} sm={4} md={2} >
-            <MonthForm />
-          </Grid>
-          <Grid item xs={3} sm={4} md={1}>
-            <FormControl sx={{ minWidth: 90 }} size="small">
-              <InputLabel id="demo-simple-select-label">週</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={week}
-                label="週"
-                onChange={handleChange}
-                sx={{ backgroundColor: 'white' }}
-              >
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-                <MenuItem value={5}>5</MenuItem>
-                <MenuItem value={6}>6</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={6} sm={4} md={3} lg={2}>
-            <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
-              <Typography component="div" style={{ color: 'white' }}>
-                検索する
-              </Typography>
-            </Button>
-          </Grid>
+    <ContentMain>
+      <Grid container spacing={2} className='pt-7' justifyContent="center">
+        <Grid item xs={3} sm={4} md={2}>
+          <TextField
+            id="outlined-search"
+            label="全"
+            type="search"
+            size="small"
+            value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
+            sx={{ bgcolor: 'white' }}
+          />
         </Grid>
-        <Grid container className='pt-7' justifyContent="right">
-          <Grid>
-            <Button variant="contained" href="/report/weeklyplan/add" size='small' startIcon={<AddIcon />}>
-              <Typography style={{ color: 'white' }}>
-                ADD
-              </Typography>
-            </Button>
-          </Grid>
+        <Grid item xs={3} sm={4} md={2}>
+          <TextField id="outlined-search" label="年" type="search" size="small" sx={{ backgroundColor: 'white' }} />
         </Grid>
-        <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
-            <TableContainer sx={{ maxHeight: 440 }}>
-              <Table stickyHeader aria-label="sticky table">
-                <TableHead>
-                  <TableRow>
-                    {columns.map((column) => (
-                      <TableCell
-                        key={column.id}
-                        align={column.align}
-                        style={{ minWidth: column.minWidth }}
-                      >
-                        {column.label}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {filteredRows
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row, index) => {
-                      return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                          {columns.map((column) => {
-                            const value = row[column.id];
-                            return (
-                              <TableCell key={column.id} align={column.align}>
-                                {column.id === 'detail' ? (
-                                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                    {value}
-                                  </div>
-                                ) : (
-                                  value
-                                )}
-                              </TableCell>
-                            );
-                          })}
-                        </TableRow>
-                      );
-                    })}
+        <Grid item xs={3} sm={4} md={2} >
+          <MonthForm />
+        </Grid>
+        <Grid item xs={3} sm={4} md={1}>
+          <FormControl sx={{ minWidth: 90 }} size="small">
+            <InputLabel id="demo-simple-select-label">週</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="週"
+              sx={{ backgroundColor: 'white' }}
+            >
+              <MenuItem value={1}>1</MenuItem>
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={6} sm={4} md={3} lg={2}>
+          <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
+            <Typography component="div" style={{ color: 'white' }}>
+              検索する
+            </Typography>
+          </Button>
+        </Grid>
+      </Grid>
+      <Grid container className='pt-7' justifyContent="right">
+        <Grid>
+          <Button variant="contained" href="/report/weeklyplan/add" size='small' startIcon={<AddIcon />}>
+            <Typography style={{ color: 'white' }}>
+              ADD
+            </Typography>
+          </Button>
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} className='pt-10' justifyContent="center">
+        <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
+          <TableContainer sx={{ maxHeight: 440 }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {filteredRows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => {
+                    return (
+                      <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell key={column.id} align={column.align}>
+                              {column.id === 'detail' ? (
+                                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                  {value}
+                                </div>
+                              ) : (
+                                value
+                              )}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
 
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
-              component="div"
-              count={filteredRows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </Paper>
-        </Grid>
-      </ContentMain>
-    </>
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={filteredRows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
+      </Grid>
+    </ContentMain>
   );
 };
+
+export default Weeklyplan;

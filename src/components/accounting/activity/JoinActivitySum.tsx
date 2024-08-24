@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, Paper, Table, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 
 interface ActivityData {
@@ -11,9 +11,11 @@ interface ActivityData {
 interface JoinActivitySumProps {
   formData: Record<string, string | number>;
   activityData: ActivityData[];
+  onTotalsCalculated: (count: number, sum: number) => void; // เพิ่ม prop นี้
 }
 
-const JoinActivitySum: React.FC<JoinActivitySumProps> = ({ formData, activityData }) => {
+const JoinActivitySum: React.FC<JoinActivitySumProps> = ({ formData, activityData, onTotalsCalculated }) => {
+
   // Define fields to sum
   const fieldsToSum = [
     'rent', 'equipment', 'honoraria', 'usagefees', 'travelexpenses',
@@ -42,21 +44,14 @@ const JoinActivitySum: React.FC<JoinActivitySumProps> = ({ formData, activityDat
 
   const cellCount = 4;
 
+  // Call onTotalsCalculated with the computed totals
+  useEffect(() => {
+    onTotalsCalculated(activityCount, totalSum);
+  }, [activityCount, totalSum, onTotalsCalculated]);
+
+
   return (
     <>
-      {/* {activityData.map(data => (
-        <div key={data.id} className='mt-7'>
-          (ID: {data.id}, {data.name} {data.limit1} - {data.limit2})
-        </div>
-      ))}
-
-      {Object.entries(formData).map(([key, value]) => (
-        <div key={key} className='mt-7'>
-         {key}: {value}
-        </div>
-      ))} */}
-
-      {/* Start Table */}
       <Grid container className='pt-3' justifyContent="center">
         <TableContainer component={Paper} className="mt-5" sx={{ width: { xs: 'auto', sm: 'auto', md: 'auto', lg: 700 } }}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -87,7 +82,6 @@ const JoinActivitySum: React.FC<JoinActivitySumProps> = ({ formData, activityDat
           </Table>
         </TableContainer>
       </Grid>
-      {/* End Table */}
     </>
   );
 };

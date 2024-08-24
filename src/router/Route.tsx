@@ -76,8 +76,13 @@ import EditAnnualplan from "../components/report/EditAnnualplan";
 import ViewAnnualplan from "../components/report/ViewAnnualplan";
 import EditCareDiary from "../components/report/EditCareDiary";
 import ViewCareDiary from "../components/report/ViewCareDiary";
+import EditMonthly from "../components/report/monthlyplan/EditMonthly"
+import ViewMonthly from "../components/report/monthlyplan/ViewMonthly"
+import EditWeekly from "../components/report/weeklyplan/EditWeekly"
+import ViewWeekly from "../components/report/weeklyplan/ViewWeekly"
 
-import ViewMonthlyZero from "../components/report/monthlyplan/ViewMonthlyZero";
+import ViewActivity from "../components/accounting/activity/ViewActivity"
+import ShiftFormPages from "../pages/teacher/shiftmanagement/ShiftFormPages";
 
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
@@ -113,6 +118,10 @@ const Router = createBrowserRouter([
       {
         path: "/teacher/listleave",
         element: <ListLeavePages />
+      },
+      {
+        path: "/teacher/shift",
+        element: <ShiftFormPages />
       },
       {
         path: "/accounting",
@@ -285,7 +294,7 @@ const Router = createBrowserRouter([
       {
         path: "/student",
         element: <StudentPages />
-      }, 
+      },
       {
         path: "/student/History",
         element: <StudentHistoryPages />
@@ -386,11 +395,28 @@ const Router = createBrowserRouter([
         path: "/report/carediary/view/:pid",
         element: <ViewCareDiary />
       },
+      {
+        path: "/report/monthlyplan/edit/:selectedOption/:pid",
+        element: <EditMonthly />
+      },
+      {
+        path: "/report/monthlyplan/view/:selectedOption/:pid",
+        element: <ViewMonthly />
+      },
+      {
+        path: "/report/weeklyplan/edit/:selectedOption/:pid",
+        element: <EditWeekly />
+      },
+      {
+        path: "/report/weeklyplan/view/:selectedOption/:pid",
+        element: <ViewWeekly />
+      },
 
       {
-        path: "/report/monthlyplan/view/:pid/:age",
-        element: <ViewMonthlyZero />
+        path: "/accounting/activity/view/:id",
+        element: <ViewActivity />
       },
+
     ]
   },
 ]);
