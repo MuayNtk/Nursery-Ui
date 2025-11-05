@@ -11,7 +11,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Chip } from '@mui/material';
 
-// ✅ ADD: ใช้ i18n เฉพาะในคอมโพเนนต์นี้
+// ✅ ใช้ i18n สำหรับสลับภาษา
 import { useTranslation } from 'react-i18next';
 
 const drawerWidth = 240;
@@ -21,18 +21,12 @@ const PrimarySearchAppBar: React.FC = () => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
   const navigate = useNavigate();
 
-  // ✅ ADD: เตรียม i18n และสถานะภาษา (default = 'jp')
+  // ✅ ภาษาค่าเริ่มต้น 'jp' และจำค่าล่าสุดใน localStorage
   const { i18n } = useTranslation();
   const [lang, setLang] = React.useState<string>(() => localStorage.getItem('lang') || 'jp');
-
-  // ✅ ADD: ซิงค์ i18n ตอนเมาท์ครั้งแรก
   React.useEffect(() => {
-    if (i18n.language !== lang) {
-      i18n.changeLanguage(lang);
-    }
+    if (i18n.language !== lang) i18n.changeLanguage(lang);
   }, [i18n, lang]);
-
-  // ✅ ADD: ฟังก์ชันสลับภาษา JP <-> EN
   const toggleLanguage = () => {
     const next = lang === 'jp' ? 'en' : 'jp';
     setLang(next);
@@ -125,6 +119,13 @@ const PrimarySearchAppBar: React.FC = () => {
         </IconButton>
         <p className='pr-3'>Profile</p>
       </MenuItem>
+
+      {/* ✅ รายการสลับภาษาในเมนูมือถือ */}
+      <MenuItem onClick={toggleLanguage}>
+        <Chip label={lang.toUpperCase()} size="small" variant="outlined" />
+        <p className='pl-2'>Language</p>
+      </MenuItem>
+
       <MenuItem onClick={handleLogout}>
         <IconButton
           size="large"
@@ -153,33 +154,46 @@ const PrimarySearchAppBar: React.FC = () => {
         }}
       >
         <Toolbar className='bg-white'>
-          <Box sx={{ flexGrow: 1 }} />
+    <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: 1 }}>
+  {username && (
+    <Chip
+      label={username}
+      color="info"
+      size="small"
+      sx={{ height: '36px', display: 'flex', alignItems: 'center' }}
+    />
+  )}
 
-          {/* ✅ ADD: ปุ่มสลับภาษา (เริ่ม JP → กดจะเป็น EN) */}
-          <Chip
-            label={lang.toUpperCase()}
-            onClick={toggleLanguage}
-            size="small"
-            variant="outlined"
-            sx={{ mr: 1 }}
-            aria-label="toggle language JP/EN"
-          />
+  <IconButton
+    size="large"
+    edge="end"
+    aria-label="account of current user"
+    aria-controls={menuId}
+    aria-haspopup="true"
+    onClick={handleProfileMenuOpen}
+    color="inherit"
+  >
+    <AccountCircle className='text-black' />
+  </IconButton>
 
-          {username &&  <Chip label={username}  color="info"  size='small'/> }
+  <Chip
+    label={lang.toUpperCase()}
+    onClick={toggleLanguage}
+    size="small"
+    variant="outlined"
+    sx={{
+      height: '36px',
+      display: 'flex',
+      alignItems: 'center',
+      borderRadius: '8px',
+      cursor: 'pointer'
+    }}
+  />
+</Box>
 
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle className='text-black' />
-            </IconButton>
-          </Box>
+
+
+          {/* เมนูมือถือ (ไอคอนสามจุด) */}
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
