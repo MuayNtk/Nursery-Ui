@@ -428,6 +428,23 @@ export default function Sidebar(props: Props) {
                                 </ListItemButton>
                             </ListItem>
                         </Link>
+
+                        <Link to={'/setting/basicdevplan'}>
+                            <ListItem
+                                disablePadding
+                                className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/infostaff' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
+                                    }`}
+                            >
+                                <ListItemButton sx={{ pl: 4 }}>
+                                    <ListItemIcon>
+                                        <AccountBoxOutlinedIcon className='ml-5 text-white' fontSize="small"/>
+                                    </ListItemIcon>
+                                    <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
+                                        Basicdevplan
+                                    </Typography>
+                                </ListItemButton>
+                            </ListItem>
+                        </Link>
                     </Collapse>
         
                 </div>

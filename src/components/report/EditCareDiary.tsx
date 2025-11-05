@@ -1,740 +1,886 @@
-import { Grid, Typography, TextField, Box, Button, TextareaAutosize, SelectChangeEvent, MenuItem, Select, InputLabel, FormControl, FormControlLabel, RadioGroup, Radio, IconButton, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import ContentMain from "../content/Content";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import React from "react";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import SaveIcon from '@mui/icons-material/Save';
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import {
+  Box,
+  Typography,
+  TextField,
+  Grid,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Tooltip,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  InputAdornment,
+  MenuItem,
+  FormControlLabel,
+  Checkbox,
+  Chip,
+  FormControl,
+  RadioGroup,
+  Radio,
+} from '@mui/material';
+import {
+  CheckCircle,
+  Person,
+  ExpandMore,
+  Info,
+  Add,
+  Edit,
+  Delete,
+  Save,
+  Cancel,
+  CalendarToday,
+  ArrowBack
+} from '@mui/icons-material';
+import ContentMain from '../content/Content';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-interface FormData {
-    pid: string;
-    age: string;
-    month2: string;
-    children: string;
-    considerations: string;
-    evaluation_and_reflection: string;
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+      light: '#42a5f5',
+      dark: '#1565c0',
+    },
+    secondary: {
+      main: '#9c27b0',
+      light: '#ba68c8',
+      dark: '#7b1fa2',
+    },
+  },
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: '16px',
+          backdropFilter: 'blur(10px)',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: '20px',
+          textTransform: 'none',
+          fontWeight: 600,
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiInputBase-input': {
+            fontSize: '14px'
+          },
+          '& .MuiInputLabel-root': {
+            fontSize: '14px'
+          }
+        }
+      },
+    },
+  },
+});
+
+interface ChildDevelopmentRecord {
+  id: string;
+  dayOfWeek: string;
+  meal: string;
+  excretion?: string;
+  sleep?: string;
+  health: string;
+  otherRecords: string;
 }
 
-interface Data {
-    day: string;
-    month: string;
-    meal: string;
-    excretion: string;
-    sleep: string;
-    health: string;
-    other: string;
-    detail: JSX.Element;
+interface HeaderData {
+  month: string;
+  childName: string;
+  age: string;
+  responsiblePerson: string;
+  principalApproval: boolean;
+  supervisorApproval: boolean;
+  teacherApproval: boolean;
 }
 
-function createData(
-    day: string,
-    month: string,
-    meal: string,
-    excretion: string,
-    sleep: string,
-    health: string,
-    other: string,
-    detail: JSX.Element,
-): Data {
-    return { day, month, meal, excretion, sleep, health, other, detail };
-}
-
-const initialRows: Data[] = [
-    createData('濃部　圭子', '渡部　史朗', '渡部　史朗', '6.0', '24', '24', '24',
-        <>
-            <IconButton aria-label="delete" size="small" >
-                <EditIcon fontSize="small" className='text-sky-600' />
-            </IconButton>
-            <IconButton aria-label="delete" size="small" >
-                <DeleteIcon fontSize="small" className='text-red-600' />
-            </IconButton>
-        </>
-    ),
-    createData('Ice cream sandwich', '渡部　史朗', '237', '9.0', '37', '24', '24',
-        <>
-            <IconButton aria-label="edit" size="small" >
-                <EditIcon fontSize="small" className='text-sky-600' />
-            </IconButton>
-            <IconButton aria-label="delete" size="small" >
-                <DeleteIcon fontSize="small" className='text-red-600' />
-            </IconButton>
-        </>
-    ),
-    createData('Eclair', '渡部　史朗', '262', '16.0', '24', '24', '24',
-        <>
-            <IconButton aria-label="edit" size="small" >
-                <EditIcon fontSize="small" className='text-sky-600' />
-            </IconButton>
-            <IconButton aria-label="delete" size="small" >
-                <DeleteIcon fontSize="small" className='text-red-600' />
-            </IconButton>
-        </>
-    ),
+// Age options for dropdown
+const ageOptions = [
+  { value: '0', label: '0歳 (0 ขวบ)' },
+  { value: '1', label: '1歳 (1 ขวบ)' },
+  { value: '2', label: '2歳 (2 ขวบ)' }
 ];
 
+// Month options
+const monthOptions = [
+  { value: '4', label: '4月 (เมษายน)' },
+  { value: '5', label: '5月 (พฤษภาคม)' },
+  { value: '6', label: '6月 (มิถุนายน)' },
+  { value: '7', label: '7月 (กรกฎาคม)' },
+  { value: '8', label: '8月 (สิงหาคม)' },
+  { value: '9', label: '9月 (กันยายน)' },
+  { value: '10', label: '10月 (ตุลาคม)' },
+  { value: '11', label: '11月 (พฤศจิกายน)' },
+  { value: '12', label: '12月 (ธันวาคม)' },
+  { value: '1', label: '1月 (มกราคม)' },
+  { value: '2', label: '2月 (กุมภาพันธ์)' },
+  { value: '3', label: '3月 (มีนาคม)' },
+];
 
-const modalStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: { xs: '90%', sm: '80%', md: '3 0%', lg: '45%' }, // Adjust width based on screen size
-    bgcolor: 'background.paper',
-    boxShadow: 24,
-    p: 4,
-    borderRadius: 1,
-};
+// Child name options
+const childNameOptions = [
+  { value: 'さくら', label: 'さくら (ซากุระ)' },
+  { value: 'たろう', label: 'たろう (ทาโร่)' },
+  { value: 'はなこ', label: 'はなこ (ฮานาโกะ)' },
+  { value: 'ゆうき', label: 'ゆうき (ยูกิ)' },
+  { value: 'みお', label: 'みお (มิโอะ)' },
+];
 
+// Responsible person options
+const responsiblePersonOptions = [
+  { value: '田中先生', label: '田中先生 (ทานากะ เซนเซ)' },
+  { value: '佐藤先生', label: '佐藤先生 (ซาโตะ เซนเซ)' },
+  { value: '鈴木先生', label: '鈴木先生 (ซูซูกิ เซนเซ)' },
+  { value: '山田先生', label: '山田先生 (ยามาดะ เซนเซ)' },
+  { value: '高橋先生', label: '高橋先生 (ทากาฮาชิ เซนเซ)' },
+];
 
-export default function EditCareDiary() {
-    const { pid } = useParams<{ pid: string }>();
-    const [rows, setRows] = useState<Data[]>(initialRows);
-    const [open, setOpen] = useState(false);
-    const navigate = useNavigate();
-    const [newEntry, setNewEntry] = useState<Omit<Data, 'detail'>>({
+const EditCareDiary: React.FC = () => {
+  const { pid } = useParams<{ pid: string }>();
+  const navigate = useNavigate();
+  
+  const [childRecords, setChildRecords] = useState<ChildDevelopmentRecord[]>([
+    {
+      id: '1',
+      dayOfWeek: '1日（月）',
+      meal: '完食、手づかみ食べ',
+      excretion: 'おむつ交換2回',
+      sleep: '午前午後各1時間',
+      health: '元気',
+      otherRecords: '積木で遊ぶ'
+    },
+    {
+      id: '2',
+      dayOfWeek: '2日（火）',
+      meal: '8割摂取',
+      excretion: 'おむつ交換3回',
+      sleep: '午後2時間',
+      health: '元気',
+      otherRecords: 'お散歩で花を見る'
+    }
+  ]);
+  
+  const [openDialog, setOpenDialog] = useState(false);
+  const [editingRecord, setEditingRecord] = useState<ChildDevelopmentRecord | null>(null);
+  const [newRecord, setNewRecord] = useState<ChildDevelopmentRecord>({
+    id: '',
+    dayOfWeek: '',
+    meal: '',
+    excretion: '',
+    sleep: '',
+    health: '',
+    otherRecords: ''
+  });
+  
+  const [headerData, setHeaderData] = useState<HeaderData>({
+    month: '5',
+    childName: 'さくら',
+    age: '1',
+    responsiblePerson: '田中先生',
+    principalApproval: false,
+    supervisorApproval: false,
+    teacherApproval: true
+  });
 
-        day: '',
-        month: '',
-        meal: '',
-        excretion: '',
-        sleep: '',
-        health: '',
-        other: '',
+  const [childDescription, setChildDescription] = useState('元気で活発な子どもです。お友達との関わりも積極的で、新しいことに興味を示します。');
+  const [objectives, setObjectives] = useState('自立心を育て、基本的な生活習慣を身につけることを目標とします。また、他の子どもたちとの協調性も大切にします。');
+  const [evaluation, setEvaluation] = useState('今月は食事の際の手づかみ食べが上手になり、自分で食べようとする意欲が見られました。');
 
-    });
-    const [indexToEdit, setIndexToEdit] = useState<number | null>(null);
+  const [expandedSections, setExpandedSections] = useState({
+    basic: true,
+    development: true,
+    additional: true
+  });
 
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => {
-        setOpen(false);
-        setIndexToEdit(null); // Reset indexToEdit when closing modal
+  // Check if current age requires simplified fields (age 1 or 2)
+  const isSimplifiedAge = headerData.age === '1' || headerData.age === '2';
+
+  const toggleSection = (section: 'basic' | 'development' | 'additional') => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
+  const handleHeaderDataChange = (field: keyof HeaderData) => (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setHeaderData(prev => ({
+      ...prev,
+      [field]: event.target.value
+    }));
+  };
+
+  const handleCheckboxChange = (field: 'principalApproval' | 'supervisorApproval' | 'teacherApproval') => (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setHeaderData(prev => ({
+      ...prev,
+      [field]: event.target.checked
+    }));
+  };
+
+  const handleAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newAge = event.target.value;
+    setHeaderData(prev => ({
+      ...prev,
+      age: newAge
+    }));
+    // Clear existing records when age changes to maintain data consistency
+    setChildRecords([]);
+  };
+
+  const handleAddRecord = () => {
+    const baseRecord = {
+      id: '',
+      dayOfWeek: '',
+      meal: '',
+      health: '',
+      otherRecords: ''
+    };
+
+    const fullRecord = isSimplifiedAge 
+      ? baseRecord 
+      : { ...baseRecord, excretion: '', sleep: '' };
+
+    setNewRecord(fullRecord);
+    setEditingRecord(null);
+    setOpenDialog(true);
+  };
+
+  const handleEditRecord = (record: ChildDevelopmentRecord) => {
+    setNewRecord({ ...record });
+    setEditingRecord(record);
+    setOpenDialog(true);
+  };
+
+  const handleDeleteRecord = (id: string) => {
+    setChildRecords(prev => prev.filter(record => record.id !== id));
+  };
+
+  const handleSaveRecord = () => {
+    if (!newRecord.dayOfWeek.trim()) {
+      alert('日・曜を入力してください (กรุณากรอกวัน/วันในสัปดาห์)');
+      return;
     }
 
+    if (editingRecord) {
+      setChildRecords(prev => 
+        prev.map(record => 
+          record.id === editingRecord.id ? { ...newRecord } : record
+        )
+      );
+    } else {
+      const newId = Date.now().toString();
+      setChildRecords(prev => [...prev, { ...newRecord, id: newId }]);
+    }
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setNewEntry((prev) => ({ ...prev, [name]: name === 'protein' ? parseFloat(value) : value }));
+    setOpenDialog(false);
+    const baseRecord = {
+      id: '',
+      dayOfWeek: '',
+      meal: '',
+      health: '',
+      otherRecords: ''
     };
 
-    const handleEdit = (index: number) => {
-        const rowData = rows[index];
-        setNewEntry({
+    const fullRecord = isSimplifiedAge 
+      ? baseRecord 
+      : { ...baseRecord, excretion: '', sleep: '' };
 
-            day: rowData.day,
-            month: rowData.month,
-            meal: rowData.meal,
-            excretion: rowData.excretion,
-            sleep: rowData.sleep,
-            health: rowData.health,
-            other: rowData.other,
+    setNewRecord(fullRecord);
+  };
 
+  const handleRecordChange = (field: keyof ChildDevelopmentRecord) => (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setNewRecord(prev => ({
+      ...prev,
+      [field]: event.target.value
+    }));
+  };
 
-        });
-        setIndexToEdit(index); // Set indexToEdit to the index of the row being edited
-        setOpen(true);
+  const handleSave = () => {
+    const saveData = {
+      headerData,
+      childDescription,
+      objectives,
+      evaluation,
+      childRecords,
+      status: 'completed',
+      recordCount: childRecords.length,
+      lastModified: new Date().toISOString()
     };
 
-    const handleDelete = (index: number) => {
-        const updatedRows = rows.filter((_, rowIndex) => rowIndex !== index);
-        setRows(updatedRows);
-    };
+    console.log('データ保存 (บันทึกข้อมูล):', saveData);
+    alert('修正完了 (แก้ไขเสร็จสิ้น)');
+    navigate('/report/carediary');
+  };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  return (
+    <ThemeProvider theme={theme}>
+      <ContentMain className="flex flex-col min-h-screen">
+        {/* Header */}
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="h4" fontWeight="bold" sx={{ mb: 1, color: '#1976d2' }}>
+            個人カリキュラム・記録編集 (แก้ไขบันทึกหลักสูตรส่วนบุคคล)
+          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Typography variant="subtitle1" color="textSecondary">
+              子どもの発達記録編集 (แก้ไขบันทึกพัฒนาการเด็ก)
+            </Typography>
+            <Chip icon={<Edit />} label="編集モード (โหมดแก้ไข)" color="warning" variant="outlined" />
+          </Box>
+        </Box>
 
-        const newData: Data = {
-            day: newEntry.day,
-            month: newEntry.month,
-            meal: newEntry.meal,
-            excretion: newEntry.excretion,
-            sleep: newEntry.sleep,
-            health: newEntry.health,
-            other: newEntry.other,
-            detail: (
-                <>
-                    <IconButton aria-label="edit" size="small">
-                        <EditIcon fontSize="small" className="text-sky-600" />
-                    </IconButton>
-                    <IconButton aria-label="delete" size="small">
-                        <DeleteIcon fontSize="small" className="text-red-600" />
-                    </IconButton>
-                </>
-            ),
-        };
-
-        if (indexToEdit !== null) {
-            // Editing existing row
-            const updatedRows = rows.map((row, index) =>
-                index === indexToEdit ? { ...newData } : row
-            );
-            setRows(updatedRows);
-        } else {
-            // Adding new row
-            setRows(prevRows => [...prevRows, newData]);
-        }
-
-        // Reset newEntry and close modal
-        setNewEntry({
-            day: '',
-            month: '',
-            meal: '',
-            excretion: '',
-            sleep: '',
-            health: '',
-            other: '',
-        });
-        handleClose();
-    };
-
-    const [day, setDay] = React.useState('');
-
-    const handleDayChange = (event: SelectChangeEvent) => {
-        setDay(event.target.value as string);
-    };
-
-    const [month, setMonth] = React.useState('');
-
-    const handleMonthChange = (event: SelectChangeEvent) => {
-        setMonth(event.target.value as string);
-    };
-
-    const [formData, setFormData] = useState<FormData>({
-        pid: '',
-        age: '',
-        children: '',
-        month2: '',
-        considerations: '',
-        evaluation_and_reflection: '',
-    });
-
-    useEffect(() => {
-        const storedData = JSON.parse(sessionStorage.getItem('carediaryData') || '[]');
-        const item = storedData.find((item: any) => item.pid === pid);
-        if (item) {
-            setFormData(item);
-        } else {
-            // Optionally, you could handle the case where the item is not found
-            // For example, setting formData to default values or showing a message
-        }
-    }, [pid]);
-
-    const handleChange2 = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { id, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [id]: value
-        }));
-    };
-
-    const handleSelectChange2 = (e: SelectChangeEvent<string>, id: string) => {
-        const value = e.target.value;
-        setFormData((prevData) => ({
-            ...prevData,
-            [id]: value
-        }));
-    };
-
-    const handleSave = () => {
-        console.log('Saving data:', formData);
-        const storedData = JSON.parse(sessionStorage.getItem('carediaryData') || '[]');
-        const updatedData = storedData.map((item: any) =>
-            item.pid === pid ? formData : item
-        );
-        sessionStorage.setItem('carediaryData', JSON.stringify(updatedData));
-        navigate('/report/carediary');
-    };
-
-    return (
-        <>
-            <ContentMain className="flex flex-col min-h-screen">
-                {/* Start Grid */}
-                <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-10 lg:pt-0">
-                    <Grid item xs={9} sm={7} md={5} lg={4} sx={{ ml: { xs: 0, sm: 0, md: 0, lg: 2 }, mt: { xs: -1, sm: -2, md: 5, lg: 4 } }}>
-                        <div>
-                            <FormControl sx={{ minWidth: 100 }} size="small" fullWidth>
-                                <InputLabel id="demo-select-small-label">週ごとのプランを選択する</InputLabel>
-                                <Select
-                                    labelId="demo-select-small-label"
-                                    id="age"
-                                    name="age"
-                                    size="small"
-                                    label="週ごとのプランを選択する"
-                                    value={formData.age}
-                                    onChange={(e) => handleSelectChange2(e, 'age')}
-                                    className="mb-5"
-                                    sx={{
-                                        backgroundColor: "white",
-                                    }}
-                                >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value="週案と保育日誌 (未満児) 0・1 歳用">週案と保育日誌 (未満児) 0・1 歳用</MenuItem>
-                                    <MenuItem value="週案と保育日誌 (未満児) 1・2 歳用">週案と保育日誌 (未満児) 1・2 歳用</MenuItem>
-                                </Select>
-                            </FormControl>
-                            <div>
-                                {formData.age && (
-                                    <Typography
-                                        component="div"
-                                        sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, fontWeight: 'bold' }}
-                                        className='flex justify-start h-10 pt-2 pl-5'
-                                    >
-                                        {`${formData.age}`}
-                                    </Typography>
-                                )}
-                            </div>
-                        </div>
-                    </Grid>
-                </Grid>
-                {/* End Grid */}
-
-                {/* Start Grid */}
-                <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-10 lg:pt-10">
-                    <Grid item xs={2} sm={2} md={2} lg={1} sx={{ ml: { xs: 4, sm: 5, md: -1, lg: 10 } }}>
-                        <FormControl sx={{ minWidth: 90 }} size="small">
-                            <InputLabel id="month-select-label">月</InputLabel>
-                            <Select
-                                labelId="month-select-label"
-                                id="month2"
-                                value={formData.month2}
-                                label="月"
-                                onChange={(e) => handleSelectChange2(e, 'month2')}
-                                sx={{
-                                    backgroundColor: "white",
-                                }}
-                            >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                {Array.from({ length: 12 }, (_, i) => (
-                                    <MenuItem key={i + 1} value={i + 1}>
-                                        {i + 1} 月
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                    <Grid item xs={7} sm={6.5} md={4} lg={4} >
-                        <Typography component="div" sx={{ fontSize: { xs: 12, sm: 12, md: 14, lg: 16, }, ml: { xs: 5, sm: -4, md: -9, lg: -10 } }} >
-                            個人カリキュラム・配録
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={5} sm={3} md={2} lg={2} >
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 12, md: 14, lg: 16, }, ml: { xs: -3, sm: 3, md: -13, lg: -10 }, mt: { xs: 1.5, sm: 2, md: 0, lg: 0 } }} >
-                            児童名 :
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={2} sm={1.5} md={1} lg={1} >
-                        <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 14, lg: 16, }, ml: { xs: -15, sm: -5, md: -20, lg: -30 }, mt: { xs: 1.5, sm: 2, md: 0, lg: 0 } }} >
-                            長谷川
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={2} sm={1.5} md={1} lg={1} >
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 12, md: 14, lg: 16, }, ml: { xs: -10, sm: -2, md: -9, lg: -15 }, mt: { xs: 1.5, sm: 2, md: 0, lg: 0 } }} >
-                            1歳
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={2} sm={1.5} md={1} lg={1} >
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 12, md: 14, lg: 16, }, ml: { xs: -13, sm: -2, md: -9, lg: -25 }, mt: { xs: 1.5, sm: 2, md: 0, lg: 0 } }} >
-                            5月
-                        </Typography>
-                    </Grid>
-                </Grid>
-                {/* End Grid */}
-
-                {/* Start Grid */}
-                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-3 lg:pt-7'>
-                    <Grid item xs={7} sm={5} md={3} lg={3}>
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 12, md: 11, lg: 16, }, ml: { xs: -7, sm: -4, md: 2, lg: 10 } }} >
-                            子どもの姿
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={4} sm={1} md={1} lg={1} sx={{ ml: { xs: 5, sm: -8, md: -3, lg: -5 } }}>
-                        <TextareaAutosize
-                            id="children"
-                            name="children"
-                            minRows={3}
-                            maxRows={100}
-                            onChange={handleChange2}
-                            value={formData.children}
-                            className="w-56 sm:w-60 lg:w-96 border border-gray-300"
-                        />
-                    </Grid>
-                </Grid>
-                {/* End Grid */}
-
-                {/* Start Grid */}
-                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-5 lg:pt-3'>
-                    <Grid item xs={7} sm={5} md={3} lg={3}>
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 12, md: 11, lg: 16, }, ml: { xs: -6, sm: -4, md: 2, lg: 10 } }} >
-                            ねらいと配慮
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={4} sm={1} md={1} lg={1} sx={{ ml: { xs: 5, sm: -8, md: -3, lg: -5 } }}>
-                        <TextareaAutosize
-                            id="considerations"
-                            name="considerations"
-                            minRows={3}
-                            maxRows={100}
-                            onChange={handleChange2}
-                            value={formData.considerations}
-                            className="w-56 sm:w-60 lg:w-96 border border-gray-300"
-                        />
-                    </Grid>
-                </Grid>
-                {/* End Grid */}
-                <Grid container spacing={2} className="pt-5 text-right" >
-                    <Grid item xs={12} sm={12} md={12} lg={11.2} >
-                        <Button
-                            variant="contained"
-                            onClick={handleOpen}
-                        >
-                            Add
-                        </Button>
-                    </Grid>
-                </Grid>
-
-                <Grid container className="pt-4" justifyContent="start">
-                    <Grid item xs={12} sm={12} md={11} lg={11}>
-                        <TableContainer
-                            component={Paper}
-                            sx={{ border: '1px solid #ccc', position: 'relative', margin: { xs: '0 8px', sm: '0 16px', md: '0 24px' } }}>
-                            <Table sx={{ minWidth: { xs: '250%', sm: '170%', md: '150%', lg: '100%' } }} size="small" aria-label="a dense table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="center">日</TableCell>
-                                        <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="center">月</TableCell>
-                                        <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="right">食事</TableCell>
-                                        <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="right">排泄</TableCell>
-                                        <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="right">睡眠</TableCell>
-                                        <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="right">健康</TableCell>
-                                        <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="right">その他の記録</TableCell>
-                                        <TableCell sx={{ border: '1px solid #ccc', width: '5%' }} align="right"></TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {rows.length === 0 ? (
-                                        <TableRow>
-                                            <TableCell colSpan={5} align="center">
-                                                No data
-                                            </TableCell>
-                                        </TableRow>
-                                    ) : (
-                                        rows.map((row, index) => (
-                                            <TableRow
-                                                key={index}
-                                                sx={{
-                                                    '&:last-child td, &:last-child th': { border: '1px solid #ccc' },
-                                                    border: '1px solid #ccc',
-                                                }}
-                                            >
-                                                <TableCell align="center" component="th" scope="row" sx={{ border: '1px solid #ccc' }}>
-                                                    {row.day}
-                                                </TableCell>
-                                                <TableCell align="center" component="th" scope="row" sx={{ border: '1px solid #ccc' }}>
-                                                    {row.month}
-                                                </TableCell>
-                                                <TableCell align="right" component="th" scope="row" sx={{ border: '1px solid #ccc' }}>
-                                                    {row.meal}
-                                                </TableCell>
-                                                <TableCell align="right" component="th" scope="row" sx={{ border: '1px solid #ccc' }}>
-                                                    {row.excretion}
-                                                </TableCell>
-                                                <TableCell align="right" sx={{ border: '1px solid #ccc' }}>
-                                                    {row.sleep}
-                                                </TableCell>
-                                                <TableCell align="right" sx={{ border: '1px solid #ccc' }}>
-                                                    {row.health}
-                                                </TableCell>
-                                                <TableCell align="right" sx={{ border: '1px solid #ccc' }}>
-                                                    {row.other}
-                                                </TableCell>
-                                                <TableCell align="right" sx={{ border: '1px solid #ccc' }}>
-                                                    <IconButton
-                                                        aria-label="edit"
-                                                        size="small"
-                                                        onClick={() => handleEdit(index)}
-                                                    >
-                                                        <EditIcon fontSize="small" className="text-sky-600" />
-                                                    </IconButton>
-                                                    <IconButton
-                                                        aria-label="delete"
-                                                        size="small"
-                                                        onClick={() => handleDelete(index)}
-                                                    >
-                                                        <DeleteIcon fontSize="small" className="text-red-600" />
-                                                    </IconButton>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))
-                                    )}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Grid>
-                </Grid>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
+        {/* Basic Information Section */}
+        <Accordion expanded={expandedSections.basic} onChange={() => toggleSection('basic')} sx={{ border: '2px solid #ff9800' }}>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <Typography fontWeight="600">基本情報 (ข้อมูลพื้นฐาน)</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Grid container spacing={2} sx={{ mb: 3 }}>
+              <Grid item xs={12} sm={6} md={2}>
+                <TextField
+                  size="small"
+                  fullWidth
+                  select
+                  label="月 (เดือน) *"
+                  value={headerData.month}
+                  onChange={handleHeaderDataChange('month')}
+                  required
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <CalendarToday sx={{ fontSize: 18 }} />
+                      </InputAdornment>
+                    ),
+                  }}
                 >
-                    <Box sx={modalStyle} component="form" onSubmit={handleSubmit}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Add New Entry
-                        </Typography>
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 1, md: 1 }} className='pl-3 pt-5' >
-                            <Grid item xs={3} sm={1.5} md={1} lg={5} sx={{ ml: { xs: -1, sm: -1, md: -1, lg: -1 } }}>
-                                <FormControl sx={{ minWidth: 90 }} size="small">
-                                    <InputLabel id="day-select-label">日</InputLabel>
-                                    <Select
-                                        labelId="day-select-label"
-                                        id="day-select"
-                                        value={day}
-                                        label="日"
-                                        onChange={handleDayChange}
-                                        sx={{
-                                            backgroundColor: "white",
-                                        }}
-                                    >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        {Array.from({ length: 31 }, (_, i) => (
-                                            <MenuItem key={i + 1} value={i + 1}>
-                                                {i + 1} 日
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={2} sm={1.5} md={1} lg={1} sx={{ ml: { xs: 5, sm: 6, md: 7, lg: -18 } }}>
-                                <FormControl sx={{ minWidth: 90 }} size="small">
-                                    <InputLabel id="month-select-label">月</InputLabel>
-                                    <Select
-                                        labelId="month-select-label"
-                                        id="month-select"
-                                        value={month}
-                                        label="月"
-                                        onChange={handleMonthChange}
-                                        sx={{
-                                            backgroundColor: "white",
-                                        }}
-                                    >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        {Array.from({ length: 12 }, (_, i) => (
-                                            <MenuItem key={i + 1} value={i + 1}>
-                                                {i + 1} 月
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-                        </Grid>
+                  {monthOptions.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
+                
+              <Grid item xs={12} sm={6} md={3}>
+                <TextField
+                  size="small"
+                  fullWidth
+                  select
+                  label="子どもの名前 (ชื่อเด็ก) *"
+                  value={headerData.childName}
+                  onChange={handleHeaderDataChange('childName')}
+                  required
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Person sx={{ fontSize: 18 }} />
+                      </InputAdornment>
+                    ),
+                  }}
+                >
+                  {childNameOptions.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
+              
+              <Grid item xs={12} sm={6} md={2}>
+                <TextField
+                  size="small"
+                  fullWidth
+                  select
+                  label="年齢 (อายุ) *"
+                  value={headerData.age}
+                  onChange={handleAgeChange}
+                  required
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Person sx={{ fontSize: 18 }} />
+                      </InputAdornment>
+                    ),
+                  }}
+                >
+                  {ageOptions.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
 
-                        <Grid container spacing={1} className="" justifyContent='center'>
-                            <Grid item xs={12} sm={3} md={6} >
-                                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: { xs: "-15px", sm: -21, md: "-18px", lg: -1.9 } }}>
-                                    <Grid item xs={7.5} sm={4} md={8.5} lg={12} className="text-start">
-                                        <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
-                                            食事
-                                        </Typography>
-                                        <textarea
-                                            id="meal"
-                                            name="meal"
-                                            value={newEntry.meal}
-                                            onChange={handleChange}
-                                            rows={2}  // Set the number of rows here
-                                            className="w-72 sm:w-64 lg:w-64"
-                                            style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding: '3px' }}
-                                        />
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid item xs={12} sm={3} md={6}>
-                                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 ' sx={{ marginLeft: { xs: "-15px", sm: "-18px", md: -15, lg: -5 } }}>
-                                    <Grid item xs={7.5} sm={4} md={8.5} lg={12} className="text-start">
-                                        <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
-                                            排泄
-                                        </Typography>
-                                        <textarea
-                                            id="excretion"
-                                            name="excretion"
-                                            value={newEntry.excretion}
-                                            onChange={handleChange}
-                                            rows={2}  // Set the number of rows here
-                                            className="w-72 sm:w-64 lg:w-64"
-                                            style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding: '3px' }}
-                                        />
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </Grid>
+              <Grid item xs={12} sm={6} md={1}>
+                <TextField
+                  size="small"
+                  fullWidth
+                  label="歳"
+                  defaultValue="1"
+                />
+              </Grid>
+              
+              <Grid item xs={12} sm={6} md={1}>
+                <TextField
+                  size="small"
+                  fullWidth
+                  label="ヶ月"
+                  defaultValue="3"
+                />
+              </Grid>
+              
+              <Grid item xs={12} sm={6} md={3}>
+                <TextField
+                  size="small"
+                  fullWidth
+                  select
+                  label="担当者 (ผู้รับผิดชอบ)"
+                  value={headerData.responsiblePerson}
+                  onChange={handleHeaderDataChange('responsiblePerson')}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Person sx={{ fontSize: 18 }} />
+                      </InputAdornment>
+                    ),
+                  }}
+                >
+                  {responsiblePersonOptions.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
+            </Grid>
+            
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
+                <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                  子どもの姿 (ภาพรวมของเด็ก)
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={2}
+                  placeholder="子どもの姿を記入してください... (กรุณาอธิบายภาพรวมของเด็ก)"
+                  value={childDescription}
+                  onChange={(e) => setChildDescription(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                  ねらいと配慮 (วัตถุประสงค์และการพิจารณา)
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={2}
+                  placeholder="ねらいと配慮を記入してください... (กรุณาอธิบายวัตถุประสงค์และการพิจารณา)"
+                  value={objectives}
+                  onChange={(e) => setObjectives(e.target.value)}
+                />
+              </Grid>
+            </Grid>
+          </AccordionDetails>
+        </Accordion>
 
-                        <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
-                            睡眠
-                        </Typography>
-                        <textarea
-                            id="sleep"
-                            name="sleep"
-                            value={newEntry.sleep}
-                            onChange={handleChange}
-                            rows={2}  // Set the number of rows here
-                            className="w-72 sm:w-72 lg:w-64"
-                            style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding: '3px' }}
-                        />
-                        <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
-                            健康
-                        </Typography>
-                        <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className=' pl-3' >
-                            <RadioGroup
-                                aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="paidleave"
-                                name="radio-buttons-group"
-                                row
+        {/* Development Records Section */}
+        <Accordion expanded={expandedSections.development} onChange={() => toggleSection('development')} sx={{ mt: 3, border: '2px solid #9c27b0' }}>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Person color="secondary" />
+              <Typography variant="h6" fontWeight="600">
+                子どもの発達記録 (บันทึกพัฒนาการเด็ก) - {headerData.age}歳
+              </Typography>
+              <Tooltip title="各子どもと発達データ (เด็กแต่ละคนและข้อมูลการพัฒนา)">
+                <Info color="info" />
+              </Tooltip>
+            </Box>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+              <Box>
+                <Typography fontWeight="bold" align="left">
+                  子どもデータ管理 (การจัดการข้อมูลเด็ก)
+                </Typography>
+                <Typography variant="caption" color="textSecondary">
+                  記録済み: {childRecords.length} 日 (บันทึกแล้ว: {childRecords.length} วัน)
+                  {isSimplifiedAge && (
+                    <span style={{ color: '#9c27b0' }}> - {headerData.age}歳専用フォーム (รูปแบบเฉพาะอายุ {headerData.age} ขวบ)</span>
+                  )}
+                </Typography>
+              </Box>
+              <Button
+                variant="contained"
+                startIcon={<Add />}
+                onClick={handleAddRecord}
+                sx={{ 
+                  borderRadius: '20px',
+                  background: 'linear-gradient(45deg, #9c27b0, #e1bee7)',
+                  '&:hover': {
+                    background: 'linear-gradient(45deg, #7b1fa2, #ce93d8)',
+                  }
+                }}
+              >
+                追加 (ADD)
+              </Button>
+            </Box>
+
+            <TableContainer component={Paper} sx={{ mt: 2, borderRadius: '12px', border: '1px solid #e0e0e0' }}>
+              <Table size="small">
+                <TableHead>
+                  <TableRow sx={{ backgroundColor: '#f3e5f5' }}>
+                    <TableCell sx={{ fontWeight: 'bold', minWidth: 80 }}>日・曜 (วัน)</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold', minWidth: 120 }}>食事 (อาหาร)</TableCell>
+                    {!isSimplifiedAge && (
+                      <>
+                        <TableCell sx={{ fontWeight: 'bold', minWidth: 120 }}>排泄 (การขับถ่าย)</TableCell>
+                        <TableCell sx={{ fontWeight: 'bold', minWidth: 120 }}>睡眠 (การนอน)</TableCell>
+                      </>
+                    )}
+                    <TableCell sx={{ fontWeight: 'bold', minWidth: 120 }}>健康 (สุขภาพ)</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold', minWidth: 150 }}>その他の記録 (บันทึกอื่นๆ)</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold', minWidth: 100 }}>操作 (จัดการ)</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {childRecords.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={isSimplifiedAge ? 5 : 7} align="center" sx={{ py: 4, color: '#666' }}>
+                        データがありません。追加ボタンでデータを追加してください。
+                        <br />
+                        (ไม่มีข้อมูล กรุณาใช้ปุ่ม ADD เพื่อเพิ่มข้อมูล)
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    childRecords.map((record) => (
+                      <TableRow key={record.id} hover>
+                        <TableCell>{record.dayOfWeek}</TableCell>
+                        <TableCell sx={{ maxWidth: 120, wordBreak: 'break-word' }}>
+                          {record.meal}
+                        </TableCell>
+                        {!isSimplifiedAge && (
+                          <>
+                            <TableCell sx={{ maxWidth: 120, wordBreak: 'break-word' }}>
+                              {record.excretion || '-'}
+                            </TableCell>
+                            <TableCell sx={{ maxWidth: 120, wordBreak: 'break-word' }}>
+                              {record.sleep || '-'}
+                            </TableCell>
+                          </>
+                        )}
+                        <TableCell sx={{ maxWidth: 120, wordBreak: 'break-word' }}>
+                          {record.health}
+                        </TableCell>
+                        <TableCell sx={{ maxWidth: 150, wordBreak: 'break-word' }}>
+                          {record.otherRecords}
+                        </TableCell>
+                        <TableCell>
+                          <Box sx={{ display: 'flex', gap: 1 }}>
+                            <IconButton
+                              size="small"
+                              onClick={() => handleEditRecord(record)}
+                              color="primary"
                             >
-                                <Grid item xs={12} sm={12} md={12} lg={12} sx={{ ml: { xs: 1, sm: 1, md: 1, lg: 1 } }} className="pt-2">
-                                    <FormControlLabel value="良好" control={<Radio />} label="良好" />
-                                    <FormControlLabel value="鼻水・咳" control={<Radio />} label="鼻水・咳" />
-                                </Grid>
-                            </RadioGroup>
-                            <Grid item xs={9} sm={3} md={4} lg={5} sx={{ ml: { xs: -1.5, sm: 2, md: 1, lg: -1.5 } }}>
-                                <TextField
-                                    className='w-full'
-                                    id="furigana-input"
-                                    label=""
-                                    type="text"
-                                    size='small'
-                                    sx={{
-                                        backgroundColor: "white",
-                                        border: '1px solid gray', borderRadius: '4px',
-                                    }}
-                                />
-                            </Grid>
-                        </Grid>
+                              <Edit fontSize="small" />
+                            </IconButton>
+                            <IconButton
+                              size="small"
+                              onClick={() => handleDeleteRecord(record.id)}
+                              color="error"
+                            >
+                              <Delete fontSize="small" />
+                            </IconButton>
+                          </Box>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </AccordionDetails>
+        </Accordion>
 
-                        <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }} className="pt-4">
-                            その他の記録
-                        </Typography>
-                        <textarea
-                            id="other"
-                            name="other"
-                            value={newEntry.other}
-                            onChange={handleChange}
-                            rows={2.5}  // Set the number of rows here
-                            className="w-72 sm:w-72 lg:w-80"
-                            style={{ border: '1px solid gray', borderRadius: '4px', resize: 'none', padding: '3px' }}
-                        />
-                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-                            <Button onClick={handleClose} sx={{ mr: 2 }}>Cancel</Button>
-                            <Button type="submit" variant="contained">Save</Button>
-                        </Box>
-                    </Box>
-                </Modal>
+        {/* Additional Details Section */}
+        <Accordion expanded={expandedSections.additional} onChange={() => toggleSection('additional')} sx={{ mt: 3, border: '2px solid #4caf50' }}>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <CheckCircle color="success" />
+              <Typography variant="h6" fontWeight="600">
+                追加詳細 (รายละเอียดเพิ่มเติม) - {headerData.age}歳
+              </Typography>
+              <Tooltip title="計画のための追加情報 (ข้อมูลเพิ่มเติมสำหรับการวางแผน)">
+                <Info color="info" />
+              </Tooltip>
+            </Box>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Grid container spacing={2} sx={{ mt: 2 }}>
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                  評価・反省 (การประเมินและการสะท้อน)
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={4}
+                  placeholder="評価・反省を記入してください... (กรุณาอธิบายการประเมินและการสะท้อน)"
+                  value={evaluation}
+                  onChange={(e) => setEvaluation(e.target.value)}
+                />
+              </Grid>
+            </Grid>
 
-                {/* Start Grid */}
-                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10' sx={{ ml: { xs: 1, sm: 0, md: -2, lg: -2 } }}>
-                    <Grid item xs={4} sm={3} md={3} lg={3}>
-                        <Typography component="div" sx={{ fontSize: { xs: 12, sm: 12, md: 11, lg: 16, }, ml: { xs: 0, sm: 0, md: 2, lg: 10 } }} >
-                            評価・反省
+            {/* Approval Checkboxes Section */}
+            <Box sx={{ mt: 4, p: 3, border: '1px solid #e0e0e0', borderRadius: '12px', backgroundColor: '#f9f9f9' }}>
+              <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                承認・確認 (การอนุมัติและการยืนยัน)
+              </Typography>
+              <Grid container spacing={3}>
+                <Grid item xs={12} sm={4}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={headerData.principalApproval}
+                        onChange={handleCheckboxChange('principalApproval')}
+                        color="primary"
+                      />
+                    }
+                    label={
+                      <Box>
+                        <Typography fontWeight="bold">園長印</Typography>
+                        <Typography variant="caption" color="textSecondary">
+                          (ตราประทับผู้อำนวยการ)
                         </Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={5} md={1} lg={1} sx={{ ml: { xs: -5, sm: -1, md: -3, lg: -5 }, pb: 3 }}>
-                        <TextareaAutosize
-                            id="evaluation_and_reflection"
-                            name="evaluation_and_reflection"
-                            minRows={3}
-                            maxRows={100}
-                            onChange={handleChange2}
-                            value={formData.evaluation_and_reflection}
-                            className="w-56 sm:w-60 lg:w-96 border border-gray-300"
-                        />
-                    </Grid>
+                      </Box>
+                    }
+                  />
                 </Grid>
-                {/* End Grid */}
-
-                {/* Start Grid */}
-                <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 lg:pt-2">
-                    <Grid item xs={5} sm={3} md={3} lg={3} >
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 12, md: 14, lg: 16, }, ml: { xs: -3, sm: 3, md: 0, lg: 5 } }} >
-                            施設長
+                <Grid item xs={12} sm={4}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={headerData.supervisorApproval}
+                        onChange={handleCheckboxChange('supervisorApproval')}
+                        color="primary"
+                      />
+                    }
+                    label={
+                      <Box>
+                        <Typography fontWeight="bold">主任印</Typography>
+                        <Typography variant="caption" color="textSecondary">
+                          (ตราประทับหัวหน้า)
                         </Typography>
-                    </Grid>
-                    <Grid item xs={2} sm={1.5} md={1} lg={1} >
-                        <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 14, lg: 16, }, ml: { xs: -15, sm: -5, md: -7, lg: -15 } }} >
-                            渡部
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={2} sm={1.5} md={1} lg={1} >
-                        <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 14, lg: 16, }, ml: { xs: -18, sm: -7, md: -9, lg: -25 } }} >
-                            圭子
-                        </Typography>
-                    </Grid>
+                      </Box>
+                    }
+                  />
                 </Grid>
-                {/* End Grid */}
-
-                {/* Start Grid */}
-                <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 lg:pt-3">
-                    <Grid item xs={5} sm={3} md={3} lg={3} >
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 12, md: 14, lg: 16, }, ml: { xs: -3, sm: 3, md: 0, lg: 5 } }} >
-                            主任
+                <Grid item xs={12} sm={4}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={headerData.teacherApproval}
+                        onChange={handleCheckboxChange('teacherApproval')}
+                        color="primary"
+                      />
+                    }
+                    label={
+                      <Box>
+                        <Typography fontWeight="bold">担任印</Typography>
+                        <Typography variant="caption" color="textSecondary">
+                          (ตราประทับครูประจำชั้น)
                         </Typography>
-                    </Grid>
-                    <Grid item xs={2} sm={1.5} md={1} lg={1} >
-                        <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 14, lg: 16, }, ml: { xs: -15, sm: -5, md: -7, lg: -15 } }} >
-                            渡部
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={2} sm={1.5} md={1} lg={1} >
-                        <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 14, lg: 16, }, ml: { xs: -18, sm: -7, md: -9, lg: -25 } }} >
-                            史朗
-                        </Typography>
-                    </Grid>
+                      </Box>
+                    }
+                  />
                 </Grid>
-                {/* End Grid */}
+              </Grid>
+            </Box>
+          </AccordionDetails>
+        </Accordion>
 
-                {/* Start Grid */}
-                <Grid container spacing={1} justifyContent='start' alignItems='center' className="pt-1 lg:pt-3">
-                    <Grid item xs={5} sm={3} md={3} lg={3} >
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 12, md: 14, lg: 16, }, ml: { xs: -3, sm: 3, md: 0, lg: 5 } }} >
-                            担任
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={2} sm={1.5} md={1} lg={1} >
-                        <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 14, lg: 16, }, ml: { xs: -15, sm: -5, md: -7, lg: -15 } }} >
-                            中川
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={2} sm={1.5} md={1} lg={1} >
-                        <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 14, lg: 16, }, ml: { xs: -18, sm: -7, md: -9, lg: -25 } }} >
-                            康嘉
-                        </Typography>
-                    </Grid>
-                </Grid>
-                <div className="mt-auto">
-                    <Grid container justifyContent="center" spacing={2} className='pt-12' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
-                        <Grid item>
-                            <Button variant="contained" href="/report/carediary" size='medium' className='text-center' startIcon={<ArrowBackIcon />} color="warning">
-                                <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
-                                    戻る
-                                </Typography>
-                            </Button>
-                        </Grid>
-                        <Grid item>
-                            <Button variant="contained" href="#" size='medium' className='text-center' startIcon={<SaveIcon />} color="success" onClick={handleSave} >
-                                <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
-                                    修正
-                                </Typography>
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </div>
-            </ContentMain>
-        </>
-    );
+        {/* Action Buttons */}
+        <Box sx={{ display: 'flex', gap: 2, justifyContent: 'space-between', mt: 3 }}>
+          <Button variant="outlined" href="/report/carediary" startIcon={<ArrowBack />}>
+            戻る (กลับ)
+          </Button>
+          
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Button 
+              variant="contained" 
+              color="success" 
+              startIcon={<Save />}
+              onClick={handleSave}
+              sx={{
+                background: 'linear-gradient(45deg, #4caf50, #81c784)',
+                '&:hover': {
+                  background: 'linear-gradient(45deg, #388e3c, #66bb6a)',
+                }
+              }}
+            >
+              修正 (บันทึก)
+            </Button>
+          </Box>
+        </Box>
+
+        {/* Add/Edit Dialog */}
+        <Dialog 
+          open={openDialog} 
+          onClose={() => setOpenDialog(false)}
+          maxWidth="md"
+          fullWidth
+          PaperProps={{
+            sx: { borderRadius: '16px' }
+          }}
+        >
+          <DialogTitle sx={{ backgroundColor: '#f5f5f5', fontWeight: 'bold' }}>
+            {editingRecord ? 'データ編集 (แก้ไขข้อมูล)' : 'データ追加 (เพิ่มข้อมูล)'} - {headerData.age}歳
+          </DialogTitle>
+          <DialogContent sx={{ mt: 2 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={isSimplifiedAge ? 12 : 6}>
+                <TextField
+                  fullWidth
+                  label="日・曜 (วัน/วันในสัปดาห์) *"
+                  value={newRecord.dayOfWeek}
+                  onChange={handleRecordChange('dayOfWeek')}
+                  required
+                  margin="dense"
+                  placeholder="例: 1日（月）/ ตัวอย่าง: 1日（月）"
+                />
+              </Grid>
+              <Grid item xs={12} sm={isSimplifiedAge ? 12 : 6}>
+                <TextField
+                  fullWidth
+                  label="食事 (อาหาร)"
+                  value={newRecord.meal}
+                  onChange={handleRecordChange('meal')}
+                  margin="dense"
+                  placeholder="食事の内容を記入... (อธิบายเรื่องอาหาร)"
+                />
+              </Grid>
+              {!isSimplifiedAge && (
+                <>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      label="排泄 (การขับถ่าย)"
+                      value={newRecord.excretion || ''}
+                      onChange={handleRecordChange('excretion')}
+                      margin="dense"
+                      placeholder="排泄の状況を記入... (อธิบายสถานการณ์การขับถ่าย)"
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      label="睡眠 (การนอน)"
+                      value={newRecord.sleep || ''}
+                      onChange={handleRecordChange('sleep')}
+                      margin="dense"
+                      placeholder="睡眠の状況を記入... (อธิบายสถานการณ์การนอน)"
+                    />
+                  </Grid>
+                </>
+              )}
+              <Grid item xs={12} sm={isSimplifiedAge ? 12 : 6}>
+                <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+                  健康 (สุขภาพ)
+                </Typography>
+                <FormControl component="fieldset">
+                  <RadioGroup
+                    value={newRecord.health}
+                    onChange={handleRecordChange('health')}
+                    row
+                  >
+                    <FormControlLabel value="良好" control={<Radio />} label="良好" />
+                    <FormControlLabel value="鼻水・咳" control={<Radio />} label="鼻水・咳" />
+                    <FormControlLabel value="その他" control={<Radio />} label="その他" />
+                  </RadioGroup>
+                </FormControl>
+                {newRecord.health === 'その他' && (
+                  <TextField
+                    fullWidth
+                    size="small"
+                    placeholder="詳細を入力..."
+                    margin="dense"
+                  />
+                )}
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={3}
+                  label="その他の記録 (บันทึกอื่นๆ)"
+                  value={newRecord.otherRecords}
+                  onChange={handleRecordChange('otherRecords')}
+                  margin="dense"
+                  placeholder="その他の記録内容を記入... (อธิบายบันทึกอื่นๆ)"
+                />
+              </Grid>
+            </Grid>
+            {isSimplifiedAge && (
+              <Box sx={{ mt: 2, p: 2, backgroundColor: '#e8f5e8', borderRadius: '8px' }}>
+                <Typography variant="caption" color="#2e7d32">
+                  {headerData.age}歳用の簡略化フォーム: 日・曜、食事、健康、その他の記録のみ入力
+                  <br />
+                  (รูปแบบเฉพาะอายุ {headerData.age} ขวบ: กรอกเฉพาะ วัน, อาหาร, สุขภาพ, บันทึกอื่นๆ)
+                </Typography>
+              </Box>
+            )}
+          </DialogContent>
+          <DialogActions sx={{ p: 3, gap: 1 }}>
+            <Button 
+              onClick={() => setOpenDialog(false)}
+              variant="outlined"
+              startIcon={<Cancel />}
+            >
+              キャンセル (ยกเลิก)
+            </Button>
+            <Button 
+              onClick={handleSaveRecord}
+              variant="contained"
+              startIcon={<Save />}
+              sx={{
+                background: 'linear-gradient(45deg, #2196f3, #9c27b0)',
+                '&:hover': {
+                  background: 'linear-gradient(45deg, #1976d2, #7b1fa2)',
+                }
+              }}
+            >
+              保存 (บันทึก)
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </ContentMain>
+    </ThemeProvider>
+  );
 };
+
+export default EditCareDiary;
