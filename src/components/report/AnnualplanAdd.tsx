@@ -22,7 +22,6 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  LinearProgress,
   Tooltip
 } from '@mui/material';
 import {
@@ -39,12 +38,10 @@ import {
   ArrowBack,
   ExpandMore,
   Info,
-  Lock,
   Public
 } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ContentMain from "../content/Content";
-
 // Theme configuration
 const theme = createTheme({
   palette: {
@@ -81,7 +78,7 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '12px',
+          borderRadius: '20px',
           textTransform: 'none',
           fontWeight: 600,
         },
@@ -91,10 +88,10 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           '& .MuiInputBase-input': {
-            fontSize: '10px' // ข้อความที่พิมพ์
+            fontSize: '14px'
           },
           '& .MuiInputLabel-root': {
-            fontSize: '14px' // label
+            fontSize: '14px'
           }
         }
       },
@@ -102,27 +99,30 @@ const theme = createTheme({
   },
 });
 
-// Types - แก้ไข Database Structure ให้ถูกต้อง
+// Types
 interface HeaderData {
   year: string;
   classroom: string;
   age: string;
   responsiblePerson: string;
-  annualGoal: string; // 年間目標
+  annualGoal: string;
+  developmentalProcess1: string;
+  developmentalProcess2: string;
+  developmentalProcess3: string;
 }
 
 interface GlobalFieldsData {
-  familyCommunityCooperation: string; // 家庭・地域との連携  
-  evaluationReflection: string; // 評価・反省
+  familyCommunityCooperation: string;
+  evaluationReflection: string;
 }
+
 interface TabData {
   id: string | null;
-  // Tab-specific fields only - เก็บใน Detail Table
-  nursing: string; // การพยาบาล | 養護
-  education: string; // การศึกษา | 教育
-  lifeStability: string; // การดำรงชีวิตและความมั่นคงทางอารมณ์ | 生命の保持・情緒の安定
-  developmentPerspective: string; // มุมมองด้านพัฒนาการ | 身体的発達・社会的発達・精神的発達
-  nutritionEducation: string; // การศึกษาด้านโภชนาการ | 食育
+  nursing: string;
+  education: string;
+  lifeStability: string;
+  developmentPerspective: string;
+  nutritionEducation: string;
   status: 'empty' | 'draft' | 'completed';
   headerId: string | null;
   lastSaved?: Date;
@@ -142,6 +142,20 @@ interface ProgressStep {
   status: 'pending' | 'active' | 'completed' | 'error';
 }
 
+// Classroom options (Animal names)
+const classroomOptions = [
+  { value: 'ぺんぎん', label: 'ぺんぎん (เพนกวิน)' },
+  { value: 'しまうま', label: 'しまうま (ม้าลาย)' },
+  { value: 'ぞう', label: 'ぞう (ช้าง)' },
+];
+
+// Responsible person options
+const responsiblePersonOptions = [
+  { value: '田中先生', label: '田中先生 (ทานากะ เซนเซ)' },
+  { value: '佐藤先生', label: '佐藤先生 (ซาโตะ เซนเซ)' },
+  { value: '鈴木先生', label: '鈴木先生 (ซูซูกิ เซนเซ)' },
+];
+
 const AnnualplanAdd: React.FC = () => {
   // State Management
   const [currentTab, setCurrentTab] = useState<number>(0);
@@ -150,10 +164,12 @@ const AnnualplanAdd: React.FC = () => {
     classroom: '',
     age: '',
     responsiblePerson: '',
-    annualGoal: ''
+    annualGoal: '',
+    developmentalProcess1: '',
+    developmentalProcess2: '',
+    developmentalProcess3: ''
   });
 
-  // Global Fields - เก็บแยกต่างหาก
   const [globalFields, setGlobalFields] = useState<GlobalFieldsData>({
     familyCommunityCooperation: '',
     evaluationReflection: ''
@@ -211,17 +227,16 @@ const AnnualplanAdd: React.FC = () => {
   });
   
   const [tabs, setTabs] = useState<TabInfo[]>([
-    { id: 0, name: '📊 Ⅰ期', protected: true },
-    { id: 1, name: '📈 Ⅱ期', protected: true },
-    { id: 2, name: '📉 Ⅲ期', protected: true },
-    { id: 3, name: '📋 Ⅳ期', protected: true }
+    { id: 0, name: 'Ⅰ期', protected: true },
+    { id: 1, name: 'Ⅱ期', protected: true },
+    { id: 2, name: 'Ⅲ期', protected: true },
+    { id: 3, name: 'Ⅳ期', protected: true }
   ]);
   
   // Status States
   const [isHeaderSaved, setIsHeaderSaved] = useState<boolean>(false);
   const [headerSavedId, setHeaderSavedId] = useState<string | null>(null);
   const [headerSaveStatus, setHeaderSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
-  // Removed auto-saving functionality
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitProgress, setSubmitProgress] = useState<ProgressStep[]>([]);
   const [showProgress, setShowProgress] = useState<boolean>(false);
@@ -232,19 +247,18 @@ const AnnualplanAdd: React.FC = () => {
   
   // UI States
   const [expandedSections, setExpandedSections] = useState({
-    basic: true,
-    global: true
+    basic: true
   });
-
-  // Progress calculation
-  const calculateProgress = () => {
-    const headerComplete = headerData.classroom && headerData.age;
-    const tabsComplete = Object.values(tabsData).filter(tab => 
-      tab.nursing || tab.education || tab.lifeStability || tab.developmentPerspective || tab.nutritionEducation
-    ).length;
-    const totalTabs = Object.keys(tabsData).length;
-    return ((headerComplete ? 1 : 0) + tabsComplete) / (totalTabs + 1) * 100;
-  };
+  
+  // Age options for dropdown
+  const ageOptions = [
+    { value: '0', label: '0歳' },
+    { value: '1', label: '1歳' },
+    { value: '2', label: '2歳' },
+    { value: '3', label: '3歳' },
+    { value: '4', label: '4歳' },
+    { value: '5', label: '5歳' }
+  ];
 
   // Utility Functions
   const getStatusColor = (status: string) => {
@@ -274,7 +288,6 @@ const AnnualplanAdd: React.FC = () => {
       ...prev,
       [field]: event.target.value
     }));
-    // Removed auto-save functionality for better performance
   };
 
   const handleGlobalFieldsChange = (field: keyof GlobalFieldsData) => (
@@ -285,6 +298,7 @@ const AnnualplanAdd: React.FC = () => {
       [field]: event.target.value
     }));
   };
+
   const handleTabDataChange = (tabId: number, field: keyof TabData) => (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -297,8 +311,6 @@ const AnnualplanAdd: React.FC = () => {
       }
     }));
   };
-
-  // Removed auto-save related functions
 
   // API Simulation Functions
   const saveHeaderData = async (_data: HeaderData): Promise<{ success: boolean; id: string; message: string }> => {
@@ -331,7 +343,7 @@ const AnnualplanAdd: React.FC = () => {
   // Header Save Handler
   const handleSaveHeader = async () => {
     if (!headerData.classroom || !headerData.age) {
-      alert('กรุณากรอกข้อมูลห้องเรียนและอายุ');
+      alert('กรุณากรอกข้อมูลห้องเรียนและอายุ | 教室と年齢を入力してください');
       return;
     }
 
@@ -361,7 +373,7 @@ const AnnualplanAdd: React.FC = () => {
   // Manual Save Tab
   const handleSaveTab = async (tabId: number, asCompleted: boolean = false) => {
     if (!isHeaderSaved) {
-      alert('กรุณาบันทึกข้อมูลส่วนหัวก่อน');
+      alert('กรุณาบันทึกข้อมูลส่วนหัวก่อน | まずヘッダー情報を保存してください');
       return;
     }
 
@@ -387,7 +399,7 @@ const AnnualplanAdd: React.FC = () => {
   // Submit All Handler
   const handleSubmitAll = async () => {
     if (!isHeaderSaved) {
-      alert('กรุณาบันทึกข้อมูลส่วนหัวก่อน');
+      alert('กรุณาบันทึกข้อมูลส่วนหัวก่อน | まずヘッダー情報を保存してください');
       return;
     }
 
@@ -397,7 +409,7 @@ const AnnualplanAdd: React.FC = () => {
     ).map(([id]) => parseInt(id));
 
     if (tabsWithData.length === 0) {
-      alert('ไม่มีข้อมูลในแท็บที่จะส่ง');
+      alert('ไม่มีข้อมูลในแท็บที่จะส่ง | 送信するタブのデータがありません');
       return;
     }
 
@@ -409,7 +421,7 @@ const AnnualplanAdd: React.FC = () => {
       const tabName = tabs.find(t => t.id === tabId)?.name.replace(/📊|📈|📉|📋|📝/g, '').trim() || `Tab ${tabId}`;
       return {
         id: tabId,
-        label: `Submit ${tabName}`,
+        label: `${tabName} を送信 | ส่ง ${tabName}`,
         status: 'pending'
       };
     });
@@ -470,7 +482,7 @@ const AnnualplanAdd: React.FC = () => {
     const newTabId = Date.now();
     const newTab: TabInfo = {
       id: newTabId,
-      name: `📝 ${newTabName.trim()}`,
+      name: newTabName.trim(),
       protected: false
     };
 
@@ -509,47 +521,28 @@ const AnnualplanAdd: React.FC = () => {
     }
   };
 
-  const toggleSection = (section: 'basic' | 'global') => {
+  const toggleSection = (section: 'basic') => {
     setExpandedSections(prev => ({
       ...prev,
       [section]: !prev[section]
     }));
   };
-  
 
   return (
     <ThemeProvider theme={theme}>
-      <ContentMain className="flex flex-col min-h-screen">
+      <ContentMain>
+      <Box sx={{ minHeight: '100vh', py: 4 }}>
         <Container maxWidth="xl">
-          {/* Progress Bar */}
-          <Card sx={{ mb: 3, background: 'linear-gradient(90deg, #e3f2fd, #f3e5f5)', border: '2px solid #bbdefb' }}>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-                <Description color="primary" />
-                <Typography variant="h6" fontWeight="600">
-                  ความคืบหน้าการกรอกข้อมูล
-                </Typography>
-              </Box>
-              <LinearProgress 
-                variant="determinate" 
-                value={calculateProgress()} 
-                sx={{ height: 8, borderRadius: 4, mb: 1 }}
-              />
-              <Typography variant="body2" color="text.secondary">
-                {Math.round(calculateProgress())}% เสร็จสิ้น
-              </Typography>
-            </CardContent>
-          </Card>
 
-          {/* Header Section - เฉพาะข้อมูลพื้นฐาน + Annual Goal */}
+          {/* Header Section */}
           <Card sx={{ mb: 3, border: '2px solid #2196f3' }}>
             <CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
                 <Public color="primary" />
                 <Typography variant="h6" fontWeight="600">
-                  ข้อมูลหลัก (Main Table)
+                  ข้อมูลหลัก | メイン情報 (Main Table)
                 </Typography>
-                <Tooltip title="ข้อมูลพื้นฐานและเป้าหมายประจำปี">
+                <Tooltip title="ข้อมูลพื้นฐานและเป้าหมายประจำปี | 基本情報と年間目標">
                   <Info color="info" />
                 </Tooltip>
               </Box>
@@ -557,7 +550,7 @@ const AnnualplanAdd: React.FC = () => {
               {/* Basic Header Fields */}
               <Accordion expanded={expandedSections.basic} onChange={() => toggleSection('basic')}>
                 <AccordionSummary expandIcon={<ExpandMore />}>
-                  <Typography fontWeight="600">ข้อมูลพื้นฐาน</Typography>
+                  <Typography fontWeight="600">ข้อมูลพื้นฐาน | 基本情報</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Grid container spacing={2} sx={{ mb: 3 }}>
@@ -565,7 +558,7 @@ const AnnualplanAdd: React.FC = () => {
                       <TextField
                         size="small"
                         fullWidth
-                        label="ปี"
+                        label="ปี | 年"
                         value={headerData.year}
                         onChange={handleHeaderDataChange('year')}
                         InputProps={{
@@ -582,11 +575,11 @@ const AnnualplanAdd: React.FC = () => {
                       <TextField
                         size="small"
                         fullWidth
-                        label="ชื่อห้องเรียน *"
+                        select
+                        label="ชื่อห้องเรียน * | 教室名 *"
                         value={headerData.classroom}
                         onChange={handleHeaderDataChange('classroom')}
                         required
-                        error={!headerData.classroom && headerSaveStatus === 'error'}
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
@@ -594,14 +587,21 @@ const AnnualplanAdd: React.FC = () => {
                             </InputAdornment>
                           ),
                         }}
-                      />
+                      >
+                        {classroomOptions.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
                     </Grid>
                     
                     <Grid item xs={12} sm={6} md={3}>
                       <TextField
                         size="small"
                         fullWidth
-                        label="อายุ *"
+                        select
+                        label="อายุ * | 年齢 *"
                         value={headerData.age}
                         onChange={handleHeaderDataChange('age')}
                         required
@@ -613,14 +613,21 @@ const AnnualplanAdd: React.FC = () => {
                             </InputAdornment>
                           ),
                         }}
-                      />
+                      >
+                        {ageOptions.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
                     </Grid>
                     
                     <Grid item xs={12} sm={6} md={3}>
                       <TextField
                         size="small"
                         fullWidth
-                        label="ผู้รับผิดชอบ"
+                        select
+                        label="ผู้รับผิดชอบ | 担当者"
                         value={headerData.responsiblePerson}
                         onChange={handleHeaderDataChange('responsiblePerson')}
                         InputProps={{
@@ -630,7 +637,13 @@ const AnnualplanAdd: React.FC = () => {
                             </InputAdornment>
                           ),
                         }}
-                      />
+                      >
+                        {responsiblePersonOptions.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
                     </Grid>
                   </Grid>
 
@@ -644,7 +657,7 @@ const AnnualplanAdd: React.FC = () => {
                         label="เป้าหมายประจำปี | 年間目標（育みたい子どもの姿）"
                         value={headerData.annualGoal}
                         onChange={handleHeaderDataChange('annualGoal')}
-                        placeholder="เป้าหมายประจำปีที่ต้องการพัฒนาในเด็ก..."
+                        placeholder="เป้าหมายประจำปีที่ต้องการพัฒนาในเด็ก... | 育てたい子どもの姿..."
                         sx={{
                           "& .MuiInputBase-root": {
                             alignItems: "flex-start",
@@ -653,16 +666,104 @@ const AnnualplanAdd: React.FC = () => {
                       />
                     </Grid>
                   </Grid>
+
+                  {/* Developmental Process Fields */}
+                  {(headerData.age === '1' || headerData.age === '2') && (
+                    <>
+                      <Box sx={{ mt: 3 }}>
+                        <Typography fontWeight="600" sx={{ mb: 2, color: "primary.main", textAlign: "left" }}>
+                          発達過程 子どもの | พัฒนาการของเด็ก
+                        </Typography>
+                        <Typography sx={{ mb: 1, color: "primary.main", textAlign: "left" }}>
+                          子どもの 育つ姿 | การเติบโตของเด็ก
+                        </Typography>
+
+                        <Box
+                          sx={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+                            gap: 2,
+                          }}
+                        >
+                          {headerData.age === '1' ? (
+                            <>
+                              <Typography sx={{ fontSize: "12px" }}>1 歳</Typography>
+                              <Typography sx={{ fontSize: "12px" }}>1 歳 6 か月</Typography>
+                              <Typography sx={{ fontSize: "12px" }}>2 歳</Typography>
+                              <Typography sx={{ fontSize: "12px" }}>2 歳 11 か月</Typography>
+                            </>
+                          ) : (
+                            <>
+                              <Typography sx={{ fontSize: "12px" }}>2 歳</Typography>
+                              <Typography sx={{ fontSize: "12px" }}>2 歳 6 か月</Typography>
+                              <Typography sx={{ fontSize: "12px" }}>3 歳</Typography>
+                              <Typography sx={{ fontSize: "12px" }}>3 歳 11 か月</Typography>
+                            </>
+                          )}
+                        </Box>
+                      </Box>
+
+                      <Box sx={{ mt: 3 }}>
+                        <Grid container spacing={2}>
+                          <Grid item xs={12} md={4}>
+                            <TextField
+                              fullWidth
+                              multiline
+                              rows={4}
+                              label="発達過程 子どもの 1 | พัฒนาการของเด็ก 1"
+                              value={headerData.developmentalProcess1}
+                              onChange={handleHeaderDataChange('developmentalProcess1')}
+                              placeholder="พัฒนาการของเด็ก ช่องที่ 1... | 子どもの発達過程 1..."
+                              sx={{
+                                "& .MuiInputBase-root": {
+                                  alignItems: "flex-start",
+                                },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={4}>
+                            <TextField
+                              fullWidth
+                              multiline
+                              rows={4}
+                              label="発達過程 子どもの 2 | พัฒนาการของเด็ก 2"
+                              value={headerData.developmentalProcess2}
+                              onChange={handleHeaderDataChange('developmentalProcess2')}
+                              placeholder="พัฒนาการของเด็ก ช่องที่ 2... | 子どもの発達過程 2..."
+                              sx={{
+                                "& .MuiInputBase-root": {
+                                  alignItems: "flex-start",
+                                },
+                              }}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={4}>
+                            <TextField
+                              fullWidth
+                              multiline
+                              rows={4}
+                              label="発達過程 子どもの 3 | พัฒนาการของเด็ก 3"
+                              value={headerData.developmentalProcess3}
+                              onChange={handleHeaderDataChange('developmentalProcess3')}
+                              placeholder="พัฒนาการของเด็ก ช่องที่ 3... | 子どもの発達過程 3..."
+                              sx={{
+                                "& .MuiInputBase-root": {
+                                  alignItems: "flex-start",
+                                },
+                              }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </Box>
+                    </>
+                  )}
                 </AccordionDetails>
               </Accordion>
-
-              {/* Global Fields - ลบออกจาก Header */}
-              {/* Global fields จะไปแสดงในแต่ละ Tab แทน */}
 
               {/* Save Header Button */}
               <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mt: 3 }}>
                 <Button variant="outlined" href="/report/annualplan" startIcon={<ArrowBack />}>
-                  戻る
+                  戻る | กลับ
                 </Button>
                 <Button
                   variant="contained"
@@ -675,7 +776,7 @@ const AnnualplanAdd: React.FC = () => {
                     px: 4
                   }}
                 >
-                  {headerSaveStatus === 'saving' ? 'กำลังบันทึก...' : 'บันทึกข้อมูลหลัก'}
+                  {headerSaveStatus === 'saving' ? 'กำลังบันทึก... | 保存中...' : 'บันทึกข้อมูลหลัก | メイン情報を保存'}
                 </Button>
               </Box>
               
@@ -689,9 +790,9 @@ const AnnualplanAdd: React.FC = () => {
                       'info'
                     }
                   >
-                    {headerSaveStatus === 'saved' && `✅ บันทึกข้อมูลหลักสำเร็จ (ID: ${headerSavedId})`}
-                    {headerSaveStatus === 'error' && '❌ กรุณากรอกข้อมูลที่จำเป็น'}
-                    {headerSaveStatus === 'saving' && '⏳ กำลังบันทึกข้อมูล...'}
+                    {headerSaveStatus === 'saved' && `✅ บันทึกข้อมูลหลักสำเร็จ | メイン情報の保存が完了しました (ID: ${headerSavedId})`}
+                    {headerSaveStatus === 'error' && '❌ กรุณากรอกข้อมูลที่จำเป็น | 必須項目を入力してください'}
+                    {headerSaveStatus === 'saving' && '⏳ กำลังบันทึกข้อมูล... | データを保存中...'}
                   </Alert>
                 </Box>
               )}
@@ -702,7 +803,7 @@ const AnnualplanAdd: React.FC = () => {
           {showProgress && (
             <Box sx={{ p: 3, backgroundColor: '#f5f5f5', borderRadius: 2, mb: 3 }}>
               <Typography variant="h6" sx={{ mb: 2 }}>
-                ความคืบหน้าการส่งข้อมูล
+                ความคืบหน้าการส่งข้อมูล | データ送信の進捗状況
               </Typography>
               <Box sx={{ space: 2 }}>
                 {submitProgress.map((step) => (
@@ -746,7 +847,7 @@ const AnnualplanAdd: React.FC = () => {
             </Box>
           )}
 
-          {/* Tabs Section - Detail Table Data */}
+          {/* Tabs Section */}
           <Card 
             sx={{ 
               opacity: isHeaderSaved ? 1 : 0.5, 
@@ -758,7 +859,7 @@ const AnnualplanAdd: React.FC = () => {
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
                 <Description color="warning" />
                 <Typography variant="h6" fontWeight="600">
-                  ข้อมูลรายแท็บ (Detail Table) - แยกต่อแต่ละแท็บ
+                  ข้อมูลรายแท็บ | タブ別情報 (Detail Table)
                 </Typography>
               </Box>
 
@@ -818,21 +919,21 @@ const AnnualplanAdd: React.FC = () => {
                 currentTab === index && (
                   <Box key={tab.id}>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 4, flexWrap: 'wrap' }}>
-                      <Typography variant="h5" fontWeight="bold">
+                      <Typography fontWeight="bold">
                         {tab.name.replace(/📊|📈|📉|📋|📝/g, "").trim()}
                       </Typography>
 
                       <TextField
                         size="small"
                         select
-                        label="เริ่ม"
+                        label="เริ่ม | 開始"
                         value={tabsData[tab.id]?.startMonth || ''}
                         onChange={handleTabDataChange(tab.id, 'startMonth')}
                         sx={{ width: 100 }}
                       >
                         {[...Array(12)].map((_, i) => (
                           <MenuItem key={i + 1} value={i + 1}>
-                            {i + 1}ヵ月
+                            {i + 1}月
                           </MenuItem>
                         ))}
                       </TextField>
@@ -840,21 +941,21 @@ const AnnualplanAdd: React.FC = () => {
                       <TextField
                         size="small"
                         select
-                        label="สิ้นสุด"
+                        label="สิ้นสุด | 終了"
                         value={tabsData[tab.id]?.endMonth || ''}
                         onChange={handleTabDataChange(tab.id, 'endMonth')}
                         sx={{ width: 100 }}
                       >
                         {[...Array(12)].map((_, i) => (
                           <MenuItem key={i + 1} value={i + 1}>
-                            {i + 1}ヵ月
+                            {i + 1}月
                           </MenuItem>
                         ))}
                       </TextField>
 
                       {tabsData[tab.id]?.lastSaved && (
                         <Typography variant="body2" color="text.secondary">
-                          บันทึกล่าสุด: {tabsData[tab.id].lastSaved?.toLocaleString()}
+                          บันทึกล่าสุด | 最終保存: {tabsData[tab.id].lastSaved?.toLocaleString()}
                         </Typography>
                       )}
                     </Box>
@@ -862,8 +963,8 @@ const AnnualplanAdd: React.FC = () => {
                     {/* ねらい Section */}
                     <Card sx={{ mb: 3, backgroundColor: '#e5faf5de' }}>
                       <CardContent>
-                        <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}   align="left">
-                          ねらい (เป้าหมาย)
+                        <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                          ねらい (เป้าหมาย | 目標)
                         </Typography>
                         <Grid container spacing={2}>
                           <Grid item xs={12} md={6}>
@@ -871,10 +972,10 @@ const AnnualplanAdd: React.FC = () => {
                               fullWidth
                               multiline
                               rows={2}
-                              label="養護"
+                              label="養護 | การพยาบาล"
                               value={tabsData[tab.id]?.nursing || ''}
                               onChange={handleTabDataChange(tab.id, 'nursing')}
-                              placeholder="การพยาบาล..."
+                              placeholder="การพยาบาล... | 養護..."
                               disabled={!isHeaderSaved}
                             />
                           </Grid>
@@ -883,10 +984,10 @@ const AnnualplanAdd: React.FC = () => {
                               fullWidth
                               multiline
                               rows={2}
-                              label="教育"
+                              label="教育 | การศึกษา"
                               value={tabsData[tab.id]?.education || ''}
                               onChange={handleTabDataChange(tab.id, 'education')}
-                              placeholder="การศึกษา..."
+                              placeholder="การศึกษา... | 教育..."
                               disabled={!isHeaderSaved}
                             />
                           </Grid>
@@ -897,56 +998,57 @@ const AnnualplanAdd: React.FC = () => {
                     {/* 内容 Section */}
                     <Card sx={{ mb: 3, backgroundColor: '#f3e5f5ab' }}>
                       <CardContent>
-                        <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }} align="left">
-                          内容 (เนื้อหา)
+                        <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                          内容 (เนื้อหา | 内容)
                         </Typography>
                         
-                        <Grid container spacing={2} sx={{ alignItems: 'flex-start' }}>
+                        <Grid container spacing={2}>
                           <Grid item xs={12} md={6}>
                             <Typography variant="subtitle1" fontWeight="700" color="primary" sx={{ mb: 1 }} align="left">
-                              養護
+                              養護 | การพยาบาล
                             </Typography>
                             <TextField
                               fullWidth
                               multiline
                               rows={8}
-                              label="生命の保持・情緒の安定"
+                              label="生命の保持・情緒の安定 | การดำรงชีวิตและความมั่นคงทางอารมณ์"
                               value={tabsData[tab.id]?.lifeStability || ''}
                               onChange={handleTabDataChange(tab.id, 'lifeStability')}
-                              placeholder="การดำรงชีวิตและความมั่นคงทางอารมณ์..."
+                              placeholder="การดำรงชีวิตและความมั่นคงทางอารมณ์... | 生命の保持・情緒の安定..."
                               disabled={!isHeaderSaved}
                             />
                           </Grid>
 
                           <Grid item xs={12} md={6}>
                             <Typography variant="subtitle1" fontWeight="600" color="primary" sx={{ mb: 1 }} align="left">
-                              教育
+                              教育 | การศึกษา
                             </Typography>
                             <TextField
                               fullWidth
                               multiline
                               rows={8}
-                              label="身体的・社会的・精神的発達"
+                              label="身体的・社会的・精神的発達 | พัฒนาการทางร่างกาย/สังคม/จิตใจ"
                               value={tabsData[tab.id]?.developmentPerspective || ''}
                               onChange={handleTabDataChange(tab.id, 'developmentPerspective')}
-                              placeholder="มุมมองด้านพัฒนาการทางร่างกาย/สังคม/จิตใจ..."
+                              placeholder="มุมมองด้านพัฒนาการทางร่างกาย/สังคม/จิตใจ... | 身体的・社会的・精神的発達..."
                               disabled={!isHeaderSaved}
                             />
                           </Grid>
                         </Grid>
-                        <Grid container spacing={2} sx={{ alignItems: 'flex-start' }}>
-                          <Grid item xs={12} md={12}>
+                        
+                        <Grid container spacing={2} sx={{ mt: 1 }}>
+                          <Grid item xs={12}>
                             <Typography variant="subtitle1" fontWeight="600" color="primary" sx={{ mb: 1 }} align="left">
-                              食育
+                              食育 | การศึกษาด้านโภชนาการ
                             </Typography>
                             <TextField
                               fullWidth
                               multiline
                               rows={3}
-                              label="食育"
+                              label="食育 | การศึกษาด้านโภชนาการ"
                               value={tabsData[tab.id]?.nutritionEducation || ''}
                               onChange={handleTabDataChange(tab.id, 'nutritionEducation')}
-                              placeholder="การศึกษาด้านโภชนาการ..."
+                              placeholder="การศึกษาด้านโภชนาการ... | 食育..."
                               disabled={!isHeaderSaved}
                             />
                           </Grid>
@@ -954,19 +1056,8 @@ const AnnualplanAdd: React.FC = () => {
                       </CardContent>
                     </Card>
 
-                    {/* Global Fields Section - ตำแหน่งท้ายฟอร์ม */}
+                    {/* Global Fields Section */}
                     <Box sx={{ mt: 4 }}>
-                      <Alert severity="warning" sx={{ mb: 3 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                          <Lock color="warning" />
-                          <Typography fontWeight="600">
-                            ข้อมูลส่วนกลาง - ใช้ร่วมกันทุกแท็บ
-                          </Typography>
-                        </Box>
-                        <Typography variant="body2">
-                          ข้อมูลด้านล่างจะแชร์ไปทุกแท็บ กรอกครั้งเดียว แก้ไขที่แท็บไหนก็ได้
-                        </Typography>
-                      </Alert>
                       
                       <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
@@ -977,7 +1068,7 @@ const AnnualplanAdd: React.FC = () => {
                             label="การร่วมมือกับครอบครัวและชุมชน | 家庭・地域との連携"
                             value={globalFields.familyCommunityCooperation}
                             onChange={handleGlobalFieldsChange('familyCommunityCooperation')}
-                            placeholder="แผนการร่วมมือกับครอบครัวและชุมชน..."
+                            placeholder="แผนการร่วมมือกับครอบครัวและชุมชน... | 家庭・地域との連携プラン..."
                             disabled={!isHeaderSaved}
                             sx={{
                               "& .MuiInputBase-root": {
@@ -995,7 +1086,7 @@ const AnnualplanAdd: React.FC = () => {
                             label="การประเมินและการสะท้อนกลับ | 評価・反省"
                             value={globalFields.evaluationReflection}
                             onChange={handleGlobalFieldsChange('evaluationReflection')}
-                            placeholder="การประเมินและการสะท้อนกลับ..."
+                            placeholder="การประเมินและการสะท้อนกลับ... | 評価と振り返り..."
                             disabled={!isHeaderSaved}
                             sx={{
                               "& .MuiInputBase-root": {
@@ -1020,9 +1111,9 @@ const AnnualplanAdd: React.FC = () => {
                       <Chip
                         icon={getStatusIcon(tabsData[tab.id]?.status || 'empty')}
                         label={
-                          tabsData[tab.id]?.status === 'completed' ? 'สำเร็จแล้ว' :
-                          tabsData[tab.id]?.status === 'draft' ? 'บันทึกร่าง' :
-                          'ยังไม่บันทึก'
+                          tabsData[tab.id]?.status === 'completed' ? 'สำเร็จแล้ว | 完了' :
+                          tabsData[tab.id]?.status === 'draft' ? 'บันทึกร่าง | 下書き保存' :
+                          'ยังไม่บันทึก | 未保存'
                         }
                         color={getStatusColor(tabsData[tab.id]?.status || 'empty') as any}
                       />
@@ -1034,7 +1125,7 @@ const AnnualplanAdd: React.FC = () => {
                           disabled={!isHeaderSaved}
                           onClick={() => handleSaveTab(tab.id, false)}
                         >
-                          บันทึกร่าง
+                          บันทึกร่าง | 下書き保存
                         </Button>
                         <Button 
                           variant="contained" 
@@ -1043,7 +1134,7 @@ const AnnualplanAdd: React.FC = () => {
                           disabled={!isHeaderSaved}
                           onClick={() => handleSaveTab(tab.id, true)}
                         >
-                          บันทึกสำเร็จ
+                          บันทึกสำเร็จ | 完了保存
                         </Button>
                         <Button
                           variant="contained"
@@ -1058,7 +1149,7 @@ const AnnualplanAdd: React.FC = () => {
                             }
                           }}
                         >
-                          {isSubmitting ? 'กำลังส่ง...' : 'ส่งข้อมูลทั้งหมด'}
+                          {isSubmitting ? 'กำลังส่ง... | 送信中...' : 'ส่งข้อมูลทั้งหมด | すべて送信'}
                         </Button>
                       </Box>
                     </Box>
@@ -1070,22 +1161,22 @@ const AnnualplanAdd: React.FC = () => {
 
           {/* Add Tab Modal */}
           <Dialog open={showAddModal} onClose={() => setShowAddModal(false)} maxWidth="sm" fullWidth>
-            <DialogTitle>เพิ่มแท็บใหม่</DialogTitle>
+            <DialogTitle>เพิ่มแท็บใหม่ | 新しいタブを追加</DialogTitle>
             <DialogContent>
               <TextField
                 fullWidth
-                label="ชื่อแท็บ"
+                label="ชื่อแท็บ | タブ名"
                 value={newTabName}
                 onChange={(e) => setNewTabName(e.target.value)}
-                placeholder="เช่น: ไตรมาส 5, Q5"
+                placeholder="เช่น: ไตรมาส 5, Q5 | 例: 第5期, Q5"
                 sx={{ mt: 2 }}
                 onKeyPress={(e) => e.key === 'Enter' && addNewTab()}
                 autoFocus
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={() => setShowAddModal(false)}>ยกเลิก</Button>
-              <Button onClick={addNewTab} variant="contained">เพิ่มแท็บ</Button>
+              <Button onClick={() => setShowAddModal(false)}>ยกเลิก | キャンセル</Button>
+              <Button onClick={addNewTab} variant="contained">เพิ่มแท็บ | タブを追加</Button>
             </DialogActions>
           </Dialog>
 
@@ -1100,6 +1191,7 @@ const AnnualplanAdd: React.FC = () => {
             }
           `}</style>
         </Container>
+      </Box>
       </ContentMain>
     </ThemeProvider>
   );

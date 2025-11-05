@@ -83,6 +83,7 @@ import ViewWeekly from "../components/report/weeklyplan/ViewWeekly"
 
 import ViewActivity from "../components/accounting/activity/ViewActivity"
 import ShiftFormPages from "../pages/teacher/shiftmanagement/ShiftFormPages";
+import BasicDevPlanFormPages from "../pages/setting/BasicDevPlanFormPages";
 
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
@@ -354,6 +355,10 @@ const Router = createBrowserRouter([
       {
         path: "/infostaff/infostaffadd",
         element: <InfoStaffFormPages />
+      },
+      {
+        path: "/setting/basicdevplan",
+        element: <BasicDevPlanFormPages />
       },
       {
         path: "/setting/info/edit/:pid",
