@@ -11,12 +11,34 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Chip } from '@mui/material';
 
+// ✅ ADD: ใช้ i18n เฉพาะในคอมโพเนนต์นี้
+import { useTranslation } from 'react-i18next';
+
 const drawerWidth = 240;
 
 const PrimarySearchAppBar: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
   const navigate = useNavigate();
+
+  // ✅ ADD: เตรียม i18n และสถานะภาษา (default = 'jp')
+  const { i18n } = useTranslation();
+  const [lang, setLang] = React.useState<string>(() => localStorage.getItem('lang') || 'jp');
+
+  // ✅ ADD: ซิงค์ i18n ตอนเมาท์ครั้งแรก
+  React.useEffect(() => {
+    if (i18n.language !== lang) {
+      i18n.changeLanguage(lang);
+    }
+  }, [i18n, lang]);
+
+  // ✅ ADD: ฟังก์ชันสลับภาษา JP <-> EN
+  const toggleLanguage = () => {
+    const next = lang === 'jp' ? 'en' : 'jp';
+    setLang(next);
+    localStorage.setItem('lang', next);
+    i18n.changeLanguage(next);
+  };
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -132,7 +154,19 @@ const PrimarySearchAppBar: React.FC = () => {
       >
         <Toolbar className='bg-white'>
           <Box sx={{ flexGrow: 1 }} />
+
+          {/* ✅ ADD: ปุ่มสลับภาษา (เริ่ม JP → กดจะเป็น EN) */}
+          <Chip
+            label={lang.toUpperCase()}
+            onClick={toggleLanguage}
+            size="small"
+            variant="outlined"
+            sx={{ mr: 1 }}
+            aria-label="toggle language JP/EN"
+          />
+
           {username &&  <Chip label={username}  color="info"  size='small'/> }
+
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton
               size="large"
@@ -147,7 +181,6 @@ const PrimarySearchAppBar: React.FC = () => {
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            
             <IconButton
               size="large"
               aria-label="show more"
