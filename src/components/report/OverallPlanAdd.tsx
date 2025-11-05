@@ -140,7 +140,6 @@ const ABILITY_MASTER = [
   "豊かな感性と表現",
 ];
 
-
 const AGE_GROUPS = ["0歳児", "1歳児", "2歳児", "3歳児", "4歳児", "5歳児"];
 
 const INITIAL_ROWS: RowData[] = [
@@ -888,17 +887,17 @@ const OverallPlanAdd: React.FC = () => {
               onClick={handleSubmit}
               sx={{ px: 4, py: 1.5 }}
             >
-             {t("overallplanadd.save")}
+              {t("overallplanadd.save")}
             </Button>
           </Box>
 
           <TextField
             fullWidth
             size="small"
-            label="ปี/ระยะเวลา / 年度/期間"
+            label={t("overallplanadd.year_period")}
             value={formData.year}
             onChange={(e) => handleInputChange("year", e.target.value)}
-            placeholder="例: 2025年度"
+            placeholder={t("overallplanadd.year_placeholder")}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -923,7 +922,7 @@ const OverallPlanAdd: React.FC = () => {
               <Typography variant="h6" fontWeight="600">
                 {t("overallplanadd.basic")}
               </Typography>
-              <Tooltip title="保育の理念や方針を入力してください">
+              <Tooltip title={t("overallplanadd.situation_placeholder")}>
                 <Info color="info" fontSize="small" />
               </Tooltip>
             </Box>
@@ -935,7 +934,7 @@ const OverallPlanAdd: React.FC = () => {
               rows={5}
               value={formData.situation}
               onChange={(e) => handleInputChange("situation", e.target.value)}
-              placeholder="保育の理念や方針を記入してください..."
+              placeholder={t("overallplanadd.situation_placeholder2")}
             />
           </AccordionDetails>
         </Accordion>
@@ -952,7 +951,7 @@ const OverallPlanAdd: React.FC = () => {
             <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
               <Info color="primary" />
               <Typography variant="h6" fontWeight="600">
-               {t("overallplanadd.methods")}
+                {t("overallplanadd.methods")}
               </Typography>
             </Box>
           </AccordionSummary>
@@ -962,10 +961,14 @@ const OverallPlanAdd: React.FC = () => {
                 <Grid item xs={12} md={6} key={index}>
                   <TextField
                     fullWidth
-                    label={`วิธีการที่ ${index + 1}`}
+                    label={t("overallplanadd.method_number", {
+                      number: index + 1,
+                    })}
                     value={method}
                     onChange={(e) => handleMethodChange(index, e.target.value)}
-                    placeholder={`方法${index + 1}を入力してください`}
+                    placeholder={t("overallplanadd.method_placeholder", {
+                      number: index + 1,
+                    })}
                   />
                 </Grid>
               ))}
@@ -979,7 +982,7 @@ const OverallPlanAdd: React.FC = () => {
                 </Typography>
                 <TextField
                   fullWidth
-                  placeholder="目指す子ども像..."
+                  placeholder={t("overallplanadd.target_child_placeholder")}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -990,11 +993,11 @@ const OverallPlanAdd: React.FC = () => {
 
               <Grid item xs={12} md={12}>
                 <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
-                 {t("overallplanadd.target_teacher")}
+                  {t("overallplanadd.target_teacher")}
                 </Typography>
                 <TextField
                   fullWidth
-                  placeholder="望まれる保育者像..."
+                  placeholder={t("overallplanadd.target_teacher_placeholder")}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1007,8 +1010,8 @@ const OverallPlanAdd: React.FC = () => {
         </Accordion>
 
         {/* ================================================================
-            LIFE GOALS & SOCIAL GOALS (養護)
-        ================================================================ */}
+    LIFE GOALS & SOCIAL GOALS (養護)
+================================================================ */}
         <Accordion
           expanded={expandedSections.lifeGoals}
           onChange={() => toggleSection("lifeGoals")}
@@ -1086,8 +1089,8 @@ const OverallPlanAdd: React.FC = () => {
         </Accordion>
 
         {/* ================================================================
-            EDUCATION GOALS (教育)
-        ================================================================ */}
+    EDUCATION GOALS (教育)
+================================================================ */}
         <Accordion
           expanded={expandedSections.healthGoals}
           onChange={() => toggleSection("healthGoals")}
@@ -1265,7 +1268,7 @@ const OverallPlanAdd: React.FC = () => {
                   fullWidth
                   multiline
                   rows={2}
-                  placeholder="心と体の健康について記入してください..."
+                  placeholder={t("overallplanadd.health_mind_body_placeholder")}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1276,13 +1279,15 @@ const OverallPlanAdd: React.FC = () => {
 
               <Grid item xs={12} md={12}>
                 <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
-                 {t("overallplanadd.relations_close_people")}
+                  {t("overallplanadd.relations_close_people")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={2}
-                  placeholder="身近な人との関わりについて記入してください..."
+                  placeholder={t(
+                    "overallplanadd.relations_close_people_placeholder"
+                  )}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1293,7 +1298,7 @@ const OverallPlanAdd: React.FC = () => {
 
               <Grid item xs={12} md={12}>
                 <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
-                 {t("overallplanadd.relations_environment_nearby")}
+                  {t("overallplanadd.relations_environment_nearby")}
                 </Typography>
                 <TextField
                   fullWidth
@@ -1303,7 +1308,9 @@ const OverallPlanAdd: React.FC = () => {
                   onChange={(e) =>
                     handleInputChange("relationshipEnvironment", e.target.value)
                   }
-                  placeholder="身近な環境との関わりについて記入してください..."
+                  placeholder={t(
+                    "overallplanadd.relations_environment_nearby_placeholder"
+                  )}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1324,7 +1331,9 @@ const OverallPlanAdd: React.FC = () => {
                   onChange={(e) =>
                     handleInputChange("humanRights", e.target.value)
                   }
-                  placeholder="人権の尊重について記入してください..."
+                  placeholder={t(
+                    "overallplanadd.human_rights_respect_placeholder"
+                  )}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1345,7 +1354,9 @@ const OverallPlanAdd: React.FC = () => {
                   onChange={(e) =>
                     handleInputChange("expressionRespect", e.target.value)
                   }
-                  placeholder="表出と表現の尊重について記入してください..."
+                  placeholder={t(
+                    "overallplanadd.expression_respect_placeholder"
+                  )}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1356,7 +1367,7 @@ const OverallPlanAdd: React.FC = () => {
 
               <Grid item xs={12} md={12}>
                 <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
-                 {t("overallplanadd.parent_support_cooperation")}
+                  {t("overallplanadd.parent_support_cooperation")}
                 </Typography>
                 <TextField
                   fullWidth
@@ -1366,7 +1377,7 @@ const OverallPlanAdd: React.FC = () => {
                   onChange={(e) =>
                     handleInputChange("parentSupport", e.target.value)
                   }
-                  placeholder="保護者支援と連携について記入してください..."
+                  placeholder={t("overallplanadd.parent_support_placeholder")}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1377,13 +1388,15 @@ const OverallPlanAdd: React.FC = () => {
 
               <Grid item xs={12} md={12}>
                 <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
-                 {t("overallplanadd.community_cooperation")}
+                  {t("overallplanadd.community_cooperation")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={2}
-                  placeholder="地域との連携について記入してください..."
+                  placeholder={t(
+                    "overallplanadd.community_cooperation_placeholder"
+                  )}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1400,7 +1413,9 @@ const OverallPlanAdd: React.FC = () => {
                   fullWidth
                   multiline
                   rows={2}
-                  placeholder="小学校との接続について記入してください..."
+                  placeholder={t(
+                    "overallplanadd.primary_connection_placeholder"
+                  )}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1429,13 +1444,13 @@ const OverallPlanAdd: React.FC = () => {
             <Grid container spacing={3}>
               <Grid item xs={12} md={12}>
                 <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
-                 {t("overallplanadd.health_support")}
+                  {t("overallplanadd.health_support")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={6}
-                  placeholder="心と体の健康について記入してください..."
+                  placeholder={t("overallplanadd.health_mind_body_placeholder")}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1452,7 +1467,9 @@ const OverallPlanAdd: React.FC = () => {
                   fullWidth
                   multiline
                   rows={6}
-                  placeholder="身近な人との関わりについて記入してください..."
+                  placeholder={t(
+                    "overallplanadd.relations_close_people_placeholder"
+                  )}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1463,13 +1480,15 @@ const OverallPlanAdd: React.FC = () => {
 
               <Grid item xs={12} md={12}>
                 <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
-                 {t("overallplanadd.food_education_promotion")}
+                  {t("overallplanadd.food_education_promotion")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={6}
-                  placeholder="身近な環境との関わりについて記入してください..."
+                  placeholder={t(
+                    "overallplanadd.relations_environment_nearby_placeholder"
+                  )}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1480,13 +1499,15 @@ const OverallPlanAdd: React.FC = () => {
 
               <Grid item xs={12} md={12}>
                 <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
-                 {t("overallplanadd.neuvola_integrated_support")}
+                  {t("overallplanadd.neuvola_integrated_support")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={6}
-                  placeholder="人権の尊重について記入してください..."
+                  placeholder={t(
+                    "overallplanadd.human_rights_respect_placeholder"
+                  )}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1503,7 +1524,9 @@ const OverallPlanAdd: React.FC = () => {
                   fullWidth
                   multiline
                   rows={6}
-                  placeholder="表出と表現の尊重について記入してください..."
+                  placeholder={t(
+                    "overallplanadd.expression_respect_placeholder"
+                  )}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1514,13 +1537,141 @@ const OverallPlanAdd: React.FC = () => {
 
               <Grid item xs={12} md={12}>
                 <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
-                 {t("overallplanadd.supportive_childcare")}
+                  {t("overallplanadd.supportive_childcare")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={6}
-                  placeholder="保護者支援と連携について記入してください..."
+                  placeholder={t("overallplanadd.parent_support_placeholder")}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+            </Grid>
+          </AccordionDetails>
+        </Accordion>
+
+        <Accordion
+          expanded={expandedSections.goals}
+          onChange={() => toggleSection("goals")}
+          sx={{ mb: 2, border: "2px solid #4caf50" }}
+        >
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+              <EmojiEmotions color="success" />
+              <Typography variant="h6" fontWeight="600">
+                {t("overallplanadd.concrete_actions")}
+              </Typography>
+            </Box>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.health_support")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t("overallplanadd.health_mind_body_placeholder")}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.env_hygiene_safety_mgmt")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t(
+                    "overallplanadd.relations_close_people_placeholder"
+                  )}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.food_education_promotion")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t(
+                    "overallplanadd.relations_environment_nearby_placeholder"
+                  )}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.neuvola_integrated_support")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t(
+                    "overallplanadd.human_rights_respect_placeholder"
+                  )}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.parent_support_cooperation_alt")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t(
+                    "overallplanadd.expression_respect_placeholder"
+                  )}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.supportive_childcare")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t("overallplanadd.parent_support_placeholder")}
                   sx={{
                     "& .MuiInputBase-input": {
                       fontSize: 14,
@@ -1557,10 +1708,10 @@ const OverallPlanAdd: React.FC = () => {
                       sx={{
                         fontWeight: "bold",
                         bgcolor: "#e8f5e9",
-                        minWidth: 20,
+                        minWidth: 100,
                       }}
                     >
-                      月
+                      {t("overallplanadd.annual_col_month")}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -1569,7 +1720,7 @@ const OverallPlanAdd: React.FC = () => {
                         minWidth: 200,
                       }}
                     >
-                      園行事
+                      {t("overallplanadd.annual_col_school_events")}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -1578,7 +1729,7 @@ const OverallPlanAdd: React.FC = () => {
                         minWidth: 190,
                       }}
                     >
-                      季節の行事
+                      {t("overallplanadd.annual_col_seasonal_events")}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -1587,7 +1738,7 @@ const OverallPlanAdd: React.FC = () => {
                         minWidth: 190,
                       }}
                     >
-                      食育
+                      {t("overallplanadd.annual_col_food_education")}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -1596,7 +1747,7 @@ const OverallPlanAdd: React.FC = () => {
                         minWidth: 170,
                       }}
                     >
-                      保健
+                      {t("overallplanadd.annual_col_health")}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -1605,7 +1756,7 @@ const OverallPlanAdd: React.FC = () => {
                         minWidth: 170,
                       }}
                     >
-                      ネウボラ
+                      {t("overallplanadd.annual_col_neuvola")}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -1614,10 +1765,11 @@ const OverallPlanAdd: React.FC = () => {
                         minWidth: 200,
                       }}
                     >
-                      職員研修
+                      {t("overallplanadd.annual_col_staff_training")}
                     </TableCell>
                   </TableRow>
                 </TableHead>
+
                 <TableBody>
                   {rows.map((row) => (
                     <TableRow key={row.id} hover>
@@ -1629,10 +1781,13 @@ const OverallPlanAdd: React.FC = () => {
                           onChange={(e) =>
                             updateRow(row.id, "month", e.target.value)
                           }
-                          placeholder="1月"
+                          placeholder={t(
+                            "overallplanadd.annual_month_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
+
                       <TableCell>
                         <TextField
                           fullWidth
@@ -1642,10 +1797,13 @@ const OverallPlanAdd: React.FC = () => {
                           onChange={(e) =>
                             updateRow(row.id, "gardenEvent", e.target.value)
                           }
-                          placeholder="入力してください"
+                          placeholder={t(
+                            "overallplanadd.annual_input_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
+
                       <TableCell>
                         <TextField
                           fullWidth
@@ -1655,10 +1813,13 @@ const OverallPlanAdd: React.FC = () => {
                           onChange={(e) =>
                             updateRow(row.id, "seasonalEvent", e.target.value)
                           }
-                          placeholder="入力してください"
+                          placeholder={t(
+                            "overallplanadd.annual_input_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
+
                       <TableCell>
                         <TextField
                           fullWidth
@@ -1668,10 +1829,13 @@ const OverallPlanAdd: React.FC = () => {
                           onChange={(e) =>
                             updateRow(row.id, "foodEducation", e.target.value)
                           }
-                          placeholder="入力してください"
+                          placeholder={t(
+                            "overallplanadd.annual_input_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
+
                       <TableCell>
                         <TextField
                           fullWidth
@@ -1681,10 +1845,13 @@ const OverallPlanAdd: React.FC = () => {
                           onChange={(e) =>
                             updateRow(row.id, "health", e.target.value)
                           }
-                          placeholder="入力してください"
+                          placeholder={t(
+                            "overallplanadd.annual_input_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
+
                       <TableCell>
                         <TextField
                           fullWidth
@@ -1694,10 +1861,13 @@ const OverallPlanAdd: React.FC = () => {
                           onChange={(e) =>
                             updateRow(row.id, "neuvola", e.target.value)
                           }
-                          placeholder="入力してください"
+                          placeholder={t(
+                            "overallplanadd.annual_input_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
+
                       <TableCell>
                         <TextField
                           fullWidth
@@ -1707,7 +1877,9 @@ const OverallPlanAdd: React.FC = () => {
                           onChange={(e) =>
                             updateRow(row.id, "staffTraining", e.target.value)
                           }
-                          placeholder="入力してください"
+                          placeholder={t(
+                            "overallplanadd.annual_input_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
@@ -1737,7 +1909,7 @@ const OverallPlanAdd: React.FC = () => {
             startIcon={<ArrowBack />}
             sx={{ px: 4, py: 1.5 }}
           >
-           {t("overallplanadd.cancel")}
+            {t("overallplanadd.cancel")}
           </Button>
           <Button
             variant="contained"
@@ -1753,7 +1925,7 @@ const OverallPlanAdd: React.FC = () => {
               },
             }}
           >
-           {t("overallplanadd.save")}
+            {t("overallplanadd.save")}
           </Button>
         </Box>
       </ContentMain>
