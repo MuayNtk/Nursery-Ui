@@ -34,6 +34,7 @@ import {
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ContentMain from '../content/Content';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // ✅ เพิ่ม i18n
 
 const theme = createTheme({
   palette: {
@@ -101,31 +102,8 @@ const transformStoredData = (storedData: any[]): AnnualPlanRecord[] => {
   }));
 };
 
-const yearOptions = [
-  { value: '', label: 'ทั้งหมด (全て)' },
-  { value: '2022', label: '2022年' },
-  { value: '2023', label: '2023年' },
-  { value: '2024', label: '2024年' },
-];
-
-const statusOptions = [
-  { value: '', label: 'ทุกสถานะ (全ステータス)' },
-  { value: 'draft', label: 'ร่าง (下書き)' },
-  { value: 'completed', label: 'เสร็จสิ้น (完了)' },
-  { value: 'approved', label: 'อนุมัติแล้ว (承認済み)' },
-];
-
-const ageGroupOptions = [
-  { value: '', label: 'ทุกกลุ่มอายุ (全年齢)' },
-  { value: '0歳児', label: '0歳児' },
-  { value: '1歳児', label: '1歳児' },
-  { value: '2歳児', label: '2歳児' },
-  { value: '3歳児', label: '3歳児' },
-  { value: '4歳児', label: '4歳児' },
-  { value: '5歳児', label: '5歳児' },
-];
-
 const Annualplan: React.FC = () => {
+  const { t } = useTranslation(); // ✅ ใช้ t
   const [records, setRecords] = useState<AnnualPlanRecord[]>([]);
   const [filteredRecords, setFilteredRecords] = useState<AnnualPlanRecord[]>([]);
   const [searchText, setSearchText] = useState('');
@@ -228,16 +206,15 @@ const Annualplan: React.FC = () => {
   });
 
   const getStatusChip = (status: string) => {
-    const statusConfig = {
-      draft: { label: 'ร่าง (下書き)', color: 'warning' },
-      completed: { label: 'เสร็จสิ้น (完了)', color: 'info' },
-      approved: { label: 'อนุมัติแล้ว (承認済み)', color: 'success' },
-    };
-    
-    const config = statusConfig[status as keyof typeof statusConfig] || 
-                   { label: 'ไม่ระบุ (未指定)', color: 'default' };
-    
-    return <Chip label={config.label} color={config.color as any} size="small" />;
+    const label =
+      status === 'draft' ? t('annualplan.status_draft') :
+      status === 'completed' ? t('annualplan.status_completed') :
+      t('annualplan.status_approved');
+    const color =
+      status === 'draft' ? 'warning' :
+      status === 'completed' ? 'info' :
+      'success';
+    return <Chip label={label} color={color as any} size="small" />;
   };
 
   const handleEdit = (pid: string) => {
@@ -249,7 +226,7 @@ const Annualplan: React.FC = () => {
   };
 
   const handleDelete = (pid: string) => {
-    if (window.confirm('คุณต้องการลบแผนการสอนนี้หรือไม่? (この指導計画を削除しますか？)')) {
+    if (window.confirm(t('annualplan.delete_confirm'))) {
       const updatedRecords = records.filter(record => record.pid !== pid);
       setRecords(updatedRecords);
     }
@@ -269,10 +246,10 @@ const Annualplan: React.FC = () => {
         {/* Header */}
         <Box sx={{ mb: 4 }}>
           <Typography variant="h4" fontWeight="bold" sx={{ mb: 1, color: '#1976d2' }}>
-            年間指導計画管理 (Annual Teaching Plans)
+            {t('annualplan.title')}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            รายการแผนการสอนประจำปี (Annual Teaching Plan Records)
+            {t('annualplan.subtitle')}
           </Typography>
         </Box>
 
@@ -281,7 +258,7 @@ const Annualplan: React.FC = () => {
           <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
             <FilterList sx={{ mr: 1, color: '#1976d2' }} />
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-              ค้นหาและกรองข้อมูล (検索・フィルター)
+              {t('annualplan.filter_title')}
             </Typography>
           </Box>
           <Grid container spacing={2}>
@@ -289,7 +266,7 @@ const Annualplan: React.FC = () => {
               <TextField
                 fullWidth
                 size="small"
-                placeholder="ค้นหาแผนการสอนหรือปี... (指導計画・年で検索...)"
+                placeholder={t('annualplan.search_placeholder')}
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
                 InputProps={{
@@ -306,30 +283,31 @@ const Annualplan: React.FC = () => {
                 fullWidth
                 size="small"
                 select
-                label="ปี (年)"
+                label={t('annualplan.year_label')}
                 value={selectedYear}
                 onChange={(e) => setSelectedYear(e.target.value)}
               >
-                {yearOptions.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
+                <MenuItem value="">{t('annualplan.reset_button')}</MenuItem>
+                <MenuItem value="2022">2022</MenuItem>
+                <MenuItem value="2023">2023</MenuItem>
+                <MenuItem value="2024">2024</MenuItem>
               </TextField>
             </Grid>
             <Grid item xs={12} md={2}>
               <FormControl fullWidth size="small">
-                <InputLabel>กลุ่มอายุ (年齢)</InputLabel>
+                <InputLabel>{t('annualplan.age_label')}</InputLabel>
                 <Select
                   value={selectedAgeGroup}
-                  label="กลุ่มอายุ (年齢)"
+                  label={t('annualplan.age_label')}
                   onChange={(e) => setSelectedAgeGroup(e.target.value)}
                 >
-                  {ageGroupOptions.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
+                  <MenuItem value="">{/* คงสตริงเดิม */}全て</MenuItem>
+                  <MenuItem value="0歳児">0歳児</MenuItem>
+                  <MenuItem value="1歳児">1歳児</MenuItem>
+                  <MenuItem value="2歳児">2歳児</MenuItem>
+                  <MenuItem value="3歳児">3歳児</MenuItem>
+                  <MenuItem value="4歳児">4歳児</MenuItem>
+                  <MenuItem value="5歳児">5歳児</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -338,15 +316,14 @@ const Annualplan: React.FC = () => {
                 fullWidth
                 size="small"
                 select
-                label="สถานะ (ステータス)"
+                label={t('annualplan.status_label')}
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value)}
               >
-                {statusOptions.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
+                <MenuItem value="">{t('annualplan.reset_button')}</MenuItem>
+                <MenuItem value="draft">{t('annualplan.status_draft')}</MenuItem>
+                <MenuItem value="completed">{t('annualplan.status_completed')}</MenuItem>
+                <MenuItem value="approved">{t('annualplan.status_approved')}</MenuItem>
               </TextField>
             </Grid>
             <Grid item xs={12} md={1.5}>
@@ -357,7 +334,7 @@ const Annualplan: React.FC = () => {
                 onClick={handleResetFilters}
                 sx={{ height: '40px' }}
               >
-                リセット
+                {t('annualplan.reset_button')}
               </Button>
             </Grid>
             <Grid item xs={12} md={1.5}>
@@ -368,7 +345,7 @@ const Annualplan: React.FC = () => {
                 onClick={() => navigate('/report/annualplan/add')}
                 sx={{ height: '40px' }}
               >
-                新規追加
+                {t('annualplan.add_button')}
               </Button>
 
             </Grid>
@@ -380,12 +357,12 @@ const Annualplan: React.FC = () => {
           <Table>
             <TableHead>
               <TableRow sx={{ backgroundColor: '#f3e5f5' }}>
-                <TableCell sx={{ fontWeight: 'bold' }}>ปี</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>กลุ่มอายุ (年齢グループ)</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>ห้องเรียน (クラス)</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>ผู้รับผิดชอบ (担当)</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>สถานะ (ステータス)</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>จัดการ (管理)</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }}>{t('annualplan.col_year')}</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }}>{t('annualplan.col_age_group')}</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }}>{t('annualplan.col_classroom')}</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }}>{t('annualplan.col_responsible')}</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }}>{t('annualplan.col_status')}</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }}>{t('annualplan.col_manage')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -438,6 +415,7 @@ const Annualplan: React.FC = () => {
                   </TableCell>
                 </TableRow>
               ))}
+
             </TableBody>
           </Table>
         </TableContainer>

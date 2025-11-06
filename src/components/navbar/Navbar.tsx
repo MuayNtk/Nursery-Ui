@@ -11,12 +11,28 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Chip } from '@mui/material';
 
+// ✅ ใช้ i18n สำหรับสลับภาษา
+import { useTranslation } from 'react-i18next';
+
 const drawerWidth = 240;
 
 const PrimarySearchAppBar: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
   const navigate = useNavigate();
+
+  // ✅ ภาษาค่าเริ่มต้น 'jp' และจำค่าล่าสุดใน localStorage
+  const { i18n } = useTranslation();
+  const [lang, setLang] = React.useState<string>(() => localStorage.getItem('lang') || 'jp');
+  React.useEffect(() => {
+    if (i18n.language !== lang) i18n.changeLanguage(lang);
+  }, [i18n, lang]);
+  const toggleLanguage = () => {
+    const next = lang === 'jp' ? 'en' : 'jp';
+    setLang(next);
+    localStorage.setItem('lang', next);
+    i18n.changeLanguage(next);
+  };
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -103,6 +119,13 @@ const PrimarySearchAppBar: React.FC = () => {
         </IconButton>
         <p className='pr-3'>Profile</p>
       </MenuItem>
+
+      {/* ✅ รายการสลับภาษาในเมนูมือถือ */}
+      <MenuItem onClick={toggleLanguage}>
+        <Chip label={lang.toUpperCase()} size="small" variant="outlined" />
+        <p className='pl-2'>Language</p>
+      </MenuItem>
+
       <MenuItem onClick={handleLogout}>
         <IconButton
           size="large"
@@ -131,23 +154,47 @@ const PrimarySearchAppBar: React.FC = () => {
         }}
       >
         <Toolbar className='bg-white'>
-          <Box sx={{ flexGrow: 1 }} />
-          {username &&  <Chip label={username}  color="info"  size='small'/> }
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle className='text-black' />
-            </IconButton>
-          </Box>
+    <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: 1 }}>
+  {username && (
+    <Chip
+      label={username}
+      color="info"
+      size="small"
+      sx={{ height: '36px', display: 'flex', alignItems: 'center' }}
+    />
+  )}
+
+  <IconButton
+    size="large"
+    edge="end"
+    aria-label="account of current user"
+    aria-controls={menuId}
+    aria-haspopup="true"
+    onClick={handleProfileMenuOpen}
+    color="inherit"
+  >
+    <AccountCircle className='text-black' />
+  </IconButton>
+
+  <Chip
+    label={lang.toUpperCase()}
+    onClick={toggleLanguage}
+    size="small"
+    variant="outlined"
+    sx={{
+      height: '36px',
+      display: 'flex',
+      alignItems: 'center',
+      borderRadius: '8px',
+      cursor: 'pointer'
+    }}
+  />
+</Box>
+
+
+
+          {/* เมนูมือถือ (ไอคอนสามจุด) */}
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            
             <IconButton
               size="large"
               aria-label="show more"

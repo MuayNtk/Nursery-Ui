@@ -85,6 +85,21 @@ import ViewActivity from "../components/accounting/activity/ViewActivity"
 import ShiftFormPages from "../pages/teacher/shiftmanagement/ShiftFormPages";
 import BasicDevPlanFormPages from "../pages/setting/BasicDevPlanFormPages";
 
+// master
+
+import OverallplanMainPage from "../pages/master/OverallplanMainPage";
+import ChildcarePolicyPage from "../pages/master/ChildcarePolicyPage";
+import EducationandChildcarePage from "../pages/master/EducationandChildcarePage";
+import SpecificInitiativesPage from "../pages/master/SpecificInitiativesPage";
+import AnnualSchedulePage from "../pages/master/AnnualSchedulePage";
+import AgeGroupPage from "../pages/master/AgeGroupPage";
+import DevelopmentAreaPage from "../pages/master/DevelopmentAreaPage";
+import AboutsupDeskPage from "../pages/master/AboutsupDeskPage";
+import SubAreaPage from "../pages/master/SubAreaPage";
+import InfoAreaPage from "../pages/master/InfoAreaPage";
+import CareContentPage from "../pages/master/CareContentPage";
+
+
 // import SupportFundTabPages from "../pages/accounting/supportfund/SupportFundTabPages";
 
 const Router = createBrowserRouter([
@@ -421,6 +436,63 @@ const Router = createBrowserRouter([
         path: "/accounting/activity/view/:id",
         element: <ViewActivity />
       },
+       {
+        path: "/master/overallplanmain",
+        element: <OverallplanMainPage />
+      },
+
+       {
+        path: "/master/childcarepolicy",
+        element: <ChildcarePolicyPage />
+      },
+
+      {
+        path: "/master/educationandchildcare",
+        element: <EducationandChildcarePage />
+      },
+       {
+        path: "/master/specificinitiatives",
+        element: <SpecificInitiativesPage />
+      },
+
+       {
+        path: "/master/annualschedule",
+        element: <AnnualSchedulePage />
+      },
+
+        {
+        path: "/master/annualschedule",
+        element: <AnnualSchedulePage />
+      },
+       {
+        path: "/master/agegroups",
+        element: <AgeGroupPage />
+      },
+       {
+        path: "/master/developmentarea",
+        element: <DevelopmentAreaPage />
+      },
+       {
+        path: "/master/aboutsupdesk",
+        element: <AboutsupDeskPage />
+      },
+
+      {
+        path: "/master/subarea",
+        element: <SubAreaPage />
+      },
+
+       {
+        path: "/master/infoarea",
+        element: <InfoAreaPage />
+      },
+
+       {
+        path: "/master/carecontent",
+        element: <CareContentPage />
+      },
+
+
 
     ]
   },
@@ -429,3 +501,5 @@ const Router = createBrowserRouter([
 export default function Route() {
   return <RouterProvider router={Router} />;
 }
+
+
