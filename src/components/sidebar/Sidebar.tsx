@@ -18,7 +18,6 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 import ClassOutlinedIcon from "@mui/icons-material/ClassOutlined";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 import ListAltOutlinedIcon from "@mui/icons-material/ListAltOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SupervisorAccountOutlinedIcon from "@mui/icons-material/SupervisorAccountOutlined";
 import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
@@ -80,9 +79,6 @@ export default function Sidebar(props: Props) {
 
   const [open, setOpen] = React.useState(false);
   const handleClick = () => setOpen(!open);
-
-  const [open2, setOpen2] = React.useState(false);
-  const handleClick2 = () => setOpen2(!open2);
 
   const [open3, setOpen3] = React.useState(false);
   const handleClick3 = () => setOpen3(!open3);
