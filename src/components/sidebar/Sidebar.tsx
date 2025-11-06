@@ -1,45 +1,45 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import Typography from '@mui/material/Typography';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Collapse from '@mui/material/Collapse';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-import InsertInvitationOutlinedIcon from '@mui/icons-material/InsertInvitationOutlined';
-import EscalatorWarningOutlinedIcon from '@mui/icons-material/EscalatorWarningOutlined';
-import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
-import ClassOutlinedIcon from '@mui/icons-material/ClassOutlined';
-import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
-import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined';
-import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import HomeWorkIcon from '@mui/icons-material/HomeWork';
-import { Link, useLocation } from 'react-router-dom';
-import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import Typography from "@mui/material/Typography";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Collapse from "@mui/material/Collapse";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
+import InsertInvitationOutlinedIcon from "@mui/icons-material/InsertInvitationOutlined";
+import EscalatorWarningOutlinedIcon from "@mui/icons-material/EscalatorWarningOutlined";
+import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
+import ClassOutlinedIcon from "@mui/icons-material/ClassOutlined";
+import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
+import ListAltOutlinedIcon from "@mui/icons-material/ListAltOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import SupervisorAccountOutlinedIcon from "@mui/icons-material/SupervisorAccountOutlined";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import HomeWorkIcon from "@mui/icons-material/HomeWork";
+import { Link, useLocation } from "react-router-dom";
+import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 
 // --- Icons for Master menu ---
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import GavelIcon from '@mui/icons-material/Gavel';
-import SchoolIcon from '@mui/icons-material/School';
-import AppsIcon from '@mui/icons-material/Apps';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import ChildCareIcon from '@mui/icons-material/ChildCare';
-import PsychologyIcon from '@mui/icons-material/Psychology';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-import CategoryIcon from '@mui/icons-material/Category';
-import InfoIcon from '@mui/icons-material/Info';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import GavelIcon from "@mui/icons-material/Gavel";
+import SchoolIcon from "@mui/icons-material/School";
+import AppsIcon from "@mui/icons-material/Apps";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import ChildCareIcon from "@mui/icons-material/ChildCare";
+import PsychologyIcon from "@mui/icons-material/Psychology";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import CategoryIcon from "@mui/icons-material/Category";
+import InfoIcon from "@mui/icons-material/Info";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const drawerWidth = 240;
 
@@ -49,12 +49,12 @@ interface Props {
 
 export default function Sidebar(props: Props) {
   const location = useLocation();
-  const [highlightedItem, setHighlightedItem] = React.useState('/');
+  const [highlightedItem, setHighlightedItem] = React.useState("/");
 
   React.useEffect(() => {
     setHighlightedItem(location.pathname);
     // auto open "Master" when route under /master
-    if (location.pathname.startsWith('/master')) {
+    if (location.pathname.startsWith("/master")) {
       setOpenMaster(true);
     }
   }, [location]);
@@ -94,10 +94,10 @@ export default function Sidebar(props: Props) {
   const [openMaster, setOpenMaster] = React.useState(false);
   const handleClickMaster = () => setOpenMaster(!openMaster);
 
-  const role = localStorage.getItem('role');
+  const role = localStorage.getItem("role");
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <IconButton
         size="large"
         edge="start"
@@ -105,28 +105,38 @@ export default function Sidebar(props: Props) {
         aria-label="open drawer"
         onClick={handleDrawerToggle}
         sx={{
-          zIndex: 100, position: 'absolute', top: -8, left: 18,
-          display: { xs: 'block', sm: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          zIndex: 100,
+          position: "absolute",
+          top: -8,
+          left: 18,
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
         }}
       >
-        <MenuIcon className='text-black' />
+        <MenuIcon className="text-black" />
       </IconButton>
 
-      <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }} aria-label="mailbox folders">
+      <Box
+        component="nav"
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        aria-label="mailbox folders"
+      >
         {/* Mobile */}
         <Drawer
           PaperProps={{ sx: { backgroundColor: "#005C78" } }}
           container={window ? window().document.body : undefined}
           variant="temporary"
-          anchor='left'
+          anchor="left"
           open={mobileOpen}
           onTransitionEnd={handleDrawerTransitionEnd}
           onClose={handleDrawerClose}
           ModalProps={{ keepMounted: true }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
         >
           {role && drawerContent(role)}
@@ -136,10 +146,14 @@ export default function Sidebar(props: Props) {
         <Drawer
           PaperProps={{ sx: { backgroundColor: "#005C78" } }}
           variant="permanent"
-          anchor='left'
+          anchor="left"
           sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, height: '100%' },
+            display: { xs: "none", sm: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              height: "100%",
+            },
           }}
           open
         >
@@ -151,32 +165,53 @@ export default function Sidebar(props: Props) {
 
   function drawerContent(role: string) {
     const activeClass = (path: string) =>
-      `bg-[#1d5769] text-white rounded-lg group ${highlightedItem === path ? 'bg-gray-600 dark:hover:bg-gray-700' : ''}`;
+      `bg-[#1d5769] text-white rounded-lg group ${
+        highlightedItem === path ? "bg-gray-600 dark:hover:bg-gray-700" : ""
+      }`;
 
     return (
       <div>
         {/* Header Brand */}
-        <Link to={'/dashboard'}>
-          <ListItem disablePadding className='text-white rounded-lg mt-2 mb-2 group pl-15'>
+        <Link to={"/dashboard"}>
+          <ListItem
+            disablePadding
+            className="text-white rounded-lg mt-2 mb-2 group pl-15"
+          >
             <ListItemButton>
               <HomeWorkIcon fontSize="small" />
-              <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: 'white', paddingLeft: '10px' }}>
+              <Typography
+                variant="h6"
+                component="div"
+                style={{
+                  fontWeight: "bold",
+                  color: "white",
+                  paddingLeft: "10px",
+                }}
+              >
                 Nursery
               </Typography>
             </ListItemButton>
           </ListItem>
         </Link>
 
-        <Divider className='bg-white' />
+        <Divider className="bg-white" />
 
-        <Link to={'/dashboard'}>
+        <Link to={"/dashboard"}>
           <ListItem
             disablePadding
-            className={`text-white rounded-lg mt-2 mb-2 pl-2 group ${highlightedItem === '/dashboard' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''}`}
+            className={`text-white rounded-lg mt-2 mb-2 pl-2 group ${
+              highlightedItem === "/dashboard"
+                ? "bg-gray-600 dark:hover:bg-gray-700"
+                : ""
+            }`}
           >
             <ListItemButton>
               <DashboardIcon fontSize="small" />
-              <Typography component="div" className='text-white pl-3 py-2 ' sx={{ fontSize: '14px' }}>
+              <Typography
+                component="div"
+                className="text-white pl-3 py-2 "
+                sx={{ fontSize: "14px" }}
+              >
                 ホーム
               </Typography>
             </ListItemButton>
@@ -184,262 +219,544 @@ export default function Sidebar(props: Props) {
         </Link>
 
         {/* ADMIN */}
-        {role === 'admin' && (
+        {role === "admin" && (
           <div>
             {/* 保育士 */}
-            <ListItem disablePadding onClick={handleClick} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
+            <ListItem
+              disablePadding
+              onClick={handleClick}
+              className="pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group "
+            >
               <ListItemButton>
                 <EscalatorWarningOutlinedIcon fontSize="small" />
-                <Typography component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
+                <Typography
+                  component="div"
+                  className="text-white pl-3 py-2 pt-3 "
+                  sx={{ fontSize: "14px" }}
+                >
                   保育士
                 </Typography>
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginLeft: "auto",
+                  }}
+                >
                   {open ? <ExpandLess /> : <ExpandMore />}
                 </div>
               </ListItemButton>
             </ListItem>
             <Collapse in={open} unmountOnExit>
-              <Link to={'/teacher/todolist'}>
-                <ListItem disablePadding className={activeClass('/teacher/todolist')}>
+              <Link to={"/teacher/todolist"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/teacher/todolist")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><BusinessCenterIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>業務</Typography>
+                    <ListItemIcon>
+                      <BusinessCenterIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      業務
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/teacher/listleave'}>
-                <ListItem disablePadding className={activeClass('/teacher/listleave')}>
+              <Link to={"/teacher/listleave"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/teacher/listleave")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><InsertInvitationOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>休暇届</Typography>
+                    <ListItemIcon>
+                      <InsertInvitationOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      休暇届
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/teacher/shift'}>
-                <ListItem disablePadding className={activeClass('/teacher/shift')}>
+              <Link to={"/teacher/shift"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/teacher/shift")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><QueryBuilderIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>シフト管理</Typography>
+                    <ListItemIcon>
+                      <QueryBuilderIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      シフト管理
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
             </Collapse>
 
             {/* 学生管理 */}
-            <ListItem disablePadding onClick={handleClick3} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
+            <ListItem
+              disablePadding
+              onClick={handleClick3}
+              className="pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group "
+            >
               <ListItemButton>
                 <BadgeOutlinedIcon fontSize="small" />
-                <Typography component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
+                <Typography
+                  component="div"
+                  className="text-white pl-3 py-2 pt-3 "
+                  sx={{ fontSize: "14px" }}
+                >
                   学生管理
                 </Typography>
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginLeft: "auto",
+                  }}
+                >
                   {open3 ? <ExpandLess /> : <ExpandMore />}
                 </div>
               </ListItemButton>
             </ListItem>
             <Collapse in={open3} unmountOnExit>
-              <Link to={'/student'}>
-                <ListItem disablePadding className={activeClass('/student')}>
+              <Link to={"/student"}>
+                <ListItem disablePadding className={activeClass("/student")}>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><SupervisorAccountOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>園児管理</Typography>
+                    <ListItemIcon>
+                      <SupervisorAccountOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      園児管理
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/class'}>
-                <ListItem disablePadding className={activeClass('/class')}>
+              <Link to={"/class"}>
+                <ListItem disablePadding className={activeClass("/class")}>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><ClassOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>クラス管理</Typography>
+                    <ListItemIcon>
+                      <ClassOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      クラス管理
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
             </Collapse>
 
             {/* 経理管理 */}
-            <ListItem disablePadding onClick={handleClick4} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
+            <ListItem
+              disablePadding
+              onClick={handleClick4}
+              className="pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group "
+            >
               <ListItemButton>
                 <EscalatorWarningOutlinedIcon fontSize="small" />
-                <Typography component="div" className='text-white pl-3 py-2 pt-4' sx={{ fontSize: '14px' }}>
+                <Typography
+                  component="div"
+                  className="text-white pl-3 py-2 pt-4"
+                  sx={{ fontSize: "14px" }}
+                >
                   経理管理
                 </Typography>
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginLeft: "auto",
+                  }}
+                >
                   {open4 ? <ExpandLess /> : <ExpandMore />}
                 </div>
               </ListItemButton>
             </ListItem>
             <Collapse in={open4} unmountOnExit>
-              <Link to={'/accounting'}>
-                <ListItem disablePadding className={activeClass('/accounting')}>
+              <Link to={"/accounting"}>
+                <ListItem disablePadding className={activeClass("/accounting")}>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><AccountBalanceWalletOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>経理</Typography>
+                    <ListItemIcon>
+                      <AccountBalanceWalletOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      経理
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/infoteach'}>
-                <ListItem disablePadding className={activeClass('/infoteach')}>
+              <Link to={"/infoteach"}>
+                <ListItem disablePadding className={activeClass("/infoteach")}>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><ClassOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>職員リスト</Typography>
+                    <ListItemIcon>
+                      <ClassOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      職員リスト
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
             </Collapse>
 
             {/* レポート管理 */}
-            <Link to={'/report'}>
-              <ListItem disablePadding className={`text-white rounded-lg mt-2 mb-2 pl-2 group ${highlightedItem === '/report' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''}`}>
+            <Link to={"/report"}>
+              <ListItem
+                disablePadding
+                className={`text-white rounded-lg mt-2 mb-2 pl-2 group ${
+                  highlightedItem === "/report"
+                    ? "bg-gray-600 dark:hover:bg-gray-700"
+                    : ""
+                }`}
+              >
                 <ListItemButton>
                   <ListAltOutlinedIcon fontSize="small" />
-                  <Typography component="div" className='text-white pl-3 py-2 ' sx={{ fontSize: '14px' }}>
+                  <Typography
+                    component="div"
+                    className="text-white pl-3 py-2 "
+                    sx={{ fontSize: "14px" }}
+                  >
                     レポート管理
                   </Typography>
                 </ListItemButton>
               </ListItem>
             </Link>
 
-          
-
-            {/* マスタ設定 */}
-            <ListItem disablePadding onClick={handleClick2} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
+            <ListItem
+              disablePadding
+              onClick={handleClickMaster}
+              className="pl-2 text-white rounded-lg dark:text-white mt-2 mb-2 group"
+            >
               <ListItemButton>
-                <SettingsOutlinedIcon fontSize="small" />
-                <Typography component="div" className='text-white pl-3 py-2 ' sx={{ fontSize: '14px' }}>
-                  マスタ設定
+                <MenuBookIcon fontSize="small" />
+                <Typography
+                  component="div"
+                  className="text-white pl-3 py-2 pt-3 "
+                  sx={{ fontSize: "14px" }}
+                >
+                  マスタ管理
                 </Typography>
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
-                  {open2 ? <ExpandLess /> : <ExpandMore />}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginLeft: "auto",
+                  }}
+                >
+                  {openMaster ? <ExpandLess /> : <ExpandMore />}
                 </div>
               </ListItemButton>
             </ListItem>
-            <Collapse in={open2} unmountOnExit>
-              <Link to={'/setting/info'}>
-                <ListItem disablePadding className={activeClass('/setting/info')}>
+
+            <Collapse in={openMaster} unmountOnExit>
+              {/* === 管理グループ === */}
+              <Link to={"/master/overallplanmain"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/master/overallplanmain")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><AccountCircleOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>基本情報</Typography>
+                    <ListItemIcon>
+                      <TaskAltIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography sx={{ fontSize: "14px" }}>
+                      年間保育計画（概要）
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/infostaff'}>
-                <ListItem disablePadding className={activeClass('/infostaff')}>
+              <Link to={"/master/childcarepolicy"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/master/childcarepolicy")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><AccountBoxOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>役員情報</Typography>
+                    <ListItemIcon>
+                      <GavelIcon className="ml-5 text-white" fontSize="small" />
+                    </ListItemIcon>
+                    <Typography sx={{ fontSize: "14px" }}>保育方針</Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/setting/basicdevplan'}>
-                <ListItem disablePadding className={activeClass('/setting/basicdevplan')}>
+              <Link to={"/master/educationandchildcare"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/master/educationandchildcare")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><AccountBoxOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>Basicdevplan</Typography>
+                    <ListItemIcon>
+                      <SchoolIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography sx={{ fontSize: "14px" }}>
+                      教育・保育の柱
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-                 <Link to={'/master/overallplanmain'}>
-                <ListItem disablePadding className={activeClass('/master/overallplanmain')}>
+              <Link to={"/master/specificinitiatives"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/master/specificinitiatives")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><TaskAltIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography sx={{ fontSize: '14px' }}>年間保育計画（概要）</Typography>
+                    <ListItemIcon>
+                      <AppsIcon className="ml-5 text-white" fontSize="small" />
+                    </ListItemIcon>
+                    <Typography sx={{ fontSize: "14px" }}>
+                      具体的な取り組み
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/master/childcarepolicy'}>
-                <ListItem disablePadding className={activeClass('/master/childcarepolicy')}>
+              <Link to={"/master/annualschedule"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/master/annualschedule")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><GavelIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography sx={{ fontSize: '14px' }}>保育方針</Typography>
+                    <ListItemIcon>
+                      <CalendarMonthIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography sx={{ fontSize: "14px" }}>
+                      年間行事計画
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/master/educationandchildcare'}>
-                <ListItem disablePadding className={activeClass('/master/educationandchildcare')}>
+              <Link to={"/master/agegroups"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/master/agegroups")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><SchoolIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography sx={{ fontSize: '14px' }}>教育・保育の柱</Typography>
+                    <ListItemIcon>
+                      <ChildCareIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography sx={{ fontSize: "14px" }}>年齢区分</Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/master/specificinitiatives'}>
-                <ListItem disablePadding className={activeClass('/master/specificinitiatives')}>
+              <Link to={"/master/developmentarea"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/master/developmentarea")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><AppsIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography sx={{ fontSize: '14px' }}>具体的な取り組み</Typography>
+                    <ListItemIcon>
+                      <PsychologyIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography sx={{ fontSize: "14px" }}>
+                      領域（養護/教育）
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/master/annualschedule'}>
-                <ListItem disablePadding className={activeClass('/master/annualschedule')}>
+              <Link to={"/master/aboutsupdesk"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/master/aboutsupdesk")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><CalendarMonthIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography sx={{ fontSize: '14px' }}>年間行事計画</Typography>
+                    <ListItemIcon>
+                      <ListAltIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography sx={{ fontSize: "14px" }}>
+                      領域内容の解説
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/master/agegroups'}>
-                <ListItem disablePadding className={activeClass('/master/agegroups')}>
+              <Link to={"/master/subarea"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/master/subarea")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><ChildCareIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography sx={{ fontSize: '14px' }}>年齢区分</Typography>
+                    <ListItemIcon>
+                      <CategoryIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography sx={{ fontSize: "14px" }}>
+                      ねらい（領域別）
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/master/developmentarea'}>
-                <ListItem disablePadding className={activeClass('/master/developmentarea')}>
+              <Link to={"/master/infoarea"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/master/infoarea")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><PsychologyIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography sx={{ fontSize: '14px' }}>領域（養護/教育）</Typography>
+                    <ListItemIcon>
+                      <InfoIcon className="ml-5 text-white" fontSize="small" />
+                    </ListItemIcon>
+                    <Typography sx={{ fontSize: "14px" }}>
+                      領域補足情報
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/master/aboutsupdesk'}>
-                <ListItem disablePadding className={activeClass('/master/aboutsupdesk')}>
+              <Link to={"/master/carecontent"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/master/carecontent")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><ListAltIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography sx={{ fontSize: '14px' }}>領域内容の解説</Typography>
+                    <ListItemIcon>
+                      <FavoriteIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography sx={{ fontSize: "14px" }}>
+                      保育のねらい（年齢×領域）
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/master/subarea'}>
-                <ListItem disablePadding className={activeClass('/master/subarea')}>
+              {/* --- 区切り線: 設定系 --- */}
+              <Divider className="bg-white/30 my-2" />
+
+              {/* === 設定グループ === */}
+              <Link to={"/setting/info"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/setting/info")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><CategoryIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography sx={{ fontSize: '14px' }}>ねらい（領域別）</Typography>
+                    <ListItemIcon>
+                      <AccountCircleOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      基本情報
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/master/infoarea'}>
-                <ListItem disablePadding className={activeClass('/master/infoarea')}>
+              <Link to={"/infostaff"}>
+                <ListItem disablePadding className={activeClass("/infostaff")}>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><InfoIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography sx={{ fontSize: '14px' }}>領域補足情報</Typography>
+                    <ListItemIcon>
+                      <AccountBoxOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      役員情報
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/master/carecontent'}>
-                <ListItem disablePadding className={activeClass('/master/carecontent')}>
+              <Link to={"/setting/basicdevplan"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/setting/basicdevplan")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><FavoriteIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography sx={{ fontSize: '14px' }}>保育のねらい（年齢×領域）</Typography>
+                    <ListItemIcon>
+                      <AccountBoxOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      Basicdevplan
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
@@ -448,65 +765,139 @@ export default function Sidebar(props: Props) {
         )}
 
         {/* TEACHER */}
-        {role === 'teacher' && (
+        {role === "teacher" && (
           <>
-            <ListItem disablePadding onClick={handleClick} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
+            <ListItem
+              disablePadding
+              onClick={handleClick}
+              className="pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group "
+            >
               <ListItemButton>
                 <EscalatorWarningOutlinedIcon fontSize="small" />
-                <Typography component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
+                <Typography
+                  component="div"
+                  className="text-white pl-3 py-2 pt-3 "
+                  sx={{ fontSize: "14px" }}
+                >
                   保育士
                 </Typography>
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginLeft: "auto",
+                  }}
+                >
                   {open ? <ExpandLess /> : <ExpandMore />}
                 </div>
               </ListItemButton>
             </ListItem>
             <Collapse in={open} unmountOnExit>
-              <Link to={'/teacher/todolist'}>
-                <ListItem disablePadding className={activeClass('/teacher/todolist')}>
+              <Link to={"/teacher/todolist"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/teacher/todolist")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><BusinessCenterIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>業務</Typography>
+                    <ListItemIcon>
+                      <BusinessCenterIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      業務
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/teacher/listleave'}>
-                <ListItem disablePadding className={activeClass('/teacher/listleave')}>
+              <Link to={"/teacher/listleave"}>
+                <ListItem
+                  disablePadding
+                  className={activeClass("/teacher/listleave")}
+                >
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><InsertInvitationOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>休暇届</Typography>
+                    <ListItemIcon>
+                      <InsertInvitationOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      休暇届
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
             </Collapse>
 
-            <ListItem disablePadding onClick={() => setOpen3(!open3)} className='pl-2 text-white rounded-lg dark:text-white mt-2 mb-2 group '>
+            <ListItem
+              disablePadding
+              onClick={() => setOpen3(!open3)}
+              className="pl-2 text-white rounded-lg dark:text-white mt-2 mb-2 group "
+            >
               <ListItemButton>
                 <BadgeOutlinedIcon fontSize="small" />
-                <Typography component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
+                <Typography
+                  component="div"
+                  className="text-white pl-3 py-2 pt-3 "
+                  sx={{ fontSize: "14px" }}
+                >
                   学生管理
                 </Typography>
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginLeft: "auto",
+                  }}
+                >
                   {open3 ? <ExpandLess /> : <ExpandMore />}
                 </div>
               </ListItemButton>
             </ListItem>
             <Collapse in={open3} unmountOnExit>
-              <Link to={'/student'}>
-                <ListItem disablePadding className={activeClass('/student')}>
+              <Link to={"/student"}>
+                <ListItem disablePadding className={activeClass("/student")}>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><SupervisorAccountOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>園児管理</Typography>
+                    <ListItemIcon>
+                      <SupervisorAccountOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      園児管理
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/class'}>
-                <ListItem disablePadding className={activeClass('/class')}>
+              <Link to={"/class"}>
+                <ListItem disablePadding className={activeClass("/class")}>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><ClassOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>クラス管理</Typography>
+                    <ListItemIcon>
+                      <ClassOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      クラス管理
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
@@ -515,34 +906,68 @@ export default function Sidebar(props: Props) {
         )}
 
         {/* ACC */}
-        {role === 'acc' && (
+        {role === "acc" && (
           <>
-            <ListItem disablePadding onClick={handleClick4} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
+            <ListItem
+              disablePadding
+              onClick={handleClick4}
+              className="pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group "
+            >
               <ListItemButton>
                 <EscalatorWarningOutlinedIcon fontSize="small" />
-                <Typography component="div" className='text-white pl-3 py-2 pt-4' sx={{ fontSize: '14px' }}>
+                <Typography
+                  component="div"
+                  className="text-white pl-3 py-2 pt-4"
+                  sx={{ fontSize: "14px" }}
+                >
                   経理管理
                 </Typography>
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginLeft: "auto",
+                  }}
+                >
                   {open4 ? <ExpandLess /> : <ExpandMore />}
                 </div>
               </ListItemButton>
             </ListItem>
             <Collapse in={open4} unmountOnExit>
-              <Link to={'/accounting'}>
-                <ListItem disablePadding className={activeClass('/accounting')}>
+              <Link to={"/accounting"}>
+                <ListItem disablePadding className={activeClass("/accounting")}>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><AccountBalanceWalletOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>経理</Typography>
+                    <ListItemIcon>
+                      <AccountBalanceWalletOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      経理
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
 
-              <Link to={'/infoteach'}>
-                <ListItem disablePadding className={activeClass('/infoteach')}>
+              <Link to={"/infoteach"}>
+                <ListItem disablePadding className={activeClass("/infoteach")}>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon><ClassOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
-                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>職員リスト</Typography>
+                    <ListItemIcon>
+                      <ClassOutlinedIcon
+                        className="ml-5 text-white"
+                        fontSize="small"
+                      />
+                    </ListItemIcon>
+                    <Typography
+                      className="text-white pl-1 pt-1"
+                      sx={{ fontSize: "14px" }}
+                    >
+                      職員リスト
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
