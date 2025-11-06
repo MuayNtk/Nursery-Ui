@@ -27,595 +27,529 @@ import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import { Link, useLocation } from 'react-router-dom';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 
+// --- Icons for Master menu ---
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import GavelIcon from '@mui/icons-material/Gavel';
+import SchoolIcon from '@mui/icons-material/School';
+import AppsIcon from '@mui/icons-material/Apps';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import ChildCareIcon from '@mui/icons-material/ChildCare';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import CategoryIcon from '@mui/icons-material/Category';
+import InfoIcon from '@mui/icons-material/Info';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 const drawerWidth = 240;
 
 interface Props {
-    window?: () => Window;
+  window?: () => Window;
 }
 
 export default function Sidebar(props: Props) {
-    const location = useLocation();
-    const [highlightedItem, setHighlightedItem] = React.useState('/');
+  const location = useLocation();
+  const [highlightedItem, setHighlightedItem] = React.useState('/');
 
-    React.useEffect(() => {
-        setHighlightedItem(location.pathname);
-    }, [location]);
+  React.useEffect(() => {
+    setHighlightedItem(location.pathname);
+    // auto open "Master" when route under /master
+    if (location.pathname.startsWith('/master')) {
+      setOpenMaster(true);
+    }
+  }, [location]);
 
-    const { window } = props;
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [isClosing, setIsClosing] = React.useState(false);
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [isClosing, setIsClosing] = React.useState(false);
 
-    const handleDrawerClose = () => {
-        setIsClosing(true);
-        setMobileOpen(false);
-    };
+  const handleDrawerClose = () => {
+    setIsClosing(true);
+    setMobileOpen(false);
+  };
 
-    const handleDrawerTransitionEnd = () => {
-        setIsClosing(false);
-    };
+  const handleDrawerTransitionEnd = () => {
+    setIsClosing(false);
+  };
 
-    const handleDrawerToggle: React.EventHandler<React.SyntheticEvent> = () => {
-        if (!isClosing) {
-            setMobileOpen(!mobileOpen);
-        }
-    };
+  const handleDrawerToggle: React.EventHandler<React.SyntheticEvent> = () => {
+    if (!isClosing) {
+      setMobileOpen(!mobileOpen);
+    }
+  };
 
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => setOpen(!open);
 
-    const handleClick = () => {
-        setOpen(!open);
-    };
+  const [open2, setOpen2] = React.useState(false);
+  const handleClick2 = () => setOpen2(!open2);
 
-    const [open2, setOpen2] = React.useState(false);
+  const [open3, setOpen3] = React.useState(false);
+  const handleClick3 = () => setOpen3(!open3);
 
-    const handleClick2 = () => {
-        setOpen2(!open2);
+  const [open4, setOpen4] = React.useState(false);
+  const handleClick4 = () => setOpen4(!open4);
 
+  // --- NEW: Master menu open state ---
+  const [openMaster, setOpenMaster] = React.useState(false);
+  const handleClickMaster = () => setOpenMaster(!openMaster);
 
-    };
+  const role = localStorage.getItem('role');
 
-    const [open3, setOpen3] = React.useState(false);
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <IconButton
+        size="large"
+        edge="start"
+        color="inherit"
+        aria-label="open drawer"
+        onClick={handleDrawerToggle}
+        sx={{
+          zIndex: 100, position: 'absolute', top: -8, left: 18,
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+        }}
+      >
+        <MenuIcon className='text-black' />
+      </IconButton>
 
-    const handleClick3 = () => {
-        setOpen3(!open3);
+      <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }} aria-label="mailbox folders">
+        {/* Mobile */}
+        <Drawer
+          PaperProps={{ sx: { backgroundColor: "#005C78" } }}
+          container={window ? window().document.body : undefined}
+          variant="temporary"
+          anchor='left'
+          open={mobileOpen}
+          onTransitionEnd={handleDrawerTransitionEnd}
+          onClose={handleDrawerClose}
+          ModalProps={{ keepMounted: true }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+        >
+          {role && drawerContent(role)}
+        </Drawer>
 
+        {/* Desktop */}
+        <Drawer
+          PaperProps={{ sx: { backgroundColor: "#005C78" } }}
+          variant="permanent"
+          anchor='left'
+          sx={{
+            display: { xs: 'none', sm: 'block' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, height: '100%' },
+          }}
+          open
+        >
+          {role && drawerContent(role)}
+        </Drawer>
+      </Box>
+    </Box>
+  );
 
-    };
-
-    const [open4, setOpen4] = React.useState(false);
-
-    const handleClick4 = () => {
-        setOpen4(!open4);
-
-
-    };
-  
-    const role = localStorage.getItem('role');
+  function drawerContent(role: string) {
+    const activeClass = (path: string) =>
+      `bg-[#1d5769] text-white rounded-lg group ${highlightedItem === path ? 'bg-gray-600 dark:hover:bg-gray-700' : ''}`;
 
     return (
-        <Box sx={{ display: 'flex' }}>
-            <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                onClick={handleDrawerToggle}
-                sx={{
-                    zIndex: 100, position: 'absolute', top: -8, left: 18,
-                    display: { xs: 'block', sm: 'none' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                }}
-            >
-                <MenuIcon className='text-black' />
-            </IconButton>
-            <Box
-                component="nav"
-                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-                aria-label="mailbox folders"
-            >
-                <Drawer
-                    PaperProps={{ sx: { backgroundColor: "#005C78" } }}
-                    container={window ? window().document.body : undefined}
-                    variant="temporary"
-                    anchor='left'
-                    open={mobileOpen}
-                    onTransitionEnd={handleDrawerTransitionEnd}
-                    onClose={handleDrawerClose}
-                    ModalProps={{
-                        keepMounted: true,
-                    }}
-                    sx={{
-                        display: { xs: 'block', sm: 'none' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
-                >
-                    {role && drawerContent(role)}
+      <div>
+        {/* Header Brand */}
+        <Link to={'/dashboard'}>
+          <ListItem disablePadding className='text-white rounded-lg mt-2 mb-2 group pl-15'>
+            <ListItemButton>
+              <HomeWorkIcon fontSize="small" />
+              <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: 'white', paddingLeft: '10px' }}>
+                Nursery
+              </Typography>
+            </ListItemButton>
+          </ListItem>
+        </Link>
 
-                </Drawer>
+        <Divider className='bg-white' />
 
-                <Drawer
-                    PaperProps={{ sx: { backgroundColor: "#005C78" } }}
-                    variant="permanent"
-                    anchor='left'
-                    sx={{
-                        display: { xs: 'none', sm: 'block' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, height: '100%' },
-                    }}
-                    open
-                >
-                    
-                    {role && drawerContent(role)}
-                </Drawer>
-            </Box>
-        </Box>
-    );
+        <Link to={'/dashboard'}>
+          <ListItem
+            disablePadding
+            className={`text-white rounded-lg mt-2 mb-2 pl-2 group ${highlightedItem === '/dashboard' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''}`}
+          >
+            <ListItemButton>
+              <DashboardIcon fontSize="small" />
+              <Typography component="div" className='text-white pl-3 py-2 ' sx={{ fontSize: '14px' }}>
+                ホーム
+              </Typography>
+            </ListItemButton>
+          </ListItem>
+        </Link>
 
-    function drawerContent(role: string) {
-        return (
-            <div>
-                {/* Common items for both admin and teacher */}
-                <Link to={'/dashboard'}>
-                    <ListItem disablePadding className='text-white rounded-lg mt-2 mb-2 group pl-15'>
-                        <ListItemButton>
-                            <HomeWorkIcon fontSize="small" />
-                            <Typography variant="h6" component="div" style={{ fontWeight: 'bold', color: 'white', paddingLeft: '10px' }} >
-                                Nursery
-                            </Typography>
-                        </ListItemButton>
-                    </ListItem>
-                </Link>
-
-                <Divider className='bg-white' />
-
-                <Link to={'/dashboard'}>
-                    <ListItem
-                        disablePadding
-                        className={`text-white rounded-lg mt-2 mb-2 pl-2 group ${highlightedItem === '/dashboard' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                            }`}
-                    >
-                        <ListItemButton>
-                            <DashboardIcon fontSize="small" />
-                            <Typography component="div" className='text-white pl-3 py-2 ' sx={{ fontSize: '14px' }}>
-                                ホーム
-                            </Typography>
-                        </ListItemButton>
-                    </ListItem>
-                </Link>
-
-                {/* Conditional rendering based on user role */}
-                {role === 'admin' && (
-                  <div>
-        
-                    <ListItem disablePadding onClick={handleClick} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
-                        <ListItemButton>
-                            <EscalatorWarningOutlinedIcon fontSize="small"/>
-                            <Typography  component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
-                                保育士
-                            </Typography>
-                            <div 
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    marginLeft: 'auto',
-                                }}
-                            >
-                                {open ? <ExpandLess /> : <ExpandMore />}
-                            </div>
-                        </ListItemButton>
-                    </ListItem>
-                    <Collapse in={open} unmountOnExit>
-                        <Link to={'/teacher/todolist'}>
-                            <ListItem
-                                disablePadding
-                                className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/teacher/todolist' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                    }`}
-                            >
-                                <ListItemButton sx={{ pl: 4 }} className=''>
-                                    <ListItemIcon>
-                                        <BusinessCenterIcon className='ml-5 text-white' fontSize="small"/>
-                                    </ListItemIcon>
-                                    <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                        業務
-                                    </Typography>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-        
-                        <Link to={'/teacher/listleave'}>
-                            <ListItem
-                                disablePadding
-                                className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/teacher/listleave' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                    }`}
-                            >
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <InsertInvitationOutlinedIcon className='ml-5 text-white' fontSize="small"/>
-                                    </ListItemIcon>
-                                    <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                        休暇届
-                                    </Typography>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-
-                        <Link to={'/teacher/shift'}>
-                            <ListItem
-                                disablePadding
-                                className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/teacher/shift' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                    }`}
-                            >
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <QueryBuilderIcon className='ml-5 text-white' fontSize="small"/>
-                                    </ListItemIcon>
-                                    <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                        シフト管理
-                                    </Typography>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-                    </Collapse>
-        
-                    <ListItem disablePadding onClick={handleClick3} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
-                        <ListItemButton>
-                            <BadgeOutlinedIcon fontSize="small"/>
-                            <Typography  component="div" className='text-white pl-3 py-2 pt-3 'sx={{ fontSize: '14px' }}>
-                            学生管理
-                            </Typography>
-                            <div 
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    marginLeft: 'auto',
-                                }}
-                            >
-                                {open3 ? <ExpandLess /> : <ExpandMore />}
-                            </div>
-                        </ListItemButton>
-                    </ListItem>
-                    <Collapse in={open3} unmountOnExit>
-                        <Link to={'/student'}>
-                            <ListItem
-                                disablePadding
-                                className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/student' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                    }`}
-                            >
-                                <ListItemButton sx={{ pl: 4 }} className=''>
-                                    <ListItemIcon>
-                                        <SupervisorAccountOutlinedIcon className='ml-5 text-white' fontSize="small"/>
-                                    </ListItemIcon>
-                                    <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                        園児管理
-                                    </Typography>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-        
-                        <Link to={'/class'}>
-                            <ListItem
-                                disablePadding
-                                className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/class' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                    }`}
-                            >
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <ClassOutlinedIcon className='ml-5 text-white' fontSize="small"/>
-                                    </ListItemIcon>
-                                    <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                        クラス管理
-                                    </Typography>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-                    </Collapse>
-        
-                    <ListItem disablePadding onClick={handleClick4} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
-                        <ListItemButton>
-                            <EscalatorWarningOutlinedIcon fontSize="small"/>
-                            <Typography  component="div" className='text-white pl-3 py-2 pt-4' sx={{ fontSize: '14px' }}>
-                            経理管理
-                            </Typography>
-                            <div 
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    marginLeft: 'auto',
-                                }}
-                            >
-                                {open4 ? <ExpandLess /> : <ExpandMore />}
-                            </div>
-                        </ListItemButton>
-                    </ListItem>
-                    <Collapse in={open4} unmountOnExit>
-                        <Link to={'/accounting'}>
-                            <ListItem
-                                disablePadding
-                                className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/accounting' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                    }`}
-                            >
-                                <ListItemButton sx={{ pl: 4 }} className=''>
-                                    <ListItemIcon>
-                                        <AccountBalanceWalletOutlinedIcon className='ml-5 text-white' fontSize="small"/>
-                                    </ListItemIcon>
-                                    <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                        経理
-                                    </Typography>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-        
-                        <Link to={'/infoteach'}>
-                            <ListItem
-                                disablePadding
-                                className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/infoteach' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                    }`}
-                            >
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <ClassOutlinedIcon className='ml-5 text-white' fontSize="small"/>
-                                    </ListItemIcon>
-                                    <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                        職員リスト
-                                    </Typography>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-                    </Collapse>
-        
-        
-                    <Link to={'/report'}>
-                        <ListItem
-                            disablePadding
-                            className={`text-white rounded-lg mt-2 mb-2 pl-2 group ${highlightedItem === '/report' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                }`}
-                        >
-                            <ListItemButton>
-                                <ListAltOutlinedIcon fontSize="small"/>
-                                <Typography  component="div" className='text-white pl-3 py-2 ' sx={{ fontSize: '14px' }}>
-                                    レポート管理
-                                </Typography>
-                            </ListItemButton>
-                        </ListItem>
-                    </Link>
-                    <ListItem disablePadding onClick={handleClick2} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
-                        <ListItemButton>
-                            <SettingsOutlinedIcon fontSize="small"/>
-                            <Typography  component="div" className='text-white pl-3 py-2 ' sx={{ fontSize: '14px' }}>
-                                マスタ設定
-                            </Typography>
-                            <div 
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    marginLeft: 'auto',
-                                }}
-                            >
-                                {open2 ? <ExpandLess /> : <ExpandMore />}
-                            </div>
-                        </ListItemButton>
-                    </ListItem>
-                    <Collapse in={open2} unmountOnExit>
-                        <Link to={'/setting/info'}>
-                            <ListItem
-                                disablePadding
-                                className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/setting/info' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                    }`}
-                            >
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <AccountCircleOutlinedIcon className='ml-5 text-white' fontSize="small"/>
-                                    </ListItemIcon>
-                                    <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                        基本情報
-                                    </Typography>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-        
-                        <Link to={'/infostaff'}>
-                            <ListItem
-                                disablePadding
-                                className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/infostaff' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                    }`}
-                            >
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <AccountBoxOutlinedIcon className='ml-5 text-white' fontSize="small"/>
-                                    </ListItemIcon>
-                                    <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                        役員情報
-                                    </Typography>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-
-                        <Link to={'/setting/basicdevplan'}>
-                            <ListItem
-                                disablePadding
-                                className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/infostaff' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                    }`}
-                            >
-                                <ListItemButton sx={{ pl: 4 }}>
-                                    <ListItemIcon>
-                                        <AccountBoxOutlinedIcon className='ml-5 text-white' fontSize="small"/>
-                                    </ListItemIcon>
-                                    <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                        Basicdevplan
-                                    </Typography>
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
-                    </Collapse>
-        
+        {/* ADMIN */}
+        {role === 'admin' && (
+          <div>
+            {/* 保育士 */}
+            <ListItem disablePadding onClick={handleClick} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
+              <ListItemButton>
+                <EscalatorWarningOutlinedIcon fontSize="small" />
+                <Typography component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
+                  保育士
+                </Typography>
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                  {open ? <ExpandLess /> : <ExpandMore />}
                 </div>
-                )}
+              </ListItemButton>
+            </ListItem>
+            <Collapse in={open} unmountOnExit>
+              <Link to={'/teacher/todolist'}>
+                <ListItem disablePadding className={activeClass('/teacher/todolist')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><BusinessCenterIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>業務</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
-                {role === 'teacher' && (
-                    <>
-                        <ListItem disablePadding onClick={handleClick} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
-                            <ListItemButton>
-                                <EscalatorWarningOutlinedIcon fontSize="small"/>
-                                <Typography  component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
-                                    保育士
-                                </Typography>
-                                <div 
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        marginLeft: 'auto',
-                                    }}
-                                >
-                                    {open ? <ExpandLess /> : <ExpandMore />}
-                                </div>
-                            </ListItemButton>
-                        </ListItem>
-                        <Collapse in={open} unmountOnExit>
-                            <Link to={'/teacher/todolist'}>
-                                <ListItem
-                                    disablePadding
-                                    className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/teacher/todolist' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                        }`}
-                                >
-                                    <ListItemButton sx={{ pl: 4 }} className=''>
-                                        <ListItemIcon>
-                                            <BusinessCenterIcon className='ml-5 text-white' fontSize="small"/>
-                                        </ListItemIcon>
-                                        <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                            業務
-                                        </Typography>
-                                    </ListItemButton>
-                                </ListItem>
-                            </Link>
-            
-                            <Link to={'/teacher/listleave'}>
-                                <ListItem
-                                    disablePadding
-                                    className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/teacher/listleave' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                        }`}
-                                >
-                                    <ListItemButton sx={{ pl: 4 }}>
-                                        <ListItemIcon>
-                                            <InsertInvitationOutlinedIcon className='ml-5 text-white' fontSize="small"/>
-                                        </ListItemIcon>
-                                        <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                            休暇届
-                                        </Typography>
-                                    </ListItemButton>
-                                </ListItem>
-                            </Link>
-                        </Collapse>
-                        <ListItem disablePadding onClick={() => setOpen3(!open3)} className='pl-2 text-white rounded-lg dark:text-white mt-2 mb-2 group '>
-                            <ListItemButton>
-                                <BadgeOutlinedIcon fontSize="small" />
-                                <Typography component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
-                                    学生管理
-                                </Typography>
-                                <div 
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        marginLeft: 'auto',
-                                    }}
-                                >
-                                    {open3 ? <ExpandLess /> : <ExpandMore />}
-                                </div>
-                            </ListItemButton>
-                        </ListItem>
-                        <Collapse in={open3} unmountOnExit>
-                            <Link to={'/student'}>
-                                <ListItem
-                                    disablePadding
-                                    className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/student' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                        }`}
-                                >
-                                    <ListItemButton sx={{ pl: 4 }}>
-                                        <ListItemIcon>
-                                            <SupervisorAccountOutlinedIcon className='ml-5 text-white' fontSize="small" />
-                                        </ListItemIcon>
-                                        <Typography component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                            園児管理
-                                        </Typography>
-                                    </ListItemButton>
-                                </ListItem>
-                            </Link>
+              <Link to={'/teacher/listleave'}>
+                <ListItem disablePadding className={activeClass('/teacher/listleave')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><InsertInvitationOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>休暇届</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
-                            <Link to={'/class'}>
-                                <ListItem
-                                    disablePadding
-                                    className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/class' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                        }`}
-                                >
-                                    <ListItemButton sx={{ pl: 4 }}>
-                                        <ListItemIcon>
-                                            <ClassOutlinedIcon className='ml-5 text-white' fontSize="small" />
-                                        </ListItemIcon>
-                                        <Typography component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                            クラス管理
-                                        </Typography>
-                                    </ListItemButton>
-                                </ListItem>
-                            </Link>
-                        </Collapse>
-                    </>
-                )}
+              <Link to={'/teacher/shift'}>
+                <ListItem disablePadding className={activeClass('/teacher/shift')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><QueryBuilderIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>シフト管理</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            </Collapse>
 
-                {role === 'acc' && (
-                    <>
-                        <ListItem disablePadding onClick={handleClick4} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
-                            <ListItemButton>
-                                <EscalatorWarningOutlinedIcon fontSize="small"/>
-                                <Typography  component="div" className='text-white pl-3 py-2 pt-4' sx={{ fontSize: '14px' }}>
-                                経理管理
-                                </Typography>
-                                <div 
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        marginLeft: 'auto',
-                                    }}
-                                >
-                                    {open4 ? <ExpandLess /> : <ExpandMore />}
-                                </div>
-                            </ListItemButton>
-                        </ListItem>
-                        <Collapse  in={open4} unmountOnExit>
-                            <Link to={'/accounting'}>
-                                <ListItem
-                                    disablePadding
-                                    className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/accounting' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                        }`}
-                                >
-                                    <ListItemButton sx={{ pl: 4 }} className=''>
-                                        <ListItemIcon>
-                                            <AccountBalanceWalletOutlinedIcon className='ml-5 text-white' fontSize="small"/>
-                                        </ListItemIcon>
-                                        <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                            経理
-                                        </Typography>
-                                    </ListItemButton>
-                                </ListItem>
-                            </Link>
-        
-                            <Link to={'/infoteach'}>
-                                <ListItem
-                                    disablePadding
-                                    className={`bg-[#1d5769] text-white rounded-lg group ${highlightedItem === '/infoteach' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''
-                                        }`}
-                                >
-                                    <ListItemButton sx={{ pl: 4 }}>
-                                        <ListItemIcon>
-                                            <ClassOutlinedIcon className='ml-5 text-white' fontSize="small"/>
-                                        </ListItemIcon>
-                                        <Typography  component="div" className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>
-                                            職員リスト
-                                        </Typography>
-                                    </ListItemButton>
-                                </ListItem>
-                            </Link>
-                        </Collapse>
-                    </>
-                )}
-            </div>
-        );
-    }
+            {/* 学生管理 */}
+            <ListItem disablePadding onClick={handleClick3} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
+              <ListItemButton>
+                <BadgeOutlinedIcon fontSize="small" />
+                <Typography component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
+                  学生管理
+                </Typography>
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                  {open3 ? <ExpandLess /> : <ExpandMore />}
+                </div>
+              </ListItemButton>
+            </ListItem>
+            <Collapse in={open3} unmountOnExit>
+              <Link to={'/student'}>
+                <ListItem disablePadding className={activeClass('/student')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><SupervisorAccountOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>園児管理</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/class'}>
+                <ListItem disablePadding className={activeClass('/class')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><ClassOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>クラス管理</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            </Collapse>
+
+            {/* 経理管理 */}
+            <ListItem disablePadding onClick={handleClick4} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
+              <ListItemButton>
+                <EscalatorWarningOutlinedIcon fontSize="small" />
+                <Typography component="div" className='text-white pl-3 py-2 pt-4' sx={{ fontSize: '14px' }}>
+                  経理管理
+                </Typography>
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                  {open4 ? <ExpandLess /> : <ExpandMore />}
+                </div>
+              </ListItemButton>
+            </ListItem>
+            <Collapse in={open4} unmountOnExit>
+              <Link to={'/accounting'}>
+                <ListItem disablePadding className={activeClass('/accounting')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><AccountBalanceWalletOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>経理</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/infoteach'}>
+                <ListItem disablePadding className={activeClass('/infoteach')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><ClassOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>職員リスト</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            </Collapse>
+
+            {/* レポート管理 */}
+            <Link to={'/report'}>
+              <ListItem disablePadding className={`text-white rounded-lg mt-2 mb-2 pl-2 group ${highlightedItem === '/report' ? 'bg-gray-600 dark:hover:bg-gray-700' : ''}`}>
+                <ListItemButton>
+                  <ListAltOutlinedIcon fontSize="small" />
+                  <Typography component="div" className='text-white pl-3 py-2 ' sx={{ fontSize: '14px' }}>
+                    レポート管理
+                  </Typography>
+                </ListItemButton>
+              </ListItem>
+            </Link>
+
+          
+
+            {/* マスタ設定 */}
+            <ListItem disablePadding onClick={handleClick2} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
+              <ListItemButton>
+                <SettingsOutlinedIcon fontSize="small" />
+                <Typography component="div" className='text-white pl-3 py-2 ' sx={{ fontSize: '14px' }}>
+                  マスタ設定
+                </Typography>
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                  {open2 ? <ExpandLess /> : <ExpandMore />}
+                </div>
+              </ListItemButton>
+            </ListItem>
+            <Collapse in={open2} unmountOnExit>
+              <Link to={'/setting/info'}>
+                <ListItem disablePadding className={activeClass('/setting/info')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><AccountCircleOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>基本情報</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/infostaff'}>
+                <ListItem disablePadding className={activeClass('/infostaff')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><AccountBoxOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>役員情報</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/setting/basicdevplan'}>
+                <ListItem disablePadding className={activeClass('/setting/basicdevplan')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><AccountBoxOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>Basicdevplan</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+                 <Link to={'/master/overallplanmain'}>
+                <ListItem disablePadding className={activeClass('/master/overallplanmain')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><TaskAltIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography sx={{ fontSize: '14px' }}>年間保育計画（概要）</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/master/childcarepolicy'}>
+                <ListItem disablePadding className={activeClass('/master/childcarepolicy')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><GavelIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography sx={{ fontSize: '14px' }}>保育方針</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/master/educationandchildcare'}>
+                <ListItem disablePadding className={activeClass('/master/educationandchildcare')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><SchoolIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography sx={{ fontSize: '14px' }}>教育・保育の柱</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/master/specificinitiatives'}>
+                <ListItem disablePadding className={activeClass('/master/specificinitiatives')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><AppsIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography sx={{ fontSize: '14px' }}>具体的な取り組み</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/master/annualschedule'}>
+                <ListItem disablePadding className={activeClass('/master/annualschedule')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><CalendarMonthIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography sx={{ fontSize: '14px' }}>年間行事計画</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/master/agegroups'}>
+                <ListItem disablePadding className={activeClass('/master/agegroups')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><ChildCareIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography sx={{ fontSize: '14px' }}>年齢区分</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/master/developmentarea'}>
+                <ListItem disablePadding className={activeClass('/master/developmentarea')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><PsychologyIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography sx={{ fontSize: '14px' }}>領域（養護/教育）</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/master/aboutsupdesk'}>
+                <ListItem disablePadding className={activeClass('/master/aboutsupdesk')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><ListAltIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography sx={{ fontSize: '14px' }}>領域内容の解説</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/master/subarea'}>
+                <ListItem disablePadding className={activeClass('/master/subarea')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><CategoryIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography sx={{ fontSize: '14px' }}>ねらい（領域別）</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/master/infoarea'}>
+                <ListItem disablePadding className={activeClass('/master/infoarea')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><InfoIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography sx={{ fontSize: '14px' }}>領域補足情報</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/master/carecontent'}>
+                <ListItem disablePadding className={activeClass('/master/carecontent')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><FavoriteIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography sx={{ fontSize: '14px' }}>保育のねらい（年齢×領域）</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            </Collapse>
+          </div>
+        )}
+
+        {/* TEACHER */}
+        {role === 'teacher' && (
+          <>
+            <ListItem disablePadding onClick={handleClick} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
+              <ListItemButton>
+                <EscalatorWarningOutlinedIcon fontSize="small" />
+                <Typography component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
+                  保育士
+                </Typography>
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                  {open ? <ExpandLess /> : <ExpandMore />}
+                </div>
+              </ListItemButton>
+            </ListItem>
+            <Collapse in={open} unmountOnExit>
+              <Link to={'/teacher/todolist'}>
+                <ListItem disablePadding className={activeClass('/teacher/todolist')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><BusinessCenterIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>業務</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/teacher/listleave'}>
+                <ListItem disablePadding className={activeClass('/teacher/listleave')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><InsertInvitationOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>休暇届</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            </Collapse>
+
+            <ListItem disablePadding onClick={() => setOpen3(!open3)} className='pl-2 text-white rounded-lg dark:text-white mt-2 mb-2 group '>
+              <ListItemButton>
+                <BadgeOutlinedIcon fontSize="small" />
+                <Typography component="div" className='text-white pl-3 py-2 pt-3 ' sx={{ fontSize: '14px' }}>
+                  学生管理
+                </Typography>
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                  {open3 ? <ExpandLess /> : <ExpandMore />}
+                </div>
+              </ListItemButton>
+            </ListItem>
+            <Collapse in={open3} unmountOnExit>
+              <Link to={'/student'}>
+                <ListItem disablePadding className={activeClass('/student')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><SupervisorAccountOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>園児管理</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/class'}>
+                <ListItem disablePadding className={activeClass('/class')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><ClassOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>クラス管理</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            </Collapse>
+          </>
+        )}
+
+        {/* ACC */}
+        {role === 'acc' && (
+          <>
+            <ListItem disablePadding onClick={handleClick4} className='pl-2 text-white rounded-lg dark:text-white  mt-2 mb-2 group '>
+              <ListItemButton>
+                <EscalatorWarningOutlinedIcon fontSize="small" />
+                <Typography component="div" className='text-white pl-3 py-2 pt-4' sx={{ fontSize: '14px' }}>
+                  経理管理
+                </Typography>
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
+                  {open4 ? <ExpandLess /> : <ExpandMore />}
+                </div>
+              </ListItemButton>
+            </ListItem>
+            <Collapse in={open4} unmountOnExit>
+              <Link to={'/accounting'}>
+                <ListItem disablePadding className={activeClass('/accounting')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><AccountBalanceWalletOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>経理</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
+              <Link to={'/infoteach'}>
+                <ListItem disablePadding className={activeClass('/infoteach')}>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon><ClassOutlinedIcon className='ml-5 text-white' fontSize="small" /></ListItemIcon>
+                    <Typography className='text-white pl-1 pt-1' sx={{ fontSize: '14px' }}>職員リスト</Typography>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            </Collapse>
+          </>
+        )}
+      </div>
+    );
+  }
 }
