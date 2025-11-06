@@ -79,7 +79,28 @@
     "col_name": "Overall Plan",
     "col_action": "Action"
   },
-  "annualplan": {
+   "annualplan": {
+    "title": "Annual Teaching Plan Management",
+    "subtitle": "Annual Teaching Plan Records",
+    "filter_title": "Search & Filter",
+    "search_placeholder": "Search by plan or year...",
+    "year_label": "Year",
+    "age_label": "Age Group",
+    "status_label": "Status",
+    "reset_button": "Reset",
+    "add_button": "Add",
+    "col_year": "Year",
+    "col_age_group": "Age Group",
+    "col_classroom": "Classroom",
+    "col_responsible": "Responsible",
+    "col_status": "Status",
+    "col_manage": "Manage",
+    "status_draft": "Draft",
+    "status_completed": "Completed",
+    "status_approved": "Approved",
+    "delete_confirm": "Do you want to delete this teaching plan?"
+  },
+  "annualplanadd": {
     "title": "Annual Teaching Plan Management",
     "subtitle": "Annual Teaching Plan Records",
     "filter_title": "Search & Filter",
@@ -164,9 +185,9 @@
     "global_eval_title": "Evaluation & Reflection",
     "global_eval_ph": "Evaluation and reflection...",
 
-    "status_chip_completed": "Completed",
-    "status_chip_draft": "Draft Saved",
-    "status_chip_empty": "Not Saved",
+    "chip_status_completed": "Completed",
+    "chip_status_draft": "Draft Saved",
+    "chip_status_empty": "Not Saved",
 
     "btn_save_draft": "Save Draft",
     "btn_save_complete": "Save as Completed",
@@ -182,10 +203,6 @@
     "alert_need_classroom_age": "Please fill in the Classroom and Age.",
     "tabs_submit_step": "Submit {{tabName}}",
 
-    "months_suffix": "月",
-
-    "chip_status_completed": "Completed",
-    "chip_status_draft": "Draft Saved",
-    "chip_status_empty": "Not Saved"
+    "months_suffix": "月"
   }
 }
