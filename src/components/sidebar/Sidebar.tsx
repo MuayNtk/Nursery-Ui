@@ -40,6 +40,8 @@ import CategoryIcon from "@mui/icons-material/Category";
 import InfoIcon from "@mui/icons-material/Info";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
+import { useTranslation } from "react-i18next";
+
 const drawerWidth = 240;
 
 interface Props {
@@ -47,6 +49,7 @@ interface Props {
 }
 
 export default function Sidebar(props: Props) {
+  const { t } = useTranslation(); // เรียกใช้แบบ t("sidebar.xxx")
   const location = useLocation();
   const [highlightedItem, setHighlightedItem] = React.useState("/");
 
@@ -184,7 +187,7 @@ export default function Sidebar(props: Props) {
                   paddingLeft: "10px",
                 }}
               >
-                Nursery
+                {t("sidebar.brand")}
               </Typography>
             </ListItemButton>
           </ListItem>
@@ -208,7 +211,7 @@ export default function Sidebar(props: Props) {
                 className="text-white pl-3 py-2 "
                 sx={{ fontSize: "14px" }}
               >
-                ホーム
+                {t("sidebar.home")}
               </Typography>
             </ListItemButton>
           </ListItem>
@@ -217,7 +220,7 @@ export default function Sidebar(props: Props) {
         {/* ADMIN */}
         {role === "admin" && (
           <div>
-            {/* 保育士 */}
+            {/* 保育士 / Teacher */}
             <ListItem
               disablePadding
               onClick={handleClick}
@@ -230,7 +233,7 @@ export default function Sidebar(props: Props) {
                   className="text-white pl-3 py-2 pt-3 "
                   sx={{ fontSize: "14px" }}
                 >
-                  保育士
+                  {t("sidebar.group_teacher")}
                 </Typography>
                 <div
                   style={{
@@ -260,7 +263,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      業務
+                      {t("sidebar.teacher_tasks")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -282,7 +285,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      休暇届
+                      {t("sidebar.teacher_leave")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -304,14 +307,14 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      シフト管理
+                      {t("sidebar.teacher_shift")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
             </Collapse>
 
-            {/* 学生管理 */}
+            {/* 学生管理 / Student Management */}
             <ListItem
               disablePadding
               onClick={handleClick3}
@@ -324,7 +327,7 @@ export default function Sidebar(props: Props) {
                   className="text-white pl-3 py-2 pt-3 "
                   sx={{ fontSize: "14px" }}
                 >
-                  学生管理
+                  {t("sidebar.group_students")}
                 </Typography>
                 <div
                   style={{
@@ -351,7 +354,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      園児管理
+                      {t("sidebar.students_children")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -370,14 +373,14 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      クラス管理
+                      {t("sidebar.students_class")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
             </Collapse>
 
-            {/* 経理管理 */}
+            {/* 経理管理 / Accounting */}
             <ListItem
               disablePadding
               onClick={handleClick4}
@@ -390,7 +393,7 @@ export default function Sidebar(props: Props) {
                   className="text-white pl-3 py-2 pt-4"
                   sx={{ fontSize: "14px" }}
                 >
-                  経理管理
+                  {t("sidebar.group_accounting")}
                 </Typography>
                 <div
                   style={{
@@ -417,7 +420,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      経理
+                      {t("sidebar.accounting_main")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -436,7 +439,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      職員リスト
+                      {t("sidebar.accounting_staff_list")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -460,12 +463,13 @@ export default function Sidebar(props: Props) {
                     className="text-white pl-3 py-2 "
                     sx={{ fontSize: "14px" }}
                   >
-                    レポート管理
+                    {t("sidebar.report")}
                   </Typography>
                 </ListItemButton>
               </ListItem>
             </Link>
 
+            {/* マスタ管理 */}
             <ListItem
               disablePadding
               onClick={handleClickMaster}
@@ -478,7 +482,7 @@ export default function Sidebar(props: Props) {
                   className="text-white pl-3 py-2 pt-3 "
                   sx={{ fontSize: "14px" }}
                 >
-                  マスタ管理
+                  {t("sidebar.group_master")}
                 </Typography>
                 <div
                   style={{
@@ -507,7 +511,7 @@ export default function Sidebar(props: Props) {
                       />
                     </ListItemIcon>
                     <Typography sx={{ fontSize: "14px" }}>
-                      年間保育計画（概要）
+                      {t("sidebar.master_overall_plan")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -522,7 +526,9 @@ export default function Sidebar(props: Props) {
                     <ListItemIcon>
                       <GavelIcon className="ml-5 text-white" fontSize="small" />
                     </ListItemIcon>
-                    <Typography sx={{ fontSize: "14px" }}>保育方針</Typography>
+                    <Typography sx={{ fontSize: "14px" }}>
+                      {t("sidebar.master_policy")}
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
@@ -540,7 +546,7 @@ export default function Sidebar(props: Props) {
                       />
                     </ListItemIcon>
                     <Typography sx={{ fontSize: "14px" }}>
-                      教育・保育の柱
+                      {t("sidebar.master_pillars")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -556,7 +562,7 @@ export default function Sidebar(props: Props) {
                       <AppsIcon className="ml-5 text-white" fontSize="small" />
                     </ListItemIcon>
                     <Typography sx={{ fontSize: "14px" }}>
-                      具体的な取り組み
+                      {t("sidebar.master_initiatives")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -575,7 +581,7 @@ export default function Sidebar(props: Props) {
                       />
                     </ListItemIcon>
                     <Typography sx={{ fontSize: "14px" }}>
-                      年間行事計画
+                      {t("sidebar.master_annual_events")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -593,7 +599,9 @@ export default function Sidebar(props: Props) {
                         fontSize="small"
                       />
                     </ListItemIcon>
-                    <Typography sx={{ fontSize: "14px" }}>年齢区分</Typography>
+                    <Typography sx={{ fontSize: "14px" }}>
+                      {t("sidebar.master_age_groups")}
+                    </Typography>
                   </ListItemButton>
                 </ListItem>
               </Link>
@@ -611,7 +619,7 @@ export default function Sidebar(props: Props) {
                       />
                     </ListItemIcon>
                     <Typography sx={{ fontSize: "14px" }}>
-                      領域（養護/教育）
+                      {t("sidebar.master_domains")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -630,7 +638,7 @@ export default function Sidebar(props: Props) {
                       />
                     </ListItemIcon>
                     <Typography sx={{ fontSize: "14px" }}>
-                      領域内容の解説
+                      {t("sidebar.master_domain_guide")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -649,7 +657,7 @@ export default function Sidebar(props: Props) {
                       />
                     </ListItemIcon>
                     <Typography sx={{ fontSize: "14px" }}>
-                      ねらい（領域別）
+                      {t("sidebar.master_domain_targets")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -665,7 +673,7 @@ export default function Sidebar(props: Props) {
                       <InfoIcon className="ml-5 text-white" fontSize="small" />
                     </ListItemIcon>
                     <Typography sx={{ fontSize: "14px" }}>
-                      領域補足情報
+                      {t("sidebar.master_domain_extra")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -684,7 +692,7 @@ export default function Sidebar(props: Props) {
                       />
                     </ListItemIcon>
                     <Typography sx={{ fontSize: "14px" }}>
-                      保育のねらい（年齢×領域）
+                      {t("sidebar.master_care_goals")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -710,7 +718,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      基本情報
+                      {t("sidebar.settings_basic_info")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -729,7 +737,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      役員情報
+                      {t("sidebar.settings_executives")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -751,7 +759,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      Basicdevplan
+                      {t("sidebar.settings_basicdevplan")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -775,7 +783,7 @@ export default function Sidebar(props: Props) {
                   className="text-white pl-3 py-2 pt-3 "
                   sx={{ fontSize: "14px" }}
                 >
-                  保育士
+                  {t("sidebar.group_teacher")}
                 </Typography>
                 <div
                   style={{
@@ -805,7 +813,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      業務
+                      {t("sidebar.teacher_tasks")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -827,7 +835,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      休暇届
+                      {t("sidebar.teacher_leave")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -846,7 +854,7 @@ export default function Sidebar(props: Props) {
                   className="text-white pl-3 py-2 pt-3 "
                   sx={{ fontSize: "14px" }}
                 >
-                  学生管理
+                  {t("sidebar.group_students")}
                 </Typography>
                 <div
                   style={{
@@ -873,7 +881,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      園児管理
+                      {t("sidebar.students_children")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -892,7 +900,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      クラス管理
+                      {t("sidebar.students_class")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -916,7 +924,7 @@ export default function Sidebar(props: Props) {
                   className="text-white pl-3 py-2 pt-4"
                   sx={{ fontSize: "14px" }}
                 >
-                  経理管理
+                  {t("sidebar.group_accounting")}
                 </Typography>
                 <div
                   style={{
@@ -943,7 +951,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      経理
+                      {t("sidebar.accounting_main")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>
@@ -962,7 +970,7 @@ export default function Sidebar(props: Props) {
                       className="text-white pl-1 pt-1"
                       sx={{ fontSize: "14px" }}
                     >
-                      職員リスト
+                      {t("sidebar.accounting_staff_list")}
                     </Typography>
                   </ListItemButton>
                 </ListItem>

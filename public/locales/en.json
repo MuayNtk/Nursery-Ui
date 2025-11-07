@@ -204,5 +204,54 @@
     "tabs_submit_step": "Submit {{tabName}}",
 
     "months_suffix": "月"
+  },
+  "sidebar": {
+    "brand": "Nursery",
+    "home": "Home",
+
+    "group_teacher": "Teacher",
+    "teacher_tasks": "Tasks",
+    "teacher_leave": "Leave Request",
+    "teacher_shift": "Shift Management",
+
+    "group_students": "Student Management",
+    "students_children": "Children",
+    "students_class": "Class Management",
+
+    "group_accounting": "Accounting Management",
+    "accounting_main": "Accounting",
+    "accounting_staff_list": "Staff List",
+
+    "report": "Report Management",
+
+    "group_master": "Master Management",
+    "master_overall_plan": "Annual Childcare Plan (Overview)",
+    "master_policy": "Childcare Policy",
+    "master_pillars": "Education & Childcare Pillars",
+    "master_initiatives": "Specific Initiatives",
+    "master_annual_events": "Annual Events Plan",
+    "master_age_groups": "Age Groups",
+    "master_domains": "Domains (Care/Education)",
+    "master_domain_guide": "Domain Content Guide",
+    "master_domain_targets": "Targets (by Domain)",
+    "master_domain_extra": "Domain Supplementary Info",
+    "master_care_goals": "Childcare Goals (Age × Domain)",
+
+    "group_settings": "Settings",
+    "settings_basic_info": "Basic Information",
+    "settings_executives": "Executive Info",
+    "settings_basicdevplan": "Basicdevplan",
+
+    "role_admin": "admin",
+    "role_teacher": "teacher",
+    "role_acc": "acc",
+
+    "search_age": "Age",
+    "search_button": "Search",
+    "add_button": "Add",
+    "col_year": "Year",
+    "col_age": "Age",
+    "col_name": "Overall Plan",
+    "col_action": "Action"
   }
 }
