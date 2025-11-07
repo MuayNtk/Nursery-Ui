@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -42,7 +42,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ContentMain from "../content/Content";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { useTranslation } from "react-i18next";
-
+import { ChildcarePolicy, useOverallPlan } from '../../contexts/OverallplanContext';
 // ============================================================================
 // THEME CONFIGURATION
 // ============================================================================
@@ -83,9 +83,12 @@ const theme = createTheme({
 // TYPE DEFINITIONS
 // ============================================================================
 interface FormData {
+  [x: string]: unknown;
   year: string;
   situation: string;
   methods: string[];
+  Ideal_Image_Of_Children: string;
+  Desired_Image_Of_Caregivers: string;
   goalSupport: string;
   providedSupport: string;
   lifeGoals: { checked: boolean; text: string }[];
@@ -280,6 +283,8 @@ const INITIAL_ROWS: RowData[] = [
 // ============================================================================
 const INITIAL_FORM_DATA: FormData = {
   year: "",
+  Ideal_Image_Of_Children: "",
+  Desired_Image_Of_Caregivers: "",
   situation: "",
   methods: ["", "", "", "", "", ""],
   goalSupport: "",
@@ -732,6 +737,7 @@ const AbilitiesSelect: React.FC<AbilitiesSelectProps> = ({
 const OverallPlanAdd: React.FC = () => {
   // State Management
   const { t } = useTranslation();
+  const { fetchChildcarePolicy,createOverallPlan } = useOverallPlan();
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
   const [rows, setRows] = useState<RowData[]>(INITIAL_ROWS);
   const [expandedSections, setExpandedSections] = useState({
@@ -849,12 +855,44 @@ const OverallPlanAdd: React.FC = () => {
     );
   };
 
-  const handleSubmit = (e?: React.FormEvent) => {
+  const handleSubmit = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    console.log("Form Data:", formData);
-    console.log("Table Rows:", rows);
-    alert("保存されました / บันทึกแล้ว");
+    try {
+      await createOverallPlan(formData);
+      console.log("Form Data:", formData);
+      alert("保存されました / บันทึกแล้ว");
+    } catch (error) {
+      console.error(error);
+      alert("Error creating Overall Plan");
+    }
   };
+
+  useEffect(() => {
+  const loadMethods = async () => {
+    try {
+      const data: ChildcarePolicy[] = await fetchChildcarePolicy();
+      if (data.length > 0) {
+        const policy = data[0]; // สมมติใช้ policy แรก
+        setFormData((prev) => ({
+          ...prev,
+          situation: policy.Childcare_Policy,
+          methods: [
+            policy.Method1,
+            policy.Method2,
+            policy.Method3,
+            policy.Method4,
+            policy.Method5,
+            policy.Method6,
+          ],
+        }));
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  loadMethods();
+}, [fetchChildcarePolicy]);
 
   // ========================================================================
   // RENDER
@@ -981,6 +1019,8 @@ const OverallPlanAdd: React.FC = () => {
                   {t("overallplanadd.target_child")}
                 </Typography>
                 <TextField
+                  value={formData.Ideal_Image_Of_Children}
+                  onChange={(e) => handleInputChange("Ideal_Image_Of_Children", e.target.value)}
                   fullWidth
                   placeholder={t("overallplanadd.target_child_placeholder")}
                   sx={{
@@ -997,6 +1037,8 @@ const OverallPlanAdd: React.FC = () => {
                 </Typography>
                 <TextField
                   fullWidth
+                  value={formData.Desired_Image_Of_Caregivers}
+                  onChange={(e) => handleInputChange("Desired_Image_Of_Caregivers", e.target.value)}
                   placeholder={t("overallplanadd.target_teacher_placeholder")}
                   sx={{
                     "& .MuiInputBase-input": {
