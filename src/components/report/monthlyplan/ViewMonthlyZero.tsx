@@ -1,8 +1,83 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Grid, Typography, Button, TextareaAutosize, TableCell, TableRow, TableHead, TableBody, Paper, TableContainer, Table, Card, FormControl, Select, InputLabel, MenuItem } from '@mui/material';
+import { 
+    Grid, 
+    Typography, 
+    Button, 
+    TableCell, 
+    TableRow, 
+    TableHead, 
+    TableBody, 
+    Paper, 
+    TableContainer, 
+    Table, 
+    FormControl, 
+    Select, 
+    InputLabel, 
+    MenuItem,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
+    Box,
+    TextField,
+    Tooltip,
+    IconButton,
+    createTheme,
+    ThemeProvider,
+    Card,
+    CardContent,
+    Divider
+} from '@mui/material';
 import ContentMain from '../../content/Content';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { ExpandMore, CheckCircle, Person, Info, Add, Edit, Delete, ArrowBack, Visibility } from '@mui/icons-material';
+
+// Theme configuration
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+      light: '#42a5f5',
+      dark: '#1565c0',
+    },
+    secondary: {
+      main: '#9c27b0',
+      light: '#ba68c8',
+      dark: '#7b1fa2',
+    },
+  },
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: '16px',
+          backdropFilter: 'blur(10px)',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: '20px',
+          textTransform: 'none',
+          fontWeight: 600,
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiInputBase-input': {
+            fontSize: '14px'
+          },
+          '& .MuiInputLabel-root': {
+            fontSize: '14px'
+          }
+        }
+      },
+    },
+  },
+});
 
 interface Data {
     FacilityDirector: string;
@@ -21,19 +96,59 @@ function createData(
 }
 
 const initialRows: Data[] = [
-    createData('濃部　圭子', '渡部　史朗', '6.0', '24',
-    ),
-    createData('Ice cream sandwich', '237', '9.0', '37',
-    ),
-    createData('Eclair', '262', '16.0', '24',
-    ),
+    createData('濃部　圭子', '渡部　史朗', '6.0', '24'),
+    createData('Ice cream sandwich', '237', '9.0', '37'),
+    createData('Eclair', '262', '16.0', '24'),
+];
+
+// Sample data for view mode
+const sampleData = {
+    goals: {
+        nursing: '健康で安全な生活環境を整え、一人ひとりの子どもの発達段階に応じた適切な援助を行う。基本的な生活習慣の形成を支援し、情緒の安定を図る。',
+        education: '感覚や運動機能の発達を促し、身近な環境に興味・関心を持てるような経験を提供する。言葉の発達を促し、人との関わりの基礎を築く。'
+    },
+    familyCommunity: '保護者との日々のコミュニケーションを大切にし、家庭での様子や成長を共有する。地域の子育て支援センターとの連携を図り、保護者同士の交流の場を提供する。定期的な懇談会や参観日を通じて、保育の方針や子どもの成長を共有する。',
+    events: [
+        { day: '15', dayOfWeek: '土', eventName: '親子ふれあい会' },
+        { day: '20', dayOfWeek: '木', eventName: '健康診断' },
+        { day: '25', dayOfWeek: '火', eventName: '避難訓練' },
+        { day: '30', dayOfWeek: '日', eventName: '誕生会' }
+    ],
+    environment: '安全で清潔な環境を整備し、月齢に応じた玩具や教材を準備する。室温や湿度を適切に管理し、感染症予防に努める。子どもが落ち着いて過ごせるよう、静かで温かい雰囲気づくりを心がける。個別の睡眠スペースを確保し、安心して休息できる環境を提供する。',
+    lifeAndPlay: '一人ひとりの生活リズムを大切にし、授乳、離乳食、睡眠などの基本的な生活習慣の確立を支援する。月齢に応じた遊びを提供し、感覚遊びや運動遊びを通じて発達を促す。保育者との愛着関係を深め、情緒の安定を図る。',
+    healthSafety: '毎日の健康チェックを実施し、体調の変化に注意を払う。清潔な環境を保持し、感染症予防対策を徹底する。アレルギー対応や個別の健康管理を適切に行う。',
+    management: '職員間の連携を密にし、情報共有を徹底する。保護者との連絡を密に取り、信頼関係を築く。研修参加により専門性の向上を図る。',
+    evaluation: '月末に振り返りを行い、目標達成度を評価する。保護者からの意見や要望を収集し、保育の改善に活かす。次月の計画立案に向けた課題を明確にする。'
+};
+
+const childrenData = [
+    {
+        id: 1,
+        name: '田中　花音',
+        age: '8ヶ月',
+        lifestyle: 'ハイハイが活発になり、つかまり立ちを始めている。離乳食は中期に進み、手づかみ食べに興味を示している。人見知りが始まり、保育者への愛着が深まっている。',
+        interaction: '安心できる環境を整え、ゆったりとした関わりを心がける。発達段階に応じた玩具を提供し、探索活動を見守る。離乳食の進め方を保護者と連携して行う。'
+    },
+    {
+        id: 2,
+        name: '佐藤　蓮',
+        age: '5ヶ月',
+        lifestyle: '首がしっかりと座り、寝返りができるようになった。離乳食を開始し、スプーンに慣れてきている。笑顔が増え、声を出して遊ぶことが多くなった。',
+        interaction: 'うつ伏せ遊びを取り入れ、首や背中の筋力発達を促す。離乳食は一さじずつゆっくりと進める。たくさん話しかけ、応答的な関わりを大切にする。'
+    },
+    {
+        id: 3,
+        name: '山田　さくら',
+        age: '10ヶ月',
+        lifestyle: 'つかまり立ちが安定し、伝い歩きを始めている。離乳食は後期に進み、手づかみ食べを楽しんでいる。言葉の理解が進み、簡単な指示に応じることができる。',
+        interaction: '安全な環境で自由に動き回れるようにする。食事の自立を促しながら、適切な介助を行う。言葉かけを増やし、コミュニケーションの基礎を育む。'
+    }
 ];
 
 interface ViewMonthlyZeroProps {
     pid: string;
     selectedOption: string;
-  }
-
+}
 
 const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
     const [rows] = useState<Data[]>(initialRows);
@@ -41,9 +156,18 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
     const storedData = JSON.parse(sessionStorage.getItem('monthlyData0') || '[]');
     const item = storedData.find((data: any) => data.pid === pid && data.selectedOption === selectedOption);
 
-    if (!item) {
-        return <Typography variant="h6">No data found</Typography>;
-    }
+    const [expandedSections, setExpandedSections] = useState({
+        basic: true,
+        development: true,
+        additional: true
+    });
+
+    const toggleSection = (section: 'basic' | 'development' | 'additional') => {
+        setExpandedSections(prev => ({
+            ...prev,
+            [section]: !prev[section]
+        }));
+    };
 
     const options = [
         '月指導計画 0 歳児',
@@ -52,585 +176,437 @@ const ViewMonthlyZero: React.FC<ViewMonthlyZeroProps> = () => {
     ];
 
     return (
-        <ContentMain className="flex flex-col min-h-screen">
-            <Grid item xs={9} sm={7} md={5} lg={2.5} className='text-start pt-5 pl-3'>
-                <FormControl size='small'>
-                    <InputLabel id="selected-option-label">年間指導計画を選択する</InputLabel>
-                    <Select
-                        labelId="selected-option-label"
-                        value={selectedOption}
-                        sx={{ minWidth: 250, backgroundColor: '#F5F5F5' }}
-                        readOnly
-                        label="年間指導計画を選択する"
-                    >
-                        {options.map(option => (
-                            <MenuItem key={option} value={option}>
-                                {option}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-            </Grid>
+        <ThemeProvider theme={theme}>
+            <ContentMain className="flex flex-col min-h-screen">
+                {/* Header Section */}
+                <Card elevation={3} sx={{ mb: 3 }}>
+                    <CardContent>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
+                            <Visibility color="primary" />
+                            <Typography variant="h5" fontWeight="bold" color="primary">
+                                月指導計画 表示モード
+                            </Typography>
+                        </Box>
+                        
+                        <Grid item xs={12} sm={8} md={6} lg={4} className='text-start'>
+                            <FormControl size='small' fullWidth>
+                                <InputLabel id="selected-option-label">年間指導計画を選択する</InputLabel>
+                                <Select
+                                    labelId="selected-option-label"
+                                    value={selectedOption || options[0]}
+                                    sx={{ backgroundColor: '#F5F5F5' }}
+                                    readOnly
+                                    label="年間指導計画を選択する"
+                                >
+                                    {options.map(option => (
+                                        <MenuItem key={option} value={option}>
+                                            {option}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    </CardContent>
+                </Card>
 
-            <Grid className="pt-10 lg:pt-0 text-start">
-                <Grid container spacing={1} justifyContent='start' className="pt-4">
-                    <Grid item xs={3} sm={2} md={2} lg={2}>
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, } }} className="text-end">
-                            施設長 :
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={3} sm={2} md={1} lg={2} >
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, fontWeight: 'bold', }} >
-                            濃部　圭子
-                        </Typography>
-                    </Grid>
-                </Grid >
-
-                <Grid container spacing={1} justifyContent='start' className="pt-4  ">
-                    <Grid item xs={3} sm={2} md={1} lg={2} >
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, }} className="text-end" >
-                            主任 :
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={3} sm={2} md={1} lg={2} >
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, fontWeight: 'bold', }} >
-                            渡部　史朗
-                        </Typography>
-                    </Grid>
-                </Grid >
-
-                <Grid container spacing={1} justifyContent='start' className="pt-4  ">
-                    <Grid item xs={3} sm={2} md={1} lg={2}>
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, }} className="text-end ">
-                            担任 :
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={3} sm={2} md={1} lg={2} >
-                        <Typography component="div" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14, }, fontWeight: 'bold', }} >
-                            中川　康嘉
-                        </Typography>
-                    </Grid>
-                </Grid >
-
-                <Grid className="mt-5 lg:mt-7">
-                    <Typography
-                        component="div"
-                        sx={{ color: 'black', fontSize: { xs: 11, sm: 11, md: 11, lg: 16 }, backgroundColor: '#CCF0FD', fontWeight: 'bold', pt: { xs: 1.5, sm: 1.5, md: 1.5, lg: 1 } }}
-                        className='flex justify-start h-10 pt-2 pl-5' >
-                        指導計画は食育の内容を含むこと。
-                    </Typography>
-                </Grid>
-
-                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-14 pl-10 flex '  >
-                    <Card sx={{ bgcolor: "pink", width: 100, height: 35, }} >
-                        <Typography component='div' className="pt-2 lg:pt-1" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', marginLeft: { xs: 4, sm: 4, md: 4, lg: 3, } }}>
-                            ねらい
-                        </Typography>
+                <Grid className="text-start">
+                    {/* Staff Information */}
+                    <Card elevation={2} sx={{ mb: 3 }}>
+                        <CardContent>
+                            <Typography variant="h6" fontWeight="bold" color="secondary" sx={{ mb: 2 }}>
+                                担当職員情報
+                            </Typography>
+                            <Grid container spacing={3}>
+                                <Grid item xs={12} sm={4}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <Typography sx={{ fontSize: 14, minWidth: 60 }}>
+                                            施設長:
+                                        </Typography>
+                                        <Typography sx={{ fontSize: 14, fontWeight: 'bold' }}>
+                                            濃部　圭子
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={4}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <Typography sx={{ fontSize: 14, minWidth: 40 }}>
+                                            主任:
+                                        </Typography>
+                                        <Typography sx={{ fontSize: 14, fontWeight: 'bold' }}>
+                                            渡部　史朗
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={4}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <Typography sx={{ fontSize: 14, minWidth: 40 }}>
+                                            担任:
+                                        </Typography>
+                                        <Typography sx={{ fontSize: 14, fontWeight: 'bold' }}>
+                                            中川　康嘉
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                        </CardContent>
                     </Card>
-                </Grid>
 
-                <Grid container spacing={2} className="pt-5" justifyContent='center'>
-                    <Grid item xs={12} md={6} >
-                        <Grid container spacing={1} alignItems='center' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5 } }}>
-                            <Grid item xs={1} sm={4} md={3} lg={1} className="text-end">
-                                <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
-                                    義護
-                                </Typography>
+                    {/* Annual Goals Section - 0 Age */}
+                    <Accordion expanded={expandedSections.basic} onChange={() => toggleSection('basic')} 
+                               sx={{ border: '2px solid #ff9800', mb: 2 }}>
+                        <AccordionSummary expandIcon={<ExpandMore />}>
+                            <Typography fontWeight="600">เป้าหมายประจำปี (0歳)</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                                ねらい (เป้าหมาย)
+                            </Typography>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} md={6}>
+                                    <TextField
+                                        fullWidth
+                                        multiline
+                                        rows={4}
+                                        label="養護"
+                                        value={sampleData.goals.nursing}
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                        sx={{
+                                            '& .MuiInputBase-input': {
+                                                backgroundColor: '#f9f9f9'
+                                            }
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <TextField
+                                        fullWidth
+                                        multiline
+                                        rows={4}
+                                        label="教育"
+                                        value={sampleData.goals.education}
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                        sx={{
+                                            '& .MuiInputBase-input': {
+                                                backgroundColor: '#f9f9f9'
+                                            }
+                                        }}
+                                    />
+                                </Grid>
                             </Grid>
-                        </Grid>
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 7 } }}>
-                            <Grid item xs={7.5} sm={3} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    生命の保持・情緒の安定
-                                </Typography>
-                                <TextareaAutosize
-                                    id="emotional_stability1"
-                                    name="emotional_stability1"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.emotional_stability1}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
+                            <Grid container spacing={2} sx={{ mt: 2 }}>
+                                {/* Left side - Family/Community Cooperation */}
+                                <Grid item xs={12} md={8}>
+                                    <Typography fontWeight="bold" sx={{ mb: 1 }} align="left">
+                                        家庭・地域との連携 (การร่วมมือกับครอบครัวและชุมชน)
+                                    </Typography>
+                                    <TextField
+                                        fullWidth
+                                        multiline
+                                        rows={6}
+                                        label="家庭・地域との連携"
+                                        value={sampleData.familyCommunity}
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                        sx={{
+                                            '& .MuiInputBase-input': {
+                                                backgroundColor: '#f9f9f9'
+                                            }
+                                        }}
+                                    />
+                                </Grid>
+                                
+                                {/* Right side - Events */}
+                                <Grid item xs={12} md={4}>
+                                    <Typography fontWeight="bold" sx={{ mb: 1 }} align="left">
+                                        行事 (กิจกรรม)
+                                    </Typography>
+                                    {sampleData.events.map((event, index) => (
+                                        <Grid container spacing={0.5} sx={{ mt: index === 0 ? 0 : 1 }} key={index}>
+                                            <Grid item xs={3}>
+                                                <TextField
+                                                    fullWidth
+                                                    size="small"
+                                                    margin="dense"
+                                                    label="日"
+                                                    value={event.day}
+                                                    InputProps={{
+                                                        readOnly: true,
+                                                    }}
+                                                    sx={{
+                                                        '& .MuiInputBase-root': {
+                                                            height: 30,
+                                                            fontSize: '0.75rem',
+                                                        },
+                                                        '& .MuiInputLabel-root': {
+                                                            fontSize: '0.7rem',
+                                                            transform: 'translate(14px, 8px) scale(1)',
+                                                            '&.Mui-focused, &.MuiFormLabel-filled': {
+                                                                transform: 'translate(14px, -6px) scale(0.75)',
+                                                            }
+                                                        },
+                                                        '& .MuiInputBase-input': {
+                                                            padding: '4px 8px',
+                                                            fontSize: '0.75rem',
+                                                            textAlign: 'center',
+                                                            backgroundColor: '#f9f9f9'
+                                                        }
+                                                    }}
+                                                />
+                                            </Grid>
+                                            <Grid item xs={3}>
+                                                <TextField
+                                                    fullWidth
+                                                    size="small"
+                                                    margin="dense"
+                                                    label="曜"
+                                                    value={event.dayOfWeek}
+                                                    InputProps={{
+                                                        readOnly: true,
+                                                    }}
+                                                    sx={{
+                                                        '& .MuiInputBase-root': {
+                                                            height: 30,
+                                                            fontSize: '0.75rem',
+                                                        },
+                                                        '& .MuiInputLabel-root': {
+                                                            fontSize: '0.7rem',
+                                                            transform: 'translate(14px, 8px) scale(1)',
+                                                            '&.Mui-focused, &.MuiFormLabel-filled': {
+                                                                transform: 'translate(14px, -6px) scale(0.75)',
+                                                            }
+                                                        },
+                                                        '& .MuiInputBase-input': {
+                                                            padding: '4px 8px',
+                                                            fontSize: '0.75rem',
+                                                            textAlign: 'center',
+                                                            backgroundColor: '#f9f9f9'
+                                                        }
+                                                    }}
+                                                />
+                                            </Grid>
+                                            <Grid item xs={6}>
+                                                <TextField
+                                                    fullWidth
+                                                    size="small"
+                                                    margin="dense"
+                                                    label="行事名"
+                                                    value={event.eventName}
+                                                    InputProps={{
+                                                        readOnly: true,
+                                                    }}
+                                                    sx={{
+                                                        '& .MuiInputBase-root': {
+                                                            height: 30,
+                                                            fontSize: '0.75rem',
+                                                        },
+                                                        '& .MuiInputLabel-root': {
+                                                            fontSize: '0.7rem',
+                                                            transform: 'translate(14px, 8px) scale(1)',
+                                                            '&.Mui-focused, &.MuiFormLabel-filled': {
+                                                                transform: 'translate(14px, -6px) scale(0.75)',
+                                                            }
+                                                        },
+                                                        '& .MuiInputBase-input': {
+                                                            padding: '4px 8px',
+                                                            fontSize: '0.75rem',
+                                                            backgroundColor: '#f9f9f9'
+                                                        }
+                                                    }}
+                                                />
+                                            </Grid>
+                                        </Grid>
+                                    ))}
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Grid container spacing={1} justifyContent='start' alignItems='center' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: -3 } }}>
-                            <Grid item xs={1} sm={4} md={3} lg={1} className="text-end">
-                                <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
-                                    教育
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 ' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: -3 } }}>
-                            <Grid item xs={7.5} sm={7} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    関する視点 身体的発達に , 関する視点 社会的発達に , 関する視点 精神的発達に
-                                </Typography>
-                                <TextareaAutosize
-                                    id="perspectives_on_physical1"
-                                    name="perspectives_on_physical1"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.perspectives_on_physical1}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
+                        </AccordionDetails>
+                    </Accordion>
 
-
-                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-10 flex '  >
-                    <Card sx={{ bgcolor: "pink", width: { xs: 300, sm: 280, md: 100, lg: 380 }, height: 40 }}>
-                        <Typography component='div' className="pt-3 lg:pt-2" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', marginLeft: { xs: 4, sm: 4, md: 4, lg: 3, } }}>
-                            子どもとの関わり方(保育士等の育みたい内容)
-                        </Typography>
-                    </Card>
-                </Grid>
-
-                <Grid container spacing={2} className="pt-5">
-                    <Grid item xs={12} md={6} >
-                        <Grid container spacing={1} justifyContent='start' alignItems='center' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 5 } }}>
-                            <Grid item xs={1} sm={4} md={3} lg={1} className="text-end">
-                                <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
-                                    義護
+                    {/* Child Development Records Section */}
+                    <Accordion expanded={expandedSections.development} onChange={() => toggleSection('development')} 
+                               sx={{ mt: 3, border: '2px solid #9c27b0' }}>
+                        <AccordionSummary expandIcon={<ExpandMore />}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                <Person color="secondary" />
+                                <Typography variant="h6" fontWeight="600">
+                                    子どもの発達記録 (บันทึกพัฒนาการเด็ก - 0歳)
                                 </Typography>
-                            </Grid>
-                        </Grid>
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 7 } }}>
-                            <Grid item xs={7.5} sm={3} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    生命の保持・情緒の安定
-                                </Typography>
-                                <TextareaAutosize
-                                    id="emotional_stability2"
-                                    name="emotional_stability2"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.emotional_stability2}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Grid container spacing={1} justifyContent='start' alignItems='center' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: -3 } }}>
-                            <Grid item xs={1} sm={4} md={3} lg={1} className="text-end">
-                                <Typography component="div" fontWeight="bold" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16 } }}>
-                                    教育
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 ' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: -3 } }}>
-                            <Grid item xs={7.5} sm={7} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    関する視点 身体的発達に , 関する視点 社会的発達に , 関する視点 精神的発達に
-                                </Typography>
-                                <TextareaAutosize
-                                    id="perspectives_on_physical2"
-                                    name="perspectives_on_physical2"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.perspectives_on_physical2}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-10 flex '  >
-                    <Card sx={{ bgcolor: "pink", width: { xs: 300, sm: 280, md: 100, lg: 380 }, height: 40 }}>
-                        <Typography component='div' className="pt-3 lg:pt-2" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', marginLeft: { xs: 4, sm: 4, md: 4, lg: 3, } }}>
-                            環境づくり予される子どもの活動配慮・援助
-                        </Typography>
-                    </Card>
-                </Grid>
-
-                <Grid container spacing={2} className="pt-2">
-                    <Grid item xs={12} md={6} >
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 7 } }}>
-                            <Grid item xs={7.5} sm={3} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    健康 · 安全
-                                </Typography>
-                                <TextareaAutosize
-                                    id="health_safety1"
-                                    name="health_safety1"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.health_safety1}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 ' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: -3 } }}>
-                            <Grid item xs={7.5} sm={7} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    との連携家庭・地域
-                                </Typography>
-                                <TextareaAutosize
-                                    id="cooperation"
-                                    name="cooperation"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.cooperation}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-                <Grid container spacing={2} className="pt-2">
-                    <Grid item xs={12} md={6} >
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 7 } }}>
-                            <Grid item xs={7.5} sm={3} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    行事
-                                </Typography>
-                                <TextareaAutosize
-                                    id="event1"
-                                    name="event1"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.event1}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 ' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: -3 } }}>
-                            <Grid item xs={7.5} sm={7} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    個別対応運
-                                </Typography>
-                                <TextareaAutosize
-                                    id="individual_response"
-                                    name="individual_response"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.individual_response}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-                <Grid container spacing={2} className="pt-2">
-                    <Grid item xs={12} md={6} >
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 7 } }}>
-                            <Grid item xs={7.5} sm={3} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    評価・反省
-                                </Typography>
-                                <TextareaAutosize
-                                    id="evaluation_and_reflection1"
-                                    name="evaluation_and_reflection1"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.evaluation_and_reflection1}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-                <Grid className="mt-5 lg:mt-7">
-                    <Typography
-                        component="div"
-                        sx={{ color: 'black', fontSize: { xs: 10, sm: 10, md: 11, lg: 16 }, backgroundColor: '#CCF0FD', fontWeight: 'bold', pt: { xs: 1.5, sm: 1.5, md: 1.5, lg: 1 } }}
-                        className='flex justify-start h-12 lg:h-10 pt-2 pl-5 pr-5' >
-                        身休的発達に関する視点、社会的発達に関する視点、精神的発達に関する視点、指導計画は食育の内容を含むこと
-                    </Typography>
-                </Grid>
-
-
-                <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-10 pl-10 flex '  >
-                    <Card sx={{ bgcolor: "pink", width: { xs: 100, sm: 280, md: 100, lg: 100 }, height: 40 }}>
-                        <Typography component='div' className="pt-3 lg:pt-2" sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 16, }, fontWeight: 'bold', marginLeft: { xs: 4, sm: 4, md: 4, lg: 3, } }}>
-                            ねらい
-                        </Typography>
-                    </Card>
-                </Grid>
-
-                <Grid container spacing={2} className="pt-2">
-                    <Grid item xs={12} md={6} >
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 7 } }}>
-                            <Grid item xs={7.5} sm={3} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    養護
-                                </Typography>
-                                <TextareaAutosize
-                                    id="nursingcare"
-                                    name="nursingcare"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.nursingcare}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 ' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: -3 } }}>
-                            <Grid item xs={7.5} sm={7} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    教育
-                                </Typography>
-                                <TextareaAutosize
-                                    id="education"
-                                    name="education"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.education}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-                <Grid container spacing={2} className="pt-2">
-                    <Grid item xs={12} md={6} >
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 7 } }}>
-                            <Grid item xs={7.5} sm={3} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    家庭・地域との連携
-                                </Typography>
-                                <TextareaAutosize
-                                    id="cooperation2"
-                                    name="cooperation2"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.cooperation2}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 ' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: -3 } }}>
-                            <Grid item xs={7.5} sm={7} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    行事
-                                </Typography>
-                                <TextareaAutosize
-                                    id="event2"
-                                    name="event2"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.event2}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-                <Grid container className="pt-4" justifyContent="start">
-                    <Grid item xs={12} sm={12} md={8.5} lg={11}>
-                        <TableContainer
-                            component={Paper}
-                            sx={{ border: '1px solid #ccc', position: 'relative', margin: { xs: '0 8px', sm: '0 16px', md: '0 24px' } }}
-                        >
-                            <Table sx={{ minWidth: { xs: '250%', sm: '170%', md: 200 } }} size="small" aria-label="a dense table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell sx={{ border: '1px solid #ccc', width: '13%' }}>施設長</TableCell>
-                                        <TableCell sx={{ border: '1px solid #ccc', width: '13%' }} align="right">主任</TableCell>
-                                        <TableCell sx={{ border: '1px solid #ccc', width: '30%' }} align="right">子どもの生活する姿</TableCell>
-                                        <TableCell sx={{ border: '1px solid #ccc', width: '30%' }} align="right">養護・教育</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {rows.length === 0 ? (
-                                        <TableRow>
-                                            <TableCell colSpan={5} align="center">
-                                                No data
-                                            </TableCell>
+                                <Tooltip title="เด็กแต่ละคนและข้อมูลการพัฒนา">
+                                    <Info color="info" />
+                                </Tooltip>
+                            </Box>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <TableContainer component={Paper} sx={{ mt: 2, borderRadius: '12px', border: '1px solid #e0e0e0' }}>
+                                <Table size="small">
+                                    <TableHead>
+                                        <TableRow sx={{ backgroundColor: '#f3e5f5' }}>
+                                            <TableCell sx={{ fontWeight: 'bold', minWidth: 120 }}>名前</TableCell>
+                                            <TableCell sx={{ fontWeight: 'bold', minWidth: 80 }}>月齢</TableCell>
+                                            <TableCell sx={{ fontWeight: 'bold', minWidth: 250 }}>子どもの生活する姿</TableCell>
+                                            <TableCell sx={{ fontWeight: 'bold', minWidth: 250 }}>子どもとの関わり方</TableCell>
                                         </TableRow>
-                                    ) : (
-                                        rows.map((row, index) => (
-                                            <TableRow
-                                                key={index}
-                                                sx={{
-                                                    '&:last-child td, &:last-child th': { border: '1px solid #ccc' },
-                                                    border: '1px solid #ccc',
-                                                }}
-                                            >
-                                                <TableCell component="th" scope="row" sx={{ border: '1px solid #ccc' }}>
-                                                    {row.FacilityDirector}
+                                    </TableHead>
+                                    <TableBody>
+                                        {childrenData.map((child) => (
+                                            <TableRow key={child.id} hover>
+                                                <TableCell sx={{ fontWeight: 'bold', color: '#1976d2' }}>
+                                                    {child.name}
                                                 </TableCell>
-                                                <TableCell align="right" sx={{ border: '1px solid #ccc' }}>
-                                                    {row.Chief}
+                                                <TableCell sx={{ fontWeight: 'bold', textAlign: 'center' }}>
+                                                    {child.age}
                                                 </TableCell>
-                                                <TableCell align="right" sx={{ border: '1px solid #ccc' }}>
-                                                    {row.daily}
+                                                <TableCell sx={{ maxWidth: 250, wordBreak: 'break-word', fontSize: '13px' }}>
+                                                    {child.lifestyle}
                                                 </TableCell>
-                                                <TableCell align="right" sx={{ border: '1px solid #ccc' }}>
-                                                    {row.education}
+                                                <TableCell sx={{ maxWidth: 250, wordBreak: 'break-word', fontSize: '13px' }}>
+                                                    {child.interaction}
                                                 </TableCell>
                                             </TableRow>
-                                        ))
-                                    )}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Grid>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </AccordionDetails>
+                    </Accordion>
+
+                    {/* Additional Information Section */}
+                    <Accordion expanded={expandedSections.additional} onChange={() => toggleSection('additional')} 
+                               sx={{ mt: 3, border: '2px solid #4caf50' }}>
+                        <AccordionSummary expandIcon={<ExpandMore />}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                <CheckCircle color="success" />
+                                <Typography variant="h6" fontWeight="600">
+                                    รายละเอียดเพิ่มเติม (0歳)
+                                </Typography>
+                                <Tooltip title="ข้อมูลเพิ่มเติมสำหรับการวางแผน">
+                                    <Info color="info" />
+                                </Tooltip>
+                            </Box>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Grid container spacing={2} sx={{ mt: 2 }}>
+                                <Grid item xs={12} md={6}>
+                                    <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                                        環　境　づ　く　り (การจัดสภาพแวดล้อม)
+                                    </Typography>
+                                    <TextField
+                                        fullWidth
+                                        multiline
+                                        rows={8}
+                                        label="環境づくり"
+                                        value={sampleData.environment}
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                        sx={{
+                                            '& .MuiInputBase-input': {
+                                                backgroundColor: '#f9f9f9'
+                                            }
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                                        生　活　と　遊　び (การใช้ชีวิตและการเล่น)
+                                    </Typography>
+                                    <TextField
+                                        fullWidth
+                                        multiline
+                                        rows={8}
+                                        label="生活と遊び"
+                                        value={sampleData.lifeAndPlay}
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                        sx={{
+                                            '& .MuiInputBase-input': {
+                                                backgroundColor: '#f9f9f9'
+                                            }
+                                        }}
+                                    />
+                                </Grid>
+                            </Grid>
+
+                            <Grid container spacing={2} sx={{ mt: 2 }}>
+                                <Grid item xs={12} md={4}>
+                                    <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                                        健康・安全 (การดูแลสุขภาพและความปลอดภัย)
+                                    </Typography>
+                                    <TextField
+                                        fullWidth
+                                        multiline
+                                        rows={6}
+                                        label="健康・安全"
+                                        value={sampleData.healthSafety}
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                        sx={{
+                                            '& .MuiInputBase-input': {
+                                                backgroundColor: '#f9f9f9'
+                                            }
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                                        組　運　営 (การจัดการองค์กร)
+                                    </Typography>
+                                    <TextField
+                                        fullWidth
+                                        multiline
+                                        rows={6}
+                                        label="組運営"
+                                        value={sampleData.management}
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                        sx={{
+                                            '& .MuiInputBase-input': {
+                                                backgroundColor: '#f9f9f9'
+                                            }
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                    <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                                        評価・反省 (การประเมินและการสะท้อน)
+                                    </Typography>
+                                    <TextField
+                                        fullWidth
+                                        multiline
+                                        rows={6}
+                                        label="評価・反省"
+                                        value={sampleData.evaluation}
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                        sx={{
+                                            '& .MuiInputBase-input': {
+                                                backgroundColor: '#f9f9f9'
+                                            }
+                                        }}
+                                    />
+                                </Grid>
+                            </Grid>
+                        </AccordionDetails>
+                    </Accordion>
                 </Grid>
 
-                <Grid container spacing={2} className="pt-7">
-                    <Grid item xs={12} md={6} >
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 7 } }}>
-                            <Grid item xs={7.5} sm={3} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    環境づくり
-                                </Typography>
-                                <TextareaAutosize
-                                    id="environment"
-                                    name="environment"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.environment}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 ' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: -3 } }}>
-                            <Grid item xs={7.5} sm={7} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    生活と遊び
-                                </Typography>
-                                <TextareaAutosize
-                                    id="life_and_play"
-                                    name="life_and_play"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.life_and_play}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-                <Grid container spacing={2} className="pt-7">
-                    <Grid item xs={12} md={6} >
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 7 } }}>
-                            <Grid item xs={7.5} sm={3} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    健康 · 安全
-                                </Typography>
-                                <TextareaAutosize
-                                    id="health_safety2"
-                                    name="health_safety2"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.health_safety2}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2 ' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: -3 } }}>
-                            <Grid item xs={7.5} sm={7} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    相運館
-                                </Typography>
-                                <TextareaAutosize
-                                    id="sounkan"
-                                    name="sounkan"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.sounkan}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-                <Grid container spacing={2} className="pt-2">
-                    <Grid item xs={12} md={6} >
-                        <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }} className='pt-2' sx={{ marginLeft: { xs: "20px", sm: "20px", md: "50px", lg: 7 } }}>
-                            <Grid item xs={7.5} sm={3} md={8.5} lg={12}>
-                                <Typography gutterBottom sx={{ fontSize: { xs: 11, sm: 11, md: 11, lg: 14 } }}>
-                                    評価 · 反省
-                                </Typography>
-                                <TextareaAutosize
-                                    id="evaluation_and_reflection2"
-                                    name="evaluation_and_reflection2"
-                                    minRows={3}
-                                    maxRows={100}
-                                    readOnly
-                                    value={item.evaluation_and_reflection2}
-                                    className="w-56 sm:w-60 lg:w-96"
-                                    style={{ border: '1px solid gray', borderRadius: '4px', backgroundColor: '#F5F5F5' }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Grid>
-
-            <div className="mt-auto">
-                <Grid container justifyContent="center" spacing={2} className='pt-12' sx={{ bottom: 0, width: '100%', backgroundColor: 'inherit', paddingBottom: '10px' }}>
-                    <Grid item>
-                        <Button variant="contained" href="/report/monthlyplan" size='medium' className='text-center' startIcon={<ArrowBackIcon />} color="warning">
-                            <Typography component="div" style={{ color: 'white', alignItems: 'center' }}>
-                                戻る
-                            </Typography>
-                        </Button>
-                    </Grid>
-                </Grid>
-            </div>
-        </ContentMain>
+                {/* Back Button */}
+                <Box sx={{ display: 'flex', gap: 2, justifyContent: 'space-between', mt: 4, mb: 2 }}>
+                    <Button variant="outlined" href="/report/monthlyplan" startIcon={<ArrowBack />} size="large">
+                        戻る
+                    </Button>
+                </Box>
+            </ContentMain>
+        </ThemeProvider>
     );
-
 };
 
 export default ViewMonthlyZero;

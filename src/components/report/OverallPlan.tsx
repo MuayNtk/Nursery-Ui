@@ -14,7 +14,7 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
-
+import { useTranslation } from "react-i18next";
 
 interface Column {
   id: 'pid' | 'year' | 'age' | 'name' | 'detail';
@@ -24,23 +24,8 @@ interface Column {
   format?: (value: number) => string;
 }
 
-const columns: readonly Column[] = [
-  { id: 'year', label: '全', minWidth: 50, align: 'center', },
-  { id: 'age', label: '歳', minWidth: 70, align: 'center', },
-  { id: 'name', label: ' ', minWidth: 100, align: 'left', },
-  { id: 'detail', label: '', minWidth: 50, align: 'right', },
-];
-
-interface Data {
-  pid: string;
-  year: string;
-  age: string;
-  name: string;
-  detail: JSX.Element;
-}
-
-
 const Overallplan: React.FC = () => {
+  const { t } = useTranslation();
   const [data, setData] = useState<Data[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredRows, setFilteredRows] = useState<Data[]>([]);
@@ -48,7 +33,21 @@ const Overallplan: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const navigate = useNavigate();
 
-  // Add sample data to sessionStorage if it doesn't already exist
+  const columns: readonly Column[] = [
+    { id: 'year', label: t("overallplan.col_year"), minWidth: 50, align: 'center' },
+    { id: 'age', label: t("overallplan.col_age"), minWidth: 70, align: 'center' },
+    { id: 'name', label: t("overallplan.col_name"), minWidth: 100, align: 'left' },
+    { id: 'detail', label: t("overallplan.col_action"), minWidth: 50, align: 'right' },
+  ];
+
+  interface Data {
+    pid: string;
+    year: string;
+    age: string;
+    name: string;
+    detail: JSX.Element;
+  }
+
   useEffect(() => {
     const initializeSampleData = () => {
       const existingData = JSON.parse(sessionStorage.getItem('overallplanData') || '[]');
@@ -68,7 +67,6 @@ const Overallplan: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch data from sessionStorage
     const fetchData = () => {
       const storedData = JSON.parse(sessionStorage.getItem('overallplanData') || '[]');
       const transformedData = storedData.map((item: any) => ({
@@ -76,19 +74,6 @@ const Overallplan: React.FC = () => {
         year: item.year,
         age: item.age,
         name: item.name,
-        goalsOfChildcare: item.goalsOfChildcare,
-        familiesAndCommunities: item.familiesAndCommunities,
-        maintenance: item.maintenance,
-        educate: item.educate,
-        healthy: item.healthy,
-        relationships: item.relationships,
-        healthy2: item.healthy2,
-        relationships2: item.relationships2,
-        healthy3: item.healthy3,
-        relationships3: item.relationships3,
-        safetyandhealth: item.safetyandhealth,
-        childcaresupport: item.childcaresupport,
-        hayakawaelementaryschool: item.hayakawaelementaryschool,
         detail: (
           <>
             <IconButton
@@ -111,7 +96,6 @@ const Overallplan: React.FC = () => {
               onClick={() => {
                 const confirmDelete = window.confirm('Are you sure you want to delete this item?');
                 if (confirmDelete) {
-                  // Handle delete action
                   setData(prevData => prevData.filter(data => data.pid !== item.pid));
                   const updatedData = storedData.filter((data: any) => data.pid !== item.pid);
                   sessionStorage.setItem('overallplanData', JSON.stringify(updatedData));
@@ -129,7 +113,6 @@ const Overallplan: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Filtering rows based on search term
     if (searchTerm === '') {
       setFilteredRows(data);
     } else {
@@ -149,30 +132,31 @@ const Overallplan: React.FC = () => {
   };
 
   return (
-
     <>
       <ContentMain>
         <Grid container spacing={2} className='pt-7' justifyContent="center">
           <Grid item xs={3} sm={4} md={2} lg={2}>
-            <TextField id="outlined-search" label="歳" type="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} sx={{ bgcolor: 'white' }} size="small" />
+            <TextField id="outlined-search" label={t("overallplan.search_age")} type="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} sx={{ bgcolor: 'white' }} size="small" />
           </Grid>
           <Grid item xs={6} sm={4} md={3} lg={2}>
-            <Button variant="contained" href="#contained-buttons" sx={{ marginLeft: { xs: 6, sm: 1, md: 1, lg: 1, } }}>
+            <Button variant="contained" sx={{ marginLeft: { xs: 6, sm: 1 } }}>
               <Typography component="div" style={{ color: 'white' }}>
-                検索する
+                {t("overallplan.search_button")}
               </Typography>
             </Button>
           </Grid>
         </Grid>
+
         <Grid container className='pt-7' justifyContent="right">
           <Grid>
             <Button variant="contained" href="/report/overallplan/add" size='small' startIcon={<AddIcon />}>
               <Typography style={{ color: 'white' }}>
-                ADD
+                {t("overallplan.add_button")}
               </Typography>
             </Button>
           </Grid>
         </Grid>
+
         <Grid container spacing={2} className='pt-10' justifyContent="center">
           <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
             <TableContainer sx={{ maxHeight: 440 }}>
@@ -213,7 +197,6 @@ const Overallplan: React.FC = () => {
                         </TableRow>
                       );
                     })}
-
                 </TableBody>
               </Table>
             </TableContainer>
@@ -231,6 +214,6 @@ const Overallplan: React.FC = () => {
       </ContentMain>
     </>
   );
-
 };
+
 export default Overallplan;
