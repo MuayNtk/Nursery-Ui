@@ -218,14 +218,19 @@ export default function ContentMain({ children, className }: ContentMainProps) {
   return (
     <>
      
-      <Box sx={{ flexGrow: 1 }}>
-        <div className='flex-1  md:ml-64 mt-5 mb-5' >
-          <CustomizedBreadcrumbs breadcrumbs={breadcrumbs} />
-        </div>
-        <main className={`flex-1 overflow-y-auto p-4 bg-slate-50 md:ml-64 mt-2 md:mr-4 mb-2 min-h-screen ${className}`}>
-        {children}
-      </main>
-    </Box>
+     <Box sx={{ flexGrow: 1 }}>
+  {/* เว้นซ้ายตามความกว้าง sidebar (เฉพาะจอ >= sm) */}
+  <div className="transition-all duration-200 sm:pl-[var(--sidebar-w)]">
+    <div className="mt-5 mb-5">
+      <CustomizedBreadcrumbs breadcrumbs={breadcrumbs} />
+    </div>
+
+    <main className={`w-full overflow-y-auto p-4 bg-slate-50 mt-2 mb-2 min-h-screen ${className || ''}`}>
+      {children}
+    </main>
+  </div>
+</Box>
+
     
     </>
     
