@@ -197,5 +197,54 @@
     "tabs_submit_step": "{{tabName}} を送信",
 
     "months_suffix": "月"
+  },
+   "sidebar": {
+    "brand": "Nursery",
+    "home": "ホーム",
+
+    "group_teacher": "保育士",
+    "teacher_tasks": "業務",
+    "teacher_leave": "休暇届",
+    "teacher_shift": "シフト管理",
+
+    "group_students": "学生管理",
+    "students_children": "園児管理",
+    "students_class": "クラス管理",
+
+    "group_accounting": "経理管理",
+    "accounting_main": "経理",
+    "accounting_staff_list": "職員リスト",
+
+    "report": "レポート管理",
+
+    "group_master": "マスタ管理",
+    "master_overall_plan": "年間保育計画（概要）",
+    "master_policy": "保育方針",
+    "master_pillars": "教育・保育の柱",
+    "master_initiatives": "具体的な取り組み",
+    "master_annual_events": "年間行事計画",
+    "master_age_groups": "年齢区分",
+    "master_domains": "領域（養護/教育）",
+    "master_domain_guide": "領域内容の解説",
+    "master_domain_targets": "ねらい（領域別）",
+    "master_domain_extra": "領域補足情報",
+    "master_care_goals": "保育のねらい（年齢×領域）",
+
+    "group_settings": "設定",
+    "settings_basic_info": "基本情報",
+    "settings_executives": "役員情報",
+    "settings_basicdevplan": "Basicdevplan",
+
+    "role_admin": "admin",
+    "role_teacher": "teacher",
+    "role_acc": "acc",
+
+    "search_age": "年齢",
+    "search_button": "検索",
+    "add_button": "追加",
+    "col_year": "年度",
+    "col_age": "年齢",
+    "col_name": "年間保育計画（概要）",
+    "col_action": "操作"
   }
 }
