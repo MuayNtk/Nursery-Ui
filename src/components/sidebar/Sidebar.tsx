@@ -498,7 +498,7 @@ export default function Sidebar(props: Props) {
 
             <Collapse in={openMaster} unmountOnExit>
               {/* === 管理グループ === */}
-              {/* <Link to={"/master/overallplanmain"}>
+               {/* <Link to={"/master/overallplanmain"}>
                 <ListItem
                   disablePadding
                   className={activeClass("/master/overallplanmain")}
@@ -515,7 +515,7 @@ export default function Sidebar(props: Props) {
                     </Typography>
                   </ListItemButton>
                 </ListItem>
-              </Link>
+              </Link> */}
 
               <Link to={"/master/childcarepolicy"}>
                 <ListItem
@@ -533,7 +533,7 @@ export default function Sidebar(props: Props) {
                 </ListItem>
               </Link>
 
-              <Link to={"/master/educationandchildcare"}>
+              {/* <Link to={"/master/educationandchildcare"}>
                 <ListItem
                   disablePadding
                   className={activeClass("/master/educationandchildcare")}
@@ -585,7 +585,7 @@ export default function Sidebar(props: Props) {
                     </Typography>
                   </ListItemButton>
                 </ListItem>
-              </Link>
+              </Link> */}
 
               <Link to={"/master/agegroups"}>
                 <ListItem
@@ -699,7 +699,7 @@ export default function Sidebar(props: Props) {
               </Link>
 
               {/* --- 区切り線: 設定系 --- */}
-              {/* <Divider className="bg-white/30 my-2" />  */}
+               <Divider className="bg-white/30 my-2" /> 
 
               {/* === 設定グループ === */}
               <Link to={"/setting/info"}>
