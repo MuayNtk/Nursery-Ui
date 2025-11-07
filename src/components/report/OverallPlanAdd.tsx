@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -26,7 +26,7 @@ import {
   Chip,
   ListItemText,
   IconButton,
-} from '@mui/material';
+} from "@mui/material";
 import {
   Save,
   Description,
@@ -37,10 +37,11 @@ import {
   EmojiEmotions,
   School,
   Close,
-} from '@mui/icons-material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+} from "@mui/icons-material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ContentMain from "../content/Content";
 import { SelectChangeEvent } from "@mui/material/Select";
+import { useTranslation } from "react-i18next";
 
 // ============================================================================
 // THEME CONFIGURATION
@@ -48,29 +49,29 @@ import { SelectChangeEvent } from "@mui/material/Select";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2',
-      light: '#42a5f5',
-      dark: '#1565c0',
+      main: "#1976d2",
+      light: "#42a5f5",
+      dark: "#1565c0",
     },
     secondary: {
-      main: '#9c27b0',
-      light: '#ba68c8',
-      dark: '#7b1fa2',
+      main: "#9c27b0",
+      light: "#ba68c8",
+      dark: "#7b1fa2",
     },
   },
   components: {
     MuiPaper: {
       styleOverrides: {
         root: {
-          borderRadius: '16px',
+          borderRadius: "16px",
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '20px',
-          textTransform: 'none',
+          borderRadius: "20px",
+          textTransform: "none",
           fontWeight: 600,
         },
       },
@@ -136,80 +137,322 @@ const ABILITY_MASTER = [
   "思考力の芽生え",
   "自然との関わり生命尊重",
   "数量・図形・文字 等への関心・感覚",
-  "豊かな感性と表現"
+  "豊かな感性と表現",
 ];
 
-const AGE_GROUPS = ['0歳児', '1歳児', '2歳児', '3歳児', '4歳児', '5歳児'];
+const AGE_GROUPS = ["0歳児", "1歳児", "2歳児", "3歳児", "4歳児", "5歳児"];
 
 const INITIAL_ROWS: RowData[] = [
-  { id: 1, month: '4月', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
-  { id: 2, month: '5月', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
-  { id: 3, month: '6月', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
-  { id: 4, month: '7月', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
-  { id: 5, month: '8月', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
-  { id: 6, month: '9月', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
-  { id: 7, month: '10月', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
-  { id: 8, month: '11月', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
-  { id: 9, month: '12月', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
-  { id: 10, month: '1月', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
-  { id: 11, month: '2月', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
-  { id: 12, month: '3月', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
-  { id: 13, month: 'その他', gardenEvent: '', seasonalEvent: '', foodEducation: '', health: '', neuvola: '', staffTraining: '' },
+  {
+    id: 1,
+    month: "4月",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
+  {
+    id: 2,
+    month: "5月",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
+  {
+    id: 3,
+    month: "6月",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
+  {
+    id: 4,
+    month: "7月",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
+  {
+    id: 5,
+    month: "8月",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
+  {
+    id: 6,
+    month: "9月",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
+  {
+    id: 7,
+    month: "10月",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
+  {
+    id: 8,
+    month: "11月",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
+  {
+    id: 9,
+    month: "12月",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
+  {
+    id: 10,
+    month: "1月",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
+  {
+    id: 11,
+    month: "2月",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
+  {
+    id: 12,
+    month: "3月",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
+  {
+    id: 13,
+    month: "その他",
+    gardenEvent: "",
+    seasonalEvent: "",
+    foodEducation: "",
+    health: "",
+    neuvola: "",
+    staffTraining: "",
+  },
 ];
 
 // ============================================================================
 // INITIAL FORM DATA
 // ============================================================================
 const INITIAL_FORM_DATA: FormData = {
-  year: '',
-  situation: '',
-  methods: ['', '', '', '', '', ''],
-  goalSupport: '',
-  providedSupport: '',
+  year: "",
+  situation: "",
+  methods: ["", "", "", "", "", ""],
+  goalSupport: "",
+  providedSupport: "",
   lifeGoals: [
-    { checked: false, text: 'เด็กทุกคนจะได้รับการใช้ชีวิตอย่างสะดวกสบาย / 一人一人の子どもが、快適に生活できるようにする' },
-    { checked: false, text: 'เด็กทุกคนจะได้รับการดูแลอย่างมีสุขภาพและความปลอดภัย / 一人一人の子どもが、健康で安全に過ごせるようにする' },
-    { checked: false, text: 'เด็กทุกคนจะได้รับการพัฒนาทักษะชีวิตพื้นฐานและความเป็นอิสระ / 一人一人の子どもの生理的欲求が、十分に満たされるようにする' },
-    { checked: false, text: 'เด็กทุกคนจะได้รับการดูแลสุขภาพที่เหมาะสมและป้องกันโรคภัย / 一人一人の子どもの健康増進が、積極的に図られるようにする' }
+    {
+      checked: false,
+      text: "เด็กทุกคนจะได้รับการใช้ชีวิตอย่างสะดวกสบาย / 一人一人の子どもが、快適に生活できるようにする",
+    },
+    {
+      checked: false,
+      text: "เด็กทุกคนจะได้รับการดูแลอย่างมีสุขภาพและความปลอดภัย / 一人一人の子どもが、健康で安全に過ごせるようにする",
+    },
+    {
+      checked: false,
+      text: "เด็กทุกคนจะได้รับการพัฒนาทักษะชีวิตพื้นฐานและความเป็นอิสระ / 一人一人の子どもの生理的欲求が、十分に満たされるようにする",
+    },
+    {
+      checked: false,
+      text: "เด็กทุกคนจะได้รับการดูแลสุขภาพที่เหมาะสมและป้องกันโรคภัย / 一人一人の子どもの健康増進が、積極的に図られるようにする",
+    },
   ],
   socialGoals: [
-    { checked: false, text: 'เด็กทุกคนจะได้รับความรักและความอบอุ่น / 一人一人の子どもが、安心感を持って過ごせるようにする' },
-    { checked: false, text: 'เด็กทุกคนจะพัฒนาความมั่นใจและความภาคภูมิใจในตนเอง / 一人一人の子どもが、自分の気持ちを安心して表すことができるようにする' },
-    { checked: false, text: 'เด็กทุกคนจะได้รับการส่งเสริมให้มีส่วนร่วมและสนุกกับกิจกรรม / 一人一人の子どもが、周囲から主体として受け止められ、主体として育ち、自分を肯定する気持ちが育まれていくようにする' },
-    { checked: false, text: 'เด็กทุกคนจะพัฒนาจิตใจที่แข็งแรงและมั่นคง / 一人一人の子どもの心の動きが受容されるようにする' }
+    {
+      checked: false,
+      text: "เด็กทุกคนจะได้รับความรักและความอบอุ่น / 一人一人の子どもが、安心感を持って過ごせるようにする",
+    },
+    {
+      checked: false,
+      text: "เด็กทุกคนจะพัฒนาความมั่นใจและความภาคภูมิใจในตนเอง / 一人一人の子どもが、自分の気持ちを安心して表すことができるようにする",
+    },
+    {
+      checked: false,
+      text: "เด็กทุกคนจะได้รับการส่งเสริมให้มีส่วนร่วมและสนุกกับกิจกรรม / 一人一人の子どもが、周囲から主体として受け止められ、主体として育ち、自分を肯定する気持ちが育まれていくようにする",
+    },
+    {
+      checked: false,
+      text: "เด็กทุกคนจะพัฒนาจิตใจที่แข็งแรงและมั่นคง / 一人一人の子どもの心の動きが受容されるようにする",
+    },
   ],
   healthGoals: [
-    { checked: false, text: 'เด็กจะมีชีวิตที่สดใสและร่าเริง พร้อมเคลื่อนไหวร่างกายด้วยความสนุกสนาน / 明るく伸び伸びと生活し、自分から体を動かすことを楽しむ' },
-    { checked: false, text: 'เด็กจะใช้ร่างกายเต็มที่และพยายามทำท่าทางต่างๆ / 自分の体を十分に動かし、様々な動きをしようとする' },
-    { checked: false, text: 'เด็กจะตระหนักถึงนิสัยที่จำเป็นสำหรับชีวิตที่มีสุขภาพและปลอดภัย / 健康、安全な生活に必要な習慣に気付き、自分でしてみようとする気持ちが育つ' }
+    {
+      checked: false,
+      text: "เด็กจะมีชีวิตที่สดใสและร่าเริง พร้อมเคลื่อนไหวร่างกายด้วยความสนุกสนาน / 明るく伸び伸びと生活し、自分から体を動かすことを楽しむ",
+    },
+    {
+      checked: false,
+      text: "เด็กจะใช้ร่างกายเต็มที่และพยายามทำท่าทางต่างๆ / 自分の体を十分に動かし、様々な動きをしようとする",
+    },
+    {
+      checked: false,
+      text: "เด็กจะตระหนักถึงนิสัยที่จำเป็นสำหรับชีวิตที่มีสุขภาพและปลอดภัย / 健康、安全な生活に必要な習慣に気付き、自分でしてみようとする気持ちが育つ",
+    },
   ],
   relationshipGoals: [
-    { checked: false, text: 'เด็กจะสนุกกับชีวิตในศูนย์และรู้สึกอบอุ่นเมื่ออยู่กับคนใกล้ชิด / 保育園での生活を楽しみ、身近な人と関わる心地よさを感じる' },
-    { checked: false, text: 'เด็กจะมีความสนใจในเด็กคนอื่นและพยายามสร้างความสัมพันธ์ / 周囲の子ども等への興味や関心が高まり、関わりをもとうとする' },
-    { checked: false, text: 'เด็กจะคุ้นเคยกับวิธีการใช้ชีวิตในศูนย์และตระหนักถึงความสำคัญของกฎเกณฑ์ / 保育園の生活の仕方に慣れ、きまりの大切さに気付く' }
+    {
+      checked: false,
+      text: "เด็กจะสนุกกับชีวิตในศูนย์และรู้สึกอบอุ่นเมื่ออยู่กับคนใกล้ชิด / 保育園での生活を楽しみ、身近な人と関わる心地よさを感じる",
+    },
+    {
+      checked: false,
+      text: "เด็กจะมีความสนใจในเด็กคนอื่นและพยายามสร้างความสัมพันธ์ / 周囲の子ども等への興味や関心が高まり、関わりをもとうとする",
+    },
+    {
+      checked: false,
+      text: "เด็กจะคุ้นเคยกับวิธีการใช้ชีวิตในศูนย์และตระหนักถึงความสำคัญของกฎเกณฑ์ / 保育園の生活の仕方に慣れ、きまりの大切さに気付く",
+    },
   ],
   languageGoals: [
-    { checked: false, text: 'รู้สึกถึงความสนุกสนานในการเล่นกับคำและการแสดงออกด้วยภาษา / 言葉遊びや言葉で表現する楽しさを感じる。' },
-    { checked: false, text: 'ฟังคำพูดและการสนทนาของผู้อื่น และพยายามสื่อสารสิ่งที่ตนเองคิด / 人の言葉や話などを聞き、自分でも思ったことを伝えようとする。' },
-    { checked: false, text: 'คุ้นเคยกับหนังสือภาพและนิทานต่างๆ พร้อมทั้งสื่อสารความรู้สึกกับคนใกล้ชิดผ่านการพูดคุยโต้ตอบกัน / 絵本や物語等に親しむとともに、言葉のやり取りを通じて身近な人と気持ちを通わせる。' }
+    {
+      checked: false,
+      text: "รู้สึกถึงความสนุกสนานในการเล่นกับคำและการแสดงออกด้วยภาษา / 言葉遊びや言葉で表現する楽しさを感じる。",
+    },
+    {
+      checked: false,
+      text: "ฟังคำพูดและการสนทนาของผู้อื่น และพยายามสื่อสารสิ่งที่ตนเองคิด / 人の言葉や話などを聞き、自分でも思ったことを伝えようとする。",
+    },
+    {
+      checked: false,
+      text: "คุ้นเคยกับหนังสือภาพและนิทานต่างๆ พร้อมทั้งสื่อสารความรู้สึกกับคนใกล้ชิดผ่านการพูดคุยโต้ตอบกัน / 絵本や物語等に親しむとともに、言葉のやり取りを通じて身近な人と気持ちを通わせる。",
+    },
   ],
   developmentGoals: [
-    { checked: false, text: 'เด็กจะมีความผูกพันและสัมผัสกับสิ่งแวดล้อมใกล้ตัว และสนใจในสิ่งต่างๆ / 身近な環境に親しみ、触れ合う中で様々なものに興味や関心を持つ' },
-    { checked: false, text: 'เด็กจะสนุกกับการค้นพบและพยายามคิดผ่านการมีส่วนร่วมกับสิ่งต่างๆ / 様々なものに関わる中で、発見を楽しんだり、考えたりしようとする' },
-    { checked: false, text: 'เด็กจะพัฒนาการรับรู้ที่หลากหลายผ่านประสบการณ์การมอง ฟัง และสัมผัส / 見る、聞く、触るなどの経験を通して、感覚の働きを豊かにする' }
+    {
+      checked: false,
+      text: "เด็กจะมีความผูกพันและสัมผัสกับสิ่งแวดล้อมใกล้ตัว และสนใจในสิ่งต่างๆ / 身近な環境に親しみ、触れ合う中で様々なものに興味や関心を持つ",
+    },
+    {
+      checked: false,
+      text: "เด็กจะสนุกกับการค้นพบและพยายามคิดผ่านการมีส่วนร่วมกับสิ่งต่างๆ / 様々なものに関わる中で、発見を楽しんだり、考えたりしようとする",
+    },
+    {
+      checked: false,
+      text: "เด็กจะพัฒนาการรับรู้ที่หลากหลายผ่านประสบการณ์การมอง ฟัง และสัมผัส / 見る、聞く、触るなどの経験を通して、感覚の働きを豊かにする",
+    },
   ],
   expressionGoals: [
-    { checked: false, text: 'เด็กจะได้รับประสบการณ์ที่หลากหลายทางประสาทสัมผัสและได้ลิ้มรสความรู้สึกต่างๆ / 身体の諸感覚の経験を豊かにし、様々な感覚を味わう' },
-    { checked: false, text: 'เด็กจะแสดงออกถึงสิ่งที่รู้สึกและคิดด้วยวิธีของตนเอง / 感じたことや考えたことなどを自分なりに表現しようとする' },
-    { checked: false, text: 'เด็กจะพัฒนาจินตนาการและความไวต่อความงามผ่านประสบการณ์ในชีวิตและการเล่น / 生活や遊びの様々な体験を通して、イメージや感性が豊かになる' }
+    {
+      checked: false,
+      text: "เด็กจะได้รับประสบการณ์ที่หลากหลายทางประสาทสัมผัสและได้ลิ้มรสความรู้สึกต่างๆ / 身体の諸感覚の経験を豊かにし、様々な感覚を味わう",
+    },
+    {
+      checked: false,
+      text: "เด็กจะแสดงออกถึงสิ่งที่รู้สึกและคิดด้วยวิธีของตนเอง / 感じたことや考えたことなどを自分なりに表現しようとする",
+    },
+    {
+      checked: false,
+      text: "เด็กจะพัฒนาจินตนาการและความไวต่อความงามผ่านประสบการณ์ในชีวิตและการเล่น / 生活や遊びの様々な体験を通して、イメージや感性が豊かになる",
+    },
   ],
-  ageTable: { '0歳児': '', '1歳児': '', '2歳児': '', '3歳児': '', '4-3歳児': '', '4歳児': '', '5歳児': '' },
-  socialTable: { '0歳児': '', '1歳児': '', '2歳児': '', '3歳児': '', '4-3歳児': '', '4歳児': '', '5歳児': '' },
-  healthTable: { '0歳児': '', '1歳児': '', '2歳児': '', '3歳児': '', '4-3歳児': '', '4歳児': '', '5歳児': '' },
-  relationshipTable: { '0歳児': '', '1歳児': '', '2歳児': '', '3歳児': '', '4-3歳児': '', '4歳児': '', '5歳児': '' },
-  languageTable: { '0歳児': '', '1歳児': '', '2歳児': '', '3歳児': '', '4-3歳児': '', '4歳児': '', '5歳児': '' },
-  developmentTable: { '0歳児': '', '1歳児': '', '2歳児': '', '3歳児': '', '4-3歳児': '', '4歳児': '', '5歳児': '' },
-  expressionTable: { '0歳児': '', '1歳児': '', '2歳児': '', '3歳児': '', '4-3歳児': '', '4歳児': '', '5歳児': '' },
+  ageTable: {
+    "0歳児": "",
+    "1歳児": "",
+    "2歳児": "",
+    "3歳児": "",
+    "4-3歳児": "",
+    "4歳児": "",
+    "5歳児": "",
+  },
+  socialTable: {
+    "0歳児": "",
+    "1歳児": "",
+    "2歳児": "",
+    "3歳児": "",
+    "4-3歳児": "",
+    "4歳児": "",
+    "5歳児": "",
+  },
+  healthTable: {
+    "0歳児": "",
+    "1歳児": "",
+    "2歳児": "",
+    "3歳児": "",
+    "4-3歳児": "",
+    "4歳児": "",
+    "5歳児": "",
+  },
+  relationshipTable: {
+    "0歳児": "",
+    "1歳児": "",
+    "2歳児": "",
+    "3歳児": "",
+    "4-3歳児": "",
+    "4歳児": "",
+    "5歳児": "",
+  },
+  languageTable: {
+    "0歳児": "",
+    "1歳児": "",
+    "2歳児": "",
+    "3歳児": "",
+    "4-3歳児": "",
+    "4歳児": "",
+    "5歳児": "",
+  },
+  developmentTable: {
+    "0歳児": "",
+    "1歳児": "",
+    "2歳児": "",
+    "3歳児": "",
+    "4-3歳児": "",
+    "4歳児": "",
+    "5歳児": "",
+  },
+  expressionTable: {
+    "0歳児": "",
+    "1歳児": "",
+    "2歳児": "",
+    "3歳児": "",
+    "4-3歳児": "",
+    "4歳児": "",
+    "5歳児": "",
+  },
   abilitiesGoals: [],
   abilitiesGoals2: [],
 };
@@ -229,30 +472,36 @@ interface GoalSectionProps {
   onGoalCheck: (index: number) => void;
 }
 
-const GoalSection: React.FC<GoalSectionProps> = ({ title, icon, color, goals, onGoalCheck }) => (
+const GoalSection: React.FC<GoalSectionProps> = ({
+  title,
+  icon,
+  color,
+  goals,
+  onGoalCheck,
+}) => (
   <Box>
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
+    <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
       {icon}
       <Typography variant="h6" fontWeight="600">
         {title}
       </Typography>
     </Box>
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
       {goals.map((goal, index) => (
         <Paper
           key={index}
           elevation={1}
           sx={{
             p: 2,
-            border: '2px solid',
-            borderColor: goal.checked ? color : 'grey.300',
-            bgcolor: goal.checked ? `${color}20` : 'white',
-            transition: 'all 0.2s',
-            textAlign: 'left',
-            '&:hover': {
+            border: "2px solid",
+            borderColor: goal.checked ? color : "grey.300",
+            bgcolor: goal.checked ? `${color}20` : "white",
+            transition: "all 0.2s",
+            textAlign: "left",
+            "&:hover": {
               borderColor: color,
               bgcolor: `${color}20`,
-            }
+            },
           }}
         >
           <FormControlLabel
@@ -260,28 +509,30 @@ const GoalSection: React.FC<GoalSectionProps> = ({ title, icon, color, goals, on
               <Checkbox
                 checked={goal.checked}
                 onChange={() => onGoalCheck(index)}
-                sx={{ color, '&.Mui-checked': { color } }}
+                sx={{ color, "&.Mui-checked": { color } }}
               />
             }
             label={
-              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+              <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1 }}>
                 <Box
                   sx={{
                     minWidth: 28,
                     height: 28,
-                    borderRadius: '50%',
+                    borderRadius: "50%",
                     bgcolor: color,
-                    color: 'white',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontWeight: 'bold',
-                    fontSize: '0.875rem'
+                    color: "white",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: "bold",
+                    fontSize: "0.875rem",
                   }}
                 >
                   {index + 1}
                 </Box>
-                <Typography variant="body2" sx={{ mt: 0.5 }}>{goal.text}</Typography>
+                <Typography variant="body2" sx={{ mt: 0.5 }}>
+                  {goal.text}
+                </Typography>
               </Box>
             }
           />
@@ -301,8 +552,13 @@ interface AgeTableProps {
   onTableChange: (age: string, value: string) => void;
 }
 
-const AgeTable: React.FC<AgeTableProps> = ({ ageGroups, tableData, color, onTableChange }) => (
-  <TableContainer component={Paper} sx={{ overflowX: 'auto', mt: 3 }}>
+const AgeTable: React.FC<AgeTableProps> = ({
+  ageGroups,
+  tableData,
+  color,
+  onTableChange,
+}) => (
+  <TableContainer component={Paper} sx={{ overflowX: "auto", mt: 3 }}>
     <Table>
       <TableHead>
         <TableRow sx={{ bgcolor: `${color}30` }}>
@@ -311,9 +567,9 @@ const AgeTable: React.FC<AgeTableProps> = ({ ageGroups, tableData, color, onTabl
               key={age}
               align="center"
               sx={{
-                fontWeight: 'bold',
+                fontWeight: "bold",
                 minWidth: 150,
-                border: `2px solid ${color}50`
+                border: `2px solid ${color}50`,
               }}
             >
               {age}
@@ -324,7 +580,10 @@ const AgeTable: React.FC<AgeTableProps> = ({ ageGroups, tableData, color, onTabl
       <TableBody>
         <TableRow>
           {ageGroups.map((age) => (
-            <TableCell key={age} sx={{ p: 1, border: '1px solid #e0e0e0', verticalAlign: 'top' }}>
+            <TableCell
+              key={age}
+              sx={{ p: 1, border: "1px solid #e0e0e0", verticalAlign: "top" }}
+            >
               <TextField
                 fullWidth
                 multiline
@@ -347,7 +606,7 @@ const AgeTable: React.FC<AgeTableProps> = ({ ageGroups, tableData, color, onTabl
  * Component for multi-select abilities dropdown
  */
 interface AbilitiesSelectProps {
-  fieldName: 'abilitiesGoals' | 'abilitiesGoals2';
+  fieldName: "abilitiesGoals" | "abilitiesGoals2";
   value: string[];
   isOpen: boolean;
   onOpen: () => void;
@@ -369,7 +628,7 @@ const AbilitiesSelect: React.FC<AbilitiesSelectProps> = ({
   onDelete,
   onClearAll,
   onSelectAll,
-  abilityMaster
+  abilityMaster,
 }) => (
   <FormControl fullWidth sx={{ mt: 2 }}>
     <Select
@@ -382,7 +641,7 @@ const AbilitiesSelect: React.FC<AbilitiesSelectProps> = ({
       onClose={onClose}
       input={<OutlinedInput placeholder="เลือกทักษะที่ต้องการพัฒนา" />}
       renderValue={(selected) => (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
           {selected.map((val) => (
             <Chip
               key={val}
@@ -396,17 +655,26 @@ const AbilitiesSelect: React.FC<AbilitiesSelectProps> = ({
         </Box>
       )}
     >
-      <Box sx={{
-        position: 'sticky',
-        top: 0,
-        bgcolor: 'background.paper',
-        zIndex: 1,
-        p: 1,
-        pb: 1.5,
-        borderBottom: '1px solid #e0e0e0'
-      }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1 }}>
-          <Box sx={{ display: 'flex', gap: 1, flex: 1 }}>
+      <Box
+        sx={{
+          position: "sticky",
+          top: 0,
+          bgcolor: "background.paper",
+          zIndex: 1,
+          p: 1,
+          pb: 1.5,
+          borderBottom: "1px solid #e0e0e0",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 1,
+          }}
+        >
+          <Box sx={{ display: "flex", gap: 1, flex: 1 }}>
             <Button
               fullWidth
               size="small"
@@ -440,8 +708,8 @@ const AbilitiesSelect: React.FC<AbilitiesSelectProps> = ({
               onClose();
             }}
             sx={{
-              bgcolor: 'grey.200',
-              '&:hover': { bgcolor: 'grey.300' }
+              bgcolor: "grey.200",
+              "&:hover": { bgcolor: "grey.300" },
             }}
           >
             <Close fontSize="small" />
@@ -463,6 +731,7 @@ const AbilitiesSelect: React.FC<AbilitiesSelectProps> = ({
 // ============================================================================
 const OverallPlanAdd: React.FC = () => {
   // State Management
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
   const [rows, setRows] = useState<RowData[]>(INITIAL_ROWS);
   const [expandedSections, setExpandedSections] = useState({
@@ -475,7 +744,7 @@ const OverallPlanAdd: React.FC = () => {
     relationshipGoals: true,
     languageGoals: true,
     developmentGoals: true,
-    expressionGoals: true
+    expressionGoals: true,
   });
   const [selectOpen, setSelectOpen] = useState({
     abilitiesGoals: false,
@@ -487,68 +756,87 @@ const OverallPlanAdd: React.FC = () => {
   // ========================================================================
 
   const handleInputChange = (field: keyof FormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleMethodChange = (index: number, value: string) => {
     const newMethods = [...formData.methods];
     newMethods[index] = value;
-    setFormData(prev => ({ ...prev, methods: newMethods }));
+    setFormData((prev) => ({ ...prev, methods: newMethods }));
   };
 
   const handleGoalCheck = (
-    type: 'lifeGoals' | 'socialGoals' | 'healthGoals' | 'relationshipGoals' | 'languageGoals' | 'developmentGoals' | 'expressionGoals',
+    type:
+      | "lifeGoals"
+      | "socialGoals"
+      | "healthGoals"
+      | "relationshipGoals"
+      | "languageGoals"
+      | "developmentGoals"
+      | "expressionGoals",
     index: number
   ) => {
     const goals = [...formData[type]];
     goals[index].checked = !goals[index].checked;
-    setFormData(prev => ({ ...prev, [type]: goals }));
+    setFormData((prev) => ({ ...prev, [type]: goals }));
   };
 
   const handleTableChange = (
-    tableType: 'ageTable' | 'socialTable' | 'healthTable' | 'relationshipTable' | 'languageTable' | 'developmentTable' | 'expressionTable',
+    tableType:
+      | "ageTable"
+      | "socialTable"
+      | "healthTable"
+      | "relationshipTable"
+      | "languageTable"
+      | "developmentTable"
+      | "expressionTable",
     age: string,
     value: string
   ) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [tableType]: {
         ...prev[tableType],
-        [age]: value
-      }
+        [age]: value,
+      },
     }));
   };
 
   const toggleSection = (section: keyof typeof expandedSections) => {
-    setExpandedSections(prev => ({
+    setExpandedSections((prev) => ({
       ...prev,
-      [section]: !prev[section]
+      [section]: !prev[section],
     }));
   };
 
   const handleMultiSelectChange = (event: SelectChangeEvent<string[]>) => {
-    const { target: { value, name } } = event;
+    const {
+      target: { value, name },
+    } = event;
     setFormData((prev) => ({
       ...prev,
       [name]: typeof value === "string" ? value.split(",") : value,
     }));
   };
 
-  const handleDeleteChip = (fieldName: 'abilitiesGoals' | 'abilitiesGoals2', valueToDelete: string) => {
+  const handleDeleteChip = (
+    fieldName: "abilitiesGoals" | "abilitiesGoals2",
+    valueToDelete: string
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [fieldName]: prev[fieldName].filter((item) => item !== valueToDelete),
     }));
   };
 
-  const handleClearAll = (fieldName: 'abilitiesGoals' | 'abilitiesGoals2') => {
+  const handleClearAll = (fieldName: "abilitiesGoals" | "abilitiesGoals2") => {
     setFormData((prev) => ({
       ...prev,
       [fieldName]: [],
     }));
   };
 
-  const handleSelectAll = (fieldName: 'abilitiesGoals' | 'abilitiesGoals2') => {
+  const handleSelectAll = (fieldName: "abilitiesGoals" | "abilitiesGoals2") => {
     setFormData((prev) => ({
       ...prev,
       [fieldName]: [...ABILITY_MASTER],
@@ -556,16 +844,16 @@ const OverallPlanAdd: React.FC = () => {
   };
 
   const updateRow = (id: number, field: string, value: string) => {
-    setRows(rows.map(row =>
-      row.id === id ? { ...row, [field]: value } : row
-    ));
+    setRows(
+      rows.map((row) => (row.id === id ? { ...row, [field]: value } : row))
+    );
   };
 
   const handleSubmit = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    console.log('Form Data:', formData);
-    console.log('Table Rows:', rows);
-    alert('保存されました / บันทึกแล้ว');
+    console.log("Form Data:", formData);
+    console.log("Table Rows:", rows);
+    alert("保存されました / บันทึกแล้ว");
   };
 
   // ========================================================================
@@ -578,11 +866,18 @@ const OverallPlanAdd: React.FC = () => {
             HEADER SECTION
         ================================================================ */}
         <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <School sx={{ fontSize: 40, color: 'primary.main' }} />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              mb: 2,
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+              <School sx={{ fontSize: 40, color: "primary.main" }} />
               <Typography variant="h4" fontWeight="700" color="primary">
-                แผนการดูแลเด็ก / 保育計画
+                {t("overallplanadd.childcareplan")}
               </Typography>
             </Box>
             <Button
@@ -592,17 +887,17 @@ const OverallPlanAdd: React.FC = () => {
               onClick={handleSubmit}
               sx={{ px: 4, py: 1.5 }}
             >
-              บันทึก / 保存
+              {t("overallplanadd.save")}
             </Button>
           </Box>
 
           <TextField
             fullWidth
             size="small"
-            label="ปี/ระยะเวลา / 年度/期間"
+            label={t("overallplanadd.year_period")}
             value={formData.year}
-            onChange={(e) => handleInputChange('year', e.target.value)}
-            placeholder="例: 2025年度"
+            onChange={(e) => handleInputChange("year", e.target.value)}
+            placeholder={t("overallplanadd.year_placeholder")}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -618,16 +913,16 @@ const OverallPlanAdd: React.FC = () => {
         ================================================================ */}
         <Accordion
           expanded={expandedSections.basic}
-          onChange={() => toggleSection('basic')}
-          sx={{ mb: 2, border: '2px solid #ff9800' }}
+          onChange={() => toggleSection("basic")}
+          sx={{ mb: 2, border: "2px solid #ff9800" }}
         >
           <AccordionSummary expandIcon={<ExpandMore />}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
               <Info color="warning" />
               <Typography variant="h6" fontWeight="600">
-                สถานการณ์/สภาพปัจจุบัน / 保育理念
+                {t("overallplanadd.basic")}
               </Typography>
-              <Tooltip title="保育の理念や方針を入力してください">
+              <Tooltip title={t("overallplanadd.situation_placeholder")}>
                 <Info color="info" fontSize="small" />
               </Tooltip>
             </Box>
@@ -638,8 +933,8 @@ const OverallPlanAdd: React.FC = () => {
               multiline
               rows={5}
               value={formData.situation}
-              onChange={(e) => handleInputChange('situation', e.target.value)}
-              placeholder="保育の理念や方針を記入してください..."
+              onChange={(e) => handleInputChange("situation", e.target.value)}
+              placeholder={t("overallplanadd.situation_placeholder2")}
             />
           </AccordionDetails>
         </Accordion>
@@ -649,14 +944,14 @@ const OverallPlanAdd: React.FC = () => {
         ================================================================ */}
         <Accordion
           expanded={expandedSections.methods}
-          onChange={() => toggleSection('methods')}
-          sx={{ mb: 2, border: '2px solid #2196f3' }}
+          onChange={() => toggleSection("methods")}
+          sx={{ mb: 2, border: "2px solid #2196f3" }}
         >
           <AccordionSummary expandIcon={<ExpandMore />}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
               <Info color="primary" />
               <Typography variant="h6" fontWeight="600">
-                วิธีการ / 保育方針
+                {t("overallplanadd.methods")}
               </Typography>
             </Box>
           </AccordionSummary>
@@ -666,10 +961,14 @@ const OverallPlanAdd: React.FC = () => {
                 <Grid item xs={12} md={6} key={index}>
                   <TextField
                     fullWidth
-                    label={`วิธีการที่ ${index + 1}`}
+                    label={t("overallplanadd.method_number", {
+                      number: index + 1,
+                    })}
                     value={method}
                     onChange={(e) => handleMethodChange(index, e.target.value)}
-                    placeholder={`方法${index + 1}を入力してください`}
+                    placeholder={t("overallplanadd.method_placeholder", {
+                      number: index + 1,
+                    })}
                   />
                 </Grid>
               ))}
@@ -678,31 +977,31 @@ const OverallPlanAdd: React.FC = () => {
           <AccordionDetails>
             <Grid container spacing={3}>
               <Grid item xs={12} md={12}>
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  目指す子ども像 / ภาพลักษณ์ของเด็กที่ต้องการพัฒนา
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.target_child")}
                 </Typography>
                 <TextField
                   fullWidth
-                  placeholder="目指す子ども像..." 
+                  placeholder={t("overallplanadd.target_child_placeholder")}
                   sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
                   }}
-                  />
+                />
               </Grid>
-                
-              <Grid item xs={12} md={12}  >
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  望まれる保育者像 / ภาพลักษณ์ของผู้ดูแลเด็กที่ต้องการพัฒนา
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.target_teacher")}
                 </Typography>
                 <TextField
                   fullWidth
-                  placeholder="望まれる保育者像..."
+                  placeholder={t("overallplanadd.target_teacher_placeholder")}
                   sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
                   }}
                 />
               </Grid>
@@ -710,20 +1009,19 @@ const OverallPlanAdd: React.FC = () => {
           </AccordionDetails>
         </Accordion>
 
-
         {/* ================================================================
-            LIFE GOALS & SOCIAL GOALS (養護)
-        ================================================================ */}
+    LIFE GOALS & SOCIAL GOALS (養護)
+================================================================ */}
         <Accordion
           expanded={expandedSections.lifeGoals}
-          onChange={() => toggleSection('lifeGoals')}
-          sx={{ mb: 2, border: '2px solid #e91e63' }}
+          onChange={() => toggleSection("lifeGoals")}
+          sx={{ mb: 2, border: "2px solid #e91e63" }}
         >
           <AccordionSummary expandIcon={<ExpandMore />}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Favorite sx={{ color: '#e91e63' }} />
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+              <Favorite sx={{ color: "#e91e63" }} />
               <Typography variant="h6" fontWeight="600">
-                【養護】การดูแลและเลี้ยงดู
+                {t("overallplanadd.care_section")}
               </Typography>
             </Box>
           </AccordionSummary>
@@ -731,460 +1029,653 @@ const OverallPlanAdd: React.FC = () => {
           {/* Life Goals Section */}
           <AccordionDetails>
             <GoalSection
-              title="【生命の保持】เป้าหมายการใช้ชีวิต"
-              icon={<Favorite sx={{ color: '#e91e63' }} />}
+              title={t("overallplanadd.life_goal")}
+              icon={<Favorite sx={{ color: "#e91e63" }} />}
               color="#e91e63"
               goals={formData.lifeGoals}
-              onGoalCheck={(index) => handleGoalCheck('lifeGoals', index)}
+              onGoalCheck={(index) => handleGoalCheck("lifeGoals", index)}
             />
             <AgeTable
               ageGroups={AGE_GROUPS}
               tableData={formData.ageTable}
               color="#e91e63"
-              onTableChange={(age, value) => handleTableChange('ageTable', age, value)}
+              onTableChange={(age, value) =>
+                handleTableChange("ageTable", age, value)
+              }
             />
           </AccordionDetails>
 
           {/* Social Goals Section */}
           <AccordionDetails>
             <GoalSection
-              title="【情緒の安定】เป้าหมายด้านสังคมและอารมณ์"
-              icon={<EmojiEmotions sx={{ color: '#4caf50' }} />}
+              title={t("overallplanadd.social_goal")}
+              icon={<EmojiEmotions sx={{ color: "#4caf50" }} />}
               color="#4caf50"
               goals={formData.socialGoals}
-              onGoalCheck={(index) => handleGoalCheck('socialGoals', index)}
+              onGoalCheck={(index) => handleGoalCheck("socialGoals", index)}
             />
             <AgeTable
               ageGroups={AGE_GROUPS}
               tableData={formData.socialTable}
               color="#4caf50"
-              onTableChange={(age, value) => handleTableChange('socialTable', age, value)}
+              onTableChange={(age, value) =>
+                handleTableChange("socialTable", age, value)
+              }
             />
           </AccordionDetails>
 
           {/* Abilities Goals Selection 1 */}
           <AccordionDetails sx={{ mt: 3 }}>
             <Typography variant="h6" fontWeight="600" sx={{ mb: 2 }}>
-              【育みたい資質・能力】ทักษะ & ความสามารถที่ต้องการพัฒนา
+              {t("overallplanadd.skill_develop")}
             </Typography>
             <AbilitiesSelect
               fieldName="abilitiesGoals"
               value={formData.abilitiesGoals}
               isOpen={selectOpen.abilitiesGoals}
-              onOpen={() => setSelectOpen(prev => ({ ...prev, abilitiesGoals: true }))}
-              onClose={() => setSelectOpen(prev => ({ ...prev, abilitiesGoals: false }))}
+              onOpen={() =>
+                setSelectOpen((prev) => ({ ...prev, abilitiesGoals: true }))
+              }
+              onClose={() =>
+                setSelectOpen((prev) => ({ ...prev, abilitiesGoals: false }))
+              }
               onChange={handleMultiSelectChange}
-              onDelete={(value) => handleDeleteChip('abilitiesGoals', value)}
-              onClearAll={() => handleClearAll('abilitiesGoals')}
-              onSelectAll={() => handleSelectAll('abilitiesGoals')}
+              onDelete={(value) => handleDeleteChip("abilitiesGoals", value)}
+              onClearAll={() => handleClearAll("abilitiesGoals")}
+              onSelectAll={() => handleSelectAll("abilitiesGoals")}
               abilityMaster={ABILITY_MASTER}
             />
           </AccordionDetails>
         </Accordion>
 
         {/* ================================================================
-            EDUCATION GOALS (教育)
-        ================================================================ */}
+    EDUCATION GOALS (教育)
+================================================================ */}
         <Accordion
           expanded={expandedSections.healthGoals}
-          onChange={() => toggleSection('healthGoals')}
-          sx={{ mb: 2, border: '2px solid #ec407a' }}
+          onChange={() => toggleSection("healthGoals")}
+          sx={{ mb: 2, border: "2px solid #ec407a" }}
         >
           <AccordionSummary expandIcon={<ExpandMore />}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 2,
+                width: "100%",
+              }}
+            >
               <Typography variant="h6" fontWeight="600">
-                【教育】เป้าหมายด้านการศึกษา
+                {t("overallplanadd.edu_section")}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                【身体的発達に関する視点「健やかに伸び伸びと育つ」, 社会的発達に関する視点「身近な人と気持ちが通じ合う」 , 精神的発達に関する視点「身近なものと関わり感性が育つ」】
+                {t("overallplanadd.edu_perspective_long")}
               </Typography>
             </Box>
           </AccordionSummary>
 
           {/* Health Goals */}
           <AccordionDetails>
-            <Typography variant="h6" fontWeight="600" sx={{ mb: 2}} textAlign="left">
-              【保育所保育指針に定められるねらい】
+            <Typography
+              variant="h6"
+              fontWeight="600"
+              sx={{ mb: 2 }}
+              textAlign="left"
+            >
+              {t("overallplanadd.guideline_goals")}
             </Typography>
             <GoalSection
-              title="【健康】เป้าหมายด้านสุขภาพ"
-              icon={<EmojiEmotions sx={{ color: '#f06292' }} />}
+              title={t("overallplanadd.health_goal")}
+              icon={<EmojiEmotions sx={{ color: "#f06292" }} />}
               color="#ec407a"
               goals={formData.healthGoals}
-              onGoalCheck={(index) => handleGoalCheck('healthGoals', index)}
+              onGoalCheck={(index) => handleGoalCheck("healthGoals", index)}
             />
             <AgeTable
               ageGroups={AGE_GROUPS}
               tableData={formData.healthTable}
               color="#ec407a"
-              onTableChange={(age, value) => handleTableChange('healthTable', age, value)}
+              onTableChange={(age, value) =>
+                handleTableChange("healthTable", age, value)
+              }
             />
           </AccordionDetails>
 
           {/* Relationship Goals */}
           <AccordionDetails>
             <GoalSection
-              title="【人間関係】เป้าหมายด้านความสัมพันธ์"
-              icon={<Favorite sx={{ color: '#9c27b0' }} />}
+              title={t("overallplanadd.relationship_goal")}
+              icon={<Favorite sx={{ color: "#9c27b0" }} />}
               color="#9c27b0"
               goals={formData.relationshipGoals}
-              onGoalCheck={(index) => handleGoalCheck('relationshipGoals', index)}
+              onGoalCheck={(index) =>
+                handleGoalCheck("relationshipGoals", index)
+              }
             />
             <AgeTable
               ageGroups={AGE_GROUPS}
               tableData={formData.relationshipTable}
               color="#9c27b0"
-              onTableChange={(age, value) => handleTableChange('relationshipTable', age, value)}
+              onTableChange={(age, value) =>
+                handleTableChange("relationshipTable", age, value)
+              }
             />
           </AccordionDetails>
 
           {/* Language Goals */}
           <AccordionDetails>
             <GoalSection
-              title="【言葉】เป้าหมายด้านภาษา"
-              icon={<School sx={{ color: '#00bcd4' }} />}
+              title={t("overallplanadd.language_goal")}
+              icon={<School sx={{ color: "#00bcd4" }} />}
               color="#00bcd4"
               goals={formData.languageGoals}
-              onGoalCheck={(index) => handleGoalCheck('languageGoals', index)}
+              onGoalCheck={(index) => handleGoalCheck("languageGoals", index)}
             />
             <AgeTable
               ageGroups={AGE_GROUPS}
               tableData={formData.languageTable}
               color="#00bcd4"
-              onTableChange={(age, value) => handleTableChange('languageTable', age, value)}
+              onTableChange={(age, value) =>
+                handleTableChange("languageTable", age, value)
+              }
             />
           </AccordionDetails>
 
           {/* Development Goals */}
           <AccordionDetails>
             <GoalSection
-              title="【環境】เป้าหมายด้านการพัฒนา"
-              icon={<School sx={{ color: '#ff9800' }} />}
+              title={t("overallplanadd.development_goal")}
+              icon={<School sx={{ color: "#ff9800" }} />}
               color="#ff9800"
               goals={formData.developmentGoals}
-              onGoalCheck={(index) => handleGoalCheck('developmentGoals', index)}
+              onGoalCheck={(index) =>
+                handleGoalCheck("developmentGoals", index)
+              }
             />
             <AgeTable
               ageGroups={AGE_GROUPS}
               tableData={formData.developmentTable}
               color="#ff9800"
-              onTableChange={(age, value) => handleTableChange('developmentTable', age, value)}
+              onTableChange={(age, value) =>
+                handleTableChange("developmentTable", age, value)
+              }
             />
           </AccordionDetails>
 
           {/* Expression Goals */}
           <AccordionDetails>
             <GoalSection
-              title="【表現】เป้าหมายด้านการแสดงออก"
-              icon={<EmojiEmotions sx={{ color: '#ff5722' }} />}
+              title={t("overallplanadd.expression_goal")}
+              icon={<EmojiEmotions sx={{ color: "#ff5722" }} />}
               color="#ff5722"
               goals={formData.expressionGoals}
-              onGoalCheck={(index) => handleGoalCheck('expressionGoals', index)}
+              onGoalCheck={(index) => handleGoalCheck("expressionGoals", index)}
             />
             <AgeTable
               ageGroups={AGE_GROUPS}
               tableData={formData.expressionTable}
               color="#ff5722"
-              onTableChange={(age, value) => handleTableChange('expressionTable', age, value)}
+              onTableChange={(age, value) =>
+                handleTableChange("expressionTable", age, value)
+              }
             />
           </AccordionDetails>
 
           {/* Abilities Goals Selection 2 */}
           <AccordionDetails sx={{ mt: 3 }}>
             <Typography variant="h6" fontWeight="600" sx={{ mb: 2 }}>
-              【育みたい資質・能力】ทักษะ & ความสามารถที่ต้องการพัฒนา
+              {t("overallplanadd.skill_develop")}
             </Typography>
             <AbilitiesSelect
               fieldName="abilitiesGoals2"
               value={formData.abilitiesGoals2}
               isOpen={selectOpen.abilitiesGoals2}
-              onOpen={() => setSelectOpen(prev => ({ ...prev, abilitiesGoals2: true }))}
-              onClose={() => setSelectOpen(prev => ({ ...prev, abilitiesGoals2: false }))}
+              onOpen={() =>
+                setSelectOpen((prev) => ({ ...prev, abilitiesGoals2: true }))
+              }
+              onClose={() =>
+                setSelectOpen((prev) => ({ ...prev, abilitiesGoals2: false }))
+              }
               onChange={handleMultiSelectChange}
-              onDelete={(value) => handleDeleteChip('abilitiesGoals2', value)}
-              onClearAll={() => handleClearAll('abilitiesGoals2')}
-              onSelectAll={() => handleSelectAll('abilitiesGoals2')}
+              onDelete={(value) => handleDeleteChip("abilitiesGoals2", value)}
+              onClearAll={() => handleClearAll("abilitiesGoals2")}
+              onSelectAll={() => handleSelectAll("abilitiesGoals2")}
               abilityMaster={ABILITY_MASTER}
             />
           </AccordionDetails>
         </Accordion>
 
-                    
-        <Accordion 
-          expanded={expandedSections.goals} 
-          onChange={() => toggleSection('goals')}
-          sx={{ mb: 2, border: '2px solid #4caf50' }}
+        <Accordion
+          expanded={expandedSections.goals}
+          onChange={() => toggleSection("goals")}
+          sx={{ mb: 2, border: "2px solid #4caf50" }}
         >
           <AccordionSummary expandIcon={<ExpandMore />}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
               <EmojiEmotions color="success" />
-              <Typography variant="h6" fontWeight="600" >
-                重点的に取り組む教育・保育の柱 / เป้าหมายการศึกษา & การดูแลที่มุ่งเน้นเป็นพิเศษ
+              <Typography variant="h6" fontWeight="600">
+                {t("overallplanadd.focus_section")}
               </Typography>
             </Box>
           </AccordionSummary>
           <AccordionDetails>
             <Grid container spacing={3}>
               <Grid item xs={12} md={12}>
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  心と体の健康 / สุขภาพกาย & ใจ
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.health_mind_body")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={2}
-                  placeholder="心と体の健康について記入してください..." 
+                  placeholder={t("overallplanadd.health_mind_body_placeholder")}
                   sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
-                  }}
-                  />
-              </Grid>
-                
-              <Grid item xs={12} md={12}  >
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  身近な人との関わり / ความสัมพันธ์กับคนใกล้ชิด
-                </Typography>
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={2}
-                  placeholder="身近な人との関わりについて記入してください..."
-                  sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
                   }}
                 />
               </Grid>
 
               <Grid item xs={12} md={12}>
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  身近な環境との関わり / ความสัมพันธ์กับสิ่งแวดล้อมใกล้ตัว
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.relations_close_people")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={2}
+                  placeholder={t(
+                    "overallplanadd.relations_close_people_placeholder"
+                  )}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.relations_environment_nearby")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={2}
                   value={formData.relationshipEnvironment}
-                  onChange={(e) => handleInputChange('relationshipEnvironment', e.target.value)}
-                  placeholder="身近な環境との関わりについて記入してください..."
+                  onChange={(e) =>
+                    handleInputChange("relationshipEnvironment", e.target.value)
+                  }
+                  placeholder={t(
+                    "overallplanadd.relations_environment_nearby_placeholder"
+                  )}
                   sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
                   }}
                 />
               </Grid>
 
-              <Grid item xs={12} md={12} >
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  人権の尊重 / การเคารพสิทธิมนุษยชน
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.human_rights_respect")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={2}
                   value={formData.humanRights}
-                  onChange={(e) => handleInputChange('humanRights', e.target.value)}
-                  placeholder="人権の尊重について記入してください..."
+                  onChange={(e) =>
+                    handleInputChange("humanRights", e.target.value)
+                  }
+                  placeholder={t(
+                    "overallplanadd.human_rights_respect_placeholder"
+                  )}
                   sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
                   }}
                 />
               </Grid>
 
-              <Grid item xs={12} md={12} >
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }} >
-                  表出と表現の尊重 / การเคารพการแสดงออกและการแสดงความคิดเห็น
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.expression_respect")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={2}
                   value={formData.expressionRespect}
-                  onChange={(e) => handleInputChange('expressionRespect', e.target.value)}
-                  placeholder="表出と表現の尊重について記入してください..."
+                  onChange={(e) =>
+                    handleInputChange("expressionRespect", e.target.value)
+                  }
+                  placeholder={t(
+                    "overallplanadd.expression_respect_placeholder"
+                  )}
                   sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
                   }}
                 />
               </Grid>
 
               <Grid item xs={12} md={12}>
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  保護者支援と連携 / การสนับสนุนและความร่วมมือกับผู้ปกครองปกครอง
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.parent_support_cooperation")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={2}
                   value={formData.parentSupport}
-                  onChange={(e) => handleInputChange('parentSupport', e.target.value)}
-                  placeholder="保護者支援と連携について記入してください..." 
+                  onChange={(e) =>
+                    handleInputChange("parentSupport", e.target.value)
+                  }
+                  placeholder={t("overallplanadd.parent_support_placeholder")}
                   sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
                   }}
                 />
               </Grid>
 
               <Grid item xs={12} md={12}>
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  地域との連携 / ความร่วมมือกับชุมชน
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.community_cooperation")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={2}
-                  placeholder="地域との連携について記入してください..."
+                  placeholder={t(
+                    "overallplanadd.community_cooperation_placeholder"
+                  )}
                   sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
                   }}
                 />
               </Grid>
 
               <Grid item xs={12} md={12}>
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  小学校との接続 / การเชื่อมต่อกับโรงเรียนประถม
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.primary_connection")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={2}
-                  placeholder="小学校との接続について記入してください..."
+                  placeholder={t(
+                    "overallplanadd.primary_connection_placeholder"
+                  )}
                   sx={{
-                      '& .MuiInputBase-input': {
-                        fontSize: 14
-                      }
-                    }}
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
                 />
               </Grid>
             </Grid>
           </AccordionDetails>
         </Accordion>
 
-        <Accordion 
-          expanded={expandedSections.goals} 
-          onChange={() => toggleSection('goals')}
-          sx={{ mb: 2, border: '2px solid #4caf50' }}
+        <Accordion
+          expanded={expandedSections.goals}
+          onChange={() => toggleSection("goals")}
+          sx={{ mb: 2, border: "2px solid #4caf50" }}
         >
           <AccordionSummary expandIcon={<ExpandMore />}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
               <EmojiEmotions color="success" />
-              <Typography variant="h6" fontWeight="600" >
-                具体的な取り組み / แนวทางปฏิบัติที่ชัดเจน
+              <Typography variant="h6" fontWeight="600">
+                {t("overallplanadd.concrete_actions")}
               </Typography>
             </Box>
           </AccordionSummary>
           <AccordionDetails>
             <Grid container spacing={3}>
               <Grid item xs={12} md={12}>
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                 健康支援 / การสนับสนุนด้านสุขภาพ
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.health_support")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={6}
-                  placeholder="心と体の健康について記入してください..." 
+                  placeholder={t("overallplanadd.health_mind_body_placeholder")}
                   sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
-                  }}
-                  />
-              </Grid>
-                
-              <Grid item xs={12} md={12}  >
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  環境・衛星・安全管理 / สิ่งแวดล้อม สุขอนามัย & การจัดการความปลอดภัย
-                </Typography>
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={6}
-                  placeholder="身近な人との関わりについて記入してください..."
-                  sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
                   }}
                 />
               </Grid>
 
               <Grid item xs={12} md={12}>
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  食育の推進 / การส่งเสริมการศึกษาเกี่ยวกับอาหาร
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.env_hygiene_safety_mgmt")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={6}
-                  placeholder="身近な環境との関わりについて記入してください..."
+                  placeholder={t(
+                    "overallplanadd.relations_close_people_placeholder"
+                  )}
                   sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
-                  }}
-                />
-              </Grid>
-
-              <Grid item xs={12} md={12} >
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  ネウボラ地域包括支援 / การสนับสนุนแบบบูรณาการในชุมชน Neuvola
-                </Typography>
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={6}
-                  placeholder="人権の尊重について記入してください..."
-                  sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
-                  }}
-                />
-              </Grid>
-
-              <Grid item xs={12} md={12} >
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }} >
-                  保護者支援と連携 / การสนับสนุนและความร่วมมือกับผู้ปกครอง
-                </Typography>
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={6}
-                  placeholder="表出と表現の尊重について記入してください..."
-                  sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
                   }}
                 />
               </Grid>
 
               <Grid item xs={12} md={12}>
-                <Typography fontWeight="bold" sx={{ mb: 2 , textAlign: 'left'  }}>
-                  サポート保育 / การสนับสนุนการดูแล
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.food_education_promotion")}
                 </Typography>
                 <TextField
                   fullWidth
                   multiline
                   rows={6}
-                  placeholder="保護者支援と連携について記入してください..." 
+                  placeholder={t(
+                    "overallplanadd.relations_environment_nearby_placeholder"
+                  )}
                   sx={{
-                    '& .MuiInputBase-input': {
-                      fontSize: 14
-                    }
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.neuvola_integrated_support")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t(
+                    "overallplanadd.human_rights_respect_placeholder"
+                  )}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.parent_support_cooperation_alt")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t(
+                    "overallplanadd.expression_respect_placeholder"
+                  )}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.supportive_childcare")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t("overallplanadd.parent_support_placeholder")}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+            </Grid>
+          </AccordionDetails>
+        </Accordion>
+
+        <Accordion
+          expanded={expandedSections.goals}
+          onChange={() => toggleSection("goals")}
+          sx={{ mb: 2, border: "2px solid #4caf50" }}
+        >
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+              <EmojiEmotions color="success" />
+              <Typography variant="h6" fontWeight="600">
+                {t("overallplanadd.concrete_actions")}
+              </Typography>
+            </Box>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.health_support")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t("overallplanadd.health_mind_body_placeholder")}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.env_hygiene_safety_mgmt")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t(
+                    "overallplanadd.relations_close_people_placeholder"
+                  )}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.food_education_promotion")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t(
+                    "overallplanadd.relations_environment_nearby_placeholder"
+                  )}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.neuvola_integrated_support")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t(
+                    "overallplanadd.human_rights_respect_placeholder"
+                  )}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.parent_support_cooperation_alt")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t(
+                    "overallplanadd.expression_respect_placeholder"
+                  )}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Grid>
+
+              <Grid item xs={12} md={12}>
+                <Typography fontWeight="bold" sx={{ mb: 2, textAlign: "left" }}>
+                  {t("overallplanadd.supportive_childcare")}
+                </Typography>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={6}
+                  placeholder={t("overallplanadd.parent_support_placeholder")}
+                  sx={{
+                    "& .MuiInputBase-input": {
+                      fontSize: 14,
+                    },
                   }}
                 />
               </Grid>
@@ -1197,14 +1688,14 @@ const OverallPlanAdd: React.FC = () => {
         ================================================================ */}
         <Accordion
           expanded={expandedSections.goals}
-          onChange={() => toggleSection('goals')}
-          sx={{ mb: 2, border: '2px solid #4caf50' }}
+          onChange={() => toggleSection("goals")}
+          sx={{ mb: 2, border: "2px solid #4caf50" }}
         >
           <AccordionSummary expandIcon={<ExpandMore />}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
               <EmojiEmotions color="success" />
               <Typography variant="h6" fontWeight="600">
-                年間予定 / แผนประจำปี
+                {t("overallplanadd.annual_plan")}
               </Typography>
             </Box>
           </AccordionSummary>
@@ -1213,15 +1704,72 @@ const OverallPlanAdd: React.FC = () => {
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
-                    <TableCell sx={{ fontWeight: 'bold', bgcolor: '#e8f5e9', minWidth: 20 }}>月</TableCell>
-                    <TableCell sx={{ fontWeight: 'bold', bgcolor: '#e8f5e9', minWidth: 200 }}>園行事</TableCell>
-                    <TableCell sx={{ fontWeight: 'bold', bgcolor: '#e8f5e9', minWidth: 190 }}>季節の行事</TableCell>
-                    <TableCell sx={{ fontWeight: 'bold', bgcolor: '#e8f5e9', minWidth: 190 }}>食育</TableCell>
-                    <TableCell sx={{ fontWeight: 'bold', bgcolor: '#e8f5e9', minWidth: 170 }}>保健</TableCell>
-                    <TableCell sx={{ fontWeight: 'bold', bgcolor: '#e8f5e9', minWidth: 170 }}>ネウボラ</TableCell>
-                    <TableCell sx={{ fontWeight: 'bold', bgcolor: '#e8f5e9', minWidth: 200 }}>職員研修</TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: "bold",
+                        bgcolor: "#e8f5e9",
+                        minWidth: 100,
+                      }}
+                    >
+                      {t("overallplanadd.annual_col_month")}
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: "bold",
+                        bgcolor: "#e8f5e9",
+                        minWidth: 200,
+                      }}
+                    >
+                      {t("overallplanadd.annual_col_school_events")}
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: "bold",
+                        bgcolor: "#e8f5e9",
+                        minWidth: 190,
+                      }}
+                    >
+                      {t("overallplanadd.annual_col_seasonal_events")}
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: "bold",
+                        bgcolor: "#e8f5e9",
+                        minWidth: 190,
+                      }}
+                    >
+                      {t("overallplanadd.annual_col_food_education")}
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: "bold",
+                        bgcolor: "#e8f5e9",
+                        minWidth: 170,
+                      }}
+                    >
+                      {t("overallplanadd.annual_col_health")}
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: "bold",
+                        bgcolor: "#e8f5e9",
+                        minWidth: 170,
+                      }}
+                    >
+                      {t("overallplanadd.annual_col_neuvola")}
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: "bold",
+                        bgcolor: "#e8f5e9",
+                        minWidth: 200,
+                      }}
+                    >
+                      {t("overallplanadd.annual_col_staff_training")}
+                    </TableCell>
                   </TableRow>
                 </TableHead>
+
                 <TableBody>
                   {rows.map((row) => (
                     <TableRow key={row.id} hover>
@@ -1230,74 +1778,108 @@ const OverallPlanAdd: React.FC = () => {
                           fullWidth
                           size="small"
                           value={row.month}
-                          onChange={(e) => updateRow(row.id, 'month', e.target.value)}
-                          placeholder="1月"
+                          onChange={(e) =>
+                            updateRow(row.id, "month", e.target.value)
+                          }
+                          placeholder={t(
+                            "overallplanadd.annual_month_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
+
                       <TableCell>
                         <TextField
                           fullWidth
                           size="small"
                           multiline
                           value={row.gardenEvent}
-                          onChange={(e) => updateRow(row.id, 'gardenEvent', e.target.value)}
-                          placeholder="入力してください"
+                          onChange={(e) =>
+                            updateRow(row.id, "gardenEvent", e.target.value)
+                          }
+                          placeholder={t(
+                            "overallplanadd.annual_input_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
+
                       <TableCell>
                         <TextField
                           fullWidth
                           size="small"
                           multiline
                           value={row.seasonalEvent}
-                          onChange={(e) => updateRow(row.id, 'seasonalEvent', e.target.value)}
-                          placeholder="入力してください"
+                          onChange={(e) =>
+                            updateRow(row.id, "seasonalEvent", e.target.value)
+                          }
+                          placeholder={t(
+                            "overallplanadd.annual_input_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
+
                       <TableCell>
                         <TextField
                           fullWidth
                           size="small"
                           multiline
                           value={row.foodEducation}
-                          onChange={(e) => updateRow(row.id, 'foodEducation', e.target.value)}
-                          placeholder="入力してください"
+                          onChange={(e) =>
+                            updateRow(row.id, "foodEducation", e.target.value)
+                          }
+                          placeholder={t(
+                            "overallplanadd.annual_input_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
+
                       <TableCell>
                         <TextField
                           fullWidth
                           size="small"
                           multiline
                           value={row.health}
-                          onChange={(e) => updateRow(row.id, 'health', e.target.value)}
-                          placeholder="入力してください"
+                          onChange={(e) =>
+                            updateRow(row.id, "health", e.target.value)
+                          }
+                          placeholder={t(
+                            "overallplanadd.annual_input_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
+
                       <TableCell>
                         <TextField
                           fullWidth
                           size="small"
                           multiline
                           value={row.neuvola}
-                          onChange={(e) => updateRow(row.id, 'neuvola', e.target.value)}
-                          placeholder="入力してください"
+                          onChange={(e) =>
+                            updateRow(row.id, "neuvola", e.target.value)
+                          }
+                          placeholder={t(
+                            "overallplanadd.annual_input_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
+
                       <TableCell>
                         <TextField
                           fullWidth
                           size="small"
                           multiline
                           value={row.staffTraining}
-                          onChange={(e) => updateRow(row.id, 'staffTraining', e.target.value)}
-                          placeholder="入力してください"
+                          onChange={(e) =>
+                            updateRow(row.id, "staffTraining", e.target.value)
+                          }
+                          placeholder={t(
+                            "overallplanadd.annual_input_placeholder"
+                          )}
                           variant="outlined"
                         />
                       </TableCell>
@@ -1312,14 +1894,22 @@ const OverallPlanAdd: React.FC = () => {
         {/* ================================================================
             FOOTER ACTIONS
         ================================================================ */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2, mt: 3, mb: 3 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 2,
+            mt: 3,
+            mb: 3,
+          }}
+        >
           <Button
             variant="outlined"
             color="warning"
             startIcon={<ArrowBack />}
             sx={{ px: 4, py: 1.5 }}
           >
-            ยกเลิก / キャンセル
+            {t("overallplanadd.cancel")}
           </Button>
           <Button
             variant="contained"
@@ -1329,13 +1919,13 @@ const OverallPlanAdd: React.FC = () => {
             sx={{
               px: 4,
               py: 1.5,
-              background: 'linear-gradient(45deg, #4caf50, #8bc34a)',
-              '&:hover': {
-                background: 'linear-gradient(45deg, #388e3c, #689f38)',
-              }
+              background: "linear-gradient(45deg, #4caf50, #8bc34a)",
+              "&:hover": {
+                background: "linear-gradient(45deg, #388e3c, #689f38)",
+              },
             }}
           >
-            บันทึกและส่ง / 保存して送信
+            {t("overallplanadd.save")}
           </Button>
         </Box>
       </ContentMain>

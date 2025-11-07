@@ -42,6 +42,7 @@ import {
 } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ContentMain from "../content/Content";
+import { useTranslation } from 'react-i18next'; // ✅ เพิ่ม i18n
 // Theme configuration
 const theme = createTheme({
   palette: {
@@ -527,671 +528,566 @@ const AnnualplanAdd: React.FC = () => {
       [section]: !prev[section]
     }));
   };
+  const { t } = useTranslation();
 
   return (
     <ThemeProvider theme={theme}>
       <ContentMain>
-      <Box sx={{ minHeight: '100vh', py: 4 }}>
-        <Container maxWidth="xl">
+        <Box sx={{ minHeight: '100vh', py: 4 }}>
+          <Container maxWidth="xl">
 
-          {/* Header Section */}
-          <Card sx={{ mb: 3, border: '2px solid #2196f3' }}>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
-                <Public color="primary" />
-                <Typography variant="h6" fontWeight="600">
-                  ข้อมูลหลัก | メイン情報 (Main Table)
-                </Typography>
-                <Tooltip title="ข้อมูลพื้นฐานและเป้าหมายประจำปี | 基本情報と年間目標">
-                  <Info color="info" />
-                </Tooltip>
-              </Box>
+            {/* Header Section */}
+            <Card sx={{ mb: 3, border: '2px solid #2196f3' }}>
+              <CardContent>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
+                  <Public color="primary" />
+                  <Typography variant="h6" fontWeight="600">
+                    {t('annualplanadd.header_main_title')}
+                  </Typography>
+                  <Tooltip title={t('annualplanadd.header_tooltip')}>
+                    <Info color="info" />
+                  </Tooltip>
+                </Box>
 
-              {/* Basic Header Fields */}
-              <Accordion expanded={expandedSections.basic} onChange={() => toggleSection('basic')}>
-                <AccordionSummary expandIcon={<ExpandMore />}>
-                  <Typography fontWeight="600">ข้อมูลพื้นฐาน | 基本情報</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Grid container spacing={2} sx={{ mb: 3 }}>
-                    <Grid item xs={12} sm={6} md={3}>
-                      <TextField
-                        size="small"
-                        fullWidth
-                        label="ปี | 年"
-                        value={headerData.year}
-                        onChange={handleHeaderDataChange('year')}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <CalendarToday sx={{ fontSize: 18 }} />
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </Grid>
-                    
-                    <Grid item xs={12} sm={6} md={3}>
-                      <TextField
-                        size="small"
-                        fullWidth
-                        select
-                        label="ชื่อห้องเรียน * | 教室名 *"
-                        value={headerData.classroom}
-                        onChange={handleHeaderDataChange('classroom')}
-                        required
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <Business sx={{ fontSize: 18 }} />
-                            </InputAdornment>
-                          ),
-                        }}
-                      >
-                        {classroomOptions.map((option) => (
-                          <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                          </MenuItem>
-                        ))}
-                      </TextField>
-                    </Grid>
-                    
-                    <Grid item xs={12} sm={6} md={3}>
-                      <TextField
-                        size="small"
-                        fullWidth
-                        select
-                        label="อายุ * | 年齢 *"
-                        value={headerData.age}
-                        onChange={handleHeaderDataChange('age')}
-                        required
-                        error={!headerData.age && headerSaveStatus === 'error'}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <Person sx={{ fontSize: 18 }} />
-                            </InputAdornment>
-                          ),
-                        }}
-                      >
-                        {ageOptions.map((option) => (
-                          <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                          </MenuItem>
-                        ))}
-                      </TextField>
-                    </Grid>
-                    
-                    <Grid item xs={12} sm={6} md={3}>
-                      <TextField
-                        size="small"
-                        fullWidth
-                        select
-                        label="ผู้รับผิดชอบ | 担当者"
-                        value={headerData.responsiblePerson}
-                        onChange={handleHeaderDataChange('responsiblePerson')}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <Person sx={{ fontSize: 18 }} />
-                            </InputAdornment>
-                          ),
-                        }}
-                      >
-                        {responsiblePersonOptions.map((option) => (
-                          <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                          </MenuItem>
-                        ))}
-                      </TextField>
-                    </Grid>
-                  </Grid>
+                {/* Basic Header Fields */}
+                <Accordion expanded={expandedSections.basic} onChange={() => toggleSection('basic')}>
+                  <AccordionSummary expandIcon={<ExpandMore />}>
+                    <Typography fontWeight="600">{t('annualplanadd.basic_info')}</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Grid container spacing={2} sx={{ mb: 3 }}>
+                      <Grid item xs={12} sm={6} md={3}>
+                        <TextField
+                          size="small"
+                          fullWidth
+                          label={t('annualplanadd.field_year')}
+                          value={headerData.year}
+                          onChange={handleHeaderDataChange('year')}
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <CalendarToday sx={{ fontSize: 18 }} />
+                              </InputAdornment>
+                            )
+                          }}
+                        />
+                      </Grid>
 
-                  {/* Annual Goal */}
-                  <Grid container>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        multiline
-                        rows={4}
-                        label="เป้าหมายประจำปี | 年間目標（育みたい子どもの姿）"
-                        value={headerData.annualGoal}
-                        onChange={handleHeaderDataChange('annualGoal')}
-                        placeholder="เป้าหมายประจำปีที่ต้องการพัฒนาในเด็ก... | 育てたい子どもの姿..."
-                        sx={{
-                          "& .MuiInputBase-root": {
-                            alignItems: "flex-start",
-                          },
-                        }}
-                      />
-                    </Grid>
-                  </Grid>
-
-                  {/* Developmental Process Fields */}
-                  {(headerData.age === '1' || headerData.age === '2') && (
-                    <>
-                      <Box sx={{ mt: 3 }}>
-                        <Typography fontWeight="600" sx={{ mb: 2, color: "primary.main", textAlign: "left" }}>
-                          発達過程 子どもの | พัฒนาการของเด็ก
-                        </Typography>
-                        <Typography sx={{ mb: 1, color: "primary.main", textAlign: "left" }}>
-                          子どもの 育つ姿 | การเติบโตของเด็ก
-                        </Typography>
-
-                        <Box
-                          sx={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
-                            gap: 2,
+                      <Grid item xs={12} sm={6} md={3}>
+                        <TextField
+                          size="small"
+                          fullWidth
+                          select
+                          label={t('annualplanadd.field_classroom')}
+                          value={headerData.classroom}
+                          onChange={handleHeaderDataChange('classroom')}
+                          required
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <Business sx={{ fontSize: 18 }} />
+                              </InputAdornment>
+                            )
                           }}
                         >
-                          {headerData.age === '1' ? (
-                            <>
-                              <Typography sx={{ fontSize: "12px" }}>1 歳</Typography>
-                              <Typography sx={{ fontSize: "12px" }}>1 歳 6 か月</Typography>
-                              <Typography sx={{ fontSize: "12px" }}>2 歳</Typography>
-                              <Typography sx={{ fontSize: "12px" }}>2 歳 11 か月</Typography>
-                            </>
-                          ) : (
-                            <>
-                              <Typography sx={{ fontSize: "12px" }}>2 歳</Typography>
-                              <Typography sx={{ fontSize: "12px" }}>2 歳 6 か月</Typography>
-                              <Typography sx={{ fontSize: "12px" }}>3 歳</Typography>
-                              <Typography sx={{ fontSize: "12px" }}>3 歳 11 か月</Typography>
-                            </>
-                          )}
-                        </Box>
-                      </Box>
+                          {classroomOptions.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                              {option.label}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                      </Grid>
 
-                      <Box sx={{ mt: 3 }}>
-                        <Grid container spacing={2}>
-                          <Grid item xs={12} md={4}>
-                            <TextField
-                              fullWidth
-                              multiline
-                              rows={4}
-                              label="発達過程 子どもの 1 | พัฒนาการของเด็ก 1"
-                              value={headerData.developmentalProcess1}
-                              onChange={handleHeaderDataChange('developmentalProcess1')}
-                              placeholder="พัฒนาการของเด็ก ช่องที่ 1... | 子どもの発達過程 1..."
-                              sx={{
-                                "& .MuiInputBase-root": {
-                                  alignItems: "flex-start",
-                                },
-                              }}
-                            />
-                          </Grid>
-                          <Grid item xs={12} md={4}>
-                            <TextField
-                              fullWidth
-                              multiline
-                              rows={4}
-                              label="発達過程 子どもの 2 | พัฒนาการของเด็ก 2"
-                              value={headerData.developmentalProcess2}
-                              onChange={handleHeaderDataChange('developmentalProcess2')}
-                              placeholder="พัฒนาการของเด็ก ช่องที่ 2... | 子どもの発達過程 2..."
-                              sx={{
-                                "& .MuiInputBase-root": {
-                                  alignItems: "flex-start",
-                                },
-                              }}
-                            />
-                          </Grid>
-                          <Grid item xs={12} md={4}>
-                            <TextField
-                              fullWidth
-                              multiline
-                              rows={4}
-                              label="発達過程 子どもの 3 | พัฒนาการของเด็ก 3"
-                              value={headerData.developmentalProcess3}
-                              onChange={handleHeaderDataChange('developmentalProcess3')}
-                              placeholder="พัฒนาการของเด็ก ช่องที่ 3... | 子どもの発達過程 3..."
-                              sx={{
-                                "& .MuiInputBase-root": {
-                                  alignItems: "flex-start",
-                                },
-                              }}
-                            />
-                          </Grid>
-                        </Grid>
-                      </Box>
-                    </>
-                  )}
-                </AccordionDetails>
-              </Accordion>
+                      <Grid item xs={12} sm={6} md={3}>
+                        <TextField
+                          size="small"
+                          fullWidth
+                          select
+                          label={t('annualplanadd.field_age')}
+                          value={headerData.age}
+                          onChange={handleHeaderDataChange('age')}
+                          required
+                          error={!headerData.age && headerSaveStatus === 'error'}
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <Person sx={{ fontSize: 18 }} />
+                              </InputAdornment>
+                            )
+                          }}
+                        >
+                          {ageOptions.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                              {option.label}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                      </Grid>
 
-              {/* Save Header Button */}
-              <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mt: 3 }}>
-                <Button variant="outlined" href="/report/annualplan" startIcon={<ArrowBack />}>
-                  戻る | กลับ
-                </Button>
-                <Button
-                  variant="contained"
-                  size="large"
-                  startIcon={headerSaveStatus === 'saving' ? <Schedule className="animate-spin" /> : <Save />}
-                  disabled={headerSaveStatus === 'saving'}
-                  onClick={handleSaveHeader}
-                  sx={{
-                    background: 'linear-gradient(45deg, #4caf50, #45a049)',
-                    px: 4
-                  }}
-                >
-                  {headerSaveStatus === 'saving' ? 'กำลังบันทึก... | 保存中...' : 'บันทึกข้อมูลหลัก | メイン情報を保存'}
-                </Button>
-              </Box>
-              
-              {/* Header Status */}
-              {headerSaveStatus !== 'idle' && (
-                <Box sx={{ mt: 3 }}>
-                  <Alert 
-                    severity={
-                      headerSaveStatus === 'saved' ? 'success' :
-                      headerSaveStatus === 'error' ? 'error' :
-                      'info'
-                    }
-                  >
-                    {headerSaveStatus === 'saved' && `✅ บันทึกข้อมูลหลักสำเร็จ | メイン情報の保存が完了しました (ID: ${headerSavedId})`}
-                    {headerSaveStatus === 'error' && '❌ กรุณากรอกข้อมูลที่จำเป็น | 必須項目を入力してください'}
-                    {headerSaveStatus === 'saving' && '⏳ กำลังบันทึกข้อมูล... | データを保存中...'}
-                  </Alert>
-                </Box>
-              )}
-            </CardContent>
-          </Card>
+                      <Grid item xs={12} sm={6} md={3}>
+                        <TextField
+                          size="small"
+                          fullWidth
+                          select
+                          label={t('annualplanadd.field_responsible')}
+                          value={headerData.responsiblePerson}
+                          onChange={handleHeaderDataChange('responsiblePerson')}
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <Person sx={{ fontSize: 18 }} />
+                              </InputAdornment>
+                            )
+                          }}
+                        >
+                          {responsiblePersonOptions.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                              {option.label}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                      </Grid>
+                    </Grid>
 
-          {/* Progress Bar */}
-          {showProgress && (
-            <Box sx={{ p: 3, backgroundColor: '#f5f5f5', borderRadius: 2, mb: 3 }}>
-              <Typography variant="h6" sx={{ mb: 2 }}>
-                ความคืบหน้าการส่งข้อมูล | データ送信の進捗状況
-              </Typography>
-              <Box sx={{ space: 2 }}>
-                {submitProgress.map((step) => (
-                  <Box key={step.id} sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
-                    <Box
-                      sx={{
-                        width: 24,
-                        height: 24,
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '12px',
-                        fontWeight: 'bold',
-                        color: 'white',
-                        backgroundColor:
-                          step.status === 'completed' ? '#4caf50' :
-                          step.status === 'active' ? '#2196f3' :
-                          step.status === 'error' ? '#f44336' :
-                          '#9e9e9e'
-                      }}
-                    >
-                      {step.status === 'completed' ? '✓' :
-                        step.status === 'error' ? '✗' :
-                        step.status === 'active' ? '•' : '○'}
-                    </Box>
-                    <Typography
-                      color={
-                        step.status === 'completed' ? 'success.main' :
-                        step.status === 'active' ? 'primary.main' :
-                        step.status === 'error' ? 'error.main' :
-                        'text.secondary'
-                      }
-                      fontWeight={step.status === 'active' ? 'bold' : 'normal'}
-                    >
-                      {step.label}
-                    </Typography>
-                  </Box>
-                ))}
-              </Box>
-            </Box>
-          )}
+                    {/* Annual Goal */}
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          multiline
+                          rows={4}
+                          label={t('annualplanadd.annual_goal_label')}
+                          value={headerData.annualGoal}
+                          onChange={handleHeaderDataChange('annualGoal')}
+                          placeholder={t('annualplanadd.annual_goal_ph')}
+                          sx={{ "& .MuiInputBase-root": { alignItems: "flex-start" } }}
+                        />
+                      </Grid>
+                    </Grid>
 
-          {/* Tabs Section */}
-          <Card 
-            sx={{ 
-              opacity: isHeaderSaved ? 1 : 0.5, 
-              pointerEvents: isHeaderSaved ? 'auto' : 'none',
-              border: '2px solid #ff9800'
-            }}
-          >
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
-                <Description color="warning" />
-                <Typography variant="h6" fontWeight="600">
-                  ข้อมูลรายแท็บ | タブ別情報 (Detail Table)
-                </Typography>
-              </Box>
+                    {/* Developmental Process Fields */}
+                    {(headerData.age === '1' || headerData.age === '2') && (
+                      <>
+                        <Box sx={{ mt: 3 }}>
+                          <Typography fontWeight="600" sx={{ mb: 2, color: "primary.main", textAlign: "left" }}>
+                            {t('annualplanadd.dev_process_title')}
+                          </Typography>
+                          <Typography sx={{ mb: 1, color: "primary.main", textAlign: "left" }}>
+                            {t('annualplanadd.child_growth_title')}
+                          </Typography>
 
-              {/* Tab Navigation */}
-              <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 4 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
-                  <Tabs 
-                    value={currentTab} 
-                    onChange={handleTabChange}
-                    variant="scrollable"
-                    scrollButtons="auto"
-                    sx={{ flexGrow: 1 }}
-                  >
-                    {tabs.map((tab) => (
-                      <Tab
-                        key={tab.id}
-                        label={
-                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                            {tab.name}
-                            <Chip
-                              size="small"
-                              icon={getStatusIcon(tabsData[tab.id]?.status || 'empty')}
-                              color={getStatusColor(tabsData[tab.id]?.status || 'empty') as any}
-                            />
-                            {!tab.protected && (
-                              <IconButton
-                                size="small"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  removeTab(tab.id);
-                                }}
-                                sx={{ ml: 1, color: 'error.main' }}
-                              >
-                                <Close fontSize="small" />
-                              </IconButton>
+                          <Box sx={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 2 }}>
+                            {headerData.age === '1' ? (
+                              <>
+                                <Typography sx={{ fontSize: "12px" }}>{t('annualplanadd.age_m1')}</Typography>
+                                <Typography sx={{ fontSize: "12px" }}>{t('annualplanadd.age_m1_6')}</Typography>
+                                <Typography sx={{ fontSize: "12px" }}>{t('annualplanadd.age_m2')}</Typography>
+                                <Typography sx={{ fontSize: "12px" }}>{t('annualplanadd.age_m2_11')}</Typography>
+                              </>
+                            ) : (
+                              <>
+                                <Typography sx={{ fontSize: "12px" }}>{t('annualplanadd.age2_m2')}</Typography>
+                                <Typography sx={{ fontSize: "12px" }}>{t('annualplanadd.age2_m2_6')}</Typography>
+                                <Typography sx={{ fontSize: "12px" }}>{t('annualplanadd.age2_m3')}</Typography>
+                                <Typography sx={{ fontSize: "12px" }}>{t('annualplanadd.age2_m3_11')}</Typography>
+                              </>
                             )}
                           </Box>
-                        }
-                        sx={{ textTransform: 'none', fontWeight: 600 }}
-                      />
-                    ))}
-                  </Tabs>
-                  
-                  <IconButton
-                    onClick={() => setShowAddModal(true)}
-                    disabled={!isHeaderSaved}
-                    color="primary"
-                    sx={{ border: '2px dashed', borderColor: 'primary.main' }}
+                        </Box>
+
+                        <Box sx={{ mt: 3 }}>
+                          <Grid container spacing={2}>
+                            <Grid item xs={12} md={4}>
+                              <TextField
+                                fullWidth multiline rows={4}
+                                label={t('annualplanadd.dev1_label')}
+                                value={headerData.developmentalProcess1}
+                                onChange={handleHeaderDataChange('developmentalProcess1')}
+                                placeholder={t('annualplanadd.dev1_ph')}
+                                sx={{ "& .MuiInputBase-root": { alignItems: "flex-start" } }}
+                              />
+                            </Grid>
+                            <Grid item xs={12} md={4}>
+                              <TextField
+                                fullWidth multiline rows={4}
+                                label={t('annualplanadd.dev2_label')}
+                                value={headerData.developmentalProcess2}
+                                onChange={handleHeaderDataChange('developmentalProcess2')}
+                                placeholder={t('annualplanadd.dev2_ph')}
+                                sx={{ "& .MuiInputBase-root": { alignItems: "flex-start" } }}
+                              />
+                            </Grid>
+                            <Grid item xs={12} md={4}>
+                              <TextField
+                                fullWidth multiline rows={4}
+                                label={t('annualplanadd.dev3_label')}
+                                value={headerData.developmentalProcess3}
+                                onChange={handleHeaderDataChange('developmentalProcess3')}
+                                placeholder={t('annualplanadd.dev3_ph')}
+                                sx={{ "& .MuiInputBase-root": { alignItems: "flex-start" } }}
+                              />
+                            </Grid>
+                          </Grid>
+                        </Box>
+                      </>
+                    )}
+                  </AccordionDetails>
+                </Accordion>
+
+                {/* Save Header Button */}
+                <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mt: 3 }}>
+                  <Button variant="outlined" href="/report/annualplan" startIcon={<ArrowBack />}>
+                    {t('annualplanadd.btn_back')}
+                  </Button>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    startIcon={headerSaveStatus === 'saving' ? <Schedule className="animate-spin" /> : <Save />}
+                    disabled={headerSaveStatus === 'saving'}
+                    onClick={handleSaveHeader}
+                    sx={{ background: 'linear-gradient(45deg, #4caf50, #45a049)', px: 4 }}
                   >
-                    <Add />
-                  </IconButton>
+                    {headerSaveStatus === 'saving' ? t('annualplanadd.btn_saving') : t('annualplanadd.btn_save_main')}
+                  </Button>
+                </Box>
+
+                {/* Header Status */}
+                {headerSaveStatus !== 'idle' && (
+                  <Box sx={{ mt: 3 }}>
+                    <Alert
+                      severity={
+                        headerSaveStatus === 'saved' ? 'success' :
+                        headerSaveStatus === 'error' ? 'error' : 'info'
+                      }
+                    >
+                      {headerSaveStatus === 'saved' && t('annualplanadd.header_saved', { id: headerSavedId || '' })}
+                      {headerSaveStatus === 'error' && t('annualplanadd.header_error')}
+                      {headerSaveStatus === 'saving' && t('annualplanadd.header_saving')}
+                    </Alert>
+                  </Box>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Progress Bar */}
+            {showProgress && (
+              <Box sx={{ p: 3, backgroundColor: '#f5f5f5', borderRadius: 2, mb: 3 }}>
+                <Typography variant="h6" sx={{ mb: 2 }}>
+                  {t('annualplanadd.progress_title')}
+                </Typography>
+                <Box sx={{ space: 2 }}>
+                  {submitProgress.map((step) => (
+                    <Box key={step.id} sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
+                      <Box
+                        sx={{
+                          width: 24, height: 24, borderRadius: '50%', display: 'flex',
+                          alignItems: 'center', justifyContent: 'center', fontSize: '12px',
+                          fontWeight: 'bold', color: 'white',
+                          backgroundColor:
+                            step.status === 'completed' ? '#4caf50' :
+                            step.status === 'active' ? '#2196f3' :
+                            step.status === 'error' ? '#f44336' : '#9e9e9e'
+                        }}
+                      >
+                        {step.status === 'completed' ? '✓' :
+                         step.status === 'error' ? '✗' :
+                         step.status === 'active' ? '•' : '○'}
+                      </Box>
+                      <Typography
+                        color={
+                          step.status === 'completed' ? 'success.main' :
+                          step.status === 'active' ? 'primary.main' :
+                          step.status === 'error' ? 'error.main' : 'text.secondary'
+                        }
+                        fontWeight={step.status === 'active' ? 'bold' : 'normal'}
+                      >
+                        {step.label}
+                      </Typography>
+                    </Box>
+                  ))}
                 </Box>
               </Box>
+            )}
 
-              {/* Tab Content */}
-              {tabs.map((tab, index) => (
-                currentTab === index && (
-                  <Box key={tab.id}>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 4, flexWrap: 'wrap' }}>
-                      <Typography fontWeight="bold">
-                        {tab.name.replace(/📊|📈|📉|📋|📝/g, "").trim()}
-                      </Typography>
+            {/* Tabs Section */}
+            <Card sx={{ opacity: isHeaderSaved ? 1 : 0.5, pointerEvents: isHeaderSaved ? 'auto' : 'none', border: '2px solid #ff9800' }}>
+              <CardContent>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
+                  <Description color="warning" />
+                  <Typography variant="h6" fontWeight="600">
+                    {t('annualplanadd.detail_title')}
+                  </Typography>
+                </Box>
 
-                      <TextField
-                        size="small"
-                        select
-                        label="เริ่ม | 開始"
-                        value={tabsData[tab.id]?.startMonth || ''}
-                        onChange={handleTabDataChange(tab.id, 'startMonth')}
-                        sx={{ width: 100 }}
-                      >
-                        {[...Array(12)].map((_, i) => (
-                          <MenuItem key={i + 1} value={i + 1}>
-                            {i + 1}月
-                          </MenuItem>
-                        ))}
-                      </TextField>
-                      <Typography>～</Typography>
-                      <TextField
-                        size="small"
-                        select
-                        label="สิ้นสุด | 終了"
-                        value={tabsData[tab.id]?.endMonth || ''}
-                        onChange={handleTabDataChange(tab.id, 'endMonth')}
-                        sx={{ width: 100 }}
-                      >
-                        {[...Array(12)].map((_, i) => (
-                          <MenuItem key={i + 1} value={i + 1}>
-                            {i + 1}月
-                          </MenuItem>
-                        ))}
-                      </TextField>
+                {/* Tab Navigation */}
+                <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 4 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
+                    <Tabs value={currentTab} onChange={handleTabChange} variant="scrollable" scrollButtons="auto" sx={{ flexGrow: 1 }}>
+                      {tabs.map((tab) => (
+                        <Tab
+                          key={tab.id}
+                          label={
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                              {tab.name}
+                              <Chip
+                                size="small"
+                                icon={getStatusIcon(tabsData[tab.id]?.status || 'empty')}
+                                color={getStatusColor(tabsData[tab.id]?.status || 'empty') as any}
+                              />
+                              {!tab.protected && (
+                                <IconButton
+                                  size="small"
+                                  onClick={(e) => { e.stopPropagation(); removeTab(tab.id); }}
+                                  sx={{ ml: 1, color: 'error.main' }}
+                                >
+                                  <Close fontSize="small" />
+                                </IconButton>
+                              )}
+                            </Box>
+                          }
+                          sx={{ textTransform: 'none', fontWeight: 600 }}
+                        />
+                      ))}
+                    </Tabs>
 
-                      {tabsData[tab.id]?.lastSaved && (
-                        <Typography variant="body2" color="text.secondary">
-                          บันทึกล่าสุด | 最終保存: {tabsData[tab.id].lastSaved?.toLocaleString()}
+                    <IconButton
+                      onClick={() => setShowAddModal(true)}
+                      disabled={!isHeaderSaved}
+                      color="primary"
+                      sx={{ border: '2px dashed', borderColor: 'primary.main' }}
+                    >
+                      <Add />
+                    </IconButton>
+                  </Box>
+                </Box>
+
+                {/* Tab Content */}
+                {tabs.map((tab, index) => (
+                  currentTab === index && (
+                    <Box key={tab.id}>
+                      <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 4, flexWrap: 'wrap' }}>
+                        <Typography fontWeight="bold">
+                          {tab.name.replace(/📊|📈|📉|📋|📝/g, "").trim()}
                         </Typography>
-                      )}
-                    </Box>
 
-                    {/* ねらい Section */}
-                    <Card sx={{ mb: 3, backgroundColor: '#e5faf5de' }}>
-                      <CardContent>
-                        <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
-                          ねらい (เป้าหมาย | 目標)
-                        </Typography>
-                        <Grid container spacing={2}>
-                          <Grid item xs={12} md={6}>
-                            <TextField
-                              fullWidth
-                              multiline
-                              rows={2}
-                              label="養護 | การพยาบาล"
-                              value={tabsData[tab.id]?.nursing || ''}
-                              onChange={handleTabDataChange(tab.id, 'nursing')}
-                              placeholder="การพยาบาล... | 養護..."
-                              disabled={!isHeaderSaved}
-                            />
-                          </Grid>
-                          <Grid item xs={12} md={6}>
-                            <TextField
-                              fullWidth
-                              multiline
-                              rows={2}
-                              label="教育 | การศึกษา"
-                              value={tabsData[tab.id]?.education || ''}
-                              onChange={handleTabDataChange(tab.id, 'education')}
-                              placeholder="การศึกษา... | 教育..."
-                              disabled={!isHeaderSaved}
-                            />
-                          </Grid>
-                        </Grid>
-                      </CardContent>
-                    </Card>
-                    
-                    {/* 内容 Section */}
-                    <Card sx={{ mb: 3, backgroundColor: '#f3e5f5ab' }}>
-                      <CardContent>
-                        <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
-                          内容 (เนื้อหา | 内容)
-                        </Typography>
-                        
-                        <Grid container spacing={2}>
-                          <Grid item xs={12} md={6}>
-                            <Typography variant="subtitle1" fontWeight="700" color="primary" sx={{ mb: 1 }} align="left">
-                              養護 | การพยาบาล
-                            </Typography>
-                            <TextField
-                              fullWidth
-                              multiline
-                              rows={8}
-                              label="生命の保持・情緒の安定 | การดำรงชีวิตและความมั่นคงทางอารมณ์"
-                              value={tabsData[tab.id]?.lifeStability || ''}
-                              onChange={handleTabDataChange(tab.id, 'lifeStability')}
-                              placeholder="การดำรงชีวิตและความมั่นคงทางอารมณ์... | 生命の保持・情緒の安定..."
-                              disabled={!isHeaderSaved}
-                            />
-                          </Grid>
-
-                          <Grid item xs={12} md={6}>
-                            <Typography variant="subtitle1" fontWeight="600" color="primary" sx={{ mb: 1 }} align="left">
-                              教育 | การศึกษา
-                            </Typography>
-                            <TextField
-                              fullWidth
-                              multiline
-                              rows={8}
-                              label="身体的・社会的・精神的発達 | พัฒนาการทางร่างกาย/สังคม/จิตใจ"
-                              value={tabsData[tab.id]?.developmentPerspective || ''}
-                              onChange={handleTabDataChange(tab.id, 'developmentPerspective')}
-                              placeholder="มุมมองด้านพัฒนาการทางร่างกาย/สังคม/จิตใจ... | 身体的・社会的・精神的発達..."
-                              disabled={!isHeaderSaved}
-                            />
-                          </Grid>
-                        </Grid>
-                        
-                        <Grid container spacing={2} sx={{ mt: 1 }}>
-                          <Grid item xs={12}>
-                            <Typography variant="subtitle1" fontWeight="600" color="primary" sx={{ mb: 1 }} align="left">
-                              食育 | การศึกษาด้านโภชนาการ
-                            </Typography>
-                            <TextField
-                              fullWidth
-                              multiline
-                              rows={3}
-                              label="食育 | การศึกษาด้านโภชนาการ"
-                              value={tabsData[tab.id]?.nutritionEducation || ''}
-                              onChange={handleTabDataChange(tab.id, 'nutritionEducation')}
-                              placeholder="การศึกษาด้านโภชนาการ... | 食育..."
-                              disabled={!isHeaderSaved}
-                            />
-                          </Grid>
-                        </Grid>
-                      </CardContent>
-                    </Card>
-
-                    {/* Global Fields Section */}
-                    <Box sx={{ mt: 4 }}>
-                      
-                      <Grid container spacing={3}>
-                        <Grid item xs={12} md={6}>
-                          <TextField
-                            fullWidth
-                            multiline
-                            rows={5}
-                            label="การร่วมมือกับครอบครัวและชุมชน | 家庭・地域との連携"
-                            value={globalFields.familyCommunityCooperation}
-                            onChange={handleGlobalFieldsChange('familyCommunityCooperation')}
-                            placeholder="แผนการร่วมมือกับครอบครัวและชุมชน... | 家庭・地域との連携プラン..."
-                            disabled={!isHeaderSaved}
-                            sx={{
-                              "& .MuiInputBase-root": {
-                                backgroundColor: !isHeaderSaved ? '#f5f5f5' : 'transparent'
-                              }
-                            }}
-                          />
-                        </Grid>
-                        
-                        <Grid item xs={12} md={6}>
-                          <TextField
-                            fullWidth
-                            multiline
-                            rows={5}
-                            label="การประเมินและการสะท้อนกลับ | 評価・反省"
-                            value={globalFields.evaluationReflection}
-                            onChange={handleGlobalFieldsChange('evaluationReflection')}
-                            placeholder="การประเมินและการสะท้อนกลับ... | 評価と振り返り..."
-                            disabled={!isHeaderSaved}
-                            sx={{
-                              "& .MuiInputBase-root": {
-                                backgroundColor: !isHeaderSaved ? '#f5f5f5' : 'transparent'
-                              }
-                            }}
-                          />
-                        </Grid>
-                      </Grid>
-                    </Box>
-
-                    {/* Tab Actions */}
-                    <Box sx={{ 
-                      display: 'flex', 
-                      justifyContent: 'space-between', 
-                      alignItems: 'center',
-                      pt: 3,
-                      borderTop: '1px solid #e0e0e0',
-                      flexWrap: 'wrap',
-                      gap: 2
-                    }}>
-                      <Chip
-                        icon={getStatusIcon(tabsData[tab.id]?.status || 'empty')}
-                        label={
-                          tabsData[tab.id]?.status === 'completed' ? 'สำเร็จแล้ว | 完了' :
-                          tabsData[tab.id]?.status === 'draft' ? 'บันทึกร่าง | 下書き保存' :
-                          'ยังไม่บันทึก | 未保存'
-                        }
-                        color={getStatusColor(tabsData[tab.id]?.status || 'empty') as any}
-                      />
-                      
-                      <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-                        <Button 
-                          variant="outlined" 
-                          startIcon={<Edit />}
-                          disabled={!isHeaderSaved}
-                          onClick={() => handleSaveTab(tab.id, false)}
+                        <TextField
+                          size="small"
+                          select
+                          label={t('annualplanadd.period_start')}
+                          value={tabsData[tab.id]?.startMonth || ''}
+                          onChange={handleTabDataChange(tab.id, 'startMonth')}
+                          sx={{ width: 100 }}
                         >
-                          บันทึกร่าง | 下書き保存
-                        </Button>
-                        <Button 
-                          variant="contained" 
-                          color="success" 
-                          startIcon={<CheckCircle />}
-                          disabled={!isHeaderSaved}
-                          onClick={() => handleSaveTab(tab.id, true)}
+                          {[...Array(12)].map((_, i) => (
+                            <MenuItem key={i + 1} value={i + 1}>
+                              {(i + 1) + t('annualplanadd.months_suffix')}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                        <Typography> {t('annualplanadd.period_to')} </Typography>
+                        <TextField
+                          size="small"
+                          select
+                          label={t('annualplanadd.period_end')}
+                          value={tabsData[tab.id]?.endMonth || ''}
+                          onChange={handleTabDataChange(tab.id, 'endMonth')}
+                          sx={{ width: 100 }}
                         >
-                          บันทึกสำเร็จ | 完了保存
-                        </Button>
-                        <Button
-                          variant="contained"
-                          size="large"
-                          startIcon={isSubmitting ? <Schedule className="animate-spin" /> : <CheckCircle />}
-                          disabled={!isHeaderSaved || isSubmitting}
-                          onClick={handleSubmitAll}
-                          sx={{
-                            background: 'linear-gradient(45deg, #2196f3, #9c27b0)',
-                            '&:hover': {
-                              background: 'linear-gradient(45deg, #1976d2, #7b1fa2)',
-                            }
-                          }}
-                        >
-                          {isSubmitting ? 'กำลังส่ง... | 送信中...' : 'ส่งข้อมูลทั้งหมด | すべて送信'}
-                        </Button>
+                          {[...Array(12)].map((_, i) => (
+                            <MenuItem key={i + 1} value={i + 1}>
+                              {(i + 1) + t('annualplanadd.months_suffix')}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+
+                        {tabsData[tab.id]?.lastSaved && (
+                          <Typography variant="body2" color="text.secondary">
+                            {t('annualplanadd.last_saved')}: {tabsData[tab.id].lastSaved?.toLocaleString()}
+                          </Typography>
+                        )}
+                      </Box>
+
+                      {/* Aims */}
+                      <Card sx={{ mb: 3, backgroundColor: '#e5faf5de' }}>
+                        <CardContent>
+                          <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                            {t('annualplanadd.aim_title')}
+                          </Typography>
+                          <Grid container spacing={2}>
+                            <Grid item xs={12} md={6}>
+                              <TextField
+                                fullWidth multiline rows={2}
+                                label={t('annualplanadd.aim_nursing_label')}
+                                value={tabsData[tab.id]?.nursing || ''}
+                                onChange={handleTabDataChange(tab.id, 'nursing')}
+                                placeholder={t('annualplanadd.aim_nursing_ph')}
+                                disabled={!isHeaderSaved}
+                              />
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                              <TextField
+                                fullWidth multiline rows={2}
+                                label={t('annualplanadd.aim_education_label')}
+                                value={tabsData[tab.id]?.education || ''}
+                                onChange={handleTabDataChange(tab.id, 'education')}
+                                placeholder={t('annualplanadd.aim_education_ph')}
+                                disabled={!isHeaderSaved}
+                              />
+                            </Grid>
+                          </Grid>
+                        </CardContent>
+                      </Card>
+
+                      {/* Content */}
+                      <Card sx={{ mb: 3, backgroundColor: '#f3e5f5ab' }}>
+                        <CardContent>
+                          <Typography fontWeight="bold" sx={{ mb: 2 }} align="left">
+                            {t('annualplanadd.content_title')}
+                          </Typography>
+
+                          <Grid container spacing={2}>
+                            <Grid item xs={12} md={6}>
+                              <Typography variant="subtitle1" fontWeight="700" color="primary" sx={{ mb: 1 }} align="left">
+                                {t('annualplanadd.content_nursing_title')}
+                              </Typography>
+                              <TextField
+                                fullWidth multiline rows={8}
+                                label={t('annualplanadd.content_life_stability_label')}
+                                value={tabsData[tab.id]?.lifeStability || ''}
+                                onChange={handleTabDataChange(tab.id, 'lifeStability')}
+                                placeholder={t('annualplanadd.content_life_stability_ph')}
+                                disabled={!isHeaderSaved}
+                              />
+                            </Grid>
+
+                            <Grid item xs={12} md={6}>
+                              <Typography variant="subtitle1" fontWeight="600" color="primary" sx={{ mb: 1 }} align="left">
+                                {t('annualplanadd.content_education_title')}
+                              </Typography>
+                              <TextField
+                                fullWidth multiline rows={8}
+                                label={t('annualplanadd.content_dev_perspective_label')}
+                                value={tabsData[tab.id]?.developmentPerspective || ''}
+                                onChange={handleTabDataChange(tab.id, 'developmentPerspective')}
+                                placeholder={t('annualplanadd.content_dev_perspective_ph')}
+                                disabled={!isHeaderSaved}
+                              />
+                            </Grid>
+                          </Grid>
+
+                          <Grid container spacing={2} sx={{ mt: 1 }}>
+                            <Grid item xs={12}>
+                              <Typography variant="subtitle1" fontWeight="600" color="primary" sx={{ mb: 1 }} align="left">
+                                {t('annualplanadd.content_nutrition_title')}
+                              </Typography>
+                              <TextField
+                                fullWidth multiline rows={3}
+                                label={t('annualplanadd.content_nutrition_label')}
+                                value={tabsData[tab.id]?.nutritionEducation || ''}
+                                onChange={handleTabDataChange(tab.id, 'nutritionEducation')}
+                                placeholder={t('annualplanadd.content_nutrition_ph')}
+                                disabled={!isHeaderSaved}
+                              />
+                            </Grid>
+                          </Grid>
+                        </CardContent>
+                      </Card>
+
+                      {/* Global Fields */}
+                      <Box sx={{ mt: 4 }}>
+                        <Grid container spacing={3}>
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth multiline rows={5}
+                              label={t('annualplanadd.global_family_title')}
+                              value={globalFields.familyCommunityCooperation}
+                              onChange={handleGlobalFieldsChange('familyCommunityCooperation')}
+                              placeholder={t('annualplanadd.global_family_ph')}
+                              disabled={!isHeaderSaved}
+                              sx={{ "& .MuiInputBase-root": { backgroundColor: !isHeaderSaved ? '#f5f5f5' : 'transparent' } }}
+                            />
+                          </Grid>
+
+                          <Grid item xs={12} md={6}>
+                            <TextField
+                              fullWidth multiline rows={5}
+                              label={t('annualplanadd.global_eval_title')}
+                              value={globalFields.evaluationReflection}
+                              onChange={handleGlobalFieldsChange('evaluationReflection')}
+                              placeholder={t('annualplanadd.global_eval_ph')}
+                              disabled={!isHeaderSaved}
+                              sx={{ "& .MuiInputBase-root": { backgroundColor: !isHeaderSaved ? '#f5f5f5' : 'transparent' } }}
+                            />
+                          </Grid>
+                        </Grid>
+                      </Box>
+
+                      {/* Tab Actions */}
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', pt: 3, borderTop: '1px solid #e0e0e0', flexWrap: 'wrap', gap: 2 }}>
+                        <Chip
+                          icon={getStatusIcon(tabsData[tab.id]?.status || 'empty')}
+                          label={
+                            tabsData[tab.id]?.status === 'completed'
+                              ? t('annualplanadd.chip_status_completed')
+                              : tabsData[tab.id]?.status === 'draft'
+                              ? t('annualplanadd.chip_status_draft')
+                              : t('annualplanadd.chip_status_empty')
+                          }
+                          color={getStatusColor(tabsData[tab.id]?.status || 'empty') as any}
+                        />
+
+                        <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                          <Button variant="outlined" startIcon={<Edit />} disabled={!isHeaderSaved} onClick={() => handleSaveTab(tab.id, false)}>
+                            {t('annualplanadd.btn_save_draft')}
+                          </Button>
+                          <Button variant="contained" color="success" startIcon={<CheckCircle />} disabled={!isHeaderSaved} onClick={() => handleSaveTab(tab.id, true)}>
+                            {t('annualplanadd.btn_save_complete')}
+                          </Button>
+                          <Button
+                            variant="contained"
+                            size="large"
+                            startIcon={isSubmitting ? <Schedule className="animate-spin" /> : <CheckCircle />}
+                            disabled={!isHeaderSaved || isSubmitting}
+                            onClick={handleSubmitAll}
+                            sx={{ background: 'linear-gradient(45deg, #2196f3, #9c27b0)', '&:hover': { background: 'linear-gradient(45deg, #1976d2, #7b1fa2)' } }}
+                          >
+                            {isSubmitting ? t('annualplanadd.btn_submitting') : t('annualplanadd.btn_submit_all')}
+                          </Button>
+                        </Box>
                       </Box>
                     </Box>
-                  </Box>
-                )
-              ))}
-            </CardContent>
-          </Card>
+                  )
+                ))}
+              </CardContent>
+            </Card>
 
-          {/* Add Tab Modal */}
-          <Dialog open={showAddModal} onClose={() => setShowAddModal(false)} maxWidth="sm" fullWidth>
-            <DialogTitle>เพิ่มแท็บใหม่ | 新しいタブを追加</DialogTitle>
-            <DialogContent>
-              <TextField
-                fullWidth
-                label="ชื่อแท็บ | タブ名"
-                value={newTabName}
-                onChange={(e) => setNewTabName(e.target.value)}
-                placeholder="เช่น: ไตรมาส 5, Q5 | 例: 第5期, Q5"
-                sx={{ mt: 2 }}
-                onKeyPress={(e) => e.key === 'Enter' && addNewTab()}
-                autoFocus
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={() => setShowAddModal(false)}>ยกเลิก | キャンセル</Button>
-              <Button onClick={addNewTab} variant="contained">เพิ่มแท็บ | タブを追加</Button>
-            </DialogActions>
-          </Dialog>
+            {/* Add Tab Modal */}
+            <Dialog open={showAddModal} onClose={() => setShowAddModal(false)} maxWidth="sm" fullWidth>
+              <DialogTitle>{t('annualplanadd.modal_add_tab_title')}</DialogTitle>
+              <DialogContent>
+                <TextField
+                  fullWidth
+                  label={t('annualplanadd.modal_tab_name')}
+                  value={newTabName}
+                  onChange={(e) => setNewTabName(e.target.value)}
+                  placeholder={t('annualplanadd.modal_tab_name_ph')}
+                  sx={{ mt: 2 }}
+                  onKeyPress={(e) => e.key === 'Enter' && addNewTab()}
+                  autoFocus
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => setShowAddModal(false)}>{t('annualplanadd.modal_cancel')}</Button>
+                <Button onClick={addNewTab} variant="contained">{t('annualplanadd.modal_add')}</Button>
+              </DialogActions>
+            </Dialog>
 
-          <style>{`
-            @keyframes spin {
-              from { transform: rotate(0deg); }
-              to { transform: rotate(360deg); }
-            }
-            
-            .animate-spin {
-              animation: spin 1s linear infinite;
-            }
-          `}</style>
-        </Container>
-      </Box>
+            <style>{`
+              @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+              .animate-spin { animation: spin 1s linear infinite; }
+            `}</style>
+          </Container>
+        </Box>
       </ContentMain>
     </ThemeProvider>
   );
