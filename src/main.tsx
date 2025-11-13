@@ -4,6 +4,7 @@ import App from './App.tsx'
 import './index.css'
 import { AuthProvider } from './contexts/AuthContext.tsx'
 import { OverallPlanProvider } from './contexts/OverallplanContext.tsx'
+import { SubareaContextProvider } from './contexts/SubareaContext.tsx'
 import "./i18n";
 
 
@@ -11,7 +12,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AuthProvider>
       <OverallPlanProvider>
-        <App />
+        <SubareaContextProvider>
+          <App />
+        </SubareaContextProvider>
       </OverallPlanProvider>
     </AuthProvider>
   </React.StrictMode>,
