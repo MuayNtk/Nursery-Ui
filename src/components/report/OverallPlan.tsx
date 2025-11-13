@@ -133,7 +133,7 @@ const Overallplan: React.FC = () => {
         const mapped = plans.map((item) => ({
           pid: String(item.id),
           year: String(item.year),
-          name: new Date(item.createdAt).toLocaleString("ja-JP"), // createdAt = name
+          name: new Date(item.created_at).toLocaleString("ja-JP"), // createdAt = name
           detail: (
             <>
               <IconButton

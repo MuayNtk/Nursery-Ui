@@ -42,7 +42,14 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ContentMain from "../content/Content";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { useTranslation } from "react-i18next";
-import { ChildcarePolicy, useOverallPlan } from '../../contexts/OverallplanContext';
+import {
+  M_policy,
+  M_development_areas,
+  Yougo,
+  M_competencies,
+  M_ten_figures,
+  useOverallPlan,
+} from "../../contexts/OverallplanContext";
 // ============================================================================
 // THEME CONFIGURATION
 // ============================================================================
@@ -85,10 +92,13 @@ const theme = createTheme({
 interface FormData {
   [x: string]: unknown;
   year: string;
-  situation: string;
-  methods: string[];
-  Ideal_Image_Of_Children: string;
-  Desired_Image_Of_Caregivers: string;
+  philosophy_detail: string;
+  methods: M_policy[];
+  child_vision: string;
+  educator_vision: string;
+  developmentAreas: M_development_areas[];
+  developmentYougo: Yougo[];
+  competencies: M_competencies[];
   goalSupport: string;
   providedSupport: string;
   lifeGoals: { checked: boolean; text: string }[];
@@ -283,10 +293,13 @@ const INITIAL_ROWS: RowData[] = [
 // ============================================================================
 const INITIAL_FORM_DATA: FormData = {
   year: "",
-  Ideal_Image_Of_Children: "",
-  Desired_Image_Of_Caregivers: "",
-  situation: "",
-  methods: ["", "", "", "", "", ""],
+  philosophy_detail: "",
+  child_vision: "",
+  educator_vision: "",
+  methods: [],
+  competencies: [],
+  developmentAreas: [],
+  developmentYougo: [],
   goalSupport: "",
   providedSupport: "",
   lifeGoals: [
@@ -566,7 +579,7 @@ const AgeTable: React.FC<AgeTableProps> = ({
   <TableContainer component={Paper} sx={{ overflowX: "auto", mt: 3 }}>
     <Table>
       <TableHead>
-        <TableRow sx={{ bgcolor: `${color}30` }}>
+        <TableRow sx={{ bgcolor: `${color}` }}>
           {ageGroups.map((age) => (
             <TableCell
               key={age}
@@ -574,7 +587,7 @@ const AgeTable: React.FC<AgeTableProps> = ({
               sx={{
                 fontWeight: "bold",
                 minWidth: 150,
-                border: `2px solid ${color}50`,
+                border: `2px solid ${color}`,
               }}
             >
               {age}
@@ -737,7 +750,15 @@ const AbilitiesSelect: React.FC<AbilitiesSelectProps> = ({
 const OverallPlanAdd: React.FC = () => {
   // State Management
   const { t } = useTranslation();
-  const { fetchChildcarePolicy,createOverallPlan } = useOverallPlan();
+  const {
+    fetchM_philosophy,
+    fetchM_policy,
+    fetchM_development_areas,
+    fetchM_development_Yougo,
+    fetchM_competencies,
+    fetchM_ten_figures,
+    createOverallPlan,
+  } = useOverallPlan();
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
   const [rows, setRows] = useState<RowData[]>(INITIAL_ROWS);
   const [expandedSections, setExpandedSections] = useState({
@@ -765,10 +786,13 @@ const OverallPlanAdd: React.FC = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleMethodChange = (index: number, value: string) => {
-    const newMethods = [...formData.methods];
-    newMethods[index] = value;
-    setFormData((prev) => ({ ...prev, methods: newMethods }));
+  const handleMethodChange = (id: number, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      methods: prev.methods.map((m) =>
+        m.id === id ? { ...m, policy_detail: value } : m
+      ),
+    }));
   };
 
   const handleGoalCheck = (
@@ -845,7 +869,7 @@ const OverallPlanAdd: React.FC = () => {
   const handleSelectAll = (fieldName: "abilitiesGoals" | "abilitiesGoals2") => {
     setFormData((prev) => ({
       ...prev,
-      [fieldName]: [...ABILITY_MASTER],
+      [fieldName]: [...(abilitiesData[fieldName] || [])], // เอาข้อมูลจาก abilitiesData
     }));
   };
 
@@ -868,31 +892,146 @@ const OverallPlanAdd: React.FC = () => {
   };
 
   useEffect(() => {
-  const loadMethods = async () => {
-    try {
-      const data: ChildcarePolicy[] = await fetchChildcarePolicy();
-      if (data.length > 0) {
-        const policy = data[0]; // สมมติใช้ policy แรก
-        setFormData((prev) => ({
-          ...prev,
-          situation: policy.Childcare_Policy,
-          methods: [
-            policy.Method1,
-            policy.Method2,
-            policy.Method3,
-            policy.Method4,
-            policy.Method5,
-            policy.Method6,
-          ],
-        }));
+    const loadData = async () => {
+      try {
+        // เรียก API ทั้งหมดพร้อมกัน
+        const [
+          philosophies,
+          policies,
+          developmentAreas,
+          developmentYougo,
+          competencies,
+        ] = await Promise.all([
+          fetchM_philosophy(),
+          fetchM_policy(),
+          fetchM_development_areas(),
+          fetchM_development_Yougo(),
+          fetchM_competencies(),
+        ]);
+
+        // philosophy
+        if (philosophies.length > 0) {
+          setFormData((prev) => ({
+            ...prev,
+            philosophy_detail: philosophies[0].philosophy_detail,
+          }));
+        }
+
+        // methods
+        if (policies.length > 0) {
+          setFormData((prev) => ({
+            ...prev,
+            methods: policies.map((p) => ({
+              id: p.id,
+              policy_detail: p.policy_detail,
+            })),
+          }));
+        }
+
+        // development Yougo
+        // developmentAreas + Yougo
+        if (developmentAreas.length > 0) {
+          const areasWithYougo = developmentAreas.map((area) => ({
+            ...area,
+            yougo: developmentYougo.filter(
+              (y) => y.development_area_id === area.id
+            ),
+          }));
+
+          setFormData((prev) => ({
+            ...prev,
+            developmentAreas: areasWithYougo,
+          }));
+        }
+
+        if (competencies.length > 0) {
+          setFormData((prev) => ({
+            ...prev,
+            competencies: competencies.map((p) => ({
+              id: p.id,
+              competencies_detail: p.competencies_detail,
+            })),
+          }));
+        }
+      } catch (err) {
+        console.error(err);
       }
-    } catch (err) {
-      console.error(err);
-    }
+    };
+
+    loadData();
+  }, []);
+
+  const [abilitiesData, setAbilitiesData] = useState<{
+    abilitiesGoals?: string[];
+    abilitiesGoals2?: string[];
+  }>({});
+
+  useEffect(() => {
+    const loadAbilities = async () => {
+      try {
+        const abilityConfigMap: Record<
+          number,
+          {
+            api: () => Promise<any[]>;
+            fieldName: "abilitiesGoals" | "abilitiesGoals2";
+          }
+        > = {
+          1: { api: fetchM_competencies, fieldName: "abilitiesGoals" },
+          2: { api: fetchM_ten_figures, fieldName: "abilitiesGoals2" },
+        };
+
+        for (const area of formData.developmentAreas) {
+          const config = abilityConfigMap[area.id];
+          if (!config) continue;
+
+          const data = await config.api();
+
+          const items =
+            config.fieldName === "abilitiesGoals"
+              ? (data as M_competencies[]).map((d) => d.competencies_detail)
+              : (data as M_ten_figures[]).map((d) => d.ten_detail);
+
+          setAbilitiesData((prev) => ({
+            ...prev,
+            [config.fieldName]: items,
+          }));
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    if (formData.developmentAreas.length > 0) loadAbilities();
+  }, [formData.developmentAreas]);
+
+  const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
+
+  const toggleAccordion = (key: string) => {
+    setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+  const titleIds = Array.from(
+    new Set(
+      formData.developmentAreas.flatMap((area) =>
+        area.yougo.map((y) => y.title_id)
+      )
+    )
+  );
+  const titleIconMap: Record<number, JSX.Element> = {
+    1: <Favorite />, // title_id = 1
+    2: <EmojiEmotions />, // title_id = 2
+    3: <EmojiEmotions />, // title_id = 3
+    4: <Favorite />, // title_id = 4
+    5: <School />, // title_id = 5
+    6: <School />, // title_id = 6
+    7: <EmojiEmotions />,
+    // ... เพิ่มตาม title_id จริง
   };
 
-  loadMethods();
-}, [fetchChildcarePolicy]);
+  const titleColorMap: Record<number, string> = {};
+  titleIds.forEach((id, idx) => {
+    const hue = Math.floor((idx * 360) / titleIds.length);
+    titleColorMap[id] = `hsl(${hue}, 50%, 60%)`;
+  });
 
   // ========================================================================
   // RENDER
@@ -970,8 +1109,10 @@ const OverallPlanAdd: React.FC = () => {
               fullWidth
               multiline
               rows={5}
-              value={formData.situation}
-              onChange={(e) => handleInputChange("situation", e.target.value)}
+              value={formData.philosophy_detail}
+              onChange={(e) =>
+                handleInputChange("philosophy_detail", e.target.value)
+              }
               placeholder={t("overallplanadd.situation_placeholder2")}
             />
           </AccordionDetails>
@@ -996,17 +1137,14 @@ const OverallPlanAdd: React.FC = () => {
           <AccordionDetails>
             <Grid container spacing={2}>
               {formData.methods.map((method, index) => (
-                <Grid item xs={12} md={6} key={index}>
+                <Grid item xs={12} md={6} key={method.id}>
                   <TextField
                     fullWidth
-                    label={t("overallplanadd.method_number", {
-                      number: index + 1,
-                    })}
-                    value={method}
-                    onChange={(e) => handleMethodChange(index, e.target.value)}
-                    placeholder={t("overallplanadd.method_placeholder", {
-                      number: index + 1,
-                    })}
+                    label={`Method ${index + 1}`}
+                    value={method.policy_detail}
+                    onChange={(e) =>
+                      handleMethodChange(method.id, e.target.value)
+                    }
                   />
                 </Grid>
               ))}
@@ -1019,8 +1157,10 @@ const OverallPlanAdd: React.FC = () => {
                   {t("overallplanadd.target_child")}
                 </Typography>
                 <TextField
-                  value={formData.Ideal_Image_Of_Children}
-                  onChange={(e) => handleInputChange("Ideal_Image_Of_Children", e.target.value)}
+                  value={formData.child_vision}
+                  onChange={(e) =>
+                    handleInputChange("child_vision", e.target.value)
+                  }
                   fullWidth
                   placeholder={t("overallplanadd.target_child_placeholder")}
                   sx={{
@@ -1037,8 +1177,10 @@ const OverallPlanAdd: React.FC = () => {
                 </Typography>
                 <TextField
                   fullWidth
-                  value={formData.Desired_Image_Of_Caregivers}
-                  onChange={(e) => handleInputChange("Desired_Image_Of_Caregivers", e.target.value)}
+                  value={formData.educator_vision}
+                  onChange={(e) =>
+                    handleInputChange("educator_vision", e.target.value)
+                  }
                   placeholder={t("overallplanadd.target_teacher_placeholder")}
                   sx={{
                     "& .MuiInputBase-input": {
@@ -1050,242 +1192,134 @@ const OverallPlanAdd: React.FC = () => {
             </Grid>
           </AccordionDetails>
         </Accordion>
+        {formData.developmentAreas.map((area: M_development_areas) => {
+          const abilityConfigMap: Record<
+            number,
+            {
+              title: string;
+              fieldName: "abilitiesGoals" | "abilitiesGoals2";
+              openKey: "abilitiesGoals" | "abilitiesGoals2";
+            }
+          > = {
+            1: {
+              title: "育みたい 資質・能力",
+              fieldName: "abilitiesGoals",
+              openKey: "abilitiesGoals",
+            },
+            2: {
+              title: "10の姿",
+              fieldName: "abilitiesGoals2",
+              openKey: "abilitiesGoals2",
+            },
+          };
 
-        {/* ================================================================
-    LIFE GOALS & SOCIAL GOALS (養護)
-================================================================ */}
-        <Accordion
-          expanded={expandedSections.lifeGoals}
-          onChange={() => toggleSection("lifeGoals")}
-          sx={{ mb: 2, border: "2px solid #e91e63" }}
-        >
-          <AccordionSummary expandIcon={<ExpandMore />}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-              <Favorite sx={{ color: "#e91e63" }} />
-              <Typography variant="h6" fontWeight="600">
-                {t("overallplanadd.care_section")}
-              </Typography>
-            </Box>
-          </AccordionSummary>
+          const abilityConfig = abilityConfigMap[area.id];
 
-          {/* Life Goals Section */}
-          <AccordionDetails>
-            <GoalSection
-              title={t("overallplanadd.life_goal")}
-              icon={<Favorite sx={{ color: "#e91e63" }} />}
-              color="#e91e63"
-              goals={formData.lifeGoals}
-              onGoalCheck={(index) => handleGoalCheck("lifeGoals", index)}
-            />
-            <AgeTable
-              ageGroups={AGE_GROUPS}
-              tableData={formData.ageTable}
-              color="#e91e63"
-              onTableChange={(age, value) =>
-                handleTableChange("ageTable", age, value)
-              }
-            />
-          </AccordionDetails>
-
-          {/* Social Goals Section */}
-          <AccordionDetails>
-            <GoalSection
-              title={t("overallplanadd.social_goal")}
-              icon={<EmojiEmotions sx={{ color: "#4caf50" }} />}
-              color="#4caf50"
-              goals={formData.socialGoals}
-              onGoalCheck={(index) => handleGoalCheck("socialGoals", index)}
-            />
-            <AgeTable
-              ageGroups={AGE_GROUPS}
-              tableData={formData.socialTable}
-              color="#4caf50"
-              onTableChange={(age, value) =>
-                handleTableChange("socialTable", age, value)
-              }
-            />
-          </AccordionDetails>
-
-          {/* Abilities Goals Selection 1 */}
-          <AccordionDetails sx={{ mt: 3 }}>
-            <Typography variant="h6" fontWeight="600" sx={{ mb: 2 }}>
-              {t("overallplanadd.skill_develop")}
-            </Typography>
-            <AbilitiesSelect
-              fieldName="abilitiesGoals"
-              value={formData.abilitiesGoals}
-              isOpen={selectOpen.abilitiesGoals}
-              onOpen={() =>
-                setSelectOpen((prev) => ({ ...prev, abilitiesGoals: true }))
-              }
-              onClose={() =>
-                setSelectOpen((prev) => ({ ...prev, abilitiesGoals: false }))
-              }
-              onChange={handleMultiSelectChange}
-              onDelete={(value) => handleDeleteChip("abilitiesGoals", value)}
-              onClearAll={() => handleClearAll("abilitiesGoals")}
-              onSelectAll={() => handleSelectAll("abilitiesGoals")}
-              abilityMaster={ABILITY_MASTER}
-            />
-          </AccordionDetails>
-        </Accordion>
-
-        {/* ================================================================
-    EDUCATION GOALS (教育)
-================================================================ */}
-        <Accordion
-          expanded={expandedSections.healthGoals}
-          onChange={() => toggleSection("healthGoals")}
-          sx={{ mb: 2, border: "2px solid #ec407a" }}
-        >
-          <AccordionSummary expandIcon={<ExpandMore />}>
-            <Box
+          return (
+            <Accordion
+              key={area.id}
+              expanded={expanded[area.code] ?? true}
+              onChange={() => toggleAccordion(area.code)}
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 2,
-                width: "100%",
+                mb: 2,
+                border: `2px solid ${
+                  area.code === "CARE" ? "#e91e63" : "#ec407a"
+                }`,
+                borderRadius: 2,
               }}
             >
-              <Typography variant="h6" fontWeight="600">
-                {t("overallplanadd.edu_section")}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {t("overallplanadd.edu_perspective_long")}
-              </Typography>
-            </Box>
-          </AccordionSummary>
+              <AccordionSummary expandIcon={<ExpandMore />}>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  <Favorite sx={{ color: "#e91e63" }} />
+                  <Typography variant="h6">
+                    {area.name_ja} {area.name_en}
+                  </Typography>
+                </Box>
+              </AccordionSummary>
 
-          {/* Health Goals */}
-          <AccordionDetails>
-            <Typography
-              variant="h6"
-              fontWeight="600"
-              sx={{ mb: 2 }}
-              textAlign="left"
-            >
-              {t("overallplanadd.guideline_goals")}
-            </Typography>
-            <GoalSection
-              title={t("overallplanadd.health_goal")}
-              icon={<EmojiEmotions sx={{ color: "#f06292" }} />}
-              color="#ec407a"
-              goals={formData.healthGoals}
-              onGoalCheck={(index) => handleGoalCheck("healthGoals", index)}
-            />
-            <AgeTable
-              ageGroups={AGE_GROUPS}
-              tableData={formData.healthTable}
-              color="#ec407a"
-              onTableChange={(age, value) =>
-                handleTableChange("healthTable", age, value)
-              }
-            />
-          </AccordionDetails>
+              {/* ส่วนที่เป็น Goal + AgeTable */}
+              <AccordionDetails
+                sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+              >
+                {Array.from(
+                  new Map(area.yougo.map((y) => [y.title_id, y])).values()
+                ).map((y) => {
+                  const yougosForTitle = area.yougo.filter(
+                    (u) => u.title_id === y.title_id
+                  );
+                  const sharedColor = titleColorMap[y.title_id];
+                  const iconElement = titleIconMap[y.title_id]
+                    ? React.cloneElement(titleIconMap[y.title_id], {
+                        sx: { color: sharedColor },
+                      })
+                    : null;
 
-          {/* Relationship Goals */}
-          <AccordionDetails>
-            <GoalSection
-              title={t("overallplanadd.relationship_goal")}
-              icon={<Favorite sx={{ color: "#9c27b0" }} />}
-              color="#9c27b0"
-              goals={formData.relationshipGoals}
-              onGoalCheck={(index) =>
-                handleGoalCheck("relationshipGoals", index)
-              }
-            />
-            <AgeTable
-              ageGroups={AGE_GROUPS}
-              tableData={formData.relationshipTable}
-              color="#9c27b0"
-              onTableChange={(age, value) =>
-                handleTableChange("relationshipTable", age, value)
-              }
-            />
-          </AccordionDetails>
+                  return (
+                    <React.Fragment key={y.title_id}>
+                      <GoalSection
+                        title={y.title}
+                        goals={yougosForTitle.map((u) => ({
+                          checked: false,
+                          text: u.yougo_desc,
+                        }))}
+                        icon={iconElement}
+                        color={sharedColor}
+                        onGoalCheck={() => {}}
+                      />
 
-          {/* Language Goals */}
-          <AccordionDetails>
-            <GoalSection
-              title={t("overallplanadd.language_goal")}
-              icon={<School sx={{ color: "#00bcd4" }} />}
-              color="#00bcd4"
-              goals={formData.languageGoals}
-              onGoalCheck={(index) => handleGoalCheck("languageGoals", index)}
-            />
-            <AgeTable
-              ageGroups={AGE_GROUPS}
-              tableData={formData.languageTable}
-              color="#00bcd4"
-              onTableChange={(age, value) =>
-                handleTableChange("languageTable", age, value)
-              }
-            />
-          </AccordionDetails>
+                      <AgeTable
+                        ageGroups={AGE_GROUPS}
+                        tableData={formData.ageTable}
+                        color={sharedColor}
+                        onTableChange={(age, value) =>
+                          handleTableChange("ageTable", age, value)
+                        }
+                      />
+                    </React.Fragment>
+                  );
+                })}
 
-          {/* Development Goals */}
-          <AccordionDetails>
-            <GoalSection
-              title={t("overallplanadd.development_goal")}
-              icon={<School sx={{ color: "#ff9800" }} />}
-              color="#ff9800"
-              goals={formData.developmentGoals}
-              onGoalCheck={(index) =>
-                handleGoalCheck("developmentGoals", index)
-              }
-            />
-            <AgeTable
-              ageGroups={AGE_GROUPS}
-              tableData={formData.developmentTable}
-              color="#ff9800"
-              onTableChange={(age, value) =>
-                handleTableChange("developmentTable", age, value)
-              }
-            />
-          </AccordionDetails>
+                {/* ✅ แสดง abilities แค่ครั้งเดียวต่อ area */}
+                {abilityConfig && (
+                  <Box sx={{ mt: 3 }}>
+                    <Typography variant="h6" fontWeight="600" sx={{ mb: 2 }}>
+                      {abilityConfig.title}
+                    </Typography>
 
-          {/* Expression Goals */}
-          <AccordionDetails>
-            <GoalSection
-              title={t("overallplanadd.expression_goal")}
-              icon={<EmojiEmotions sx={{ color: "#ff5722" }} />}
-              color="#ff5722"
-              goals={formData.expressionGoals}
-              onGoalCheck={(index) => handleGoalCheck("expressionGoals", index)}
-            />
-            <AgeTable
-              ageGroups={AGE_GROUPS}
-              tableData={formData.expressionTable}
-              color="#ff5722"
-              onTableChange={(age, value) =>
-                handleTableChange("expressionTable", age, value)
-              }
-            />
-          </AccordionDetails>
-
-          {/* Abilities Goals Selection 2 */}
-          <AccordionDetails sx={{ mt: 3 }}>
-            <Typography variant="h6" fontWeight="600" sx={{ mb: 2 }}>
-              {t("overallplanadd.skill_develop")}
-            </Typography>
-            <AbilitiesSelect
-              fieldName="abilitiesGoals2"
-              value={formData.abilitiesGoals2}
-              isOpen={selectOpen.abilitiesGoals2}
-              onOpen={() =>
-                setSelectOpen((prev) => ({ ...prev, abilitiesGoals2: true }))
-              }
-              onClose={() =>
-                setSelectOpen((prev) => ({ ...prev, abilitiesGoals2: false }))
-              }
-              onChange={handleMultiSelectChange}
-              onDelete={(value) => handleDeleteChip("abilitiesGoals2", value)}
-              onClearAll={() => handleClearAll("abilitiesGoals2")}
-              onSelectAll={() => handleSelectAll("abilitiesGoals2")}
-              abilityMaster={ABILITY_MASTER}
-            />
-          </AccordionDetails>
-        </Accordion>
+                    <AbilitiesSelect
+                      fieldName={abilityConfig.fieldName}
+                      value={formData[abilityConfig.fieldName]}
+                      isOpen={selectOpen[abilityConfig.openKey]}
+                      onOpen={() =>
+                        setSelectOpen((prev) => ({
+                          ...prev,
+                          [abilityConfig.openKey]: true,
+                        }))
+                      }
+                      onClose={() =>
+                        setSelectOpen((prev) => ({
+                          ...prev,
+                          [abilityConfig.openKey]: false,
+                        }))
+                      }
+                      onChange={handleMultiSelectChange}
+                      onDelete={(value) =>
+                        handleDeleteChip(abilityConfig.fieldName, value)
+                      }
+                      onClearAll={() => handleClearAll(abilityConfig.fieldName)}
+                      onSelectAll={() =>
+                        handleSelectAll(abilityConfig.fieldName)
+                      }
+                      abilityMaster={
+                        abilitiesData[abilityConfig.fieldName] || []
+                      } // ใช้ข้อมูลจาก API
+                    />
+                  </Box>
+                )}
+              </AccordionDetails>
+            </Accordion>
+          );
+        })}
 
         <Accordion
           expanded={expandedSections.goals}
