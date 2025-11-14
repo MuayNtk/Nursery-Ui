@@ -49,7 +49,9 @@ import {
   M_competencies,
   M_ten_figures,
   useOverallPlan,
+  ObjectiveAgeForm,
 } from "../../contexts/OverallplanContext";
+import { useParams } from "react-router-dom";
 // ============================================================================
 // THEME CONFIGURATION
 // ============================================================================
@@ -90,7 +92,7 @@ const theme = createTheme({
 // TYPE DEFINITIONS
 // ============================================================================
 interface FormData {
-  [x: string]: unknown;
+  [key: string]: any;
   year: string;
   philosophy_detail: string;
   methods: M_policy[];
@@ -101,26 +103,40 @@ interface FormData {
   competencies: M_competencies[];
   goalSupport: string;
   providedSupport: string;
-  lifeGoals: { checked: boolean; text: string }[];
-  socialGoals: { checked: boolean; text: string }[];
-  healthGoals: { checked: boolean; text: string }[];
-  relationshipGoals: { checked: boolean; text: string }[];
-  languageGoals: { checked: boolean; text: string }[];
-  developmentGoals: { checked: boolean; text: string }[];
-  expressionGoals: { checked: boolean; text: string }[];
-  ageTable: Record<string, string>;
-  socialTable: Record<string, string>;
-  healthTable: Record<string, string>;
-  relationshipTable: Record<string, string>;
-  languageTable: Record<string, string>;
-  developmentTable: Record<string, string>;
-  expressionTable: Record<string, string>;
+  // lifeGoals: { checked: boolean; text: string }[];
+  // socialGoals: { checked: boolean; text: string }[];
+  // healthGoals: { checked: boolean; text: string }[];
+  // relationshipGoals: { checked: boolean; text: string }[];
+  // languageGoals: { checked: boolean; text: string }[];
+  // developmentGoals: { checked: boolean; text: string }[];
+  // expressionGoals: { checked: boolean; text: string }[];
+  // ageTable: Record<string, string>;
+  // socialTable: Record<string, string>;
+  // healthTable: Record<string, string>;
+  // relationshipTable: Record<string, string>;
+  // languageTable: Record<string, string>;
+  // developmentTable: Record<string, string>;
+  // expressionTable: Record<string, string>;
   abilitiesGoals: string[];
   abilitiesGoals2: string[];
-  relationshipEnvironment?: string;
-  humanRights?: string;
-  expressionRespect?: string;
-  parentSupport?: string;
+  physical_mental_health: string;
+  relationships_people: string;
+  relationships_environment: string;
+  respect_human_rights: string;
+  respect_expression: string;
+  guardian_support_collaboration: string;
+  community_collaboration: string;
+  school_connection: string;
+  // relationshipEnvironment?: string;
+  // humanRights?: string;
+  // expressionRespect?: string;
+  // parentSupport?: string;
+  health_support: string;
+  environment_sanitation_safety: string;
+  food_education: string;
+  neuvola_support: string;
+  guardian_support: string;
+  support_childcare: string;
 }
 
 interface RowData {
@@ -137,21 +153,21 @@ interface RowData {
 // ============================================================================
 // CONSTANTS
 // ============================================================================
-const ABILITY_MASTER = [
-  "知識・技能の基礎",
-  "思考力・判断力・表現力等の基礎",
-  "学びに向かう力、人間性等",
-  "健康な心と体",
-  "自立心",
-  "協同性",
-  "道徳性・規範意識の芽生え",
-  "社会生活との関わり",
-  "言葉による伝え合い",
-  "思考力の芽生え",
-  "自然との関わり生命尊重",
-  "数量・図形・文字 等への関心・感覚",
-  "豊かな感性と表現",
-];
+// const ABILITY_MASTER = [
+//   "知識・技能の基礎",
+//   "思考力・判断力・表現力等の基礎",
+//   "学びに向かう力、人間性等",
+//   "健康な心と体",
+//   "自立心",
+//   "協同性",
+//   "道徳性・規範意識の芽生え",
+//   "社会生活との関わり",
+//   "言葉による伝え合い",
+//   "思考力の芽生え",
+//   "自然との関わり生命尊重",
+//   "数量・図形・文字 等への関心・感覚",
+//   "豊かな感性と表現",
+// ];
 
 const AGE_GROUPS = ["0歳児", "1歳児", "2歳児", "3歳児", "4歳児", "5歳児"];
 
@@ -302,177 +318,191 @@ const INITIAL_FORM_DATA: FormData = {
   developmentYougo: [],
   goalSupport: "",
   providedSupport: "",
-  lifeGoals: [
-    {
-      checked: false,
-      text: "เด็กทุกคนจะได้รับการใช้ชีวิตอย่างสะดวกสบาย / 一人一人の子どもが、快適に生活できるようにする",
-    },
-    {
-      checked: false,
-      text: "เด็กทุกคนจะได้รับการดูแลอย่างมีสุขภาพและความปลอดภัย / 一人一人の子どもが、健康で安全に過ごせるようにする",
-    },
-    {
-      checked: false,
-      text: "เด็กทุกคนจะได้รับการพัฒนาทักษะชีวิตพื้นฐานและความเป็นอิสระ / 一人一人の子どもの生理的欲求が、十分に満たされるようにする",
-    },
-    {
-      checked: false,
-      text: "เด็กทุกคนจะได้รับการดูแลสุขภาพที่เหมาะสมและป้องกันโรคภัย / 一人一人の子どもの健康増進が、積極的に図られるようにする",
-    },
-  ],
-  socialGoals: [
-    {
-      checked: false,
-      text: "เด็กทุกคนจะได้รับความรักและความอบอุ่น / 一人一人の子どもが、安心感を持って過ごせるようにする",
-    },
-    {
-      checked: false,
-      text: "เด็กทุกคนจะพัฒนาความมั่นใจและความภาคภูมิใจในตนเอง / 一人一人の子どもが、自分の気持ちを安心して表すことができるようにする",
-    },
-    {
-      checked: false,
-      text: "เด็กทุกคนจะได้รับการส่งเสริมให้มีส่วนร่วมและสนุกกับกิจกรรม / 一人一人の子どもが、周囲から主体として受け止められ、主体として育ち、自分を肯定する気持ちが育まれていくようにする",
-    },
-    {
-      checked: false,
-      text: "เด็กทุกคนจะพัฒนาจิตใจที่แข็งแรงและมั่นคง / 一人一人の子どもの心の動きが受容されるようにする",
-    },
-  ],
-  healthGoals: [
-    {
-      checked: false,
-      text: "เด็กจะมีชีวิตที่สดใสและร่าเริง พร้อมเคลื่อนไหวร่างกายด้วยความสนุกสนาน / 明るく伸び伸びと生活し、自分から体を動かすことを楽しむ",
-    },
-    {
-      checked: false,
-      text: "เด็กจะใช้ร่างกายเต็มที่และพยายามทำท่าทางต่างๆ / 自分の体を十分に動かし、様々な動きをしようとする",
-    },
-    {
-      checked: false,
-      text: "เด็กจะตระหนักถึงนิสัยที่จำเป็นสำหรับชีวิตที่มีสุขภาพและปลอดภัย / 健康、安全な生活に必要な習慣に気付き、自分でしてみようとする気持ちが育つ",
-    },
-  ],
-  relationshipGoals: [
-    {
-      checked: false,
-      text: "เด็กจะสนุกกับชีวิตในศูนย์และรู้สึกอบอุ่นเมื่ออยู่กับคนใกล้ชิด / 保育園での生活を楽しみ、身近な人と関わる心地よさを感じる",
-    },
-    {
-      checked: false,
-      text: "เด็กจะมีความสนใจในเด็กคนอื่นและพยายามสร้างความสัมพันธ์ / 周囲の子ども等への興味や関心が高まり、関わりをもとうとする",
-    },
-    {
-      checked: false,
-      text: "เด็กจะคุ้นเคยกับวิธีการใช้ชีวิตในศูนย์และตระหนักถึงความสำคัญของกฎเกณฑ์ / 保育園の生活の仕方に慣れ、きまりの大切さに気付く",
-    },
-  ],
-  languageGoals: [
-    {
-      checked: false,
-      text: "รู้สึกถึงความสนุกสนานในการเล่นกับคำและการแสดงออกด้วยภาษา / 言葉遊びや言葉で表現する楽しさを感じる。",
-    },
-    {
-      checked: false,
-      text: "ฟังคำพูดและการสนทนาของผู้อื่น และพยายามสื่อสารสิ่งที่ตนเองคิด / 人の言葉や話などを聞き、自分でも思ったことを伝えようとする。",
-    },
-    {
-      checked: false,
-      text: "คุ้นเคยกับหนังสือภาพและนิทานต่างๆ พร้อมทั้งสื่อสารความรู้สึกกับคนใกล้ชิดผ่านการพูดคุยโต้ตอบกัน / 絵本や物語等に親しむとともに、言葉のやり取りを通じて身近な人と気持ちを通わせる。",
-    },
-  ],
-  developmentGoals: [
-    {
-      checked: false,
-      text: "เด็กจะมีความผูกพันและสัมผัสกับสิ่งแวดล้อมใกล้ตัว และสนใจในสิ่งต่างๆ / 身近な環境に親しみ、触れ合う中で様々なものに興味や関心を持つ",
-    },
-    {
-      checked: false,
-      text: "เด็กจะสนุกกับการค้นพบและพยายามคิดผ่านการมีส่วนร่วมกับสิ่งต่างๆ / 様々なものに関わる中で、発見を楽しんだり、考えたりしようとする",
-    },
-    {
-      checked: false,
-      text: "เด็กจะพัฒนาการรับรู้ที่หลากหลายผ่านประสบการณ์การมอง ฟัง และสัมผัส / 見る、聞く、触るなどの経験を通して、感覚の働きを豊かにする",
-    },
-  ],
-  expressionGoals: [
-    {
-      checked: false,
-      text: "เด็กจะได้รับประสบการณ์ที่หลากหลายทางประสาทสัมผัสและได้ลิ้มรสความรู้สึกต่างๆ / 身体の諸感覚の経験を豊かにし、様々な感覚を味わう",
-    },
-    {
-      checked: false,
-      text: "เด็กจะแสดงออกถึงสิ่งที่รู้สึกและคิดด้วยวิธีของตนเอง / 感じたことや考えたことなどを自分なりに表現しようとする",
-    },
-    {
-      checked: false,
-      text: "เด็กจะพัฒนาจินตนาการและความไวต่อความงามผ่านประสบการณ์ในชีวิตและการเล่น / 生活や遊びの様々な体験を通して、イメージや感性が豊かになる",
-    },
-  ],
-  ageTable: {
-    "0歳児": "",
-    "1歳児": "",
-    "2歳児": "",
-    "3歳児": "",
-    "4-3歳児": "",
-    "4歳児": "",
-    "5歳児": "",
-  },
-  socialTable: {
-    "0歳児": "",
-    "1歳児": "",
-    "2歳児": "",
-    "3歳児": "",
-    "4-3歳児": "",
-    "4歳児": "",
-    "5歳児": "",
-  },
-  healthTable: {
-    "0歳児": "",
-    "1歳児": "",
-    "2歳児": "",
-    "3歳児": "",
-    "4-3歳児": "",
-    "4歳児": "",
-    "5歳児": "",
-  },
-  relationshipTable: {
-    "0歳児": "",
-    "1歳児": "",
-    "2歳児": "",
-    "3歳児": "",
-    "4-3歳児": "",
-    "4歳児": "",
-    "5歳児": "",
-  },
-  languageTable: {
-    "0歳児": "",
-    "1歳児": "",
-    "2歳児": "",
-    "3歳児": "",
-    "4-3歳児": "",
-    "4歳児": "",
-    "5歳児": "",
-  },
-  developmentTable: {
-    "0歳児": "",
-    "1歳児": "",
-    "2歳児": "",
-    "3歳児": "",
-    "4-3歳児": "",
-    "4歳児": "",
-    "5歳児": "",
-  },
-  expressionTable: {
-    "0歳児": "",
-    "1歳児": "",
-    "2歳児": "",
-    "3歳児": "",
-    "4-3歳児": "",
-    "4歳児": "",
-    "5歳児": "",
-  },
+  // lifeGoals: [
+  //   {
+  //     checked: false,
+  //     text: "เด็กทุกคนจะได้รับการใช้ชีวิตอย่างสะดวกสบาย / 一人一人の子どもが、快適に生活できるようにする",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กทุกคนจะได้รับการดูแลอย่างมีสุขภาพและความปลอดภัย / 一人一人の子どもが、健康で安全に過ごせるようにする",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กทุกคนจะได้รับการพัฒนาทักษะชีวิตพื้นฐานและความเป็นอิสระ / 一人一人の子どもの生理的欲求が、十分に満たされるようにする",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กทุกคนจะได้รับการดูแลสุขภาพที่เหมาะสมและป้องกันโรคภัย / 一人一人の子どもの健康増進が、積極的に図られるようにする",
+  //   },
+  // ],
+  // socialGoals: [
+  //   {
+  //     checked: false,
+  //     text: "เด็กทุกคนจะได้รับความรักและความอบอุ่น / 一人一人の子どもが、安心感を持って過ごせるようにする",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กทุกคนจะพัฒนาความมั่นใจและความภาคภูมิใจในตนเอง / 一人一人の子どもが、自分の気持ちを安心して表すことができるようにする",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กทุกคนจะได้รับการส่งเสริมให้มีส่วนร่วมและสนุกกับกิจกรรม / 一人一人の子どもが、周囲から主体として受け止められ、主体として育ち、自分を肯定する気持ちが育まれていくようにする",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กทุกคนจะพัฒนาจิตใจที่แข็งแรงและมั่นคง / 一人一人の子どもの心の動きが受容されるようにする",
+  //   },
+  // ],
+  // healthGoals: [
+  //   {
+  //     checked: false,
+  //     text: "เด็กจะมีชีวิตที่สดใสและร่าเริง พร้อมเคลื่อนไหวร่างกายด้วยความสนุกสนาน / 明るく伸び伸びと生活し、自分から体を動かすことを楽しむ",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กจะใช้ร่างกายเต็มที่และพยายามทำท่าทางต่างๆ / 自分の体を十分に動かし、様々な動きをしようとする",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กจะตระหนักถึงนิสัยที่จำเป็นสำหรับชีวิตที่มีสุขภาพและปลอดภัย / 健康、安全な生活に必要な習慣に気付き、自分でしてみようとする気持ちが育つ",
+  //   },
+  // ],
+  // relationshipGoals: [
+  //   {
+  //     checked: false,
+  //     text: "เด็กจะสนุกกับชีวิตในศูนย์และรู้สึกอบอุ่นเมื่ออยู่กับคนใกล้ชิด / 保育園での生活を楽しみ、身近な人と関わる心地よさを感じる",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กจะมีความสนใจในเด็กคนอื่นและพยายามสร้างความสัมพันธ์ / 周囲の子ども等への興味や関心が高まり、関わりをもとうとする",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กจะคุ้นเคยกับวิธีการใช้ชีวิตในศูนย์และตระหนักถึงความสำคัญของกฎเกณฑ์ / 保育園の生活の仕方に慣れ、きまりの大切さに気付く",
+  //   },
+  // ],
+  // languageGoals: [
+  //   {
+  //     checked: false,
+  //     text: "รู้สึกถึงความสนุกสนานในการเล่นกับคำและการแสดงออกด้วยภาษา / 言葉遊びや言葉で表現する楽しさを感じる。",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "ฟังคำพูดและการสนทนาของผู้อื่น และพยายามสื่อสารสิ่งที่ตนเองคิด / 人の言葉や話などを聞き、自分でも思ったことを伝えようとする。",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "คุ้นเคยกับหนังสือภาพและนิทานต่างๆ พร้อมทั้งสื่อสารความรู้สึกกับคนใกล้ชิดผ่านการพูดคุยโต้ตอบกัน / 絵本や物語等に親しむとともに、言葉のやり取りを通じて身近な人と気持ちを通わせる。",
+  //   },
+  // ],
+  // developmentGoals: [
+  //   {
+  //     checked: false,
+  //     text: "เด็กจะมีความผูกพันและสัมผัสกับสิ่งแวดล้อมใกล้ตัว และสนใจในสิ่งต่างๆ / 身近な環境に親しみ、触れ合う中で様々なものに興味や関心を持つ",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กจะสนุกกับการค้นพบและพยายามคิดผ่านการมีส่วนร่วมกับสิ่งต่างๆ / 様々なものに関わる中で、発見を楽しんだり、考えたりしようとする",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กจะพัฒนาการรับรู้ที่หลากหลายผ่านประสบการณ์การมอง ฟัง และสัมผัส / 見る、聞く、触るなどの経験を通して、感覚の働きを豊かにする",
+  //   },
+  // ],
+  // expressionGoals: [
+  //   {
+  //     checked: false,
+  //     text: "เด็กจะได้รับประสบการณ์ที่หลากหลายทางประสาทสัมผัสและได้ลิ้มรสความรู้สึกต่างๆ / 身体の諸感覚の経験を豊かにし、様々な感覚を味わう",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กจะแสดงออกถึงสิ่งที่รู้สึกและคิดด้วยวิธีของตนเอง / 感じたことや考えたことなどを自分なりに表現しようとする",
+  //   },
+  //   {
+  //     checked: false,
+  //     text: "เด็กจะพัฒนาจินตนาการและความไวต่อความงามผ่านประสบการณ์ในชีวิตและการเล่น / 生活や遊びの様々な体験を通して、イメージや感性が豊かになる",
+  //   },
+  // ],
+  // ageTable: {
+  //   "0歳児": "",
+  //   "1歳児": "",
+  //   "2歳児": "",
+  //   "3歳児": "",
+  //   "4-3歳児": "",
+  //   "4歳児": "",
+  //   "5歳児": "",
+  // },
+  // socialTable: {
+  //   "0歳児": "",
+  //   "1歳児": "",
+  //   "2歳児": "",
+  //   "3歳児": "",
+  //   "4-3歳児": "",
+  //   "4歳児": "",
+  //   "5歳児": "",
+  // },
+  // healthTable: {
+  //   "0歳児": "",
+  //   "1歳児": "",
+  //   "2歳児": "",
+  //   "3歳児": "",
+  //   "4-3歳児": "",
+  //   "4歳児": "",
+  //   "5歳児": "",
+  // },
+  // relationshipTable: {
+  //   "0歳児": "",
+  //   "1歳児": "",
+  //   "2歳児": "",
+  //   "3歳児": "",
+  //   "4-3歳児": "",
+  //   "4歳児": "",
+  //   "5歳児": "",
+  // },
+  // languageTable: {
+  //   "0歳児": "",
+  //   "1歳児": "",
+  //   "2歳児": "",
+  //   "3歳児": "",
+  //   "4-3歳児": "",
+  //   "4歳児": "",
+  //   "5歳児": "",
+  // },
+  // developmentTable: {
+  //   "0歳児": "",
+  //   "1歳児": "",
+  //   "2歳児": "",
+  //   "3歳児": "",
+  //   "4-3歳児": "",
+  //   "4歳児": "",
+  //   "5歳児": "",
+  // },
+  // expressionTable: {
+  //   "0歳児": "",
+  //   "1歳児": "",
+  //   "2歳児": "",
+  //   "3歳児": "",
+  //   "4-3歳児": "",
+  //   "4歳児": "",
+  //   "5歳児": "",
+  // },
   abilitiesGoals: [],
   abilitiesGoals2: [],
+  physical_mental_health: "",
+  relationships_people: "",
+  relationships_environment: "",
+  respect_human_rights: "",
+  respect_expression: "",
+  guardian_support_collaboration: "",
+  community_collaboration: "",
+  school_connection: "",
+  health_support: "",
+  environment_sanitation_safety: "",
+  food_education: "",
+  neuvola_support: "",
+  guardian_support: "",
+  support_childcare: "",
 };
 
 // ============================================================================
@@ -602,15 +632,21 @@ const AgeTable: React.FC<AgeTableProps> = ({
               key={age}
               sx={{ p: 1, border: "1px solid #e0e0e0", verticalAlign: "top" }}
             >
-              <TextField
-                fullWidth
-                multiline
-                rows={6}
+              <textarea
                 value={tableData[age]}
                 onChange={(e) => onTableChange(age, e.target.value)}
                 placeholder="記入"
-                variant="outlined"
-                size="small"
+                style={{
+                  width: "100%", // เต็มความกว้าง
+                  height: "150px", // fix height
+                  resize: "none", // ไม่ให้ user ขยาย
+                  overflowY: "auto", // scroll ข้อความยาว
+                  padding: "8px",
+                  fontSize: "0.875rem",
+                  fontFamily: "Roboto, sans-serif",
+                  borderRadius: "4px",
+                  border: "1px solid #c4c4c4",
+                }}
               />
             </TableCell>
           ))}
@@ -758,7 +794,11 @@ const OverallPlanAdd: React.FC = () => {
     fetchM_competencies,
     fetchM_ten_figures,
     createOverallPlan,
+    editOverallPlanMain,
+    fetchOverallPlanById,
   } = useOverallPlan();
+  const { id } = useParams<{ id: string }>();
+  const isEdit = !!id;
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
   const [rows, setRows] = useState<RowData[]>(INITIAL_ROWS);
   const [expandedSections, setExpandedSections] = useState({
@@ -796,37 +836,37 @@ const OverallPlanAdd: React.FC = () => {
   };
 
   const handleGoalCheck = (
-    type:
-      | "lifeGoals"
-      | "socialGoals"
-      | "healthGoals"
-      | "relationshipGoals"
-      | "languageGoals"
-      | "developmentGoals"
-      | "expressionGoals",
-    index: number
+    key: string,
+    index: number,
+    text: string,
+    NO: number
   ) => {
-    const goals = [...formData[type]];
-    goals[index].checked = !goals[index].checked;
-    setFormData((prev) => ({ ...prev, [type]: goals }));
+    setFormData((prev) => {
+      const currentGoals: { checked: boolean; text: string; NO: number }[] =
+        prev[key] ?? [];
+
+      // ถ้ายังไม่มี goal ตัวนี้ ให้สร้างใหม่
+      if (!currentGoals[index]) {
+        currentGoals[index] = { text, checked: true, NO };
+      } else {
+        currentGoals[index].checked = !currentGoals[index].checked;
+        // อัพเดต NO ถ้าต้องการ (ปกติอาจไม่เปลี่ยน)
+        currentGoals[index].NO = NO;
+      }
+
+      return { ...prev, [key]: currentGoals };
+    });
   };
 
   const handleTableChange = (
-    tableType:
-      | "ageTable"
-      | "socialTable"
-      | "healthTable"
-      | "relationshipTable"
-      | "languageTable"
-      | "developmentTable"
-      | "expressionTable",
+    key: string, // dynamic key เช่น ageTable_1
     age: string,
     value: string
   ) => {
     setFormData((prev) => ({
       ...prev,
-      [tableType]: {
-        ...prev[tableType],
+      [key]: {
+        ...prev[key], // ค่าก่อนหน้าของ table
         [age]: value,
       },
     }));
@@ -881,9 +921,115 @@ const OverallPlanAdd: React.FC = () => {
 
   const handleSubmit = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
+
     try {
-      await createOverallPlan(formData);
-      console.log("Form Data:", formData);
+      const AGE_KEYS = ["0歳児", "1歳児", "2歳児", "3歳児", "4歳児", "5歳児"];
+
+      const createObjectivesPayload = (
+        formData: Record<string, any>
+      ): ObjectiveAgeForm[] => {
+        return Object.entries(formData)
+          .map(([key, goalsOrTable]) => {
+            // สนใจเฉพาะ key ที่เป็นตัวเลข (title_id)
+            if (isNaN(Number(key))) return null;
+
+            // รวมข้อความที่ติ๊ก checked = true
+            const checkedTexts = (goalsOrTable as any[])
+              .filter((goal: any) => goal.checked)
+              .map((goal: any) => goal.text.trim())
+              .join(" ");
+
+            // ดึงตารางอายุ
+            const ageTableKey = `ageTable_${key}`;
+            const ageData = formData[ageTableKey] || {};
+
+            const ageFields: Record<string, string> = {};
+            AGE_KEYS.forEach((ageKey, idx) => {
+              ageFields[`age${idx}`] = ageData[ageKey] || "";
+            });
+
+            return {
+              title_id: Number(key),
+              yougo_snapshot: checkedTexts,
+              ...ageFields,
+            };
+          })
+          .filter((item): item is ObjectiveAgeForm => Boolean(item));
+      };
+      const figuresPayload = [
+        ...(abilitiesData.abilitiesGoals || [])
+          .filter((a) => formData.abilitiesGoals?.includes(a.title_snapshot))
+          .map((a) => ({
+            ref_id: a.ref_id,
+            type: "育みたい 資質・能力",
+            title_snapshot: a.title_snapshot,
+          })),
+        ...(abilitiesData.abilitiesGoals2 || [])
+          .filter((a) => formData.abilitiesGoals2?.includes(a.title_snapshot))
+          .map((a) => ({
+            ref_id: a.ref_id,
+            type: "10の姿",
+            title_snapshot: a.title_snapshot,
+          })),
+      ];
+
+      // 🔹 สร้าง payload หลัก
+      const payload = {
+        year: formData.year,
+        child_vision: formData.child_vision,
+        educator_vision: formData.educator_vision,
+        philosophy_snapshot: formData.philosophy_detail,
+        policies: formData.methods.map((m: any) => ({
+          policy_master_id: m.id,
+          policy_text_snap: m.policy_detail,
+        })),
+        objectives: createObjectivesPayload(formData), // ✅ รวมทั้ง goal + age
+        figures: figuresPayload,
+        pillars: [
+          {
+            physical_mental_health: formData.physical_mental_health,
+            relationships_people: formData.relationships_people,
+            relationships_environment: formData.relationships_environment,
+            respect_human_rights: formData.respect_human_rights,
+            respect_expression: formData.respect_expression,
+            guardian_support_collaboration:
+              formData.guardian_support_collaboration,
+            community_collaboration: formData.community_collaboration,
+            school_connection: formData.school_connection,
+          },
+        ],
+        practices: [
+          {
+            health_support: formData.health_support,
+            environment_sanitation_safety:
+              formData.environment_sanitation_safety,
+            food_education: formData.food_education,
+            neuvola_support: formData.neuvola_support,
+            guardian_support: formData.guardian_support,
+            support_childcare: formData.support_childcare,
+          },
+        ],
+        schedule: rows.map((row) => ({
+          month: row.month,
+          event_school: row.gardenEvent,
+          event_seasonal: row.seasonalEvent,
+          food_education: row.foodEducation,
+          health: row.health,
+          neuvola: row.neuvola,
+          staff_training: row.staffTraining,
+        })),
+      };
+
+      delete (payload as any).methods;
+
+      console.log("✅ Final Payload:", payload);
+
+      // 🔹 ส่งไป backend
+      if (id) {
+        await editOverallPlanMain(Number(id), payload); // ✅ ไม่ error
+      } else {
+        await createOverallPlan(payload);
+      }
       alert("保存されました / บันทึกแล้ว");
     } catch (error) {
       console.error(error);
@@ -894,76 +1040,149 @@ const OverallPlanAdd: React.FC = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        // เรียก API ทั้งหมดพร้อมกัน
+        // โหลด master data ทั้งหมด
         const [
           philosophies,
           policies,
           developmentAreas,
           developmentYougo,
           competencies,
+          planData,
         ] = await Promise.all([
           fetchM_philosophy(),
           fetchM_policy(),
           fetchM_development_areas(),
           fetchM_development_Yougo(),
           fetchM_competencies(),
+          isEdit && id
+            ? fetchOverallPlanById(Number(id))
+            : Promise.resolve(null),
         ]);
 
-        // philosophy
-        if (philosophies.length > 0) {
-          setFormData((prev) => ({
-            ...prev,
-            philosophy_detail: philosophies[0].philosophy_detail,
-          }));
-        }
-
-        // methods
-        if (policies.length > 0) {
-          setFormData((prev) => ({
-            ...prev,
-            methods: policies.map((p) => ({
-              id: p.id,
-              policy_detail: p.policy_detail,
-            })),
-          }));
-        }
-
-        // development Yougo
-        // developmentAreas + Yougo
-        if (developmentAreas.length > 0) {
-          const areasWithYougo = developmentAreas.map((area) => ({
+        // สร้าง formData เบื้องต้นจาก master data
+        let newFormData = {
+          ...INITIAL_FORM_DATA,
+          philosophy_detail: philosophies?.[0]?.philosophy_detail || "",
+          methods: policies.map((p) => ({
+            id: p.id,
+            policy_detail: p.policy_detail,
+          })),
+          developmentAreas: developmentAreas.map((area) => ({
             ...area,
             yougo: developmentYougo.filter(
               (y) => y.development_area_id === area.id
             ),
-          }));
+          })),
+          competencies: competencies.map((c) => ({
+            id: c.id,
+            competencies_detail: c.competencies_detail,
+          })),
+        };
 
-          setFormData((prev) => ({
-            ...prev,
-            developmentAreas: areasWithYougo,
-          }));
-        }
+        // ถ้าเป็น edit mode ให้ merge planData
+        if (planData) {
+          const pillar = planData.pillars?.[0] || {};
+          const practice = planData.practices?.[0] || {};
 
-        if (competencies.length > 0) {
-          setFormData((prev) => ({
-            ...prev,
-            competencies: competencies.map((p) => ({
-              id: p.id,
-              competencies_detail: p.competencies_detail,
+          // preload objectives
+          // preload objectives + ageTable
+          // ---- สร้าง objectivesFormData โดยใช้ developmentYougo (master) ----
+          const objectivesFormData: Record<string, any> = {};
+
+          if (Array.isArray(planData.objectives)) {
+            planData.objectives.forEach((o: any) => {
+              const key = `${o.title_id}`;
+
+              // หา yougo ทั้งหมดที่เป็น master ของ title นี้ (จาก developmentYougo)
+              const yougosForTitle = developmentYougo.filter(
+                (y: any) => y.title_id === o.title_id
+              );
+
+              // สร้าง goals array โดยเอา text จาก master และ checked จาก backend
+              objectivesFormData[key] = yougosForTitle.map((u: any) => {
+                const backendGoal = Array.isArray(o.goals)
+                  ? o.goals.find((g: any) => g.no_desc === u.no_desc)
+                  : undefined;
+                return {
+                  checked: !!backendGoal?.checked,
+                  NO: u.no_desc,
+                  text: u.yougo_desc,
+                };
+              });
+
+              // สร้าง age table ที่ key ต้องเป็น AGE_GROUPS ("0歳児", "1歳児", ...)
+              const ageTableKey = `ageTable_${o.title_id}`;
+              const ageTable: Record<string, string> = {};
+              AGE_GROUPS.forEach((ageLabel, idx) => {
+                // backend ส่งมาเป็น age0, age1,... => map ตามดัชนี
+                ageTable[ageLabel] = o[`age${idx}`] ?? "";
+              });
+              objectivesFormData[ageTableKey] = ageTable;
+            });
+          }
+          newFormData = {
+            ...newFormData,
+            year: planData.year,
+            philosophy_detail:
+              planData.philosophy_snapshot || newFormData.philosophy_detail,
+            child_vision: planData.child_vision || "",
+            educator_vision: planData.educator_vision || "",
+            methods: planData.policies.map((p: any) => ({
+              id: p.policy_master_id,
+              policy_detail: p.policy_text_snap,
             })),
-          }));
+            abilitiesGoals: planData.figures
+              .filter((f: any) => f.type === "育みたい 資質・能力")
+              .map((f: any) => f.title_snapshot),
+            abilitiesGoals2: planData.figures
+              .filter((f: any) => f.type === "10の姿")
+              .map((f: any) => f.title_snapshot),
+            physical_mental_health: pillar.physical_mental_health || "",
+            relationships_people: pillar.relationships_people || "",
+            relationships_environment: pillar.relationships_environment || "",
+            respect_human_rights: pillar.respect_human_rights || "",
+            respect_expression: pillar.respect_expression || "",
+            guardian_support_collaboration:
+              pillar.guardian_support_collaboration || "",
+            community_collaboration: pillar.community_collaboration || "",
+            school_connection: pillar.school_connection || "",
+            health_support: practice.health_support || "",
+            environment_sanitation_safety:
+              practice.environment_sanitation_safety || "",
+            food_education: practice.food_education || "",
+            neuvola_support: practice.neuvola_support || "",
+            guardian_support: practice.guardian_support || "",
+            support_childcare: practice.support_childcare || "",
+            ...objectivesFormData, // ใส่ goals + ageTable
+          };
+
+          // แปลง schedule → rows
+          setRows(
+            (planData.schedule || []).map((s: any, index: number) => ({
+              id: index + 1,
+              month: s.month ?? `Month ${index + 1}`,
+              gardenEvent: s.event_school || "",
+              seasonalEvent: s.event_seasonal || "",
+              foodEducation: s.food_education || "",
+              health: s.health || "",
+              neuvola: s.neuvola || "",
+              staffTraining: s.staff_training || "",
+            }))
+          );
         }
+
+        setFormData(newFormData);
       } catch (err) {
-        console.error(err);
+        console.error("Failed to load data:", err);
       }
     };
 
     loadData();
-  }, []);
+  }, [id, isEdit]);
 
   const [abilitiesData, setAbilitiesData] = useState<{
-    abilitiesGoals?: string[];
-    abilitiesGoals2?: string[];
+    abilitiesGoals?: { ref_id: number; title_snapshot: string }[];
+    abilitiesGoals2?: { ref_id: number; title_snapshot: string }[];
   }>({});
 
   useEffect(() => {
@@ -988,8 +1207,14 @@ const OverallPlanAdd: React.FC = () => {
 
           const items =
             config.fieldName === "abilitiesGoals"
-              ? (data as M_competencies[]).map((d) => d.competencies_detail)
-              : (data as M_ten_figures[]).map((d) => d.ten_detail);
+              ? (data as M_competencies[]).map((d) => ({
+                  ref_id: d.id, // เอา id จาก API
+                  title_snapshot: d.competencies_detail,
+                }))
+              : (data as M_ten_figures[]).map((d) => ({
+                  ref_id: d.id, // เอา id จาก API
+                  title_snapshot: d.ten_detail,
+                }));
 
           setAbilitiesData((prev) => ({
             ...prev,
@@ -1036,6 +1261,7 @@ const OverallPlanAdd: React.FC = () => {
   // ========================================================================
   // RENDER
   // ========================================================================
+
   return (
     <ThemeProvider theme={theme}>
       <ContentMain className="flex flex-col min-h-screen">
@@ -1254,25 +1480,55 @@ const OverallPlanAdd: React.FC = () => {
                       })
                     : null;
 
+                  const key = `${y.title_id}`;
+
+                  // preload default goals ถ้ายังไม่มีใน state
+                  if (!formData[key]) {
+                    const defaultGoals = yougosForTitle.map((u) => ({
+                      checked: false,
+                      NO: u.no_desc,
+                      text: u.yougo_desc,
+                    }));
+                    setFormData((prev) => ({ ...prev, [key]: defaultGoals }));
+                  }
+
+                  const ageTableKey = `ageTable_${y.title_id}`; // dynamic key
+
+                  // preload table ถ้ายังไม่มีค่า
+                  if (!formData[ageTableKey]) {
+                    const defaultTable: Record<string, string> = {};
+                    AGE_GROUPS.forEach((age) => {
+                      defaultTable[age] = ""; // ค่าเริ่มต้น
+                    });
+                    setFormData((prev) => ({
+                      ...prev,
+                      [ageTableKey]: defaultTable,
+                    }));
+                  }
+
                   return (
                     <React.Fragment key={y.title_id}>
                       <GoalSection
                         title={y.title}
-                        goals={yougosForTitle.map((u) => ({
-                          checked: false,
-                          text: u.yougo_desc,
-                        }))}
+                        goals={formData[key] ?? []}
                         icon={iconElement}
                         color={sharedColor}
-                        onGoalCheck={() => {}}
+                        onGoalCheck={(index) =>
+                          handleGoalCheck(
+                            key,
+                            index,
+                            yougosForTitle[index].yougo_desc,
+                            yougosForTitle[index].no_desc
+                          )
+                        }
                       />
 
                       <AgeTable
                         ageGroups={AGE_GROUPS}
-                        tableData={formData.ageTable}
+                        tableData={formData[ageTableKey] ?? {}}
                         color={sharedColor}
                         onTableChange={(age, value) =>
-                          handleTableChange("ageTable", age, value)
+                          handleTableChange(ageTableKey, age, value)
                         }
                       />
                     </React.Fragment>
@@ -1310,9 +1566,9 @@ const OverallPlanAdd: React.FC = () => {
                       onSelectAll={() =>
                         handleSelectAll(abilityConfig.fieldName)
                       }
-                      abilityMaster={
+                      abilityMaster={(
                         abilitiesData[abilityConfig.fieldName] || []
-                      } // ใช้ข้อมูลจาก API
+                      ).map((a) => a.title_snapshot)}
                     />
                   </Box>
                 )}
@@ -1343,6 +1599,10 @@ const OverallPlanAdd: React.FC = () => {
                 <TextField
                   fullWidth
                   multiline
+                  value={formData.physical_mental_health}
+                  onChange={(e) =>
+                    handleInputChange("physical_mental_health", e.target.value)
+                  }
                   rows={2}
                   placeholder={t("overallplanadd.health_mind_body_placeholder")}
                   sx={{
@@ -1360,6 +1620,10 @@ const OverallPlanAdd: React.FC = () => {
                 <TextField
                   fullWidth
                   multiline
+                  value={formData.relationships_people}
+                  onChange={(e) =>
+                    handleInputChange("relationships_people", e.target.value)
+                  }
                   rows={2}
                   placeholder={t(
                     "overallplanadd.relations_close_people_placeholder"
@@ -1380,9 +1644,12 @@ const OverallPlanAdd: React.FC = () => {
                   fullWidth
                   multiline
                   rows={2}
-                  value={formData.relationshipEnvironment}
+                  value={formData.relationships_environment}
                   onChange={(e) =>
-                    handleInputChange("relationshipEnvironment", e.target.value)
+                    handleInputChange(
+                      "relationships_environment",
+                      e.target.value
+                    )
                   }
                   placeholder={t(
                     "overallplanadd.relations_environment_nearby_placeholder"
@@ -1403,9 +1670,9 @@ const OverallPlanAdd: React.FC = () => {
                   fullWidth
                   multiline
                   rows={2}
-                  value={formData.humanRights}
+                  value={formData.respect_human_rights}
                   onChange={(e) =>
-                    handleInputChange("humanRights", e.target.value)
+                    handleInputChange("respect_human_rights", e.target.value)
                   }
                   placeholder={t(
                     "overallplanadd.human_rights_respect_placeholder"
@@ -1426,9 +1693,9 @@ const OverallPlanAdd: React.FC = () => {
                   fullWidth
                   multiline
                   rows={2}
-                  value={formData.expressionRespect}
+                  value={formData.respect_expression}
                   onChange={(e) =>
-                    handleInputChange("expressionRespect", e.target.value)
+                    handleInputChange("respect_expression", e.target.value)
                   }
                   placeholder={t(
                     "overallplanadd.expression_respect_placeholder"
@@ -1449,9 +1716,12 @@ const OverallPlanAdd: React.FC = () => {
                   fullWidth
                   multiline
                   rows={2}
-                  value={formData.parentSupport}
+                  value={formData.guardian_support_collaboration}
                   onChange={(e) =>
-                    handleInputChange("parentSupport", e.target.value)
+                    handleInputChange(
+                      "guardian_support_collaboration",
+                      e.target.value
+                    )
                   }
                   placeholder={t("overallplanadd.parent_support_placeholder")}
                   sx={{
@@ -1469,6 +1739,10 @@ const OverallPlanAdd: React.FC = () => {
                 <TextField
                   fullWidth
                   multiline
+                  value={formData.community_collaboration}
+                  onChange={(e) =>
+                    handleInputChange("community_collaboration", e.target.value)
+                  }
                   rows={2}
                   placeholder={t(
                     "overallplanadd.community_cooperation_placeholder"
@@ -1488,6 +1762,10 @@ const OverallPlanAdd: React.FC = () => {
                 <TextField
                   fullWidth
                   multiline
+                  value={formData.school_connection}
+                  onChange={(e) =>
+                    handleInputChange("school_connection", e.target.value)
+                  }
                   rows={2}
                   placeholder={t(
                     "overallplanadd.primary_connection_placeholder"
@@ -1525,6 +1803,10 @@ const OverallPlanAdd: React.FC = () => {
                 <TextField
                   fullWidth
                   multiline
+                  value={formData.health_support}
+                  onChange={(e) =>
+                    handleInputChange("health_support", e.target.value)
+                  }
                   rows={6}
                   placeholder={t("overallplanadd.health_mind_body_placeholder")}
                   sx={{
@@ -1542,6 +1824,13 @@ const OverallPlanAdd: React.FC = () => {
                 <TextField
                   fullWidth
                   multiline
+                  value={formData.environment_sanitation_safety}
+                  onChange={(e) =>
+                    handleInputChange(
+                      "environment_sanitation_safety",
+                      e.target.value
+                    )
+                  }
                   rows={6}
                   placeholder={t(
                     "overallplanadd.relations_close_people_placeholder"
@@ -1561,6 +1850,10 @@ const OverallPlanAdd: React.FC = () => {
                 <TextField
                   fullWidth
                   multiline
+                  value={formData.food_education}
+                  onChange={(e) =>
+                    handleInputChange("food_education", e.target.value)
+                  }
                   rows={6}
                   placeholder={t(
                     "overallplanadd.relations_environment_nearby_placeholder"
@@ -1580,6 +1873,10 @@ const OverallPlanAdd: React.FC = () => {
                 <TextField
                   fullWidth
                   multiline
+                  value={formData.neuvola_support}
+                  onChange={(e) =>
+                    handleInputChange("neuvola_support", e.target.value)
+                  }
                   rows={6}
                   placeholder={t(
                     "overallplanadd.human_rights_respect_placeholder"
@@ -1599,6 +1896,10 @@ const OverallPlanAdd: React.FC = () => {
                 <TextField
                   fullWidth
                   multiline
+                  value={formData.guardian_support}
+                  onChange={(e) =>
+                    handleInputChange("guardian_support", e.target.value)
+                  }
                   rows={6}
                   placeholder={t(
                     "overallplanadd.expression_respect_placeholder"
@@ -1618,6 +1919,10 @@ const OverallPlanAdd: React.FC = () => {
                 <TextField
                   fullWidth
                   multiline
+                  value={formData.support_childcare}
+                  onChange={(e) =>
+                    handleInputChange("support_childcare", e.target.value)
+                  }
                   rows={6}
                   placeholder={t("overallplanadd.parent_support_placeholder")}
                   sx={{
@@ -1630,7 +1935,7 @@ const OverallPlanAdd: React.FC = () => {
             </Grid>
           </AccordionDetails>
         </Accordion>
-
+        {/* 
         <Accordion
           expanded={expandedSections.goals}
           onChange={() => toggleSection("goals")}
@@ -1757,7 +2062,7 @@ const OverallPlanAdd: React.FC = () => {
               </Grid>
             </Grid>
           </AccordionDetails>
-        </Accordion>
+        </Accordion> */}
 
         {/* ================================================================
             ANNUAL SCHEDULE
