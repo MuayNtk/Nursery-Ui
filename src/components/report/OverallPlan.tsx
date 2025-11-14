@@ -25,7 +25,7 @@ interface Column {
 }
 
 const Overallplan: React.FC = () => {
-  const { fetchOverallPlans } = useOverallPlan();
+  const { fetchOverallPlans, deleteOverallPlanMain } = useOverallPlan();
   const { t } = useTranslation();
   const [data, setData] = useState<Data[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -155,12 +155,24 @@ const Overallplan: React.FC = () => {
               <IconButton
                 aria-label="delete"
                 size="small"
-                onClick={() => {
+                onClick={async () => {
                   const confirmDelete = window.confirm("Are you sure?");
-                  if (confirmDelete) {
+                  if (!confirmDelete) return;
+
+                  try {
+                    // เรียก API ลบ
+                    await deleteOverallPlanMain(Number(item.id)); // item.id = pid ของแต่ละ row
+
+                    // อัปเดต state หลังจากลบสำเร็จ
                     setData((prev) =>
                       prev.filter((d) => d.pid !== String(item.id))
                     );
+                    setFilteredRows((prev) =>
+                      prev.filter((d) => d.pid !== String(item.id))
+                    );
+                  } catch (err) {
+                    console.error("Failed to delete overall plan:", err);
+                    alert("Failed to delete overall plan. Please try again.");
                   }
                 }}
               >
