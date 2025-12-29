@@ -1,164 +1,242 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import ContentMain from "../content/Content";
-import { Button, Grid, IconButton, Typography, TextField } from '@mui/material';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import EditIcon from '@mui/icons-material/Edit';
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { useNavigate } from 'react-router-dom';
+import {
+  Button,
+  Grid,
+  IconButton,
+  Typography,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  CircularProgress,
+  Box,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useOverallPlan } from "../../contexts/OverallplanContext";
 
 interface Column {
-  id: 'pid' | 'year' | 'age' | 'name' | 'detail';
+  id: "pid" | "year" | "name" | "detail";
   label: string;
   minWidth?: number;
-  align?: 'right' | 'center' | 'left';
+  align?: "right" | "center" | "left";
   format?: (value: number) => string;
 }
 
+interface Data {
+  pid: string;
+  year: string;
+  name: string;
+  detail: JSX.Element;
+}
+
+const useDebounced = (value: string, delay = 200) => {
+  const [debounced, setDebounced] = useState(value);
+  useEffect(() => {
+    const t = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(t);
+  }, [value, delay]);
+  return debounced;
+};
+
 const Overallplan: React.FC = () => {
+  const { fetchOverallPlans, deleteOverallPlanMain, plans,socket } = useOverallPlan();
+  const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
   const [data, setData] = useState<Data[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearch = useDebounced(searchTerm, 200);
   const [filteredRows, setFilteredRows] = useState<Data[]>([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const navigate = useNavigate();
-
+  const [openConfirm, setOpenConfirm] = useState(false);
+  const [deleteId, setDeleteId] = useState<number | null>(null);
   const columns: readonly Column[] = [
-    { id: 'year', label: t("overallplan.col_year"), minWidth: 50, align: 'center' },
-    { id: 'age', label: t("overallplan.col_age"), minWidth: 70, align: 'center' },
-    { id: 'name', label: t("overallplan.col_name"), minWidth: 100, align: 'left' },
-    { id: 'detail', label: t("overallplan.col_action"), minWidth: 50, align: 'right' },
+    {
+      id: "year",
+      label: t("overallplan.col_year"),
+      minWidth: 50,
+      align: "center",
+    },
+    {
+      id: "name",
+      label: t("overallplan.col_name"),
+      minWidth: 50,
+      align: "center",
+    },
+    {
+      id: "detail",
+      label: t("overallplan.col_action"),
+      minWidth: 50,
+      align: "right",
+    },
   ];
 
-  interface Data {
-    pid: string;
-    year: string;
-    age: string;
-    name: string;
-    detail: JSX.Element;
-  }
 
-  useEffect(() => {
-    const initializeSampleData = () => {
-      const existingData = JSON.parse(sessionStorage.getItem('overallplanData') || '[]');
-      if (existingData.length === 0) {
-        const sampleData = [
-          { pid: '111', year: '2024', age: '0 歳', name: '(全体的な計画)' },
-          { pid: '222', year: '2024', age: '3 歳', name: '(全体的な計画)' },
-          { pid: '333', year: '2024', age: '4 歳', name: '(全体的な計画)' },
-          { pid: '444', year: '2023', age: '5 歳', name: '(全体的な計画)' },
-          { pid: '555', year: '2023', age: '2 歳', name: '(全体的な計画)' },
-          { pid: '666', year: '2023', age: '1 歳', name: '(全体的な計画)' },
-        ];
-        sessionStorage.setItem('overallplanData', JSON.stringify(sampleData));
+ useEffect(() => {
+  if (plans.length === 0) {  
+    let mounted = true;
+    const load = async () => {
+      setLoading(true);
+      try {
+        await fetchOverallPlans();
+      } finally {
+        if (mounted) setLoading(false);
       }
     };
-    initializeSampleData();
-  }, []);
+    load();
+    return () => { mounted = false; };
+  } else {
+    setLoading(false); 
+  }
+}, [plans, fetchOverallPlans]);
 
-  useEffect(() => {
-    const fetchData = () => {
-      const storedData = JSON.parse(sessionStorage.getItem('overallplanData') || '[]');
-      const transformedData = storedData.map((item: any) => ({
-        pid: item.pid,
-        year: item.year,
-        age: item.age,
-        name: item.name,
+  const mapped = useMemo(() => {
+    return (plans || [])
+      .slice()
+      .sort((a: any, b: any) => Number(a.year) - Number(b.year))
+      .map((item: any) => ({
+        pid: String(item.id),
+        year: String(item.year),
+        name: new Date(item.created_at).toLocaleString("ja-JP"),
         detail: (
           <>
             <IconButton
               aria-label="edit"
               size="small"
-              onClick={() => navigate(`/report/overallplan/edit/${item.pid}`)}
+              onClick={() => navigate(`/report/overallplan/edit/${item.id}`)}
             >
-              <EditIcon fontSize="small" className='text-sky-600' />
+              <EditIcon fontSize="small" className="text-sky-600" />
             </IconButton>
+
             <IconButton
               aria-label="view"
               size="small"
-              onClick={() => navigate(`/report/overallplan/view/${item.pid}`)}
+              onClick={() => navigate(`/report/overallplan/view/${item.id}`)}
             >
-              <RemoveRedEyeIcon fontSize="small" className='text-amber-500' />
+              <RemoveRedEyeIcon fontSize="small" className="text-amber-500" />
             </IconButton>
+
             <IconButton
               aria-label="delete"
               size="small"
               onClick={() => {
-                const confirmDelete = window.confirm('Are you sure you want to delete this item?');
-                if (confirmDelete) {
-                  setData(prevData => prevData.filter(data => data.pid !== item.pid));
-                  const updatedData = storedData.filter((data: any) => data.pid !== item.pid);
-                  sessionStorage.setItem('overallplanData', JSON.stringify(updatedData));
-                }
+                setDeleteId(Number(item.id));
+                setOpenConfirm(true);
               }}
             >
-              <DeleteIcon fontSize="small" className='text-red-600' />
+              <DeleteIcon fontSize="small" className="text-red-600" />
             </IconButton>
           </>
-        )
+        ),
       }));
-      setData(transformedData);
-    };
-    fetchData();
-  }, []);
+  }, [plans, navigate]);
 
   useEffect(() => {
-    if (searchTerm === '') {
+    setData(mapped);
+    setFilteredRows(mapped);
+  }, [mapped]);
+
+  useEffect(() => {
+    if (debouncedSearch === "") {
       setFilteredRows(data);
     } else {
-      setFilteredRows(data.filter(row =>
-        row.age.toLowerCase().includes(searchTerm.toLowerCase())
-      ));
+      const q = debouncedSearch.toLowerCase();
+      setFilteredRows(data.filter((row) => row.year.toLowerCase().includes(q)));
     }
-  }, [searchTerm, data]);
+    setPage(0);
+  }, [debouncedSearch, data]);
+
+  const handleDelete = useCallback(
+    async (id: string | number) => {
+      const idStr = String(id);
+      const idNum = Number(id);
+
+      setData((prev) => prev.filter((d) => d.pid !== idStr));
+      setFilteredRows((prev) => prev.filter((d) => d.pid !== idStr));
+
+      try {
+        await deleteOverallPlanMain(idNum);
+      } catch (err) {
+        await fetchOverallPlans();
+      }
+    },
+    [deleteOverallPlanMain, fetchOverallPlans]
+  );
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
+  const visibleRows = useMemo(() => {
+    const start = page * rowsPerPage;
+    return filteredRows.slice(start, start + rowsPerPage);
+  }, [filteredRows, page, rowsPerPage]);
+
   return (
     <>
       <ContentMain>
-        <Grid container spacing={2} className='pt-7' justifyContent="center">
+        <Grid container spacing={2} className="pt-7" justifyContent="center">
           <Grid item xs={3} sm={4} md={2} lg={2}>
-            <TextField id="outlined-search" label={t("overallplan.search_age")} type="search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} sx={{ bgcolor: 'white' }} size="small" />
+            <TextField
+              id="outlined-search"
+              label={t("overallplan.search_age")}
+              type="search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              sx={{ bgcolor: "white" }}
+              size="small"
+            />
           </Grid>
           <Grid item xs={6} sm={4} md={3} lg={2}>
             <Button variant="contained" sx={{ marginLeft: { xs: 6, sm: 1 } }}>
-              <Typography component="div" style={{ color: 'white' }}>
+              <Typography component="div" style={{ color: "white" }}>
                 {t("overallplan.search_button")}
               </Typography>
             </Button>
           </Grid>
         </Grid>
 
-        <Grid container className='pt-7' justifyContent="right">
+        <Grid container className="pt-7" justifyContent="right">
           <Grid>
-            <Button variant="contained" href="/report/overallplan/add" size='small' startIcon={<AddIcon />}>
-              <Typography style={{ color: 'white' }}>
+            <Button
+              variant="contained"
+              onClick={() => navigate("/report/overallplan/add")}
+              size="small"
+              startIcon={<AddIcon />}
+            >
+              <Typography style={{ color: "white" }}>
                 {t("overallplan.add_button")}
               </Typography>
             </Button>
           </Grid>
         </Grid>
 
-        <Grid container spacing={2} className='pt-10' justifyContent="center">
-          <Paper sx={{ width: '95%', overflow: 'hidden' }} className='ms-4'>
+        <Grid container spacing={2} className="pt-10" justifyContent="center">
+          <Paper sx={{ width: "95%", overflow: "hidden" }} className="ms-4">
             <TableContainer sx={{ maxHeight: 440 }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
@@ -175,28 +253,51 @@ const Overallplan: React.FC = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {filteredRows
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row, index) => {
-                      return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                          {columns.map((column) => {
-                            const value = row[column.id];
-                            return (
-                              <TableCell key={column.id} align={column.align}>
-                                {column.id === 'detail' ? (
-                                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                    {value}
-                                  </div>
-                                ) : (
-                                  value
-                                )}
-                              </TableCell>
-                            );
-                          })}
-                        </TableRow>
-                      );
-                    })}
+                  {loading ? (
+                    <TableRow>
+                      <TableCell
+                        colSpan={columns.length}
+                        align="center"
+                        sx={{ py: 6 }}
+                      >
+                        <CircularProgress />
+                      </TableCell>
+                    </TableRow>
+                  ) : filteredRows.length === 0 ? (
+                    <TableRow>
+                      <TableCell
+                        colSpan={columns.length}
+                        align="center"
+                        sx={{ py: 6 }}
+                      >
+                        データがありません
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    visibleRows.map((row, index) => (
+                      <TableRow key={index} hover role="checkbox" tabIndex={-1}>
+                        {columns.map((column) => {
+                          const value = row[column.id as keyof Data];
+                          return (
+                            <TableCell key={column.id} align={column.align}>
+                              {column.id === "detail" ? (
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    justifyContent: "flex-end",
+                                  }}
+                                >
+                                  {value}
+                                </Box>
+                              ) : (
+                                value
+                              )}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    ))
+                  )}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -211,6 +312,30 @@ const Overallplan: React.FC = () => {
             />
           </Paper>
         </Grid>
+        <Dialog open={openConfirm} onClose={() => setOpenConfirm(false)}>
+          <DialogTitle>Confirm Delete</DialogTitle>
+
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to delete this item?
+            </DialogContentText>
+          </DialogContent>
+
+          <DialogActions>
+            <Button onClick={() => setOpenConfirm(false)}>Cancel</Button>
+
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => {
+                if (deleteId != null) handleDelete(deleteId);
+                setOpenConfirm(false);
+              }}
+            >
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
       </ContentMain>
     </>
   );
